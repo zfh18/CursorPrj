@@ -1,0 +1,2 @@
+# CursorPrj
+Cursor project
