@@ -1,0 +1,1761 @@
+VERSION ""
+
+
+NS_ :
+NS_DESC_
+CM_
+BA_DEF_
+BA_
+VAL_
+CAT_DEF_
+CAT_
+FILTER
+BA_DEF_DEF_
+EV_DATA_
+ENVVAR_DATA_
+SGTYPE_
+SGTYPE_VAL_
+BA_DEF_SGTYPE_
+BA_SGTYPE_
+SIG_TYPE_REF_
+VAL_TABLE_
+SIG_GROUP_
+SIG_VALTYPE_
+SIGTYPE_VALTYPE_
+BO_TX_BU_
+BA_DEF_REL_
+BA_REL_
+BA_DEF_DEF_REL_
+BU_SG_REL_
+BU_EV_REL_
+BU_BO_REL_
+SG_MUL_VAL_
+
+BS_:
+
+BU_: AMP AMP2 ETC SCU_FL SCU_FR SCU_R SCU_RL SCU_RR SCU_TR SCU_TR1 SCU_TR2 Trailer VIU_MR WCM_FR WCM_RR
+
+
+BO_ 160 IPB7: 8 VIU_MR
+ SG_ IPB_vehicleSpeedValid : 10|1@0+ (1,0) [0|1] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ IPB_vehicleSpeed : 7|13@0+ (0.05625,0) [0|270] "km/h" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+
+BO_ 298 EPBM_state: 8 VIU_MR
+ SG_ EPBM_Sts : 12|3@0+ (1,0) [0|7] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+
+BO_ 444 VIU_OIB_SCURR_0x1D: 8 SCU_RR
+ SG_ SCURR_OneKeyResetSwitch : 0|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_OneKeyComftSwitch : 1|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_SeatVentilSwitch : 2|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_SeatHeatingSwitch : 3|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_SeatMassgIntenSW : 4|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_SeatMassgModeSW : 5|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_PasSeatFoldSwitch : 6|1@1+ (1,0) [0|1] "" VIU_MR
+
+BO_ 445 VIU_OIB_SCURL_0x1D: 8 SCU_RL
+ SG_ SCURL_OneKeyResetSwitch : 0|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURL_OneKeyComftSwitch : 1|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURL_SeatVentilSwitch : 2|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURL_SeatHeatingSwitch : 3|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURL_SeatMassgIntenSW : 4|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURL_SeatMassgModeSW : 5|1@1+ (1,0) [0|1] "" VIU_MR
+
+BO_ 488 OIB_VIUR_WSMRL_0x19: 8 VIU_MR
+ SG_ WSMRL_SeatMassLevelSet : 0|3@1+ (1,0) [0|7] "" SCU_TR2,SCU_RL,SCU_R
+ SG_ WSMRL_MassgIntenSet : 3|2@1+ (1,0) [0|3] "" SCU_TR2,SCU_RL,SCU_R
+ SG_ WSMRL_SeatLumSpprtReq : 5|3@1+ (1,0) [0|7] "" SCU_TR2,SCU_RL,SCU_R
+ SG_ WSMRL_SeatMassModeReq : 8|4@1+ (1,0) [0|15] "" SCU_TR2,SCU_RL,SCU_R
+ SG_ WSMRL_SeatMassgRest : 14|2@1+ (1,0) [0|3] "" SCU_TR2,SCU_RL,SCU_R
+ SG_ WSM_RLSeatMassgSpecModeReq : 12|2@1+ (1,0) [0|3] "" SCU_TR2,SCU_RL,SCU_R
+ SG_ WSMRL_SeatLumSpprtAdaptSet : 16|2@1+ (1,0) [0|3] "" SCU_RL,SCU_R
+ SG_ WSMRL_SeatSts : 54|1@1+ (1,0) [0|1] "" SCU_RL,SCU_R
+ SG_ WSMRL_SeatLumSpprtSingleAdaptReq : 55|1@1+ (1,0) [0|1] "" SCU_RL,SCU_R
+ SG_ WSMRL_SeatLumSpprtAdaptSwitch : 28|2@1+ (1,0) [0|3] "" SCU_RL,SCU_R
+ SG_ WSMRL_SeatMechineMassSet : 30|2@1+ (1,0) [0|3] "" SCU_RL,SCU_R
+ SG_ WSMRL_NeckrtHeatReq : 48|3@1+ (1,0) [0|7] "" SCU_RL,SCU_R
+
+BO_ 490 VIUR_OIB_WSMRL_0x1B: 8 SCU_TR2
+ SG_ WSMRL_PmpSts : 5|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRL_MassgIntenStatus : 3|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRL_MassLevelStatus : 0|3@1+ (1,0) [0|7] "" VIU_MR
+ SG_ WSMRL_ResponseError : 10|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRL_PwrVoltSts : 8|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRL_SeatLumSpprtSwitch : 13|3@1+ (1,0) [0|4] "" VIU_MR
+ SG_ WSM_RL_MassgSpecModeSts : 11|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRL_CtrlWSMRL2Coil : 40|10@1+ (1,0) [0|1023] "" VIU_MR
+ SG_ WSMRL_CtrlWSMRL2Pump : 50|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRL_FaultStatus : 20|4@1+ (1,0) [0|15] "" VIU_MR
+
+BO_ 493 VIUR_OIB_WSMRR_0x1B: 8 SCU_RR
+ SG_ WSMRR_PmpSts : 5|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_MassgIntenStatus : 3|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_MassLevelStatus : 0|3@1+ (1,0) [0|7] "" VIU_MR
+ SG_ WSMRR_ResponseError : 10|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRR_PwrVoltSts : 8|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_SeatLumSpprtSwitch : 13|3@1+ (1,0) [0|4] "" VIU_MR
+ SG_ WSM_RR_MassgSpecModeSts : 11|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_CtrlWSMRR2Coil : 40|10@1+ (1,0) [0|1023] "" VIU_MR
+ SG_ WSMRR_CtrlWSMRR2Pump : 50|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRR_FaultStatus : 20|4@1+ (1,0) [0|15] "" VIU_MR
+
+BO_ 494 OIB_VIUR_WSMRR_0x19: 8 VIU_MR
+ SG_ WSMRR_SeatMassLevelSet : 0|3@1+ (1,0) [0|7] "" SCU_RR,SCU_R
+ SG_ WSMRR_MassgIntenSet : 3|2@1+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ WSMRR_RRSeatLumSpprtReq : 5|3@1+ (1,0) [0|4] "" SCU_RR,SCU_R
+ SG_ WSMRR_RRSeatMassModeReq : 8|4@1+ (1,0) [0|15] "" SCU_RR,SCU_R
+ SG_ WSMRR_SeatMassgSpecModeReq : 12|2@1+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ WSMRR_SeatMassgRest : 14|2@1+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ WSMRR_2RSeatSingleSurfaceAdaptReq : 18|1@1+ (1,0) [0|1] "" SCU_RR,SCU_R
+ SG_ WSMRR_2RSeatSurfaceAdaptSet : 20|2@1+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ WSMRR_2RSideSupportUpadjust : 24|2@1+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ WSMRR_SeatBackrestPosSts : 32|8@1+ (1,0) [0|255] "" SCU_RR,SCU_R
+ SG_ WSMRR_SeatTiltPosSts : 40|8@1+ (1,0) [0|255] "" SCU_RR,SCU_R
+ SG_ WSMRR_NeckrtHeatReq : 48|3@1+ (1,0) [0|7] "" SCU_RR,SCU_R
+ SG_ WSMRR_2RSeatCushionFirmset : 51|3@1+ (1,0) [0|7] "" SCU_RR,SCU_R
+ SG_ WSMRR_SeatLumSpprtSingleAdaptReq : 55|1@1+ (1,0) [0|1] "" SCU_RR,SCU_R
+ SG_ WSMRR_SeatLumSpprtAdaptSe : 16|2@1+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ WSMRR_SeatSts : 54|1@1+ (1,0) [0|1] "" SCU_RR,SCU_R
+ SG_ WSMRR_SeatLumSpprtAdaptSwitch : 28|2@1+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ WSMRR_SeatMechineMassSet : 30|2@1+ (1,0) [0|3] "" SCU_RR,SCU_R
+
+BO_ 509 OIB_BCM_State3: 8 VIU_MR
+ SG_ BCM_RL_SeatLateraset : 4|3@0+ (1,0) [0|7] "" SCU_RL
+ SG_ BCM_SCURL_RotateReq : 10|3@0+ (1,0) [0|7] "" SCU_RL
+ SG_ BCM_2ndSeat_SceneReq : 1|4@0+ (1,0) [0|15] "" SCU_RL,SCU_RR
+ SG_ BCM_RR_SeatLateraset : 7|3@0+ (1,0) [0|7] "" SCU_RR
+ SG_ BCM_SCURR_RotateReq : 13|3@0+ (1,0) [0|7] "" SCU_RR
+ SG_ BCM_RR_LockMotorRequest : 21|2@0+ (1,0) [0|3] "" SCU_RR
+ SG_ BCM_RRMotorspd : 45|2@0+ (1,0) [0|3] "" SCU_RR
+
+BO_ 529 BCM_SCU_Cmd: 8 VIU_MR
+ SG_ BCM_RRSeatTiltReq : 33|2@0+ (1,0) [0|3] "" SCU_RR
+ SG_ BCM_RRSeatTiltPosReq : 47|8@0+ (1,0) [0|100] "%" SCU_RR
+ SG_ BCM_SCURR_SeatSinkPos : 55|8@0+ (1,0) [0|100] "%" SCU_RR
+
+BO_ 648 BCM_SCURL_req: 8 VIU_MR
+ SG_ BCM_SetRLSeatBackrest : 1|2@0+ (1,0) [0|3] "" SCU_RL,SCU_R
+ SG_ BCM_SetRLSeatHozl : 3|2@0+ (1,0) [0|3] "" SCU_RL,SCU_R
+ SG_ BCM_SetRLSeatLegHozl : 5|2@0+ (1,0) [0|3] "" SCU_TR2,SCU_RL,SCU_R
+ SG_ BCM_SetRLSeatLegAngle : 7|2@0+ (1,0) [0|3] "" SCU_RL,SCU_R
+ SG_ BCM_RLSeatHozlPos : 15|8@0+ (1,0) [0|100] "%" SCU_RL,SCU_R
+ SG_ BCM_RLSeatBackPos : 23|8@0+ (1,0) [0|100] "%" SCU_RL,SCU_R
+ SG_ BCM_RLSeatLegHozlPos : 31|8@0+ (1,0) [0|100] "%" SCU_TR2,SCU_RL,SCU_R
+ SG_ BCM_RLSeatLegAnglePos : 39|8@0+ (1,0) [0|100] "%" SCU_RL,SCU_R
+ SG_ BCM_RLSeatMemyResult : 41|1@0+ (1,0) [0|1] "" SCU_RL,SCU_R
+ SG_ BCM_RLSeatVentilReq : 47|3@0+ (1,0) [0|7] "" SCU_RL,SCU_R
+ SG_ BCM_RLSeatHeatingReq : 44|3@0+ (1,0) [0|7] "" SCU_RL,SCU_R
+ SG_ BCM_RLSeatResetReq : 49|2@0+ (1,0) [0|3] "" SCU_RL
+ SG_ BCM_RLSeatComfReq : 52|3@0+ (1,0) [0|7] "" SCU_RL
+ SG_ BCM_RLSeatMemoryReq : 60|2@0+ (1,0) [0|3] "" SCU_RL
+ SG_ BCM_RLSeatExtractReq : 55|3@0+ (1,0) [0|7] "" SCU_RL
+ SG_ BCM_RLWelcomeSeatReq : 63|3@0+ (1,0) [0|7] "" SCU_RL
+ SG_ BCM_RL_DockStationSts : 58|2@0+ (1,0) [0|3] "" SCU_RL,SCU_R
+ SG_ BCM_SCURL_SwtForbiddenSts : 40|1@0+ (1,0) [0|1] "" SCU_RL
+
+BO_ 649 BCM_SCURR_req: 8 VIU_MR
+ SG_ BCM_BigFourSeatsReq : 58|3@0+ (1,0) [0|7] "" SCU_RL,SCU_RR
+ SG_ BCM_SetRRSeatHozl : 1|2@0+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ BCM_SetRRSeatBackrest : 3|2@0+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ BCM_SetRRSeatLegHozl : 5|2@0+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ BCM_SetRRSeatLegAngle : 7|2@0+ (1,0) [0|3] "" SCU_RR,SCU_R
+ SG_ BCM_RRSeatHozlPos : 15|8@0+ (1,0) [0|100] "%" SCU_RR,SCU_R
+ SG_ BCM_RRSeatBackPos : 23|8@0+ (1,0) [0|100] "%" SCU_RR,SCU_R
+ SG_ BCM_RRSeatLegHozlPos : 31|8@0+ (1,0) [0|100] "%" SCU_RR,SCU_R
+ SG_ BCM_RRSeatLegAnglePos : 39|8@0+ (1,0) [0|100] "%" SCU_RR,SCU_R
+ SG_ BCM_RRSeatMemyResult : 41|1@0+ (1,0) [0|1] "" SCU_RR,SCU_R
+ SG_ BCM_RRSeatVentilReq : 47|3@0+ (1,0) [0|7] "" SCU_RR,SCU_R
+ SG_ BCM_RRSeatHeatingReq : 44|3@0+ (1,0) [0|7] "" SCU_RR,SCU_R
+ SG_ BCM_RRSeatResetReq : 49|2@0+ (1,0) [0|3] "" SCU_RR
+ SG_ BCM_RRSeatComfReq : 52|3@0+ (1,0) [0|7] "" SCU_RR
+ SG_ BCM_RRSeatMemoryReq : 60|2@0+ (1,0) [0|3] "" SCU_RR
+ SG_ BCM_RRSeatExtractReq : 55|3@0+ (1,0) [0|7] "" SCU_RR
+ SG_ BCM_RRWelcomeSeatReq : 63|3@0+ (1,0) [0|7] "" SCU_RR
+ SG_ BCM_SCURR_SwtForbiddenSts : 40|1@0+ (1,0) [0|1] "" SCU_RR
+
+BO_ 665 SCURL_state: 8 SCU_RL
+ SG_ SCURL_SeatHozlPosSwitch : 1|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_SeatBackrestSwitch : 3|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_SeatLegHozlSwitch : 5|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_SeatLegAngleSwitch : 7|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_SeatHozlPosSts : 15|8@0+ (1,0) [0|100] "%" VIU_MR,AMP
+ SG_ SCURL_SeatBackrestPosSts : 23|8@0+ (1,0) [0|100] "%" VIU_MR,AMP
+ SG_ SCURL_SeatLegHozlSts : 31|8@0+ (1,0) [0|100] "%" VIU_MR,AMP
+ SG_ SCURL_SeatLegAngleSts : 39|8@0+ (1,0) [0|100] "%" VIU_MR,AMP
+ SG_ SCURL_SeatMemySwitch1 : 41|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_SeatMemySwitch2 : 43|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_SeatMemySwitch3 : 45|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_SeatInsideArmrestSwitch : 47|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_SeatVentilSts : 55|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCURL_SeatHeatingSts : 52|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCURL_MassgSpecModeSts1 : 49|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_45RotateSW : 60|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURL_180RotateSW : 61|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURL_RotateResetSW : 62|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURL_ResetSW : 63|1@0+ (1,0) [0|1] "" VIU_MR
+
+BO_ 667 SCURR_state: 8 SCU_RR
+ SG_ SCURR_SeatHozlPosSwitch : 1|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatBackrestSwitch : 3|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatLegHozlSwitch : 5|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatLegAngleSwitch : 7|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatHozlPosSts : 15|8@0+ (1,0) [0|100] "%" VIU_MR,AMP
+ SG_ SCURR_SeatBackrestPosSts : 23|8@0+ (1,0) [0|100] "%" VIU_MR,AMP
+ SG_ SCURR_SeatLegHozlSts : 31|8@0+ (1,0) [0|100] "%" VIU_MR,AMP
+ SG_ SCURR_SeatLegAngleSts : 39|8@0+ (1,0) [0|100] "%" VIU_MR,AMP
+ SG_ SCURR_SeatMemySwitch1 : 41|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatMemySwitch2 : 43|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatMemySwitch3 : 45|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatInsideArmrestSwitch : 47|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatVentilSts : 55|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCURR_SeatHeatingSts : 52|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCURR_MassgSpecModeSts1 : 49|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatTiltPosSwitch : 57|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatFoldSwitch : 58|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_SeatExpandSwitch : 59|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_45RotateSW : 60|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_180RotateSW : 61|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_RotateResetSW : 62|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_ResetSW : 63|1@0+ (1,0) [0|1] "" VIU_MR
+
+BO_ 687 GW_BCM_DCU_CHA: 8 VIU_MR
+ SG_ DCU_FL_DoorFLSts_0x2AF : 20|1@0+ (1,0) [0|1] "" AMP,SCU_RL,SCU_RR
+ SG_ DCU_FR_doorFRSts_0x2AF : 21|1@0+ (1,0) [0|1] "" AMP,WCM_FR,SCU_RL,SCU_RR
+ SG_ DCU_RL_doorRLSts_0x2AF : 48|1@0+ (1,0) [0|1] "" AMP,WCM_RR,SCU_RL,SCU_RR
+ SG_ DCU_RR_doorRRSts_0x2AF : 49|1@0+ (1,0) [0|1] "" AMP,WCM_RR,SCU_RL,SCU_RR
+
+BO_ 703 SCURL_state1: 8 SCU_RL
+ SG_ SCURL_OutsideArmrestPosSts : 7|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCURL_InsideArmrestPosSts : 15|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCURL_SeatHeadrestSwitch : 17|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_SeatHeadrestPosSts : 31|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCURL_SeatMemoryResult : 20|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCURL_SeatExtractResult : 23|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_LeftSts : 33|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RL_SeatZeroGSta : 38|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCURL_InsideArmrestSts : 35|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_OutsideArmrestSts : 41|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURL_OneKeyComftSW : 39|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURL_VoiceRmdr : 44|3@0+ (1,0) [0|7] "" VIU_MR
+
+BO_ 704 SCURR_state1: 8 SCU_RR
+ SG_ SCU_RR_SeatSts2 : 35|4@0+ (1,0) [0|15] "" VIU_MR,SCU_RL
+ SG_ SCURR_OutsideArmrestPosSts : 7|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCURR_InsideArmrestPosSts : 15|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCURR_SeatHeadrestSwitch : 17|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatHeadrestPosSts : 31|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCURR_SeatMemoryResult : 20|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCURR_SeatExtractResult : 23|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_RightSts : 41|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_seatZeroGSta : 38|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCURR_InsideArmrestSts : 43|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_OutsideArmrestSts : 45|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SinkPosSts : 55|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCURR_OneKeyComftSW : 39|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_SeatHozlPosSwitch_Trunk : 47|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_SeatBackrestSwitch_Trunk : 57|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCURR_LockMotor_State : 58|1@0+ (1,0) [0|1] "" VIU_MR
+
+BO_ 705 BCM_peps: 8 VIU_MR
+ SG_ bcm_pepsPowerMode : 2|3@0+ (1,0) [0|7] "" AMP,AMP2,ETC,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R,Trailer
+
+BO_ 707 SCU3R_state1: 8 SCU_TR
+ SG_ SCUTRL_HozlPosSts : 7|8@0+ (1,0) [0|100] "%" VIU_MR,SCU_RL,SCU_RR
+ SG_ SCUTRL_BackrestPosSts : 15|8@0+ (1,0) [0|100] "%" VIU_MR,SCU_FL,SCU_FR,SCU_RL,SCU_RR
+ SG_ SCUTRR_HozlPosSts : 23|8@0+ (1,0) [0|100] "%" VIU_MR,SCU_RL,SCU_RR
+ SG_ SCUTRR_BackrestPosSts : 31|8@0+ (1,0) [0|100] "%" VIU_MR,SCU_FL,SCU_FR,SCU_RL,SCU_RR
+
+BO_ 709 BCM_SCUR_req: 8 VIU_MR
+ SG_ BCM_RLOutsideArmrestReq : 1|2@0+ (1,0) [0|3] "" SCU_RL
+ SG_ BCM_RLInsideArmrestReq : 3|2@0+ (1,0) [0|3] "" SCU_RL
+ SG_ BCM_RLOutsideArmrestPosReq : 15|8@0+ (1,0) [0|100] "%" SCU_RL
+ SG_ BCM_RLInsideArmrestPosReq : 23|8@0+ (1,0) [0|100] "%" SCU_RL
+ SG_ BCM_RLSeatHeadrestReq : 41|2@0+ (1,0) [0|3] "" SCU_RL
+ SG_ BCM_RLSeatHeadrestPosReq : 55|8@0+ (1,0) [0|100] "%" SCU_RL
+ SG_ BCM_2RHeadrestUpadjust : 44|1@0+ (1,0) [0|1] "" SCU_RL
+ SG_ BCM_2RHeadrestDownadjust : 45|1@0+ (1,0) [0|1] "" SCU_RL
+ SG_ BCM_2RSideSupportUpadjust : 46|1@0+ (1,0) [0|1] "" SCU_RL
+ SG_ BCM_2RSideSupportDownadjust : 47|1@0+ (1,0) [0|1] "" SCU_RL
+ SG_ BCM_RROutsideArmrestReq : 5|2@0+ (1,0) [0|3] "" SCU_RR
+ SG_ BCM_RRInsideArmrestReq : 7|2@0+ (1,0) [0|3] "" SCU_RR
+ SG_ BCM_RROutsideArmrestPosReq : 31|8@0+ (1,0) [0|100] "%" SCU_RR
+ SG_ BCM_RRInsideArmrestPosReq : 39|8@0+ (1,0) [0|100] "%" SCU_RR
+ SG_ BCM_RRSeatHeadrestReq : 43|2@0+ (1,0) [0|3] "" SCU_RR
+ SG_ BCM_RRSeatHeadrestPosReq : 63|8@0+ (1,0) [0|100] "%" SCU_RR
+
+BO_ 712 PDCM10: 8 VIU_MR
+ SG_ PDCM_actualGear : 5|2@0+ (1,0) [0|3] "" AMP,AMP2,ETC,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ PDCM_actualGearValid : 7|1@0+ (1,0) [0|1] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+
+BO_ 768 SCU_RL5: 8 SCU_RL
+ SG_ SCU_RL_SeatSlideMotorCuRLents : 7|8@0+ (0.1,0) [0|25.5] "" VIU_MR
+ SG_ SCU_RL_SeatReclineMotorCuRLents : 15|8@0+ (0.1,0) [0|25.5] "" VIU_MR
+ SG_ SCU_RL_SeatLateraMotorCuRLents : 23|8@0+ (0.1,0) [0|25.5] "" VIU_MR
+ SG_ SCU_RL_SeatInsideArmrestMotorCuRLents : 31|8@0+ (0.1,0) [0|25.5] "" VIU_MR
+ SG_ SCU_RL_SeatOutsideArmrestMotorCuRLents : 39|8@0+ (0.1,0) [0|25.5] "" VIU_MR
+ SG_ SCU_RL_SeatLateraPosSts : 47|8@0+ (1,0) [0|255] "" VIU_MR
+ SG_ SCU_RL_ErrorCode : 55|8@0+ (1,0) [0|255] "" VIU_MR
+ SG_ SCU_RL_Init1 : 56|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCU_RL_SeatLateraSts : 59|3@0+ (1,0) [0|7] "" VIU_MR
+
+BO_ 772 VIU_OIB_WSMRL_0x14: 8 SCU_TR2
+ SG_ WSMRL_SeatMassModeSts : 0|4@1+ (1,0) [0|15] "" VIU_MR
+ SG_ WSMRL_PwrVoltSts_OverVoltageStatus : 4|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRL_PwrVoltSts_LoVoltageStatus : 5|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRL_MassageCfg_FeedbackStatus : 6|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRL_Massage_HardwareVerStatus : 8|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRL_Massage_SoftwareVerStatus : 16|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRL_MassCombinedActionSts : 36|4@1+ (1,0) [0|15] "" VIU_MR
+ SG_ WSMRL_SeatLumSpprtAdaptSwitchSts : 35|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRL_ToastFeedback : 60|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRL_SeatLumSpprtAdaptSts : 58|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRL_Sts : 29|3@1+ (1,0) [0|7] "" VIU_MR
+ SG_ WSMRL_NeckrestInstalSts : 40|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRL_NeckrestHeatSts : 41|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRL_NeckrestMassgIntenSts : 43|2@1+ (1,0) [0|3] "" VIU_MR
+
+BO_ 803 VIU_OIB_WSM2RL_0x15: 8 SCU_RL
+ SG_ WSM2RL_SeatMassModeSts : 0|4@1+ (1,0) [0|15] "" VIU_MR
+ SG_ WSM2RL_PwrVoltSts_OverVoltageStatus : 4|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RL_PwrVoltSts_LoVoltageStatus : 5|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RL_MassageCfg_FeedbackStatus : 6|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RL_Massage_HardwareVerStatus : 8|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSM2RL_Massage_SoftwareVerStatus : 16|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSM2RL_MassLevelStatus : 24|3@1+ (1,0) [0|7] "" VIU_MR
+ SG_ WSM2RL_MassgIntenStatus : 28|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSM2RL_PmpSts : 30|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSM2RL_PwrVoltSts : 32|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSM2RL_ResponseError : 27|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RL_FeedbackValveSts : 34|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RL_FeedbackPumpSts : 35|1@1+ (1,0) [0|1] "" VIU_MR
+
+BO_ 804 VIU_OIB_WSMRR_0x16: 8 SCU_RR
+ SG_ WSMRR_SeatMassModeSts : 0|4@1+ (1,0) [0|15] "" VIU_MR
+ SG_ WSMRR_PwrVoltSts_OverVoltageStatus : 4|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRR_PwrVoltSts_LoVoltageStatus : 5|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRR_MassageCfg_FeedbackStatus : 6|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRR_Massage_HardwareVerStatus : 8|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRR_Massage_SoftwareVerStatus : 16|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRR_2RSeatSurfaceAdaptSts : 24|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_2RSeatSingleSurfaceAdaptSts : 26|3@1+ (1,0) [0|7] "" VIU_MR
+ SG_ WSMRR_MassCombinedActionSts : 36|4@1+ (1,0) [0|15] "" VIU_MR
+ SG_ WSMRR_NeckrestInstalSts : 40|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRR_NeckrestHeatSts : 41|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_NeckrestMassgIntenSts : 43|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_SideSupptSts : 45|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_AdaptSurfaceEnableSts : 47|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRR_SeatFrontSupportCMD : 48|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_SeatCushionSupportCMD : 50|4@1+ (1,0) [0|15] "" VIU_MR
+ SG_ WSMRR_SeatCushionFirmSts : 32|3@1+ (1,0) [0|7] "" VIU_MR
+ SG_ WSMRR_2RSeatSurfaceFaultSts : 54|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_SeatLumSpprtAdaptSwitchSts : 35|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSMRR_SeatLumSpprtAdaptSts : 58|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_ToastFeedback : 60|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSMRR_Sts : 29|3@1+ (1,0) [0|7] "" VIU_MR
+
+BO_ 832 VMM_state: 8 VIU_MR
+ SG_ VMM_Carmode : 4|3@0+ (1,0) [0|7] "" SCU_RL,SCU_RR
+
+BO_ 858 SCU_RR5: 8 SCU_RR
+ SG_ SCU_RR_SeatInsideArmrestMotorCurrents : 7|8@0+ (0.1,0) [0|25.5] "" VIU_MR
+ SG_ SCU_RR_SeatOutsideArmrestMotorCurrents : 15|8@0+ (0.1,0) [0|25.5] "" VIU_MR
+ SG_ SCU_RR_SeatLateraPosSts : 23|8@0+ (1,0) [0|255] "" VIU_MR
+ SG_ SCU_RR_SeatTiltPosSts : 31|8@0+ (1,0) [0|255] "" VIU_MR
+ SG_ SCU_RR_ErrorCode : 39|8@0+ (1,0) [0|255] "" VIU_MR
+ SG_ SCU_RR_Init1 : 47|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ SCURR_SeatHeadrestMotorCurrents : 55|8@0+ (0.1,0) [0|25.5] "" VIU_MR
+ SG_ SCU_RR_SinkMotorCurrent : 63|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_SeatLateraSts : 46|3@0+ (1,0) [0|7] "" VIU_MR
+
+BO_ 873 ZCUR_VCM_State: 8 VIU_MR
+ SG_ ZCU_3MSeatOccupySts : 0|1@0+ (1,0) [0|1] "" SCU_RL,SCU_RR
+ SG_ ZCU_3RSeatOccupySts : 1|1@0+ (1,0) [0|1] "" SCU_RL,SCU_RR
+
+BO_ 896 ACU_state: 8 VIU_MR
+ SG_ acu_passengerSts : 17|1@0+ (1,0) [0|1] "" AMP,WCM_FR,SCU_FL,SCU_FR,SCU_RL,SCU_RR
+ SG_ acu_secondLeftSts : 18|1@0+ (1,0) [0|1] "" AMP,WCM_RR,SCU_RL,SCU_RR
+ SG_ acu_secondMiddleSts : 19|1@0+ (1,0) [0|1] "" AMP,SCU_RL,SCU_RR
+ SG_ acu_secondRightSts : 20|1@0+ (1,0) [0|1] "" AMP,WCM_RR,SCU_FL,SCU_FR,SCU_RL,SCU_RR
+
+BO_ 908 SCURR_state2: 8 SCU_RR
+ SG_ SCURR_SeatBackPos_CRC : 7|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCURR_SeatTiltPos_CRC : 15|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCURR_Seat_0GravityPosProtectSts : 19|4@0+ (1,0) [0|15] "" VIU_MR
+ SG_ SCURR_Seat_0GravityPosProtectStsValid : 20|1@0+ (1,0) [0|1] "" VIU_MR
+ SG_ RollingCounter_38C : 51|4@0+ (1,0) [0|15] "" VIU_MR
+ SG_ Checksum_38C : 63|8@0+ (1,0) [0|255] "" VIU_MR
+
+BO_ 909 VIU_OIB_WSM2RR_0x17: 8 SCU_RR
+ SG_ WSM2RR_SeatMassModeSts : 0|4@1+ (1,0) [0|15] "" VIU_MR
+ SG_ WSM2RR_PwrVoltSts_OverVoltageStatus : 4|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RR_PwrVoltSts_LoVoltageStatus : 5|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RR_MassageCfg_FeedbackStatus : 6|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RR_Massage_HardwareVerStatus : 8|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSM2RR_Massage_SoftwareVerStatus : 16|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSM2RR_MassLevelStatus : 24|3@1+ (1,0) [0|7] "" VIU_MR
+ SG_ WSM2RR_MassgIntenStatus : 28|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSM2RR_PmpSts : 30|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSM2RR_PwrVoltSts : 32|2@1+ (1,0) [0|3] "" VIU_MR
+ SG_ WSM2RR_ResponseError : 27|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RR_SeatFrontSupportPressure : 40|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSM2RR_SeatCushionSupportpressure : 48|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSM2RR_FeedbackValveSts : 34|1@1+ (1,0) [0|1] "" VIU_MR
+ SG_ WSM2RR_FeedbackPumpSts : 35|1@1+ (1,0) [0|1] "" VIU_MR
+
+BO_ 934 AC2: 8 VIU_MR
+ SG_ AC_CabinTemp : 47|8@0+ (0.5,-40) [-40|85] "degreeC" SCU_TR2,SCU_RR
+
+BO_ 995 GW_EBS1: 8 VIU_MR
+ SG_ ebs_U_BATT : 7|14@0+ (0.0009765625,3) [3|18] "V" AMP,AMP2,ETC,WCM_FR,WCM_RR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+
+BO_ 1022 IVI_timeAndGPS: 8 VIU_MR
+ SG_ ivi_timeInfoSecond : 7|6@0+ (1,0) [0|59] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ ivi_timeInfoMinute : 15|6@0+ (1,0) [0|59] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ ivi_timeInfoHour : 23|5@0+ (1,0) [0|23] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ ivi_timeInfoMonth : 29|4@0+ (1,0) [1|12] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ ivi_timeInfoDay : 18|5@0+ (1,0) [1|31] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ ivi_timeValid : 33|1@0+ (1,0) [0|1] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ ivi_timeInfoYear : 39|6@0+ (1,2000) [2000|2059] "" AMP,AMP2,WCM_FR,WCM_RR,SCU_FL,SCU_FR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+
+BO_ 1048 VIUML_OIB_WSMRR_0x32: 8 SCU_RR
+ SG_ WSMRR_PressureDataPos : 0|8@1+ (1,0) [0|15] "" VIU_MR
+ SG_ WSMRR_PressureData1 : 8|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRR_PressureData2 : 16|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRR_PressureData3 : 24|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRR_PressureData4 : 32|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRR_PressureData5 : 40|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRR_PressureData6 : 48|8@1+ (1,0) [0|255] "" VIU_MR
+ SG_ WSMRR_PressureData7 : 56|8@1+ (1,0) [0|255] "" VIU_MR
+
+BO_ 1244 SCU_RL6: 8 SCU_RL
+ SG_ SCU_RL_SeatLeftSlideMotorCurrent : 7|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RL_SeatRotateMotorCurrent : 23|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RL_ApTrigReasonSlideLeft : 55|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonHR : 58|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonRotate : 61|3@0+ (1,0) [0|7] "" VIU_MR
+
+BO_ 1245 SCU_RR6: 8 SCU_RR
+ SG_ SCU_RR_SeatLeftSlideMotorCurrent : 7|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_LockMotorCurrent : 15|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_SeatRotateMotorCurrent : 23|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_ApTrigReasonSlideLeft : 55|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonHR : 58|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonRotate : 61|3@0+ (1,0) [0|7] "" VIU_MR
+
+BO_ 1256 SCU_RL4: 8 SCU_RL
+ SG_ SCU_RL_ApTrigReasonLatera : 39|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonInsideArmrest : 31|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonOutsideArmrest : 28|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_SeatSlideMotorDirect : 25|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RL_SeatReclineMotorDirect : 1|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RL_SeatLateraMotorDirect : 3|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RL_SeatInsideArmrestMotorDirect : 13|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RL_SeatOutsideArmrestMotorDirect : 15|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RL_KL30Vol : 23|8@0+ (0.1,0) [0|255] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonRecline : 54|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonSlide : 41|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonTiltLeft : 51|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonLegFB : 58|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonLegUD : 61|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RL_ApTrigReasonTiltRight : 48|3@0+ (1,0) [0|7] "" VIU_MR
+
+BO_ 1257 SCU_RR4: 8 SCU_RR
+ SG_ SCU_RR_SeatReclineMotorDirect : 1|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_SeatLateraMotorDirect : 3|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_SeatTiltLMotorDirect : 5|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_SeatTiltRMotorDirect : 7|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_SeatLegFBMotorDirect : 9|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_SeatLegUDMotorDirect : 11|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_SeatInsideArmrestMotorDirect : 13|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_SeatOutsideArmrestMotorDirect : 15|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_KL30Vol : 23|8@0+ (0.1,0) [0|255] "" VIU_MR
+ SG_ SCU_RR_SeatSlideMotorDirect : 25|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonOutsideArmrest : 28|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonInsideArmrest : 31|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonLatera : 39|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonTiltLeft : 51|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonRecline : 54|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonSlide : 41|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonLegFB : 58|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonLegUD : 61|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonTiltRight : 48|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCU_RR_SeatSinkMotorDirect : 33|2@0+ (1,0) [0|3] "" VIU_MR
+ SG_ SCU_RR_ApTrigReasonSink : 36|3@0+ (1,0) [0|7] "" VIU_MR
+
+BO_ 1278 TBOX_VehicleMode: 8 VIU_MR
+ SG_ tbox_vehicleMode : 3|4@0+ (1,0) [0|15] "" AMP,ETC,WCM_FR,WCM_RR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RR
+
+BO_ 1281 SCU_RL2: 8 SCU_RL
+ SG_ SCU_RL_SeatSts : 15|4@0+ (1,0) [0|15] "" VIU_MR,AMP
+ SG_ SCU_RL_SeatSts2 : 19|4@0+ (1,0) [0|15] "" VIU_MR,SCU_RR
+ SG_ SCU_RL_SeatTiltPosSts : 47|8@0+ (1,0) [0|100] "%" VIU_MR
+ SG_ SCU_RL_SeatRotateAnglePosSts : 55|8@0+ (1,0) [0|100] "%" VIU_MR,AMP
+ SG_ SCURL_livingroomComplt : 22|1@0+ (1,0) [0|1] "" SCU_RR
+ SG_ SCURL_LivingroomPrepare : 23|1@0+ (1,0) [0|1] "" SCU_RR
+
+BO_ 1282 SCU_RL3: 8 SCU_RL
+ SG_ SCU_RL_SeatHeadrestMotorCurrents : 7|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RL_SeatTiltLMotorCurrents : 31|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RL_SeatTiltRMotorCurrents : 39|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RL_SeatLegUDMotorCurrents : 47|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RL_SeatLegFBMotorCurrents : 55|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+
+BO_ 1283 SCU_RR2: 8 SCU_RR
+ SG_ SCU_RR_SeatRotateAnglePosSts : 55|8@0+ (1,0) [0|100] "%" VIU_MR,AMP,SCU_RL
+ SG_ SCURR_LivingroomComplt : 22|1@0+ (1,0) [0|1] "" SCU_RL
+ SG_ SCURR_LivingroomPrepare : 23|1@0+ (1,0) [0|1] "" SCU_RL
+ SG_ SCU_RR_SeatSts : 15|4@0+ (1,0) [0|15] "" VIU_MR,AMP
+ SG_ SCURR_VoiceRmdr : 18|3@0+ (1,0) [0|7] "" VIU_MR
+ SG_ SCURR_FoldExpandState : 19|1@0+ (1,0) [0|1] "" VIU_MR
+
+BO_ 1284 SCU_RR3: 8 SCU_RR
+ SG_ SCU_RR_SeatSlideMotorCurrents : 7|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_SeatReclineMotorCurrents : 23|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_SeatTiltLMotorCurrents : 31|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_SeatTiltRMotorCurrents : 39|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_SeatLegUDMotorCurrents : 47|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_SeatLegFBMotorCurrents : 55|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+ SG_ SCU_RR_SeatLateraMotorCurrents : 63|8@0+ (0.1,0) [0|25.5] "A" VIU_MR
+
+BO_ 1525 SCURR_TESTMSG1: 8 SCU_RR
+ SG_ SCURR_TESTMSG1_signal1 : 7|16@0+ (1,0) [0|65535] "" VIU_MR
+ SG_ SCURR_TESTMSG1_signal2 : 23|16@0+ (1,0) [0|65535] "" VIU_MR
+ SG_ SCURR_TESTMSG1_signal3 : 39|16@0+ (1,0) [0|65535] "" VIU_MR
+ SG_ SCURR_TESTMSG1_signal4 : 55|16@0+ (1,0) [0|65535] "" VIU_MR
+
+BO_ 1609 NM_AMP: 8 AMP
+ SG_ AMP_RMR : 8|1@0+ (1,0) [0|1] "" VIU_MR,AMP2,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ AMP_AWB : 12|1@0+ (1,0) [0|1] "" VIU_MR,AMP2,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+
+BO_ 1615 NM_AMP2: 8 AMP2
+ SG_ AMP2_RMR : 8|1@0+ (1,0) [0|1] "" VIU_MR,AMP,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ AMP2_AWB : 12|1@0+ (1,0) [0|1] "" VIU_MR,AMP,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+
+BO_ 1623 NM_SCU_RL: 8 SCU_RL
+ SG_ SCU_RL_RMR : 8|1@0+ (1,0) [0|1] "" VIU_MR,AMP,AMP2,SCU_TR,SCU_TR1,SCU_TR2,SCU_RR
+ SG_ SCU_RL_AWB : 12|1@0+ (1,0) [0|1] "" VIU_MR,AMP,AMP2,SCU_TR,SCU_TR1,SCU_TR2,SCU_RR
+
+BO_ 1624 NM_SCU_RR: 8 SCU_RR
+ SG_ SCU_RR_RMR : 8|1@0+ (1,0) [0|1] "" VIU_MR,AMP,AMP2,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL
+ SG_ SCU_RR_AWB : 12|1@0+ (1,0) [0|1] "" VIU_MR,AMP,AMP2,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL
+
+BO_ 1635 NM_VIU_MR: 8 VIU_MR
+ SG_ VIU_MR_RMR : 8|1@0+ (1,0) [0|1] "" AMP,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+ SG_ VIU_MR_AWB : 12|1@0+ (1,0) [0|1] "" AMP,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R
+
+BO_ 1649 NM_SCU_TR: 8 SCU_TR
+ SG_ SCU_TR_RMR : 8|1@0+ (1,0) [0|1] "" VIU_MR,AMP,AMP2,SCU_RL,SCU_RR,SCU_R
+ SG_ SCU_TR_AWB : 12|1@0+ (1,0) [0|1] "" VIU_MR,AMP,AMP2,SCU_RL,SCU_RR,SCU_R
+
+BO_ 1798 DiagReq_SCU_RL: 8 VIU_MR
+ SG_ SCU_RL_DiagReq : 7|64@0+ (1,0) [0|1] "" SCU_TR1,SCU_TR2,SCU_RL
+
+BO_ 1799 DiagReq_SCU_RR: 8 VIU_MR
+ SG_ SCU_RR_DiagReq : 7|64@0+ (1,0) [0|1] "" SCU_RR
+
+BO_ 1926 DiagResp_SCU_RL: 8 SCU_TR1
+ SG_ SCU_RL_DiagResp : 7|64@0+ (1,0) [0|1] "" VIU_MR
+
+BO_ 1927 DiagResp_SCU_RR: 8 SCU_RR
+ SG_ SCU_RR_DiagResp : 7|64@0+ (1,0) [0|1] "" VIU_MR
+
+BO_ 2015 DiagReq_FUN: 8 VIU_MR
+ SG_ FUN_DiagReq : 7|64@0+ (1,0) [0|1] "" AMP,AMP2,ETC,WCM_FR,WCM_RR,SCU_TR,SCU_TR1,SCU_TR2,SCU_RL,SCU_RR,SCU_R,Trailer
+
+BO_TX_BU_ 707 : SCU_TR,SCU_TR1,SCU_TR2;
+BO_TX_BU_ 665 : SCU_RL,SCU_R;
+BO_TX_BU_ 490 : SCU_TR2,SCU_RL,SCU_R;
+BO_TX_BU_ 772 : SCU_TR2,SCU_RL,SCU_R;
+BO_TX_BU_ 803 : SCU_RL,SCU_R;
+BO_TX_BU_ 445 : SCU_RL,SCU_R;
+BO_TX_BU_ 1926 : SCU_TR1,SCU_TR2,SCU_RL;
+BO_TX_BU_ 1649 : SCU_TR,SCU_TR1,SCU_TR2;
+BO_TX_BU_ 667 : SCU_RR,SCU_R;
+BO_TX_BU_ 493 : SCU_RR,SCU_R;
+BO_TX_BU_ 804 : SCU_RR,SCU_R;
+BO_TX_BU_ 909 : SCU_RR,SCU_R;
+BO_TX_BU_ 1048 : SCU_RR,SCU_R;
+BO_TX_BU_ 444 : SCU_RR,SCU_R;
+
+CM_ "该DBC由 VDD 2.26.01.29 生成";
+CM_ BO_ 707 "SCU_TR发送";
+CM_ BO_ 665 "SCURL发送";
+CM_ BO_ 703 "SCURL发送";
+CM_ BO_ 704 "SCURR发送";
+CM_ BO_ 1022 "VCM发送";
+CM_ BO_ 488 "Seating_LIN";
+CM_ BO_ 490 "Seating_LIN";
+CM_ BO_ 772 "Seating_LIN";
+CM_ BO_ 803 "Seating_LIN";
+CM_ BO_ 445 "Seating_LIN";
+CM_ BO_ 1623 "77 SCUR_标配_与SCURL/RR_选配_互斥";
+CM_ BO_ 1624 "77 SCUR_标配_与SCURL/RR_选配_互斥";
+CM_ SG_ 873 ZCU_3MSeatOccupySts "3 Middle seat is occupied or not.";
+CM_ SG_ 873 ZCU_3RSeatOccupySts "3 Right seat is occupied or not.";
+CM_ SG_ 712 PDCM_actualGear "Actual gear engaged.";
+CM_ SG_ 712 PDCM_actualGearValid "Actual gear valid signal.";
+CM_ SG_ 160 IPB_vehicleSpeedValid "vehicle reference speed valid signal.";
+CM_ SG_ 160 IPB_vehicleSpeed "vehicle reference speed.";
+CM_ SG_ 298 EPBM_Sts "EPB状态";
+CM_ SG_ 687 DCU_FL_DoorFLSts_0x2AF "左前车门状态信号
+VIUML_DoorFLSts信号的映射";
+CM_ SG_ 687 DCU_FR_doorFRSts_0x2AF "右前车门状态信号";
+CM_ SG_ 687 DCU_RL_doorRLSts_0x2AF "左后车门状态信号";
+CM_ SG_ 687 DCU_RR_doorRRSts_0x2AF "右后车门状态信号";
+CM_ SG_ 509 BCM_RL_SeatLateraset "二排高配左座椅侧滑位置设置";
+CM_ SG_ 509 BCM_SCURL_RotateReq "二排左座椅一键旋转功能请求";
+CM_ SG_ 509 BCM_2ndSeat_SceneReq "二排座椅一键场景调节请求";
+CM_ SG_ 705 bcm_pepsPowerMode "peps Power Mode.";
+CM_ SG_ 648 BCM_SetRLSeatBackrest "二排左侧座椅靠背调节请求";
+CM_ SG_ 648 BCM_SetRLSeatHozl "二排左侧座椅前后调节请求";
+CM_ SG_ 648 BCM_SetRLSeatLegHozl "二排左侧座椅腿托前后调节请求";
+CM_ SG_ 648 BCM_SetRLSeatLegAngle "二排左侧座椅腿托角度调节请求";
+CM_ SG_ 648 BCM_RLSeatHozlPos "二排左侧座椅前后百分比调节请求";
+CM_ SG_ 648 BCM_RLSeatBackPos "二排左侧座椅靠背百分比调节请求";
+CM_ SG_ 648 BCM_RLSeatLegHozlPos "二排左侧座椅腿托前后百分比调节请求";
+CM_ SG_ 648 BCM_RLSeatLegAnglePos "二排左侧座椅腿托角度百分比调节请求";
+CM_ SG_ 648 BCM_RLSeatMemyResult "二排左侧座椅记忆/调取结果";
+CM_ SG_ 648 BCM_RLSeatVentilReq "二排左侧座椅通风请求";
+CM_ SG_ 648 BCM_RLSeatHeatingReq "二排左侧座椅加热请求";
+CM_ SG_ 648 BCM_RLSeatResetReq "二排左侧座椅一键复位请求";
+CM_ SG_ 648 BCM_RLSeatComfReq "二排左侧座椅舒躺请求";
+CM_ SG_ 648 BCM_RLSeatMemoryReq "二排左侧座椅记忆请求";
+CM_ SG_ 648 BCM_RLSeatExtractReq "二排左侧座椅记忆位置调取";
+CM_ SG_ 648 BCM_RLWelcomeSeatReq "二排左侧座椅迎宾礼让请求";
+CM_ SG_ 648 BCM_RL_DockStationSts "二排左磁吸拓展坞占位状态";
+CM_ SG_ 648 BCM_SCURL_SwtForbiddenSts "二排左座椅硬开关儿童锁状态";
+CM_ SG_ 649 BCM_BigFourSeatsReq "大四座调节请求";
+CM_ SG_ 709 BCM_RLOutsideArmrestReq "二排左侧座椅外侧扶手调节请求";
+CM_ SG_ 709 BCM_RLInsideArmrestReq "二排左侧座椅内侧扶手调节请求";
+CM_ SG_ 709 BCM_RLOutsideArmrestPosReq "二排左侧座椅外侧扶手目标位置调节请求";
+CM_ SG_ 709 BCM_RLInsideArmrestPosReq "二排左侧座椅内侧扶手目标位置调节请求";
+CM_ SG_ 709 BCM_RLSeatHeadrestReq "二排左侧座椅头枕调节请求";
+CM_ SG_ 709 BCM_RLSeatHeadrestPosReq "二排左侧座椅头枕目标位置调节请求";
+CM_ SG_ 709 BCM_2RHeadrestUpadjust "二排头枕向上调节";
+CM_ SG_ 709 BCM_2RHeadrestDownadjust "二排头枕向下调节";
+CM_ SG_ 709 BCM_2RSideSupportUpadjust "二排右侧侧翼支撑向上调节";
+CM_ SG_ 709 BCM_2RSideSupportDownadjust "二排右侧侧翼支撑向下调节";
+CM_ SG_ 707 SCUTRL_HozlPosSts "后排左侧座椅水平位置";
+CM_ SG_ 707 SCUTRL_BackrestPosSts "后排左侧座椅靠背位置";
+CM_ SG_ 707 SCUTRR_HozlPosSts "后排右侧座椅水平位置";
+CM_ SG_ 707 SCUTRR_BackrestPosSts "后排右侧座椅靠背位置";
+CM_ SG_ 665 SCURL_SeatHozlPosSwitch "二排左侧座椅前后调节开关";
+CM_ SG_ 665 SCURL_SeatBackrestSwitch "二排左侧座椅靠背调节开关";
+CM_ SG_ 665 SCURL_SeatLegHozlSwitch "二排左侧座椅腿托前后调节开关";
+CM_ SG_ 665 SCURL_SeatLegAngleSwitch "二排左侧座椅腿托角度调节开关";
+CM_ SG_ 665 SCURL_SeatHozlPosSts "二排左侧座椅水平位置";
+CM_ SG_ 665 SCURL_SeatBackrestPosSts "二排左侧座椅靠背位置";
+CM_ SG_ 665 SCURL_SeatLegHozlSts "二排左侧座椅腿托前后位置";
+CM_ SG_ 665 SCURL_SeatLegAngleSts "二排左侧座椅腿托角度位置";
+CM_ SG_ 665 SCURL_SeatMemySwitch1 "二排左侧座椅记忆/调取开关1";
+CM_ SG_ 665 SCURL_SeatMemySwitch2 "二排左侧座椅记忆/调取开关2";
+CM_ SG_ 665 SCURL_SeatMemySwitch3 "二排左侧座椅记忆/调取开关3";
+CM_ SG_ 665 SCURL_SeatInsideArmrestSwitch "二排左侧座椅内侧扶手一键调节开关";
+CM_ SG_ 665 SCURL_SeatVentilSts "二排左侧座椅通风状态反馈";
+CM_ SG_ 665 SCURL_SeatHeatingSts "二排左侧座椅加热状态反馈";
+CM_ SG_ 665 SCURL_MassgSpecModeSts1 "二排左按摩特效状态";
+CM_ SG_ 665 SCURL_45RotateSW "二排左侧座椅45°旋转开关";
+CM_ SG_ 665 SCURL_180RotateSW "二排左侧座椅180°旋转开关";
+CM_ SG_ 665 SCURL_RotateResetSW "二排左侧座椅旋转复位开关";
+CM_ SG_ 665 SCURL_ResetSW "二排左侧座椅复位开关";
+CM_ SG_ 703 SCURL_OutsideArmrestPosSts "二排左侧座椅外侧扶手位置";
+CM_ SG_ 703 SCURL_InsideArmrestPosSts "二排左侧座椅内侧扶手位置";
+CM_ SG_ 703 SCURL_SeatHeadrestSwitch "二排左侧座椅头枕调节开关";
+CM_ SG_ 703 SCURL_SeatHeadrestPosSts "二排左侧座椅头枕位置";
+CM_ SG_ 703 SCURL_SeatMemoryResult "二排左侧座椅记忆结果";
+CM_ SG_ 703 SCURL_SeatExtractResult "二排左侧座椅调取结果";
+CM_ SG_ 703 SCU_RL_LeftSts "二排左座椅一键舒躺/零重力反馈";
+CM_ SG_ 703 SCU_RL_SeatZeroGSta "二排左座椅零重力/舒躺状态反馈";
+CM_ SG_ 703 SCURL_InsideArmrestSts "二排左内扶手状态";
+CM_ SG_ 703 SCURL_OutsideArmrestSts "二排左外扶手状态";
+CM_ SG_ 703 SCURL_OneKeyComftSW "二排左侧座椅一键逍遥开关";
+CM_ SG_ 703 SCURL_VoiceRmdr "二排左座椅语音提示请求";
+CM_ SG_ 704 SCU_RR_SeatSts2 "中排右座椅状态信号2";
+CM_ SG_ 1281 SCU_RL_SeatSts "中排左座椅状态信号";
+CM_ SG_ 1281 SCU_RL_SeatSts2 "中排左座椅状态信号2";
+CM_ SG_ 1281 SCU_RL_SeatTiltPosSts "二排高配左座椅抬升电机位置信息";
+CM_ SG_ 1281 SCU_RL_SeatRotateAnglePosSts "二排高配左座椅旋转电机位置信息";
+CM_ SG_ 1281 SCURL_livingroomComplt "二排左座椅大客厅模式完成状态
+Seat livingroom complete status";
+CM_ SG_ 1281 SCURL_LivingroomPrepare "二排左座椅大客厅准备状态
+Seat livingroom prepare status";
+CM_ SG_ 1283 SCU_RR_SeatRotateAnglePosSts "二排高配右座椅旋转电机位置信息";
+CM_ SG_ 1283 SCURR_LivingroomComplt "二排右座椅大客厅模式完成状态
+Seat livingroom complete status";
+CM_ SG_ 1283 SCURR_LivingroomPrepare "二排右座椅大客厅准备状态
+Seat livingroom prepare status";
+CM_ SG_ 1282 SCU_RL_SeatHeadrestMotorCurrents "二排左座椅头枕电机电流";
+CM_ SG_ 1282 SCU_RL_SeatTiltLMotorCurrents "左座椅前抬左电机电流";
+CM_ SG_ 1282 SCU_RL_SeatTiltRMotorCurrents "左座椅前抬右电机电流";
+CM_ SG_ 1282 SCU_RL_SeatLegUDMotorCurrents "左座椅腿托旋转电机电流";
+CM_ SG_ 1282 SCU_RL_SeatLegFBMotorCurrents "左座椅腿托伸缩电机电流";
+CM_ SG_ 1256 SCU_RL_ApTrigReasonLatera "二排高配左侧滑电机防夹标志";
+CM_ SG_ 1256 SCU_RL_ApTrigReasonInsideArmrest "二排高配内侧扶手电机防夹标志";
+CM_ SG_ 1256 SCU_RL_ApTrigReasonOutsideArmrest "二排高配外侧扶手电机防夹标志";
+CM_ SG_ 1256 SCU_RL_SeatSlideMotorDirect "二排高配左座椅水平电机运行方向";
+CM_ SG_ 1256 SCU_RL_SeatReclineMotorDirect "二排高配左座椅靠背电机运行方向";
+CM_ SG_ 1256 SCU_RL_SeatLateraMotorDirect "二排高配左座椅侧滑电机运行方向";
+CM_ SG_ 1256 SCU_RL_SeatInsideArmrestMotorDirect "二排高配左座椅内侧扶手电机运行方向";
+CM_ SG_ 1256 SCU_RL_SeatOutsideArmrestMotorDirect "二排高配左座椅外侧扶手电机运行方向";
+CM_ SG_ 1256 SCU_RL_KL30Vol "二排高配左座椅控制器kl30采样电压";
+CM_ SG_ 1256 SCU_RL_ApTrigReasonRecline "二排左靠背电机防夹标志";
+CM_ SG_ 1256 SCU_RL_ApTrigReasonSlide "二排左滑轨电机防夹标志";
+CM_ SG_ 1256 SCU_RL_ApTrigReasonTiltLeft "二排左前抬左电机防夹标志";
+CM_ SG_ 1256 SCU_RL_ApTrigReasonLegFB "二排左腿托伸缩电机防夹标志";
+CM_ SG_ 1256 SCU_RL_ApTrigReasonLegUD "二排左腿托翻转电机防夹标志";
+CM_ SG_ 1256 SCU_RL_ApTrigReasonTiltRight "二排左前抬右电机防夹标志";
+CM_ SG_ 768 SCU_RL_SeatSlideMotorCuRLents "二排高配左座椅水平驱动电机电流";
+CM_ SG_ 768 SCU_RL_SeatReclineMotorCuRLents "二排高配左座椅靠背电机电流";
+CM_ SG_ 768 SCU_RL_SeatLateraMotorCuRLents "二排高配左座椅侧滑电机电流";
+CM_ SG_ 768 SCU_RL_SeatInsideArmrestMotorCuRLents "二排高配左座椅内侧扶手电机电流";
+CM_ SG_ 768 SCU_RL_SeatOutsideArmrestMotorCuRLents "二排高配左座椅外侧扶手电机电流";
+CM_ SG_ 768 SCU_RL_SeatLateraPosSts "二排高配左座椅侧滑电机位置信息";
+CM_ SG_ 768 SCU_RL_ErrorCode "二排高配左座椅控制器errorcode";
+CM_ SG_ 768 SCU_RL_Init1 "SCU Initialize";
+CM_ SG_ 768 SCU_RL_SeatLateraSts "二排高配左座椅侧滑位置状态";
+CM_ SG_ 1244 SCU_RL_SeatLeftSlideMotorCurrent "二排左座椅水平驱动电机电流_左侧";
+CM_ SG_ 1244 SCU_RL_SeatRotateMotorCurrent "二排左座椅转盘电机电流";
+CM_ SG_ 1244 SCU_RL_ApTrigReasonSlideLeft "二排左座椅滑轨电机防夹标志_左侧";
+CM_ SG_ 1244 SCU_RL_ApTrigReasonHR "二排左座椅头枕电机防夹标志";
+CM_ SG_ 1244 SCU_RL_ApTrigReasonRotate "二排左座椅旋转电机防夹标志";
+CM_ SG_ 1022 ivi_timeInfoSecond "Time informatioin:Second.";
+CM_ SG_ 1022 ivi_timeInfoMinute "Time informatioin:Minute.";
+CM_ SG_ 1022 ivi_timeInfoHour "Time informatioin:Hour.";
+CM_ SG_ 1022 ivi_timeInfoMonth "Time informatioin:Month.";
+CM_ SG_ 1022 ivi_timeInfoDay "Time informatioin:Day.";
+CM_ SG_ 1022 ivi_timeValid "Time Valid.";
+CM_ SG_ 1022 ivi_timeInfoYear "Time informatioin:Year.";
+CM_ SG_ 488 WSMRL_SeatMassLevelSet "Rear left seat Massage level set.";
+CM_ SG_ 488 WSMRL_MassgIntenSet "Rear left Seat massage Inten Set.";
+CM_ SG_ 488 WSMRL_SeatLumSpprtReq "二排左侧座椅腰托调节请求";
+CM_ SG_ 488 WSMRL_SeatMassModeReq "二排左侧座椅按摩模式请求";
+CM_ SG_ 488 WSMRL_SeatMassgRest "二排左按摩复位信号";
+CM_ SG_ 488 WSM_RLSeatMassgSpecModeReq "二排左侧座椅按摩特效请求信号";
+CM_ SG_ 488 WSMRL_SeatLumSpprtAdaptSet "二排左自适应腰托设置";
+CM_ SG_ 488 WSMRL_SeatSts "二排左乘员占座信号";
+CM_ SG_ 488 WSMRL_SeatLumSpprtSingleAdaptReq "二排左单次自适应腰托请求";
+CM_ SG_ 488 WSMRL_SeatLumSpprtAdaptSwitch "二排左自适应腰托开关";
+CM_ SG_ 488 WSMRL_SeatMechineMassSet "二排左机械按摩停止请求设置（碰撞）
+Mechanical massage stop request set(collision)";
+CM_ SG_ 488 WSMRL_NeckrtHeatReq "二排左颈枕加热请求
+Neckrest heating request";
+CM_ SG_ 490 WSMRL_PmpSts "Pump Check Status";
+CM_ SG_ 490 WSMRL_MassgIntenStatus "Rear left Seat massage Inten Status Response.";
+CM_ SG_ 490 WSMRL_MassLevelStatus "Rear left seat Massage level Status Response.";
+CM_ SG_ 490 WSMRL_ResponseError "Response Error Bit";
+CM_ SG_ 490 WSMRL_PwrVoltSts "Power Input Voltage Check Status";
+CM_ SG_ 490 WSMRL_SeatLumSpprtSwitch "二排左侧座椅腰托调节开关";
+CM_ SG_ 490 WSM_RL_MassgSpecModeSts "二排左侧座椅按摩特效反馈信号";
+CM_ SG_ 490 WSMRL_CtrlWSMRL2Coil "二排左侧靠背控制坐垫座椅按摩线圈
+Backrest control Cushion seat massage coil";
+CM_ SG_ 490 WSMRL_CtrlWSMRL2Pump "二排左侧靠背控制坐垫座椅按摩气泵
+Backrest control Cushion seat massage air pump";
+CM_ SG_ 490 WSMRL_FaultStatus "座椅按摩故障反馈
+Seat massage Fault Feedback";
+CM_ SG_ 772 WSMRL_SeatMassModeSts "二排左侧座椅按摩模式状态（靠背）";
+CM_ SG_ 772 WSMRL_PwrVoltSts_OverVoltageStatus "Power Input Voltage Check Status
+腰托按摩过压故障反馈";
+CM_ SG_ 772 WSMRL_PwrVoltSts_LoVoltageStatus "Power Input Voltage Check Status
+腰托按摩欠压故障反馈";
+CM_ SG_ 772 WSMRL_MassageCfg_FeedbackStatus "按摩的版本配置反馈";
+CM_ SG_ 772 WSMRL_Massage_HardwareVerStatus "硬件版本号";
+CM_ SG_ 772 WSMRL_Massage_SoftwareVerStatus "软件版本号";
+CM_ SG_ 772 WSMRL_MassCombinedActionSts "二排左按摩联动状态（靠背）";
+CM_ SG_ 772 WSMRL_SeatLumSpprtAdaptSwitchSts "二排左自适应腰托开关状态反馈";
+CM_ SG_ 772 WSMRL_ToastFeedback "二排左toast提醒反馈";
+CM_ SG_ 772 WSMRL_SeatLumSpprtAdaptSts "二排左自适应腰托模式反馈";
+CM_ SG_ 772 WSMRL_Sts "二排左状态反馈";
+CM_ SG_ 772 WSMRL_NeckrestInstalSts "二排左颈枕安装状态反馈
+Neckrest Installation status feedback";
+CM_ SG_ 772 WSMRL_NeckrestHeatSts "二排左颈枕加热状态反馈
+Neckrest Heating status feedback";
+CM_ SG_ 772 WSMRL_NeckrestMassgIntenSts "二排左颈枕按摩强度状态反馈
+Neckrest Massage intensity status feedback";
+CM_ SG_ 803 WSM2RL_SeatMassModeSts "二排左侧座椅按摩模式状态（坐垫）";
+CM_ SG_ 803 WSM2RL_PwrVoltSts_OverVoltageStatus "Power Input Voltage Check Status
+腰托按摩过压故障反馈";
+CM_ SG_ 803 WSM2RL_PwrVoltSts_LoVoltageStatus "Power Input Voltage Check Status
+腰托按摩欠压故障反馈";
+CM_ SG_ 803 WSM2RL_MassageCfg_FeedbackStatus "按摩的版本配置反馈";
+CM_ SG_ 803 WSM2RL_Massage_HardwareVerStatus "硬件版本号";
+CM_ SG_ 803 WSM2RL_Massage_SoftwareVerStatus "软件版本号";
+CM_ SG_ 803 WSM2RL_MassLevelStatus "Rear left seat Massage level Status Response.";
+CM_ SG_ 803 WSM2RL_MassgIntenStatus "Rear left Seat massage Inten Status Response.";
+CM_ SG_ 803 WSM2RL_PmpSts "Pump Check Status";
+CM_ SG_ 803 WSM2RL_PwrVoltSts "Power Input Voltage Check Status";
+CM_ SG_ 803 WSM2RL_ResponseError "Response Error Bit";
+CM_ SG_ 803 WSM2RL_FeedbackValveSts "二排左侧坐垫线圈工作状态
+Cushion coil Working status";
+CM_ SG_ 803 WSM2RL_FeedbackPumpSts "二排左侧坐垫座椅按摩气泵工作状态
+Cushion seat massage air pump Working status";
+CM_ SG_ 445 SCURL_OneKeyResetSwitch "二排左侧座椅一键复位开关";
+CM_ SG_ 445 SCURL_OneKeyComftSwitch "二排左侧座椅一键逍遥开关";
+CM_ SG_ 445 SCURL_SeatVentilSwitch "二排左侧座椅通风开关";
+CM_ SG_ 445 SCURL_SeatHeatingSwitch "二排左侧座椅加热开关";
+CM_ SG_ 445 SCURL_SeatMassgIntenSW "二排左侧座椅按摩强度开关";
+CM_ SG_ 445 SCURL_SeatMassgModeSW "二排左侧座椅按摩模式开关";
+CM_ SG_ 896 acu_passengerSts "Passenger seat is occupied or not.";
+CM_ SG_ 896 acu_secondLeftSts "Left of second row seat is occupied not.";
+CM_ SG_ 896 acu_secondMiddleSts "Middle of second row seat is occupied not.";
+CM_ SG_ 896 acu_secondRightSts "Right of second row seat is occupied not.";
+CM_ SG_ 832 VMM_Carmode "车辆模式，提供车辆的生命周期状态机，SOA项目开始使用";
+CM_ SG_ 995 ebs_U_BATT "Battery voltage";
+CM_ SG_ 2015 FUN_DiagReq "Diagnostic request";
+CM_ SG_ 1798 SCU_RL_DiagReq "Diagnostic request";
+CM_ SG_ 1926 SCU_RL_DiagResp "Diagnostic response";
+CM_ SG_ 1635 VIU_MR_RMR "Repeat Message Request";
+CM_ SG_ 1635 VIU_MR_AWB "Active Wakeup Bit";
+CM_ SG_ 1623 SCU_RL_RMR "Repeat Message Request";
+CM_ SG_ 1623 SCU_RL_AWB "Active Wakeup Bit";
+CM_ SG_ 1624 SCU_RR_RMR "Repeat Message Request";
+CM_ SG_ 1624 SCU_RR_AWB "Active Wakeup Bit";
+CM_ SG_ 1649 SCU_TR_RMR "Repeat Message Request";
+CM_ SG_ 1649 SCU_TR_AWB "Active Wakeup Bit";
+CM_ SG_ 1609 AMP_RMR "Repeat Message Request";
+CM_ SG_ 1609 AMP_AWB "Active Wakeup Bit";
+CM_ SG_ 1615 AMP2_RMR "Repeat Message Request";
+CM_ SG_ 1615 AMP2_AWB "Active Wakeup Bit";
+CM_ BO_ 1278 "S32G发送（VMM域）";
+CM_ BO_ 667 "SCURR发送";
+CM_ BO_ 494 "Seating_LIN";
+CM_ BO_ 493 "Seating_LIN";
+CM_ BO_ 804 "Seating_LIN";
+CM_ BO_ 909 "Seating_LIN";
+CM_ BO_ 1048 "Seating_LIN";
+CM_ BO_ 444 "Seating_LIN";
+CM_ SG_ 1278 tbox_vehicleMode "the signal indicates the current vehicle state to active or dective functions
+_H53项目TBOX不需要处理此信号_";
+CM_ SG_ 509 BCM_RR_SeatLateraset "二排高配右座椅侧滑位置设置";
+CM_ SG_ 509 BCM_SCURR_RotateReq "二排右座椅一键旋转功能请求";
+CM_ SG_ 509 BCM_RR_LockMotorRequest "二排右座椅拉锁电机解锁请求";
+CM_ SG_ 509 BCM_RRMotorspd "二排右电机速度
+Second right motor speed";
+CM_ SG_ 529 BCM_RRSeatTiltReq "二排右座椅坐垫抬升调节请求";
+CM_ SG_ 529 BCM_RRSeatTiltPosReq "二排右座椅坐垫抬升目标位置调节请求";
+CM_ SG_ 529 BCM_SCURR_SeatSinkPos "二排右座椅下沉百分比调节请求";
+CM_ SG_ 649 BCM_SetRRSeatHozl "二排右侧座椅前后调节请求";
+CM_ SG_ 649 BCM_SetRRSeatBackrest "二排右侧座椅靠背调节请求";
+CM_ SG_ 649 BCM_SetRRSeatLegHozl "二排右侧座椅腿托前后调节请求";
+CM_ SG_ 649 BCM_SetRRSeatLegAngle "二排右侧座椅腿托角度调节请求";
+CM_ SG_ 649 BCM_RRSeatHozlPos "二排右侧座椅前后百分比调节请求";
+CM_ SG_ 649 BCM_RRSeatBackPos "二排右侧座椅靠背百分比调节请求";
+CM_ SG_ 649 BCM_RRSeatLegHozlPos "二排右侧座椅腿托前后百分比调节请求";
+CM_ SG_ 649 BCM_RRSeatLegAnglePos "二排右侧座椅腿托角度百分比调节请求";
+CM_ SG_ 649 BCM_RRSeatMemyResult "二排右侧座椅记忆/调取结果";
+CM_ SG_ 649 BCM_RRSeatVentilReq "二排右侧座椅通风请求";
+CM_ SG_ 649 BCM_RRSeatHeatingReq "二排右侧座椅加热请求";
+CM_ SG_ 649 BCM_RRSeatResetReq "二排右侧座椅一键复位请求";
+CM_ SG_ 649 BCM_RRSeatComfReq "二排右侧座椅舒躺请求";
+CM_ SG_ 649 BCM_RRSeatMemoryReq "二排右侧座椅位置记忆";
+CM_ SG_ 649 BCM_RRSeatExtractReq "二排右侧座椅位置调取";
+CM_ SG_ 649 BCM_RRWelcomeSeatReq "二排右侧座椅迎宾礼让请求";
+CM_ SG_ 649 BCM_SCURR_SwtForbiddenSts "二排右座椅硬开关儿童锁状态";
+CM_ SG_ 709 BCM_RROutsideArmrestReq "二排右侧座椅外侧扶手调节请求";
+CM_ SG_ 709 BCM_RRInsideArmrestReq "二排右侧座椅内侧扶手调节请求";
+CM_ SG_ 709 BCM_RROutsideArmrestPosReq "二排右侧座椅外侧扶手目标位置调节请求";
+CM_ SG_ 709 BCM_RRInsideArmrestPosReq "二排右侧座椅内侧扶手目标位置调节请求";
+CM_ SG_ 709 BCM_RRSeatHeadrestReq "二排右侧座椅头枕调节请求";
+CM_ SG_ 709 BCM_RRSeatHeadrestPosReq "二排右侧座椅头枕目标位置调节请求";
+CM_ SG_ 667 SCURR_SeatHozlPosSwitch "二排右侧座椅前后调节开关";
+CM_ SG_ 667 SCURR_SeatBackrestSwitch "二排右侧座椅靠背调节开关";
+CM_ SG_ 667 SCURR_SeatLegHozlSwitch "二排右侧座椅腿托前后调节开关";
+CM_ SG_ 667 SCURR_SeatLegAngleSwitch "二排右侧座椅腿托角度调节开关";
+CM_ SG_ 667 SCURR_SeatHozlPosSts "二排右侧座椅水平位置";
+CM_ SG_ 667 SCURR_SeatBackrestPosSts "二排右侧座椅靠背位置";
+CM_ SG_ 667 SCURR_SeatLegHozlSts "二排右侧座椅腿托前后位置";
+CM_ SG_ 667 SCURR_SeatLegAngleSts "二排右侧座椅腿托角度位置";
+CM_ SG_ 667 SCURR_SeatMemySwitch1 "二排右侧座椅记忆/调取开关1";
+CM_ SG_ 667 SCURR_SeatMemySwitch2 "二排右侧座椅记忆/调取开关2";
+CM_ SG_ 667 SCURR_SeatMemySwitch3 "二排右侧座椅记忆/调取开关3";
+CM_ SG_ 667 SCURR_SeatInsideArmrestSwitch "二排右侧座椅内侧扶手一键调节开关";
+CM_ SG_ 667 SCURR_SeatVentilSts "二排右侧座椅通风状态反馈";
+CM_ SG_ 667 SCURR_SeatHeatingSts "二排右侧座椅加热状态反馈";
+CM_ SG_ 667 SCURR_MassgSpecModeSts1 "二排左按摩特效状态";
+CM_ SG_ 667 SCURR_SeatTiltPosSwitch "二排右侧座椅坐垫抬升调节开关";
+CM_ SG_ 667 SCURR_SeatFoldSwitch "二排右侧座椅一键折叠开关";
+CM_ SG_ 667 SCURR_SeatExpandSwitch "二排右侧座椅一键展开开关";
+CM_ SG_ 667 SCURR_45RotateSW "二排右侧座椅45°旋转开关";
+CM_ SG_ 667 SCURR_180RotateSW "二排右侧座椅180°旋转开关";
+CM_ SG_ 667 SCURR_RotateResetSW "二排右侧座椅旋转复位开关";
+CM_ SG_ 667 SCURR_ResetSW "二排右侧座椅复位开关";
+CM_ SG_ 704 SCURR_OutsideArmrestPosSts "二排右侧座椅外侧扶手位置";
+CM_ SG_ 704 SCURR_InsideArmrestPosSts "二排右侧座椅内侧扶手位置";
+CM_ SG_ 704 SCURR_SeatHeadrestSwitch "二排右侧座椅头枕调节开关";
+CM_ SG_ 704 SCURR_SeatHeadrestPosSts "二排右侧座椅头枕位置";
+CM_ SG_ 704 SCURR_SeatMemoryResult "二排右侧座椅记忆结果";
+CM_ SG_ 704 SCURR_SeatExtractResult "二排右侧座椅调取结果";
+CM_ SG_ 704 SCU_RR_RightSts "二排右座椅一键舒躺/零重力反馈";
+CM_ SG_ 704 SCU_RR_seatZeroGSta "二排右座椅零重力/舒躺状态反馈";
+CM_ SG_ 704 SCURR_InsideArmrestSts "二排右内扶手状态";
+CM_ SG_ 704 SCURR_OutsideArmrestSts "二排右外扶手状态";
+CM_ SG_ 704 SCURR_SinkPosSts "二排右座椅坐垫下沉位置";
+CM_ SG_ 704 SCURR_OneKeyComftSW "二排右侧座椅一键逍遥开关";
+CM_ SG_ 704 SCURR_SeatHozlPosSwitch_Trunk "二排右侧座椅后备箱水平调节开关";
+CM_ SG_ 704 SCURR_SeatBackrestSwitch_Trunk "二排右侧座椅后备箱靠背调节开关";
+CM_ SG_ 704 SCURR_LockMotor_State "二排右座椅拉锁电机状态";
+CM_ SG_ 908 SCURR_SeatBackPos_CRC "二排右座椅靠背电机当前位置信息
+Seat back motor position";
+CM_ SG_ 908 SCURR_SeatTiltPos_CRC "二排右座椅坐垫角度电机当前位置信息
+Seat tilt motor position";
+CM_ SG_ 908 SCURR_Seat_0GravityPosProtectSts "0GravityPosProtectSts二排座椅零重力安全保护使能状态";
+CM_ SG_ 908 SCURR_Seat_0GravityPosProtectStsValid "0GravityPosProtectStsValid二排座椅零重力安全保护使能状态可信";
+CM_ SG_ 908 RollingCounter_38C "every message increments the counter";
+CM_ SG_ 908 Checksum_38C "CRC8 checksum";
+CM_ SG_ 1283 SCU_RR_SeatSts "中排右座椅状态信号";
+CM_ SG_ 1283 SCURR_VoiceRmdr "二排右座椅语音提示请求";
+CM_ SG_ 1283 SCURR_FoldExpandState "二排右座椅折叠展开状态
+Seat Fold-Expand State";
+CM_ SG_ 1284 SCU_RR_SeatSlideMotorCurrents "右座椅水平驱动电机电流";
+CM_ SG_ 1284 SCU_RR_SeatReclineMotorCurrents "右座椅靠背电机电流";
+CM_ SG_ 1284 SCU_RR_SeatTiltLMotorCurrents "右座椅前抬左电机电流";
+CM_ SG_ 1284 SCU_RR_SeatTiltRMotorCurrents "右座椅前抬右电机电流";
+CM_ SG_ 1284 SCU_RR_SeatLegUDMotorCurrents "右座椅腿托旋转电机电流";
+CM_ SG_ 1284 SCU_RR_SeatLegFBMotorCurrents "右座椅腿托伸缩电机电流";
+CM_ SG_ 1284 SCU_RR_SeatLateraMotorCurrents "二排高配右座椅侧滑电机电流";
+CM_ SG_ 1257 SCU_RR_SeatReclineMotorDirect "二排高配右座椅靠背电机运行方向";
+CM_ SG_ 1257 SCU_RR_SeatLateraMotorDirect "二排高配右座椅侧滑电机运行方向";
+CM_ SG_ 1257 SCU_RR_SeatTiltLMotorDirect "二排高配右座椅抬升左电机运行方向";
+CM_ SG_ 1257 SCU_RR_SeatTiltRMotorDirect "二排高配右座椅抬升右电机运行方向";
+CM_ SG_ 1257 SCU_RR_SeatLegFBMotorDirect "二排高配右座椅腿托伸缩电机运行方向";
+CM_ SG_ 1257 SCU_RR_SeatLegUDMotorDirect "二排高配右座椅腿托旋转电机运行方向";
+CM_ SG_ 1257 SCU_RR_SeatInsideArmrestMotorDirect "二排高配右座椅内侧扶手电机运行方向";
+CM_ SG_ 1257 SCU_RR_SeatOutsideArmrestMotorDirect "二排高配右座椅外侧扶手电机运行方向";
+CM_ SG_ 1257 SCU_RR_KL30Vol "二排高配右座椅控制器kl30采样电压";
+CM_ SG_ 1257 SCU_RR_SeatSlideMotorDirect "二排高配右座椅水平电机运行方向";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonOutsideArmrest "二排高配外侧扶手电机防夹标志";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonInsideArmrest "二排高配内侧扶手电机防夹标志";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonLatera "二排高配右侧滑电机防夹标志";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonTiltLeft "二排右前抬左电机防夹标志";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonRecline "二排右靠背电机防夹标志";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonSlide "二排右滑轨电机防夹标志";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonLegFB "二排右腿托伸缩电机防夹标志";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonLegUD "二排右腿托翻转电机防夹标志";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonTiltRight "二排右前抬右电机防夹标志";
+CM_ SG_ 1257 SCU_RR_SeatSinkMotorDirect "二排右座椅坐垫下沉电机运行方向";
+CM_ SG_ 1257 SCU_RR_ApTrigReasonSink "二排右座椅坐垫下沉电机防夹标志";
+CM_ SG_ 858 SCU_RR_SeatInsideArmrestMotorCurrents "二排高配右座椅内侧扶手电机电流";
+CM_ SG_ 858 SCU_RR_SeatOutsideArmrestMotorCurrents "二排高配右座椅外侧扶手电机电流";
+CM_ SG_ 858 SCU_RR_SeatLateraPosSts "二排高配右座椅侧滑电机位置信息";
+CM_ SG_ 858 SCU_RR_SeatTiltPosSts "二排高配右座椅抬升电机位置信息";
+CM_ SG_ 858 SCU_RR_ErrorCode "二排高配右座椅控制器errorcode";
+CM_ SG_ 858 SCU_RR_Init1 "SCU Initialize";
+CM_ SG_ 858 SCURR_SeatHeadrestMotorCurrents "二排高配右座椅头枕电机电流";
+CM_ SG_ 858 SCU_RR_SinkMotorCurrent "二排右座椅坐垫下沉电机电流";
+CM_ SG_ 858 SCU_RR_SeatLateraSts "二排高配右座椅侧滑位置状态";
+CM_ SG_ 1245 SCU_RR_SeatLeftSlideMotorCurrent "二排右座椅水平驱动电机电流_左侧";
+CM_ SG_ 1245 SCU_RR_LockMotorCurrent "二排右座椅拉锁电机电流";
+CM_ SG_ 1245 SCU_RR_SeatRotateMotorCurrent "二排右座椅转盘电机电流";
+CM_ SG_ 1245 SCU_RR_ApTrigReasonSlideLeft "二排右座椅滑轨电机防夹标志_左侧";
+CM_ SG_ 1245 SCU_RR_ApTrigReasonHR "二排右座椅头枕电机防夹标志";
+CM_ SG_ 1245 SCU_RR_ApTrigReasonRotate "二排右座椅旋转电机防夹标志";
+CM_ SG_ 1525 SCURR_TESTMSG1_signal1 "测试/调试信号";
+CM_ SG_ 1525 SCURR_TESTMSG1_signal2 "测试/调试信号";
+CM_ SG_ 1525 SCURR_TESTMSG1_signal3 "测试/调试信号";
+CM_ SG_ 1525 SCURR_TESTMSG1_signal4 "测试/调试信号";
+CM_ SG_ 494 WSMRR_SeatMassLevelSet "Rear right seat Massage level set.";
+CM_ SG_ 494 WSMRR_MassgIntenSet "Rear right Seat massage Inten Set.";
+CM_ SG_ 494 WSMRR_RRSeatLumSpprtReq "二排右侧座椅腰托调节请求";
+CM_ SG_ 494 WSMRR_RRSeatMassModeReq "二排右侧座椅按摩模式请求";
+CM_ SG_ 494 WSMRR_SeatMassgSpecModeReq "二排右侧座椅按摩特效请求信号";
+CM_ SG_ 494 WSMRR_SeatMassgRest "二排右按摩复位信号";
+CM_ SG_ 494 WSMRR_2RSeatSingleSurfaceAdaptReq "二排右座椅型面自适应单次调节请求";
+CM_ SG_ 494 WSMRR_2RSeatSurfaceAdaptSet "二排右座椅型面自适应实时调节开/关设置";
+CM_ SG_ 494 WSMRR_2RSideSupportUpadjust "二排右侧侧翼支撑调节";
+CM_ SG_ 494 WSMRR_SeatBackrestPosSts "二排右侧座椅靠背位置";
+CM_ SG_ 494 WSMRR_SeatTiltPosSts "二排右侧座椅坐垫角度位置";
+CM_ SG_ 494 WSMRR_NeckrtHeatReq "二排右颈枕加热请求";
+CM_ SG_ 494 WSMRR_2RSeatCushionFirmset "二排右坐垫软硬调节设置";
+CM_ SG_ 494 WSMRR_SeatLumSpprtSingleAdaptReq "二排右单次自适应腰托请求";
+CM_ SG_ 494 WSMRR_SeatLumSpprtAdaptSe "二排右自适应腰托设置";
+CM_ SG_ 494 WSMRR_SeatSts "二排右乘员占座信号";
+CM_ SG_ 494 WSMRR_SeatLumSpprtAdaptSwitch "二排右自适应腰托开关";
+CM_ SG_ 494 WSMRR_SeatMechineMassSet "二排右机械按摩停止请求设置（碰撞）";
+CM_ SG_ 493 WSMRR_PmpSts "Pump Check Status";
+CM_ SG_ 493 WSMRR_MassgIntenStatus "Rear right Seat massage Inten Status Response.";
+CM_ SG_ 493 WSMRR_MassLevelStatus "Rear right seat Massage level Status Response.";
+CM_ SG_ 493 WSMRR_ResponseError "Response Error Bit";
+CM_ SG_ 493 WSMRR_PwrVoltSts "Power Input Voltage Check Status";
+CM_ SG_ 493 WSMRR_SeatLumSpprtSwitch "二排右侧座椅腰托调节开关";
+CM_ SG_ 493 WSM_RR_MassgSpecModeSts "二排右侧座椅按摩特效反馈信号";
+CM_ SG_ 493 WSMRR_CtrlWSMRR2Coil "二排右侧靠背控制坐垫座椅按摩线圈";
+CM_ SG_ 493 WSMRR_CtrlWSMRR2Pump "二排右侧靠背控制坐垫座椅按摩气泵";
+CM_ SG_ 493 WSMRR_FaultStatus "座椅按摩故障反馈";
+CM_ SG_ 804 WSMRR_SeatMassModeSts "二排右侧座椅按摩模式状态（靠背）";
+CM_ SG_ 804 WSMRR_PwrVoltSts_OverVoltageStatus "Power Input Voltage Check Status
+腰托按摩过压故障反馈";
+CM_ SG_ 804 WSMRR_PwrVoltSts_LoVoltageStatus "Power Input Voltage Check Status
+腰托按摩欠压故障反馈";
+CM_ SG_ 804 WSMRR_MassageCfg_FeedbackStatus "按摩的版本配置反馈";
+CM_ SG_ 804 WSMRR_Massage_HardwareVerStatus "硬件版本号";
+CM_ SG_ 804 WSMRR_Massage_SoftwareVerStatus "软件版本号";
+CM_ SG_ 804 WSMRR_2RSeatSurfaceAdaptSts "二排右座椅型面自适应实时调节状态反馈";
+CM_ SG_ 804 WSMRR_2RSeatSingleSurfaceAdaptSts "二排右座椅型面自适应单次调节状态反馈";
+CM_ SG_ 804 WSMRR_MassCombinedActionSts "二排右按摩联动状态（靠背）";
+CM_ SG_ 804 WSMRR_NeckrestInstalSts "二排右颈枕安装状态反馈";
+CM_ SG_ 804 WSMRR_NeckrestHeatSts "二排右颈枕加热状态反馈";
+CM_ SG_ 804 WSMRR_NeckrestMassgIntenSts "二排右颈枕按摩强度状态反馈";
+CM_ SG_ 804 WSMRR_SideSupptSts "二排右侧翼支撑反馈";
+CM_ SG_ 804 WSMRR_AdaptSurfaceEnableSts "二排右型面使能信号";
+CM_ SG_ 804 WSMRR_SeatFrontSupportCMD "二排右前部支撑指令";
+CM_ SG_ 804 WSMRR_SeatCushionSupportCMD "二排右坐垫支撑指令";
+CM_ SG_ 804 WSMRR_SeatCushionFirmSts "二排右坐垫软硬度状态反馈";
+CM_ SG_ 804 WSMRR_2RSeatSurfaceFaultSts "二排右型面压力检测故障反馈";
+CM_ SG_ 804 WSMRR_SeatLumSpprtAdaptSwitchSts "二排右自适应腰托开关状态反馈";
+CM_ SG_ 804 WSMRR_SeatLumSpprtAdaptSts "二排右自适应腰托模式反馈";
+CM_ SG_ 804 WSMRR_ToastFeedback "二排右toast提醒反馈";
+CM_ SG_ 804 WSMRR_Sts "二排右状态反馈";
+CM_ SG_ 909 WSM2RR_SeatMassModeSts "二排右侧座椅按摩模式状态（坐垫）";
+CM_ SG_ 909 WSM2RR_PwrVoltSts_OverVoltageStatus "Power Input Voltage Check Status
+腰托按摩过压故障反馈";
+CM_ SG_ 909 WSM2RR_PwrVoltSts_LoVoltageStatus "Power Input Voltage Check Status
+腰托按摩欠压故障反馈";
+CM_ SG_ 909 WSM2RR_MassageCfg_FeedbackStatus "按摩的版本配置反馈";
+CM_ SG_ 909 WSM2RR_Massage_HardwareVerStatus "硬件版本号";
+CM_ SG_ 909 WSM2RR_Massage_SoftwareVerStatus "软件版本号";
+CM_ SG_ 909 WSM2RR_MassLevelStatus "Rear right seat Massage level Status Response.";
+CM_ SG_ 909 WSM2RR_MassgIntenStatus "Rear right Seat massage Inten Status Response.";
+CM_ SG_ 909 WSM2RR_PmpSts "Pump Check Status";
+CM_ SG_ 909 WSM2RR_PwrVoltSts "Power Input Voltage Check Status";
+CM_ SG_ 909 WSM2RR_ResponseError "Response Error Bit";
+CM_ SG_ 909 WSM2RR_SeatFrontSupportPressure "二排右前部支撑气袋压力";
+CM_ SG_ 909 WSM2RR_SeatCushionSupportpressure "二排右坐垫支撑气袋压力";
+CM_ SG_ 909 WSM2RR_FeedbackValveSts "二排右侧坐垫线圈工作状态";
+CM_ SG_ 909 WSM2RR_FeedbackPumpSts "二排右侧坐垫座椅按摩气泵工作状态";
+CM_ SG_ 1048 WSMRR_PressureDataPos "压力数据帧号SN:帧序号0-9
+SN为0-1时:发送气袋压力值，总计发送7*2
+SN为2-9时，发送压力垫压力值，总计发送52个点";
+CM_ SG_ 1048 WSMRR_PressureData1 "压力数据";
+CM_ SG_ 1048 WSMRR_PressureData2 "压力数据";
+CM_ SG_ 1048 WSMRR_PressureData3 "压力数据";
+CM_ SG_ 1048 WSMRR_PressureData4 "压力数据";
+CM_ SG_ 1048 WSMRR_PressureData5 "压力数据";
+CM_ SG_ 1048 WSMRR_PressureData6 "压力数据";
+CM_ SG_ 1048 WSMRR_PressureData7 "压力数据";
+CM_ SG_ 444 SCURR_OneKeyResetSwitch "二排右侧座椅一键复位开关";
+CM_ SG_ 444 SCURR_OneKeyComftSwitch "二排右侧座椅一键逍遥开关";
+CM_ SG_ 444 SCURR_SeatVentilSwitch "二排右侧座椅通风开关";
+CM_ SG_ 444 SCURR_SeatHeatingSwitch "二排右侧座椅加热开关";
+CM_ SG_ 444 SCURR_SeatMassgIntenSW "二排右侧座椅按摩强度开关";
+CM_ SG_ 444 SCURR_SeatMassgModeSW "二排右侧座椅按摩模式开关";
+CM_ SG_ 444 SCURR_PasSeatFoldSwitch "副驾座椅折叠开关";
+CM_ SG_ 934 AC_CabinTemp "乘员舱实际温度";
+CM_ SG_ 1799 SCU_RR_DiagReq "Diagnostic request";
+CM_ SG_ 1927 SCU_RR_DiagResp "Diagnostic response";
+
+BA_DEF_ BO_  "NmMessage" ENUM "No","Yes";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","Event","IfActive","CE","CA","NoMsgSendType";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnChange","OnWrite","IfActive","OnChangeWithRepetition","OnWriteWithRepetition","IfActiveWithRepetition","NoSigSendType","OnChangeAndIfActive","OnChangeAndIfActiveWithRepetition","CA","CE","Event";
+BA_DEF_ SG_  "GenSigStartValue" INT 0 0;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 0;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 0;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 0;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_ SG_  "GenSigTimeoutValue" INT 0 1000000000;
+BA_DEF_ BO_  "GenMsgCycleTimeActive" INT 0 0;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "DiagStationAddress" HEX 0 255;
+BA_DEF_ BU_  "NmNode" ENUM  "Not","Yes";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 65535;
+BA_DEF_ BU_  "NmCAN" INT 0 2;
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "NmType" STRING ;
+BA_DEF_  "NmBaseAddress" HEX 0 2047;
+BA_DEF_  "NmMessageCount" INT 0 255;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "NmAsrBaseAddress" HEX 1536 1791;
+BA_DEF_ BU_ "NmAsrCanMsgCycleOffset" INT 50 50;
+BA_DEF_  "NmAsrCanMsgCycleTime" INT 500 500;
+BA_DEF_ BU_ "NmAsrCanMsgReducedTime" INT 20 20;
+BA_DEF_  "NmAsrMessageCount" INT 0 256;
+BA_DEF_ BU_ "NmAsrNodeIdentifier" HEX 0 255;
+BA_DEF_  "NmAsrRepeatMessageTime" INT 1600 1600;
+BA_DEF_  "NmAsrTimeoutTime" INT 2000 2000;
+BA_DEF_  "NmAsrWaitBusSleepTime" INT 2000 2000;
+BA_DEF_ BU_ "NodeLayerModules" STRING ;
+
+BA_DEF_DEF_  "NmMessage" "No";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "GenMsgSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "GenSigTimeoutValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeActive" 0;
+BA_DEF_DEF_  "ILUsed" "No";
+BA_DEF_DEF_  "DiagStationAddress" 0;
+BA_DEF_DEF_  "NmNode" "Not";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "NmCAN" 0;
+BA_DEF_DEF_  "Manufacturer" "";
+BA_DEF_DEF_  "NmType" "";
+BA_DEF_DEF_  "NmBaseAddress" 1536;
+BA_DEF_DEF_  "NmMessageCount" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "NmAsrBaseAddress" 1536;
+BA_DEF_DEF_  "NmAsrCanMsgCycleOffset" 50;
+BA_DEF_DEF_  "NmAsrCanMsgCycleTime" 500;
+BA_DEF_DEF_  "NmAsrCanMsgReducedTime" 20;
+BA_DEF_DEF_  "NmAsrMessageCount" 256;
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 255;
+BA_DEF_DEF_  "NmAsrRepeatMessageTime" 1600;
+BA_DEF_DEF_  "NmAsrTimeoutTime" 2000;
+BA_DEF_DEF_  "NmAsrWaitBusSleepTime" 2000;
+BA_DEF_DEF_  "NodeLayerModules" "ASRNM33.dll,osek_tp.dll,CANoeILNL.Vector.dll";
+
+BA_ "BusType" "CAN";
+BA_ "DBName" "Matrix_Body_CAN3_SCU_RL_v6.0.0";
+BA_ "GenMsgCycleTime" BO_ 873 100;
+BA_ "GenMsgCycleTime" BO_ 712 20;
+BA_ "GenMsgCycleTime" BO_ 160 20;
+BA_ "GenMsgCycleTime" BO_ 298 20;
+BA_ "GenMsgCycleTime" BO_ 687 100;
+BA_ "GenMsgSendType" BO_ 509 3;
+BA_ "GenMsgCycleTime" BO_ 509 100;
+BA_ "GenMsgCycleTimeFast" BO_ 509 20;
+BA_ "GenMsgNrOfRepetition" BO_ 509 3;
+BA_ "GenMsgDelayTime" BO_ 509 20;
+BA_ "GenMsgCycleTime" BO_ 705 100;
+BA_ "GenMsgSendType" BO_ 648 3;
+BA_ "GenMsgCycleTime" BO_ 648 100;
+BA_ "GenMsgCycleTimeFast" BO_ 648 20;
+BA_ "GenMsgNrOfRepetition" BO_ 648 3;
+BA_ "GenMsgDelayTime" BO_ 648 20;
+BA_ "GenMsgSendType" BO_ 649 3;
+BA_ "GenMsgCycleTime" BO_ 649 100;
+BA_ "GenMsgCycleTimeFast" BO_ 649 20;
+BA_ "GenMsgNrOfRepetition" BO_ 649 3;
+BA_ "GenMsgDelayTime" BO_ 649 20;
+BA_ "GenMsgSendType" BO_ 709 3;
+BA_ "GenMsgCycleTime" BO_ 709 100;
+BA_ "GenMsgCycleTimeFast" BO_ 709 20;
+BA_ "GenMsgNrOfRepetition" BO_ 709 3;
+BA_ "GenMsgDelayTime" BO_ 709 20;
+BA_ "GenMsgSendType" BO_ 707 3;
+BA_ "GenMsgCycleTime" BO_ 707 100;
+BA_ "GenMsgCycleTimeFast" BO_ 707 20;
+BA_ "GenMsgNrOfRepetition" BO_ 707 3;
+BA_ "GenMsgDelayTime" BO_ 707 20;
+BA_ "GenMsgSendType" BO_ 665 3;
+BA_ "GenMsgCycleTime" BO_ 665 100;
+BA_ "GenMsgCycleTimeFast" BO_ 665 20;
+BA_ "GenMsgNrOfRepetition" BO_ 665 3;
+BA_ "GenMsgDelayTime" BO_ 665 20;
+BA_ "GenMsgSendType" BO_ 703 3;
+BA_ "GenMsgCycleTime" BO_ 703 100;
+BA_ "GenMsgCycleTimeFast" BO_ 703 20;
+BA_ "GenMsgNrOfRepetition" BO_ 703 3;
+BA_ "GenMsgDelayTime" BO_ 703 20;
+BA_ "GenMsgSendType" BO_ 704 3;
+BA_ "GenMsgCycleTime" BO_ 704 100;
+BA_ "GenMsgCycleTimeFast" BO_ 704 20;
+BA_ "GenMsgNrOfRepetition" BO_ 704 3;
+BA_ "GenMsgDelayTime" BO_ 704 20;
+BA_ "GenMsgCycleTime" BO_ 1281 100;
+BA_ "GenMsgCycleTime" BO_ 1283 100;
+BA_ "GenMsgCycleTime" BO_ 1282 100;
+BA_ "GenMsgCycleTime" BO_ 1256 100;
+BA_ "GenMsgCycleTime" BO_ 768 100;
+BA_ "GenMsgCycleTime" BO_ 1244 200;
+BA_ "GenMsgCycleTime" BO_ 1022 100;
+BA_ "GenMsgCycleTime" BO_ 488 160;
+BA_ "GenMsgCycleTime" BO_ 490 160;
+BA_ "GenMsgCycleTime" BO_ 772 160;
+BA_ "GenMsgCycleTime" BO_ 803 160;
+BA_ "GenMsgCycleTime" BO_ 445 160;
+BA_ "GenMsgCycleTime" BO_ 896 10;
+BA_ "GenMsgCycleTime" BO_ 832 100;
+BA_ "GenMsgCycleTime" BO_ 995 100;
+BA_ "GenMsgSendType" BO_ 2015 1;
+BA_ "DiagState" BO_ 2015 1;
+BA_ "GenMsgSendType" BO_ 1798 1;
+BA_ "DiagState" BO_ 1798 1;
+BA_ "GenMsgSendType" BO_ 1926 1;
+BA_ "DiagState" BO_ 1926 1;
+BA_ "GenMsgSendType" BO_ 1635 1;
+BA_ "NmMessage" BO_ 1635 1;
+BA_ "GenMsgSendType" BO_ 1623 1;
+BA_ "NmMessage" BO_ 1623 1;
+BA_ "GenMsgSendType" BO_ 1624 1;
+BA_ "NmMessage" BO_ 1624 1;
+BA_ "GenMsgSendType" BO_ 1649 1;
+BA_ "NmMessage" BO_ 1649 1;
+BA_ "GenMsgSendType" BO_ 1609 1;
+BA_ "NmMessage" BO_ 1609 1;
+BA_ "GenMsgSendType" BO_ 1615 1;
+BA_ "NmMessage" BO_ 1615 1;
+BA_ "GenSigStartValue" SG_ 712 PDCM_actualGearValid 1;
+BA_ "GenSigStartValue" SG_ 160 IPB_vehicleSpeed 8190;
+BA_ "GenSigSendType" SG_ 509 BCM_SCURL_RotateReq 4;
+BA_ "GenSigSendType" SG_ 509 BCM_2ndSeat_SceneReq 4;
+BA_ "GenSigSendType" SG_ 648 BCM_SetRLSeatBackrest 4;
+BA_ "GenSigSendType" SG_ 648 BCM_SetRLSeatHozl 4;
+BA_ "GenSigSendType" SG_ 648 BCM_SetRLSeatLegHozl 4;
+BA_ "GenSigSendType" SG_ 648 BCM_SetRLSeatLegAngle 4;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatHozlPos 4;
+BA_ "GenSigStartValue" SG_ 648 BCM_RLSeatHozlPos 255;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatBackPos 4;
+BA_ "GenSigStartValue" SG_ 648 BCM_RLSeatBackPos 255;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatLegHozlPos 4;
+BA_ "GenSigStartValue" SG_ 648 BCM_RLSeatLegHozlPos 255;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatLegAnglePos 4;
+BA_ "GenSigStartValue" SG_ 648 BCM_RLSeatLegAnglePos 255;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatMemyResult 4;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatVentilReq 4;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatHeatingReq 4;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatResetReq 4;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatComfReq 4;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatMemoryReq 4;
+BA_ "GenSigSendType" SG_ 648 BCM_RLSeatExtractReq 4;
+BA_ "GenSigSendType" SG_ 648 BCM_RLWelcomeSeatReq 4;
+BA_ "GenSigSendType" SG_ 649 BCM_BigFourSeatsReq 4;
+BA_ "GenSigSendType" SG_ 709 BCM_RLOutsideArmrestReq 4;
+BA_ "GenSigSendType" SG_ 709 BCM_RLInsideArmrestReq 4;
+BA_ "GenSigSendType" SG_ 709 BCM_RLOutsideArmrestPosReq 4;
+BA_ "GenSigStartValue" SG_ 709 BCM_RLOutsideArmrestPosReq 255;
+BA_ "GenSigSendType" SG_ 709 BCM_RLInsideArmrestPosReq 4;
+BA_ "GenSigStartValue" SG_ 709 BCM_RLInsideArmrestPosReq 255;
+BA_ "GenSigSendType" SG_ 709 BCM_RLSeatHeadrestReq 4;
+BA_ "GenSigSendType" SG_ 709 BCM_RLSeatHeadrestPosReq 4;
+BA_ "GenSigStartValue" SG_ 709 BCM_RLSeatHeadrestPosReq 255;
+BA_ "GenSigStartValue" SG_ 707 SCUTRL_HozlPosSts 254;
+BA_ "GenSigStartValue" SG_ 707 SCUTRL_BackrestPosSts 254;
+BA_ "GenSigStartValue" SG_ 707 SCUTRR_HozlPosSts 254;
+BA_ "GenSigStartValue" SG_ 707 SCUTRR_BackrestPosSts 254;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatHozlPosSwitch 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatBackrestSwitch 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatLegHozlSwitch 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatLegAngleSwitch 4;
+BA_ "GenSigStartValue" SG_ 665 SCURL_SeatHozlPosSts 254;
+BA_ "GenSigStartValue" SG_ 665 SCURL_SeatBackrestPosSts 254;
+BA_ "GenSigStartValue" SG_ 665 SCURL_SeatLegHozlSts 254;
+BA_ "GenSigStartValue" SG_ 665 SCURL_SeatLegAngleSts 254;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatMemySwitch1 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatMemySwitch2 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatMemySwitch3 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatInsideArmrestSwitch 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatVentilSts 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_SeatHeatingSts 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_45RotateSW 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_180RotateSW 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_RotateResetSW 4;
+BA_ "GenSigSendType" SG_ 665 SCURL_ResetSW 4;
+BA_ "GenSigStartValue" SG_ 703 SCURL_OutsideArmrestPosSts 254;
+BA_ "GenSigStartValue" SG_ 703 SCURL_InsideArmrestPosSts 254;
+BA_ "GenSigSendType" SG_ 703 SCURL_SeatHeadrestSwitch 4;
+BA_ "GenSigStartValue" SG_ 703 SCURL_SeatHeadrestPosSts 254;
+BA_ "GenSigSendType" SG_ 703 SCURL_OneKeyComftSW 4;
+BA_ "GenSigStartValue" SG_ 1281 SCU_RL_SeatTiltPosSts 254;
+BA_ "GenSigStartValue" SG_ 1281 SCU_RL_SeatRotateAnglePosSts 254;
+BA_ "GenSigStartValue" SG_ 1283 SCU_RR_SeatRotateAnglePosSts 254;
+BA_ "GenSigStartValue" SG_ 1022 ivi_timeInfoMonth 1;
+BA_ "GenSigStartValue" SG_ 1022 ivi_timeInfoDay 1;
+BA_ "GenSigStartValue" SG_ 1022 ivi_timeValid 1;
+BA_ "GenSigStartValue" SG_ 832 VMM_Carmode 7;
+BA_ "GenSigStartValue" SG_ 995 ebs_U_BATT 16383;
+BA_ "GenSigSendType" SG_ 2015 FUN_DiagReq 2;
+BA_ "GenSigSendType" SG_ 1798 SCU_RL_DiagReq 2;
+BA_ "GenSigSendType" SG_ 1926 SCU_RL_DiagResp 2;
+BA_ "GenSigSendType" SG_ 1635 VIU_MR_RMR 2;
+BA_ "GenSigSendType" SG_ 1635 VIU_MR_AWB 2;
+BA_ "GenSigSendType" SG_ 1623 SCU_RL_RMR 2;
+BA_ "GenSigSendType" SG_ 1623 SCU_RL_AWB 2;
+BA_ "GenSigSendType" SG_ 1624 SCU_RR_RMR 2;
+BA_ "GenSigSendType" SG_ 1624 SCU_RR_AWB 2;
+BA_ "GenSigSendType" SG_ 1649 SCU_TR_RMR 2;
+BA_ "GenSigSendType" SG_ 1649 SCU_TR_AWB 2;
+BA_ "GenSigSendType" SG_ 1609 AMP_RMR 2;
+BA_ "GenSigSendType" SG_ 1609 AMP_AWB 2;
+BA_ "GenSigSendType" SG_ 1615 AMP2_RMR 2;
+BA_ "GenSigSendType" SG_ 1615 AMP2_AWB 2;
+BA_ "DBName" "Matrix_Body_CAN3_SCU_RR_v6.0.0";
+BA_ "GenMsgCycleTime" BO_ 1278 1000;
+BA_ "GenMsgSendType" BO_ 529 3;
+BA_ "GenMsgCycleTime" BO_ 529 100;
+BA_ "GenMsgCycleTimeFast" BO_ 529 20;
+BA_ "GenMsgNrOfRepetition" BO_ 529 3;
+BA_ "GenMsgDelayTime" BO_ 529 20;
+BA_ "GenMsgSendType" BO_ 667 3;
+BA_ "GenMsgCycleTime" BO_ 667 100;
+BA_ "GenMsgCycleTimeFast" BO_ 667 20;
+BA_ "GenMsgNrOfRepetition" BO_ 667 3;
+BA_ "GenMsgDelayTime" BO_ 667 20;
+BA_ "GenMsgCycleTime" BO_ 908 200;
+BA_ "GenMsgCycleTime" BO_ 1284 100;
+BA_ "GenMsgCycleTime" BO_ 1257 100;
+BA_ "GenMsgCycleTime" BO_ 858 100;
+BA_ "GenMsgCycleTime" BO_ 1245 200;
+BA_ "GenMsgCycleTime" BO_ 1525 1000;
+BA_ "GenMsgCycleTime" BO_ 494 160;
+BA_ "GenMsgCycleTime" BO_ 493 160;
+BA_ "GenMsgCycleTime" BO_ 804 160;
+BA_ "GenMsgCycleTime" BO_ 909 160;
+BA_ "GenMsgCycleTime" BO_ 1048 160;
+BA_ "GenMsgCycleTime" BO_ 444 160;
+BA_ "GenMsgCycleTime" BO_ 934 100;
+BA_ "GenMsgSendType" BO_ 1799 1;
+BA_ "DiagState" BO_ 1799 1;
+BA_ "GenMsgSendType" BO_ 1927 1;
+BA_ "DiagState" BO_ 1927 1;
+BA_ "GenSigSendType" SG_ 509 BCM_SCURR_RotateReq 4;
+BA_ "GenSigSendType" SG_ 509 BCM_RR_LockMotorRequest 4;
+BA_ "GenSigStartValue" SG_ 509 BCM_RRMotorspd 2;
+BA_ "GenSigSendType" SG_ 529 BCM_RRSeatTiltReq 4;
+BA_ "GenSigSendType" SG_ 529 BCM_RRSeatTiltPosReq 4;
+BA_ "GenSigStartValue" SG_ 529 BCM_RRSeatTiltPosReq 255;
+BA_ "GenSigSendType" SG_ 529 BCM_SCURR_SeatSinkPos 4;
+BA_ "GenSigStartValue" SG_ 529 BCM_SCURR_SeatSinkPos 255;
+BA_ "GenSigSendType" SG_ 649 BCM_SetRRSeatHozl 4;
+BA_ "GenSigSendType" SG_ 649 BCM_SetRRSeatBackrest 4;
+BA_ "GenSigSendType" SG_ 649 BCM_SetRRSeatLegHozl 4;
+BA_ "GenSigSendType" SG_ 649 BCM_SetRRSeatLegAngle 4;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatHozlPos 4;
+BA_ "GenSigStartValue" SG_ 649 BCM_RRSeatHozlPos 255;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatBackPos 4;
+BA_ "GenSigStartValue" SG_ 649 BCM_RRSeatBackPos 255;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatLegHozlPos 4;
+BA_ "GenSigStartValue" SG_ 649 BCM_RRSeatLegHozlPos 255;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatLegAnglePos 4;
+BA_ "GenSigStartValue" SG_ 649 BCM_RRSeatLegAnglePos 255;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatMemyResult 4;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatVentilReq 4;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatHeatingReq 4;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatResetReq 4;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatComfReq 4;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatMemoryReq 4;
+BA_ "GenSigSendType" SG_ 649 BCM_RRSeatExtractReq 4;
+BA_ "GenSigSendType" SG_ 649 BCM_RRWelcomeSeatReq 4;
+BA_ "GenSigSendType" SG_ 709 BCM_RROutsideArmrestReq 4;
+BA_ "GenSigSendType" SG_ 709 BCM_RRInsideArmrestReq 4;
+BA_ "GenSigSendType" SG_ 709 BCM_RROutsideArmrestPosReq 4;
+BA_ "GenSigStartValue" SG_ 709 BCM_RROutsideArmrestPosReq 255;
+BA_ "GenSigSendType" SG_ 709 BCM_RRInsideArmrestPosReq 4;
+BA_ "GenSigStartValue" SG_ 709 BCM_RRInsideArmrestPosReq 255;
+BA_ "GenSigSendType" SG_ 709 BCM_RRSeatHeadrestReq 4;
+BA_ "GenSigSendType" SG_ 709 BCM_RRSeatHeadrestPosReq 4;
+BA_ "GenSigStartValue" SG_ 709 BCM_RRSeatHeadrestPosReq 255;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatHozlPosSwitch 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatBackrestSwitch 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatLegHozlSwitch 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatLegAngleSwitch 4;
+BA_ "GenSigStartValue" SG_ 667 SCURR_SeatHozlPosSts 254;
+BA_ "GenSigStartValue" SG_ 667 SCURR_SeatBackrestPosSts 254;
+BA_ "GenSigStartValue" SG_ 667 SCURR_SeatLegHozlSts 254;
+BA_ "GenSigStartValue" SG_ 667 SCURR_SeatLegAngleSts 254;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatMemySwitch1 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatMemySwitch2 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatMemySwitch3 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatInsideArmrestSwitch 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatVentilSts 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatHeatingSts 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatTiltPosSwitch 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatFoldSwitch 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_SeatExpandSwitch 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_45RotateSW 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_180RotateSW 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_RotateResetSW 4;
+BA_ "GenSigSendType" SG_ 667 SCURR_ResetSW 4;
+BA_ "GenSigStartValue" SG_ 704 SCURR_OutsideArmrestPosSts 254;
+BA_ "GenSigStartValue" SG_ 704 SCURR_InsideArmrestPosSts 254;
+BA_ "GenSigSendType" SG_ 704 SCURR_SeatHeadrestSwitch 4;
+BA_ "GenSigStartValue" SG_ 704 SCURR_SeatHeadrestPosSts 254;
+BA_ "GenSigStartValue" SG_ 704 SCURR_SinkPosSts 254;
+BA_ "GenSigSendType" SG_ 704 SCURR_OneKeyComftSW 4;
+BA_ "GenSigSendType" SG_ 704 SCURR_SeatHozlPosSwitch_Trunk 4;
+BA_ "GenSigSendType" SG_ 704 SCURR_SeatBackrestSwitch_Trunk 4;
+BA_ "GenSigSendType" SG_ 704 SCURR_LockMotor_State 4;
+BA_ "GenSigStartValue" SG_ 908 SCURR_SeatBackPos_CRC 255;
+BA_ "GenSigStartValue" SG_ 908 SCURR_SeatTiltPos_CRC 255;
+BA_ "GenSigStartValue" SG_ 858 SCU_RR_SeatTiltPosSts 254;
+BA_ "GenSigStartValue" SG_ 934 AC_CabinTemp 80;
+BA_ "GenSigSendType" SG_ 1799 SCU_RR_DiagReq 2;
+BA_ "GenSigSendType" SG_ 1927 SCU_RR_DiagResp 2;
+
+VAL_ 873 ZCU_3MSeatOccupySts 0 "UNOCCUPIED" 1 "OCCUPIED";
+VAL_ 873 ZCU_3RSeatOccupySts 0 "UNOCCUPIED" 1 "OCCUPIED";
+VAL_ 712 PDCM_actualGear 0 "P" 1 "R" 2 "N" 3 "D";
+VAL_ 712 PDCM_actualGearValid 0 "INVALID" 1 "VALID";
+VAL_ 160 IPB_vehicleSpeedValid 0 "INVALID" 1 "VALID";
+VAL_ 160 IPB_vehicleSpeed 8191 "Invalid";
+VAL_ 298 EPBM_Sts 0 "DEFAULT" 1 "PARKED" 2 "RELEASED" 3 "PARKING" 4 "RELEASING" 5 "COMPLETELY RELEASED" 6 "UNKNOWN" 7 "RESERVED_EPB14";
+VAL_ 687 DCU_FL_DoorFLSts_0x2AF 0 "CLOSE" 1 "OPEN";
+VAL_ 687 DCU_FR_doorFRSts_0x2AF 0 "CLOSE" 1 "OPEN";
+VAL_ 687 DCU_RL_doorRLSts_0x2AF 0 "CLOSE" 1 "OPEN";
+VAL_ 687 DCU_RR_doorRRSts_0x2AF 0 "CLOSE" 1 "OPEN";
+VAL_ 509 BCM_RL_SeatLateraset 0 "No Request" 1 "Outside" 2 "Mid" 3 "Inside" 4 "running" 7 "INVALID";
+VAL_ 509 BCM_SCURL_RotateReq 0 "No Request" 1 "Reset复位" 2 "旋转至45°" 3 "旋转至90°" 4 "旋转至180°（仅单侧座椅）" 5 "Reserved" 6 "Reserved" 7 "Stop";
+VAL_ 509 BCM_2ndSeat_SceneReq 0 "No Request" 1 "客厅对坐（左右180°旋转）" 2 "临靠模式" 3 "两人载物" 4 "四人舒享" 5 "七人舒享" 6 "七人满载" 7 "整车复原" 8 "三排收纳" 9 "Reserved" 10 "Reserved" 11 "Reserved" 12 "Reserved" 13 "Reserved" 14 "Reserved" 15 "Stop";
+VAL_ 705 bcm_pepsPowerMode 0 "DEFAULT_POWERMODE" 1 "OFF_POWERMODE" 2 "Local ON_POWERMODE" 3 "Remote ON_POWERMODE" 4 "RESERVE_POWERMODE1" 5 "RESERVE_POWERMODE2" 6 "RESERVE_POWERMODE3" 7 "INVALID_POWERMODE";
+VAL_ 648 BCM_SetRLSeatBackrest 0 "NoRequest" 1 "ForwardRotation" 2 "ReversalRotation";
+VAL_ 648 BCM_SetRLSeatHozl 0 "NoRequest" 1 "ForwardRotation" 2 "ReversalRotation";
+VAL_ 648 BCM_SetRLSeatLegHozl 0 "NoRequest" 1 "ForwardRotation" 2 "ReversalRotation";
+VAL_ 648 BCM_SetRLSeatLegAngle 0 "NoRequest" 1 "ForwardRotation" 2 "ReversalRotation";
+VAL_ 648 BCM_RLSeatHozlPos 254 "OFF" 255 "NoRequest";
+VAL_ 648 BCM_RLSeatBackPos 254 "OFF" 255 "NoRequest";
+VAL_ 648 BCM_RLSeatLegHozlPos 254 "OFF" 255 "NoRequest";
+VAL_ 648 BCM_RLSeatLegAnglePos 254 "OFF" 255 "NoRequest";
+VAL_ 648 BCM_RLSeatMemyResult 0 "NotActive" 1 "Active";
+VAL_ 648 BCM_RLSeatVentilReq 0 "NoRequest" 1 "OFF" 2 "Level1" 3 "Level2" 4 "Level3";
+VAL_ 648 BCM_RLSeatHeatingReq 0 "NoRequest" 1 "OFF" 2 "Level1" 3 "Level2" 4 "Level3";
+VAL_ 648 BCM_RLSeatResetReq 0 "NoRequest" 1 "Stop" 2 "OneKeyReset" 3 "Thr-foldingRest-三排折叠复位联动";
+VAL_ 648 BCM_RLSeatComfReq 0 "NoRequest" 1 "Stop" 2 "AllZeroGravity" 3 "PartZeroGravity" 4 "ComfPosition" 5 "CampingPositon(Bed)-露营位置（大床）" 6 "Reserved-预留" 7 "ExitCamping(Bed)/Nap-退出露营（大床）/小憩";
+VAL_ 648 BCM_RLSeatMemoryReq 0 "NoRequest" 1 "Position1" 2 "Position2" 3 "Position3";
+VAL_ 648 BCM_RLSeatExtractReq 0 "NO REQUEST" 1 "1 POSITION" 2 "2 POSITION" 3 "3 POSITION" 4 "4 POSITION预留" 5 "5 POSITION预留" 6 "Reserved" 7 "STOP";
+VAL_ 648 BCM_RLWelcomeSeatReq 0 "NoRequest" 1 "Stop" 2 "WelcomePos1" 3 "WelcomePos2" 4 "WelcomePos3" 5 "ComityPos1" 6 "ComityPos2" 7 "ComityPos3";
+VAL_ 648 BCM_RL_DockStationSts 0 "DockingStation AND Device NO OCCUPIED" 1 "DockingStation OCCUPIED AND Device NO OCCUPIED" 2 "DockingStation AND Device OCCUPIED" 3 "reserved";
+VAL_ 648 BCM_SCURL_SwtForbiddenSts 0 "不禁用机械开关" 1 "禁用机械开关";
+VAL_ 649 BCM_BigFourSeatsReq 0 "NoRequest" 1 "Stop" 2 "Position1" 3 "Position2" 4 "Position3" 5 "贴贴模式" 6 "Approach/Zero Rest-贴贴/零靠复位" 7 "Recover";
+VAL_ 709 BCM_RLOutsideArmrestReq 0 "NoRequest" 1 "Up" 2 "Down" 3 "Reserved";
+VAL_ 709 BCM_RLInsideArmrestReq 0 "NoRequest" 1 "Up" 2 "Down" 3 "Reserved";
+VAL_ 709 BCM_RLOutsideArmrestPosReq 254 "OFF" 255 "NoRequest";
+VAL_ 709 BCM_RLInsideArmrestPosReq 254 "OFF" 255 "NoRequest";
+VAL_ 709 BCM_RLSeatHeadrestReq 0 "NoRequest" 1 "Up" 2 "Down" 3 "Reserved";
+VAL_ 709 BCM_RLSeatHeadrestPosReq 254 "OFF" 255 "NoRequest";
+VAL_ 709 BCM_2RHeadrestUpadjust 0 "no press" 1 "press";
+VAL_ 709 BCM_2RHeadrestDownadjust 0 "no press" 1 "press";
+VAL_ 709 BCM_2RSideSupportUpadjust 0 "no press" 1 "press";
+VAL_ 709 BCM_2RSideSupportDownadjust 0 "no press" 1 "press";
+VAL_ 707 SCUTRL_HozlPosSts 255 "Invalid";
+VAL_ 707 SCUTRL_BackrestPosSts 255 "Invalid";
+VAL_ 707 SCUTRR_HozlPosSts 255 "Invalid";
+VAL_ 707 SCUTRR_BackrestPosSts 255 "Invalid";
+VAL_ 665 SCURL_SeatHozlPosSwitch 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 665 SCURL_SeatBackrestSwitch 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 665 SCURL_SeatLegHozlSwitch 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 665 SCURL_SeatLegAngleSwitch 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 665 SCURL_SeatHozlPosSts 255 "Invalid";
+VAL_ 665 SCURL_SeatBackrestPosSts 255 "Invalid";
+VAL_ 665 SCURL_SeatLegHozlSts 255 "Invalid";
+VAL_ 665 SCURL_SeatLegAngleSts 255 "Invalid";
+VAL_ 665 SCURL_SeatMemySwitch1 0 "NoRequest" 1 "MemorySeatPos" 2 "ExtractSeatPos";
+VAL_ 665 SCURL_SeatMemySwitch2 0 "NoRequest" 1 "MemorySeatPos" 2 "ExtractSeatPos";
+VAL_ 665 SCURL_SeatMemySwitch3 0 "NoRequest" 1 "MemorySeatPos" 2 "ExtractSeatPos";
+VAL_ 665 SCURL_SeatInsideArmrestSwitch 0 "NoRequest" 1 "OneKeyUp" 2 "OneKeyDown";
+VAL_ 665 SCURL_SeatVentilSts 0 "Default" 1 "OFF" 2 "Low" 3 "Medium" 4 "High" 5 "Error";
+VAL_ 665 SCURL_SeatHeatingSts 0 "Default" 1 "OFF" 2 "Low" 3 "Medium" 4 "High" 5 "Error";
+VAL_ 665 SCURL_MassgSpecModeSts1 0 "OFF" 1 "敲击ON" 2 "预留" 3 "预留";
+VAL_ 665 SCURL_45RotateSW 0 "No Press" 1 "Press";
+VAL_ 665 SCURL_180RotateSW 0 "No Press" 1 "Press";
+VAL_ 665 SCURL_RotateResetSW 0 "No Press" 1 "Press";
+VAL_ 665 SCURL_ResetSW 0 "No Press" 1 "Press";
+VAL_ 703 SCURL_OutsideArmrestPosSts 255 "Invalid";
+VAL_ 703 SCURL_InsideArmrestPosSts 255 "Invalid";
+VAL_ 703 SCURL_SeatHeadrestSwitch 0 "NoRequest" 1 "Up" 2 "Down" 3 "Reserved";
+VAL_ 703 SCURL_SeatHeadrestPosSts 255 "Invalid";
+VAL_ 703 SCURL_SeatMemoryResult 0 "NOT_MEMORYPOSITION" 1 "Position1" 2 "Position2" 3 "Position3" 4 "RESERVED" 5 "RESERVED" 6 "Memory failed" 7 "RESERVED";
+VAL_ 703 SCURL_SeatExtractResult 0 "NOT_MEMORYPOSITION" 1 "1POSITION" 2 "2POSITION" 3 "3POSITION" 4 "1POSITION_Moving" 5 "2POSITION_Moving" 6 "Get failed" 7 "3POSITION_Moving";
+VAL_ 703 SCU_RL_LeftSts 0 "No request" 1 "不满足条件，无法执行舒躺/零重力" 2 "开始执行舒躺" 3 "开始执行零重力";
+VAL_ 703 SCU_RL_SeatZeroGSta 0 "初始值" 1 "座椅自动调整中" 2 "当前在零重力位置" 3 "当前在舒躺位置" 4 "预留" 5 "预留" 6 "预留" 7 "预留";
+VAL_ 703 SCURL_InsideArmrestSts 0 "初始值" 1 "收起" 2 "放下" 3 "预留";
+VAL_ 703 SCURL_OutsideArmrestSts 0 "初始值" 1 "收起" 2 "放下" 3 "预留";
+VAL_ 703 SCURL_OneKeyComftSW 0 "No Press" 1 "Press";
+VAL_ 703 SCURL_VoiceRmdr 0 "No Request" 1 "请先将座椅调整到正坐姿态" 2 "当前空间不足禁止调节" 3 "Reserved" 4 "Reserved" 5 "Reserved" 6 "Reserved" 7 "Reserved";
+VAL_ 704 SCU_RR_SeatSts2 0 "idle 空闲" 1 "four seat moving大四座移动中" 2 "four seat completed大四座完成" 3 "approach moving贴贴模式移动中" 4 "approach completed贴贴模式完成" 5 "four seat interrupted大四座前置条件不满足（3-5帧）" 6 "approach interrupted贴贴模式前置条件不满足（3-5帧）" 7 "Camping moving（Bed）-露营模式（大床）移动中（持续发）" 8 "Camping completed（Bed）-露营模式（大床）位置完成（持续发,直至退出大床模式）" 9 "Bed interrupted-大床模式条件不满足（3帧归0）" 10 "TRFold&2ndRestIinkageCompletion-三排折叠，二排复位联动完成反馈（5帧归0）" 11 "RotationAdjustmentCompleted-座椅旋转调节完成（45°、90°、180°展开或复位）" 12 "RotationAdjustmentFailed-座椅旋转调节失败（45°、90°、180°展开或复位）" 13 "SceneAdjustmentCompleted-座椅一键场景调节完成（对应BCM下行信号SceneReq）" 14 "SceneAdjustmentFailed-座椅一键场景调节失败（对应BCM下行信号SceneReq）" 15 "reserved-预留";
+VAL_ 1281 SCU_RL_SeatSts 0 "idle 空闲" 1 "manual 正在手动调节" 2 "zero gravity unfolding 正在零重力展开" 3 "zero gravity completed 零重力展开完成" 4 "comfy unfolding 正在舒躺展开" 5 "comfy completed 舒躺展开完成" 6 "folding 正在复位" 7 "in antipinch 防夹运行过程" 8 "studying 正在自学习" 9 "welcoming 正在迎宾" 10 "welcome completed 迎宾完成" 11 "正在礼让" 12 "礼让完成" 13 "未到复位位置" 14 "复位完成" 15 "未到展开位置（Failed）";
+VAL_ 1281 SCU_RL_SeatSts2 0 "idle 空闲" 1 "four seat moving大四座移动中" 2 "four seat completed大四座完成" 3 "approach moving贴贴模式移动中" 4 "approach completed贴贴模式完成" 5 "four seat interrupted大四座前置条件不满足（3-5帧）" 6 "approach interrupted贴贴模式前置条件不满足（3-5帧）" 7 "Camping moving（Bed）-露营模式（大床）移动中（持续发）" 8 "Camping completed（Bed）-露营模式（大床）位置完成（持续发,直至退出大床模式）" 9 "Bed interrupted-大床模式条件不满足（3帧归0）" 10 "TRFold&2ndRestIinkageCompletion-三排折叠，二排复位联动完成反馈（5帧归0）" 11 "RotationAdjustmentCompleted-座椅旋转调节完成（45°、90°、180°展开或复位）" 12 "RotationAdjustmentFailed-座椅旋转调节失败（45°、90°、180°展开或复位）" 13 "SceneAdjustmentCompleted-座椅一键场景调节完成（对应BCM下行信号SceneReq）" 14 "SceneAdjustmentFailed-座椅一键场景调节失败（对应BCM下行信号SceneReq）" 15 "reserved-预留";
+VAL_ 1281 SCU_RL_SeatTiltPosSts 0 "0%" 1 "1%" 100 "100%" 255 "Invalid";
+VAL_ 1281 SCU_RL_SeatRotateAnglePosSts 0 "0%" 1 "1%" 100 "100%" 255 "Invalid";
+VAL_ 1281 SCURL_livingroomComplt 0 "Not livingroom position-不处于客厅目标位置" 1 "Already livingroom position-已处于客厅目标位置";
+VAL_ 1281 SCURL_LivingroomPrepare 0 "Not allowed revolve-不可旋转" 1 "Allowed revolve-可旋转";
+VAL_ 1283 SCU_RR_SeatRotateAnglePosSts 0 "0%" 1 "1%" 100 "100%" 255 "Invalid";
+VAL_ 1283 SCURR_LivingroomComplt 0 "Not livingroom position-不处于客厅目标位置" 1 "Already livingroom position-已处于客厅目标位置";
+VAL_ 1283 SCURR_LivingroomPrepare 0 "Not allowed revolve-不可旋转" 1 "Allowed revolve-可旋转";
+VAL_ 1282 SCU_RL_SeatHeadrestMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1282 SCU_RL_SeatTiltLMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1282 SCU_RL_SeatTiltRMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1282 SCU_RL_SeatLegUDMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1282 SCU_RL_SeatLegFBMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1256 SCU_RL_ApTrigReasonLatera 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1256 SCU_RL_ApTrigReasonInsideArmrest 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1256 SCU_RL_ApTrigReasonOutsideArmrest 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1256 SCU_RL_SeatSlideMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1256 SCU_RL_SeatReclineMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1256 SCU_RL_SeatLateraMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1256 SCU_RL_SeatInsideArmrestMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1256 SCU_RL_SeatOutsideArmrestMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1256 SCU_RL_KL30Vol 0 "KL30 0v" 1 "KL30 0.1V" 2 "KL30 0.2V" 3 "KL30 0.3V" 255 "KL30 25.5V";
+VAL_ 1256 SCU_RL_ApTrigReasonRecline 0 "Not triggered" 1 "APCurrentDiff" 2 "APCurrentTrend" 3 "APCurrentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1256 SCU_RL_ApTrigReasonSlide 0 "Not triggered" 1 "APCurrentDiff" 2 "APCurrentTrend" 3 "APCurrentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1256 SCU_RL_ApTrigReasonTiltLeft 0 "Not triggered" 1 "APCurrentDiff" 2 "APCurrentTrend" 3 "APCurrentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1256 SCU_RL_ApTrigReasonLegFB 0 "Not triggered" 1 "APCurrentDiff" 2 "APCurrentTrend" 3 "APCurrentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1256 SCU_RL_ApTrigReasonLegUD 0 "Not triggered" 1 "APCurrentDiff" 2 "APCurrentTrend" 3 "APCurrentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1256 SCU_RL_ApTrigReasonTiltRight 0 "Not triggered" 1 "APCurrentDiff" 2 "APCurrentTrend" 3 "APCurrentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 768 SCU_RL_SeatSlideMotorCuRLents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 768 SCU_RL_SeatReclineMotorCuRLents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 768 SCU_RL_SeatLateraMotorCuRLents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 768 SCU_RL_SeatInsideArmrestMotorCuRLents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 768 SCU_RL_SeatOutsideArmrestMotorCuRLents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 768 SCU_RL_SeatLateraPosSts 0 "invalid" 1 "1%" 100 "100%";
+VAL_ 768 SCU_RL_ErrorCode 0 "NO_ERR" 1 "滑轨电机hall丢失" 2 "靠背电机hall丢失" 255 "加热高边开路故障";
+VAL_ 768 SCU_RL_Init1 0 "Not Init" 1 "Success";
+VAL_ 768 SCU_RL_SeatLateraSts 0 "No Request" 1 "Outside" 2 "Mid" 3 "Inside" 4 "running" 7 "INVALID";
+VAL_ 1244 SCU_RL_SeatLeftSlideMotorCurrent 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1244 SCU_RL_SeatRotateMotorCurrent 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1244 SCU_RL_ApTrigReasonSlideLeft 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1244 SCU_RL_ApTrigReasonHR 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1244 SCU_RL_ApTrigReasonRotate 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1022 ivi_timeValid 0 "INVALID" 1 "VALID";
+VAL_ 488 WSMRL_SeatMassLevelSet 0 "No Request" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3" 4 "LEVEL_4" 5 "LEVEL_5" 6 "OFF" 7 "ERROR";
+VAL_ 488 WSMRL_MassgIntenSet 0 "Massage OFF" 1 "Weak Intensity" 2 "Normal Intensity" 3 "High Intensity";
+VAL_ 488 WSMRL_SeatLumSpprtReq 0 "NoRequest" 1 "MoveUp" 2 "MoveDown" 3 "MoveForward" 4 "MoveBackward";
+VAL_ 488 WSMRL_SeatMassModeReq 0 "NoRequest" 1 "Mode1" 2 "Mode2" 3 "Mode3" 4 "Mode4" 5 "Mode5" 6 "Mode6" 7 "Mode7" 8 "Mode8" 9 "Mode9" 10 "Mode10" 11 "Mode11" 12 "Mode12" 13 "Mode13" 14 "Mode14" 15 "Mode15";
+VAL_ 488 WSMRL_SeatMassgRest 0 "No Request" 1 "Rest" 2 "Reserved" 3 "Reserved";
+VAL_ 488 WSM_RLSeatMassgSpecModeReq 0 "NoRequest" 1 "OFF" 2 "ON" 3 "Reserved";
+VAL_ 488 WSMRL_SeatLumSpprtAdaptSet 0 "未请求;" 1 "仅入座自适应;" 2 "实时自适应;" 3 "保留";
+VAL_ 488 WSMRL_SeatSts 0 "未占座;" 1 "占座;";
+VAL_ 488 WSMRL_SeatLumSpprtSingleAdaptReq 0 "未请求;" 1 "请求;";
+VAL_ 488 WSMRL_SeatLumSpprtAdaptSwitch 0 "No req;" 1 "关闭" 2 "开启" 3 "预留";
+VAL_ 488 WSMRL_SeatMechineMassSet 0 "NoRequest-无请求" 1 "Stop-停止" 2 "Resume-恢复" 3 "Reserved-预留";
+VAL_ 488 WSMRL_NeckrtHeatReq 0 "OFF" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3" 4 "Resverd" 5 "Resverd" 6 "Resverd" 7 "Resverd";
+VAL_ 490 WSMRL_PmpSts 0 "No Result" 1 "Pump Ok" 2 "Pump Error" 3 "Reserved";
+VAL_ 490 WSMRL_MassgIntenStatus 0 "Massage State OFF" 1 "Weak Intensity" 2 "Normal Intensity" 3 "High Intensity";
+VAL_ 490 WSMRL_MassLevelStatus 0 "invalid" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3" 4 "LEVEL_4" 5 "LEVEL_5" 6 "RESERVED" 7 "ERROR";
+VAL_ 490 WSMRL_ResponseError 0 "Normal" 1 "Error";
+VAL_ 490 WSMRL_PwrVoltSts 0 "No Result" 1 "Voltage Ok" 2 "Voltage Error" 3 "Reserved";
+VAL_ 490 WSMRL_SeatLumSpprtSwitch 0 "NoRequest" 1 "Up" 2 "Down" 3 "Forward" 4 "Backward";
+VAL_ 490 WSM_RL_MassgSpecModeSts 0 "OFF" 1 "ON" 2 "Reserved" 3 "Reserved";
+VAL_ 490 WSMRL_CtrlWSMRL2Pump 0 "OFF-关闭" 1 "ON-开启";
+VAL_ 490 WSMRL_FaultStatus 0 "Normal-正常" 1 "Voltage > 16V-电压过高" 2 "Voltage < 9V-电压过低" 3 "solenoid valve failure-电磁阀故障" 4 "Air pump failure-气泵故障" 5 "MechMsgMotor1 Error" 6 "MechMsgMotor2 Error" 7 "FastExhaustCoil Error" 8 "Motor Failure-电机故障" 9 "Hall Failure-霍尔故障" 10 "Heat Failure-加热故障" 11 "Pressure sensor Failure-压力传感器故障";
+VAL_ 772 WSMRL_SeatMassModeSts 0 "NoRequest" 1 "Mode1" 2 "Mode2" 3 "Mode3" 4 "Mode4" 5 "Mode5" 6 "Mode6" 7 "Mode7" 8 "Mode8" 9 "Mode9" 10 "Mode10" 11 "Mode11" 12 "Mode12" 13 "Mode13" 14 "Mode14" 15 "Mode15";
+VAL_ 772 WSMRL_PwrVoltSts_OverVoltageStatus 0 "Normal(The voltage is normal)" 1 "Fault(The voltage >16V)";
+VAL_ 772 WSMRL_PwrVoltSts_LoVoltageStatus 0 "Normal(The voltage is normal)" 1 "Fault(The voltage <9V)";
+VAL_ 772 WSMRL_MassageCfg_FeedbackStatus 0 "NoConfiguration" 1 "Configuration";
+VAL_ 772 WSMRL_MassCombinedActionSts 0 "NoCombinedAction" 1 "CombinedAction" 15 "Reserved";
+VAL_ 772 WSMRL_SeatLumSpprtAdaptSwitchSts 0 "关闭;" 1 "开启;";
+VAL_ 772 WSMRL_ToastFeedback 0 "未请求;" 1 "乘员未占座;" 2 "乘员未贴合靠背;" 3 "预留";
+VAL_ 772 WSMRL_SeatLumSpprtAdaptSts 0 "未请求;" 1 "仅入座调节模式;" 2 "实时自适应调节模式;" 3 "预留";
+VAL_ 772 WSMRL_Sts 0 "空闲;" 1 "手动调节腰托;" 2 "按摩模式工作中;" 3 "自适应调节中;" 4 "自适应调节完成;" 5 "自适应调节失败;" 6 "单次自适应调节中;" 7 "预留";
+VAL_ 772 WSMRL_NeckrestInstalSts 0 "NotInstalled-未安装颈枕" 1 "Installed-已安装颈枕";
+VAL_ 772 WSMRL_NeckrestHeatSts 0 "OFF" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3";
+VAL_ 772 WSMRL_NeckrestMassgIntenSts 0 "OFF" 1 "Weak Intensity-弱强度" 2 "Normal Intensity-正常强度" 3 "High Intensity-高强度";
+VAL_ 803 WSM2RL_SeatMassModeSts 0 "NoRequest" 1 "Mode1" 2 "Mode2" 3 "Mode3" 4 "Mode4" 5 "Mode5" 6 "Mode6" 7 "Mode7" 8 "Mode8" 9 "Mode9" 10 "Mode10" 11 "Mode11" 12 "Mode12" 13 "Mode13" 14 "Mode14" 15 "Mode15";
+VAL_ 803 WSM2RL_PwrVoltSts_OverVoltageStatus 0 "Normal(The voltage is normal)" 1 "Fault(The voltage >16V)";
+VAL_ 803 WSM2RL_PwrVoltSts_LoVoltageStatus 0 "Normal(The voltage is normal)" 1 "Fault(The voltage <9V)";
+VAL_ 803 WSM2RL_MassageCfg_FeedbackStatus 0 "NoConfiguration" 1 "Configuration";
+VAL_ 803 WSM2RL_MassLevelStatus 0 "invalid" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3" 4 "LEVEL_4" 5 "LEVEL_5" 6 "RESERVED" 7 "ERROR";
+VAL_ 803 WSM2RL_MassgIntenStatus 0 "Massage State OFF" 1 "Weak Intensity" 2 "Normal Intensity" 3 "High Intensity";
+VAL_ 803 WSM2RL_PmpSts 0 "No Result" 1 "Pump Ok" 2 "Pump Error" 3 "Reserved";
+VAL_ 803 WSM2RL_PwrVoltSts 0 "No Result" 1 "Voltage Ok" 2 "Voltage Error" 3 "Reserved";
+VAL_ 803 WSM2RL_ResponseError 0 "Normal" 1 "Error";
+VAL_ 803 WSM2RL_FeedbackValveSts 0 "Valve Not Working-电磁阀未工作" 1 "Valve Working-电磁阀工作";
+VAL_ 803 WSM2RL_FeedbackPumpSts 0 "Pump Not Working-气泵未工作" 1 "Pump Working-气泵工作";
+VAL_ 445 SCURL_OneKeyResetSwitch 0 "NoRequest" 1 "Request";
+VAL_ 445 SCURL_OneKeyComftSwitch 0 "NoRequest" 1 "Request";
+VAL_ 445 SCURL_SeatVentilSwitch 0 "No Press" 1 "Press";
+VAL_ 445 SCURL_SeatHeatingSwitch 0 "No Press" 1 "Press";
+VAL_ 445 SCURL_SeatMassgIntenSW 0 "No Press" 1 "Press";
+VAL_ 445 SCURL_SeatMassgModeSW 0 "No Press" 1 "Press";
+VAL_ 896 acu_passengerSts 0 "UNOCCUPIED" 1 "OCCUPIED";
+VAL_ 896 acu_secondLeftSts 0 "UNOCCUPIED" 1 "OCCUPIED";
+VAL_ 896 acu_secondMiddleSts 0 "UNOCCUPIED" 1 "OCCUPIED";
+VAL_ 896 acu_secondRightSts 0 "UNOCCUPIED" 1 "OCCUPIED";
+VAL_ 832 VMM_Carmode 0 "Factory" 1 "Normal" 2 "Exihibition" 3 "Crash" 4 "Transport" 7 "Invalid";
+VAL_ 995 ebs_U_BATT 16383 "Invalid";
+VAL_ 1635 VIU_MR_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested";
+VAL_ 1635 VIU_MR_AWB 0 "Node has not woken up the network (passive wakeup)" 1 "Node has woken up the network (active Wakeup)";
+VAL_ 1623 SCU_RL_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested";
+VAL_ 1623 SCU_RL_AWB 0 "Node has not woken up the network_passive wakeup_" 1 "Node has woken up the network_active Wakeup_";
+VAL_ 1624 SCU_RR_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested";
+VAL_ 1624 SCU_RR_AWB 0 "Node has not woken up the network_passive wakeup_" 1 "Node has woken up the network_active Wakeup_";
+VAL_ 1649 SCU_TR_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested";
+VAL_ 1649 SCU_TR_AWB 0 "Node has not woken up the network_passive wakeup_" 1 "Node has woken up the network_active Wakeup_";
+VAL_ 1609 AMP_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested";
+VAL_ 1609 AMP_AWB 0 "Node has not woken up the network_passive wakeup_" 1 "Node has woken up the network_active Wakeup_";
+VAL_ 1615 AMP2_RMR 0 "Repeat Message State not requested" 1 "Repeat Message State requested";
+VAL_ 1615 AMP2_AWB 0 "Node has not woken up the network_passive wakeup_" 1 "Node has woken up the network_active Wakeup_";
+VAL_ 1278 tbox_vehicleMode 0 "Initial value" 1 "Normal mode" 2 "Factory mode (Reserved)" 3 "Transportation mode (Reserved)" 4 "Collision mode (Reserved)" 5 "OTA mode" 6 "Reserved" 7 "Reserved" 8 "Reserved" 9 "Reserved" 10 "Reserved" 11 "Reserved" 12 "Reserved" 13 "Reserved" 14 "Reserved" 15 "Invalid";
+VAL_ 509 BCM_RR_SeatLateraset 0 "No Request" 1 "Outside" 2 "Mid" 3 "Inside" 4 "running" 7 "INVALID";
+VAL_ 509 BCM_SCURR_RotateReq 0 "No Request" 1 "Reset复位" 2 "旋转至45°" 3 "旋转至90°" 4 "旋转至180°（仅单侧座椅）" 5 "Reserved" 6 "Reserved" 7 "Stop";
+VAL_ 509 BCM_RR_LockMotorRequest 0 "Norequest" 1 "Unlock" 2 "Lock" 3 "Reserved";
+VAL_ 509 BCM_RRMotorspd 0 "NoRequest-无请求" 1 "LowSpeed-低速" 2 "HighSpeed-高速" 3 "Reserved-预留";
+VAL_ 529 BCM_RRSeatTiltReq 0 "NoRequest" 1 "Up" 2 "Down" 3 "Reserved";
+VAL_ 529 BCM_RRSeatTiltPosReq 255 "Invalid";
+VAL_ 529 BCM_SCURR_SeatSinkPos 255 "Invalid";
+VAL_ 649 BCM_SetRRSeatHozl 0 "NoRequest" 1 "ForwardRotation" 2 "ReversalRotation";
+VAL_ 649 BCM_SetRRSeatBackrest 0 "NoRequest" 1 "ForwardRotation" 2 "ReversalRotation";
+VAL_ 649 BCM_SetRRSeatLegHozl 0 "NoRequest" 1 "ForwardRotation" 2 "ReversalRotation";
+VAL_ 649 BCM_SetRRSeatLegAngle 0 "NoRequest" 1 "ForwardRotation" 2 "ReversalRotation";
+VAL_ 649 BCM_RRSeatHozlPos 254 "OFF" 255 "NoRequest";
+VAL_ 649 BCM_RRSeatBackPos 254 "OFF" 255 "NoRequest";
+VAL_ 649 BCM_RRSeatLegHozlPos 254 "OFF" 255 "NoRequest";
+VAL_ 649 BCM_RRSeatLegAnglePos 254 "OFF" 255 "NoRequest";
+VAL_ 649 BCM_RRSeatMemyResult 0 "NotActive" 1 "Active";
+VAL_ 649 BCM_RRSeatVentilReq 0 "NoRequest" 1 "OFF" 2 "Level1" 3 "Level2" 4 "Level3";
+VAL_ 649 BCM_RRSeatHeatingReq 0 "NoRequest" 1 "OFF" 2 "Level1" 3 "Level2" 4 "Level3";
+VAL_ 649 BCM_RRSeatResetReq 0 "NoRequest" 1 "Stop" 2 "OneKeyReset" 3 "Thr-foldingRest-三排折叠复位联动";
+VAL_ 649 BCM_RRSeatComfReq 0 "NoRequest" 1 "Stop" 2 "AllZeroGravity" 3 "PartZeroGravity" 4 "ComfPosition" 5 "CampingPositon(Bed)-露营位置（大床）" 6 "Reserved-预留" 7 "ExitCamping(Bed)/Nap-退出露营（大床）/小憩";
+VAL_ 649 BCM_RRSeatMemoryReq 0 "NoRequest" 1 "Position1" 2 "Position2" 3 "Position3";
+VAL_ 649 BCM_RRSeatExtractReq 0 "NO REQUEST" 1 "1 POSITION" 2 "2 POSITION" 3 "3 POSITION" 4 "4 POSITION预留" 5 "5 POSITION预留" 6 "Reserved" 7 "STOP";
+VAL_ 649 BCM_RRWelcomeSeatReq 0 "NoRequest" 1 "Stop" 2 "WelcomePos1" 3 "WelcomePos2" 4 "WelcomePos3" 5 "ComityPos1" 6 "ComityPos2" 7 "ComityPos3";
+VAL_ 649 BCM_SCURR_SwtForbiddenSts 0 "不禁用机械开关" 1 "禁用机械开关";
+VAL_ 709 BCM_RROutsideArmrestReq 0 "NoRequest" 1 "Up" 2 "Down" 3 "Reserved";
+VAL_ 709 BCM_RRInsideArmrestReq 0 "NoRequest" 1 "Up" 2 "Down" 3 "Reserved";
+VAL_ 709 BCM_RROutsideArmrestPosReq 254 "OFF" 255 "NoRequest";
+VAL_ 709 BCM_RRInsideArmrestPosReq 254 "OFF" 255 "NoRequest";
+VAL_ 709 BCM_RRSeatHeadrestReq 0 "NoRequest" 1 "Up" 2 "Down" 3 "Reserved";
+VAL_ 709 BCM_RRSeatHeadrestPosReq 254 "OFF" 255 "NoRequest";
+VAL_ 667 SCURR_SeatHozlPosSwitch 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 667 SCURR_SeatBackrestSwitch 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 667 SCURR_SeatLegHozlSwitch 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 667 SCURR_SeatLegAngleSwitch 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 667 SCURR_SeatHozlPosSts 255 "Invalid";
+VAL_ 667 SCURR_SeatBackrestPosSts 255 "Invalid";
+VAL_ 667 SCURR_SeatLegHozlSts 255 "Invalid";
+VAL_ 667 SCURR_SeatLegAngleSts 255 "Invalid";
+VAL_ 667 SCURR_SeatMemySwitch1 0 "NoRequest" 1 "MemorySeatPos" 2 "ExtractSeatPos";
+VAL_ 667 SCURR_SeatMemySwitch2 0 "NoRequest" 1 "MemorySeatPos" 2 "ExtractSeatPos";
+VAL_ 667 SCURR_SeatMemySwitch3 0 "NoRequest" 1 "MemorySeatPos" 2 "ExtractSeatPos";
+VAL_ 667 SCURR_SeatInsideArmrestSwitch 0 "NoRequest" 1 "OneKeyUp" 2 "OneKeyDown";
+VAL_ 667 SCURR_SeatVentilSts 0 "Default" 1 "OFF" 2 "Low" 3 "Medium" 4 "High" 5 "Error";
+VAL_ 667 SCURR_SeatHeatingSts 0 "Default" 1 "OFF" 2 "Low" 3 "Medium" 4 "High" 5 "Error";
+VAL_ 667 SCURR_MassgSpecModeSts1 0 "OFF" 1 "敲击ON" 2 "预留" 3 "预留";
+VAL_ 667 SCURR_SeatTiltPosSwitch 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 667 SCURR_SeatFoldSwitch 0 "NoRequest" 1 "Request";
+VAL_ 667 SCURR_SeatExpandSwitch 0 "NoRequest" 1 "Request";
+VAL_ 667 SCURR_45RotateSW 0 "No Press" 1 "Press";
+VAL_ 667 SCURR_180RotateSW 0 "No Press" 1 "Press";
+VAL_ 667 SCURR_RotateResetSW 0 "No Press" 1 "Press";
+VAL_ 667 SCURR_ResetSW 0 "No Press" 1 "Press";
+VAL_ 704 SCURR_OutsideArmrestPosSts 255 "Invalid";
+VAL_ 704 SCURR_InsideArmrestPosSts 255 "Invalid";
+VAL_ 704 SCURR_SeatHeadrestSwitch 0 "NoRequest" 1 "Up" 2 "Down" 3 "Reserved";
+VAL_ 704 SCURR_SeatHeadrestPosSts 255 "Invalid";
+VAL_ 704 SCURR_SeatMemoryResult 0 "NOT_MEMORYPOSITION" 1 "Position1" 2 "Position2" 3 "Position3" 4 "RESERVED" 5 "RESERVED" 6 "Memory failed" 7 "RESERVED";
+VAL_ 704 SCURR_SeatExtractResult 0 "NOT_MEMORYPOSITION" 1 "1POSITION" 2 "2POSITION" 3 "3POSITION" 4 "1POSITION_Moving" 5 "2POSITION_Moving" 6 "Get failed" 7 "3POSITION_Moving";
+VAL_ 704 SCU_RR_RightSts 0 "No request" 1 "不满足条件，无法执行舒躺/零重力" 2 "开始执行舒躺" 3 "开始执行零重力";
+VAL_ 704 SCU_RR_seatZeroGSta 0 "初始值" 1 "座椅自动调整中" 2 "当前在零重力位置" 3 "当前在舒躺位置" 4 "预留" 5 "预留" 6 "预留" 7 "预留";
+VAL_ 704 SCURR_InsideArmrestSts 0 "初始值" 1 "收起" 2 "放下" 3 "预留";
+VAL_ 704 SCURR_OutsideArmrestSts 0 "初始值" 1 "收起" 2 "放下" 3 "预留";
+VAL_ 704 SCURR_SinkPosSts 255 "Invalid";
+VAL_ 704 SCURR_OneKeyComftSW 0 "No Press" 1 "Press";
+VAL_ 704 SCURR_SeatHozlPosSwitch_Trunk 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 704 SCURR_SeatBackrestSwitch_Trunk 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 704 SCURR_LockMotor_State 0 "Unlock" 1 "Lock";
+VAL_ 908 SCURR_SeatBackPos_CRC 0 "0%" 1 "1%" 100 "100%" 255 "Invalid";
+VAL_ 908 SCURR_SeatTiltPos_CRC 0 "0%" 1 "1%" 100 "100%" 255 "Invalid";
+VAL_ 908 SCURR_Seat_0GravityPosProtectSts 0 "unable-零重力安全保护未使能" 1 "enable-零重力安全保护使能" 2 "reseverd-预留" 3 "reseverd-预留" 4 "reseverd-预留" 5 "reseverd-预留" 6 "reseverd-预留" 7 "reseverd-预留" 8 "reseverd-预留" 9 "reseverd-预留" 10 "reseverd-预留" 11 "reseverd-预留" 12 "reseverd-预留" 13 "reseverd-预留" 14 "reseverd-预留" 15 "reseverd-预留";
+VAL_ 908 SCURR_Seat_0GravityPosProtectStsValid 0 "Invalid-零重力安全保护使能无效" 1 "Valid-零重力安全保护使能有效";
+VAL_ 1283 SCU_RR_SeatSts 0 "idle 空闲" 1 "manual 正在手动调节" 2 "zero gravity unfolding 正在零重力展开" 3 "zero gravity completed 零重力展开完成" 4 "comfy unfolding 正在舒躺展开" 5 "comfy completed 舒躺展开完成" 6 "folding 正在复位" 7 "in antipinch 防夹运行过程" 8 "studying 正在自学习" 9 "welcoming 正在迎宾" 10 "welcome completed 迎宾完成" 11 "正在礼让" 12 "礼让完成" 13 "未到复位位置" 14 "复位完成" 15 "未到展开位置（Failed）";
+VAL_ 1283 SCURR_VoiceRmdr 0 "No Request" 1 "请先将座椅调整到正坐姿态" 2 "当前空间不足禁止调节" 3 "Reserved" 4 "Reserved" 5 "Reserved" 6 "Reserved" 7 "Reserved";
+VAL_ 1283 SCURR_FoldExpandState 0 "Normal正常" 1 "Interruptive中断";
+VAL_ 1284 SCU_RR_SeatSlideMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1284 SCU_RR_SeatReclineMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1284 SCU_RR_SeatTiltLMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1284 SCU_RR_SeatTiltRMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1284 SCU_RR_SeatLegUDMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1284 SCU_RR_SeatLegFBMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1284 SCU_RR_SeatLateraMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1257 SCU_RR_SeatReclineMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_SeatLateraMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_SeatTiltLMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_SeatTiltRMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_SeatLegFBMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_SeatLegUDMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_SeatInsideArmrestMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_SeatOutsideArmrestMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_KL30Vol 0 "KL30 0v" 1 "KL30 0.1V" 2 "KL30 0.2V" 3 "KL30 0.3V" 255 "KL30 25.5V";
+VAL_ 1257 SCU_RR_SeatSlideMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_ApTrigReasonOutsideArmrest 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1257 SCU_RR_ApTrigReasonInsideArmrest 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1257 SCU_RR_ApTrigReasonLatera 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1257 SCU_RR_ApTrigReasonTiltLeft 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1257 SCU_RR_ApTrigReasonRecline 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1257 SCU_RR_ApTrigReasonSlide 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1257 SCU_RR_ApTrigReasonLegFB 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1257 SCU_RR_ApTrigReasonLegUD 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1257 SCU_RR_ApTrigReasonTiltRight 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1257 SCU_RR_SeatSinkMotorDirect 0 "NoRequest" 1 "Forward" 2 "Backward";
+VAL_ 1257 SCU_RR_ApTrigReasonSink 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 858 SCU_RR_SeatInsideArmrestMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 858 SCU_RR_SeatOutsideArmrestMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 858 SCU_RR_SeatLateraPosSts 0 "invalid" 1 "1%" 100 "100%";
+VAL_ 858 SCU_RR_SeatTiltPosSts 0 "0%" 1 "1%" 2 "2%" 100 "100%" 255 "Invalid";
+VAL_ 858 SCU_RR_ErrorCode 0 "NO_ERR" 1 "滑轨电机hall丢失" 2 "靠背电机hall丢失" 255 "加热高边开路故障";
+VAL_ 858 SCU_RR_Init1 0 "Not Init" 1 "Success";
+VAL_ 858 SCURR_SeatHeadrestMotorCurrents 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 858 SCU_RR_SinkMotorCurrent 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 858 SCU_RR_SeatLateraSts 0 "No Request" 1 "Outside" 2 "Mid" 3 "Inside" 4 "running" 7 "INVALID";
+VAL_ 1245 SCU_RR_SeatLeftSlideMotorCurrent 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1245 SCU_RR_LockMotorCurrent 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1245 SCU_RR_SeatRotateMotorCurrent 0 "电机运行电流0A" 1 "电机运行电流0.1A" 2 "电机运行电流0.2A" 3 "电机运行电流0.3A" 255 "电机运行电流25.5A";
+VAL_ 1245 SCU_RR_ApTrigReasonSlideLeft 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1245 SCU_RR_ApTrigReasonHR 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 1245 SCU_RR_ApTrigReasonRotate 0 "Not triggered" 1 "APCuRLentDiff" 2 "APCuRLentTrend" 3 "APCuRLentMax" 4 "APHallDiff" 5 "APHallTrend" 6 "Reserved" 7 "Reserved";
+VAL_ 494 WSMRR_SeatMassLevelSet 0 "No Request" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3" 4 "LEVEL_4" 5 "LEVEL_5" 6 "OFF" 7 "ERROR";
+VAL_ 494 WSMRR_MassgIntenSet 0 "Massage OFF" 1 "Weak Intensity" 2 "Normal Intensity" 3 "High Intensity";
+VAL_ 494 WSMRR_RRSeatLumSpprtReq 0 "NoRequest" 1 "MoveUp" 2 "MoveDown" 3 "MoveForward" 4 "MoveBackward";
+VAL_ 494 WSMRR_RRSeatMassModeReq 0 "NoRequest" 1 "Mode1" 2 "Mode2" 3 "Mode3" 4 "Mode4" 5 "Mode5" 6 "Mode6" 7 "Mode7" 8 "Mode8" 9 "Mode9" 10 "Mode10" 11 "Mode11" 12 "Mode12" 13 "Mode13" 14 "Mode14" 15 "Mode15";
+VAL_ 494 WSMRR_SeatMassgSpecModeReq 0 "NoRequest" 1 "OFF" 2 "ON" 3 "Reserved";
+VAL_ 494 WSMRR_SeatMassgRest 0 "No Request" 1 "Rest" 2 "速度小于3km/h-Speed<3km/h" 3 "Reserved";
+VAL_ 494 WSMRR_2RSeatSingleSurfaceAdaptReq 0 "no request" 1 "request";
+VAL_ 494 WSMRR_2RSeatSurfaceAdaptSet 0 "No Request" 1 "OFF" 2 "ON" 3 "Reserved";
+VAL_ 494 WSMRR_2RSideSupportUpadjust 0 "No request" 1 "Forward" 2 "Back" 3 "Reserved";
+VAL_ 494 WSMRR_NeckrtHeatReq 0 "OFF" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3" 4 "Resverd" 5 "Resverd" 6 "Resverd" 7 "Resverd";
+VAL_ 494 WSMRR_2RSeatCushionFirmset 0 "No request" 1 "Comfort舒适" 2 "Standard标准" 3 "Sport运动" 4 "Auto自动" 5 "reserved" 6 "reserved" 7 "reserved";
+VAL_ 494 WSMRR_SeatLumSpprtSingleAdaptReq 0 "未请求" 1 "请求";
+VAL_ 494 WSMRR_SeatLumSpprtAdaptSe 0 "未请求;" 1 "仅入座自适应;" 2 "实时自适应;" 3 "保留";
+VAL_ 494 WSMRR_SeatSts 0 "未占座;" 1 "占座;";
+VAL_ 494 WSMRR_SeatLumSpprtAdaptSwitch 0 "No req;" 1 "关闭" 2 "开启" 3 "预留";
+VAL_ 494 WSMRR_SeatMechineMassSet 0 "NoRequest" 1 "Stop" 2 "Resume" 3 "Reserved";
+VAL_ 493 WSMRR_PmpSts 0 "No Result" 1 "Pump Ok" 2 "Pump Error" 3 "Reserved";
+VAL_ 493 WSMRR_MassgIntenStatus 0 "Massage State OFF" 1 "Weak Intensity" 2 "Normal Intensity" 3 "High Intensity";
+VAL_ 493 WSMRR_MassLevelStatus 0 "invalid" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3" 4 "LEVEL_4" 5 "LEVEL_5" 6 "RESERVED" 7 "ERROR";
+VAL_ 493 WSMRR_ResponseError 0 "Normal" 1 "Error";
+VAL_ 493 WSMRR_PwrVoltSts 0 "No Result" 1 "Voltage Ok" 2 "Voltage Error" 3 "Reserved";
+VAL_ 493 WSMRR_SeatLumSpprtSwitch 0 "NoRequest" 1 "Up" 2 "Down" 3 "Forward" 4 "Backward";
+VAL_ 493 WSM_RR_MassgSpecModeSts 0 "OFF" 1 "ON" 2 "Reserved" 3 "Reserved";
+VAL_ 493 WSMRR_CtrlWSMRR2Pump 0 "OFF" 1 "ON";
+VAL_ 493 WSMRR_FaultStatus 0 "Normal-正常" 1 "Voltage > 16V-电压过高" 2 "Voltage < 9V-电压过低" 3 "solenoid valve failure-电磁阀故障" 4 "Air pump failure-气泵故障" 5 "MechMsgMotor1 Error" 6 "MechMsgMotor2 Error" 7 "FastExhaustCoil Error" 8 "Motor Failure-电机故障" 9 "Hall Failure-霍尔故障" 10 "Heat Failure-加热故障" 11 "Pressure sensor Failure-压力传感器故障";
+VAL_ 804 WSMRR_SeatMassModeSts 0 "NoRequest" 1 "Mode1" 2 "Mode2" 3 "Mode3" 4 "Mode4" 5 "Mode5" 6 "Mode6" 7 "Mode7" 8 "Mode8" 9 "Mode9" 10 "Mode10" 11 "Mode11" 12 "Mode12" 13 "Mode13" 14 "Mode14" 15 "Mode15";
+VAL_ 804 WSMRR_PwrVoltSts_OverVoltageStatus 0 "Normal(The voltage is normal)" 1 "Fault(The voltage >16V)";
+VAL_ 804 WSMRR_PwrVoltSts_LoVoltageStatus 0 "Normal(The voltage is normal)" 1 "Fault(The voltage <9V)";
+VAL_ 804 WSMRR_MassageCfg_FeedbackStatus 0 "NoConfiguration" 1 "Configuration";
+VAL_ 804 WSMRR_2RSeatSurfaceAdaptSts 0 "No Request（初始）" 1 "OFF" 2 "ON" 3 "Reserved";
+VAL_ 804 WSMRR_2RSeatSingleSurfaceAdaptSts 0 "No request（默认状态，自适应未调节）" 1 "不满足条件（toast:请您在主驾座椅上体验，发3-5帧）" 2 "满足条件，准备执行型面自适应 （toast:即将开始型面自适应调节，发3-5帧）" 3 "型面自适应调整中 （自适应调整中，过程中持续发）" 4 "自适应调整打断（自适应调整被打断，打断过程中持续发）" 5 "自适应调整完成（单次型面自适应完成，发3-5帧）" 6 "预留" 7 "预留";
+VAL_ 804 WSMRR_MassCombinedActionSts 0 "NoCombinedAction" 1 "CombinedAction" 15 "Reserved";
+VAL_ 804 WSMRR_NeckrestInstalSts 0 "未安装颈枕" 1 "已安装颈枕";
+VAL_ 804 WSMRR_NeckrestHeatSts 0 "OFF" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3";
+VAL_ 804 WSMRR_NeckrestMassgIntenSts 0 "OFF" 1 "Weak Intensity" 2 "Normal Intensity" 3 "High Intensity";
+VAL_ 804 WSMRR_SideSupptSts 0 "No Action" 1 "Forward" 2 "Rear" 3 "Reserved";
+VAL_ 804 WSMRR_AdaptSurfaceEnableSts 0 "Enable" 1 "Unable";
+VAL_ 804 WSMRR_SeatFrontSupportCMD 0 "Invalid" 1 "Inflation" 2 "deflated" 3 "Reserved";
+VAL_ 804 WSMRR_SeatCushionSupportCMD 0 "Invalid" 1 "Inflation" 2 "deflated" 3 "Reserved" 4 "Reserved" 5 "Reserved" 6 "Reserved" 7 "Reserved" 8 "Reserved" 9 "Reserved" 10 "Reserved" 11 "Reserved" 12 "Reserved" 13 "Reserved" 14 "Reserved" 15 "Reserved";
+VAL_ 804 WSMRR_SeatCushionFirmSts 0 "No Request" 1 "Comfort 舒适" 2 "Standard 标准" 3 "Sport 运动" 4 "Auto 自动" 5 "Reserved" 6 "Reserved" 7 "Reserved";
+VAL_ 804 WSMRR_2RSeatSurfaceFaultSts 0 "无故障；" 1 "有故障不更换座椅；" 2 "有故障更换座椅；" 3 "Reserved";
+VAL_ 804 WSMRR_SeatLumSpprtAdaptSwitchSts 0 "关闭;" 1 "开启;";
+VAL_ 804 WSMRR_SeatLumSpprtAdaptSts 0 "未请求;" 1 "仅入座调节模式;" 2 "实时自适应调节模式;" 3 "预留";
+VAL_ 804 WSMRR_ToastFeedback 0 "未请求;" 1 "乘员未占座;" 2 "乘员未贴合靠背;" 3 "预留";
+VAL_ 804 WSMRR_Sts 0 "空闲;" 1 "手动调节腰托;" 2 "按摩模式工作中;" 3 "自适应调节中;" 4 "自适应调节完成;" 5 "自适应调节失败;" 6 "单次自适应调节中;" 7 "预留";
+VAL_ 909 WSM2RR_SeatMassModeSts 0 "NoRequest" 1 "Mode1" 2 "Mode2" 3 "Mode3" 4 "Mode4" 5 "Mode5" 6 "Mode6" 7 "Mode7" 8 "Mode8" 9 "Mode9" 10 "Mode10" 11 "Mode11" 12 "Mode12" 13 "Mode13" 14 "Mode14" 15 "Mode15";
+VAL_ 909 WSM2RR_PwrVoltSts_OverVoltageStatus 0 "Normal(The voltage is normal)" 1 "Fault(The voltage >16V)";
+VAL_ 909 WSM2RR_PwrVoltSts_LoVoltageStatus 0 "Normal(The voltage is normal)" 1 "Fault(The voltage <9V)";
+VAL_ 909 WSM2RR_MassageCfg_FeedbackStatus 0 "NoConfiguration" 1 "Configuration";
+VAL_ 909 WSM2RR_MassLevelStatus 0 "invalid" 1 "LEVEL_1" 2 "LEVEL_2" 3 "LEVEL_3" 4 "LEVEL_4" 5 "LEVEL_5" 6 "RESERVED" 7 "ERROR";
+VAL_ 909 WSM2RR_MassgIntenStatus 0 "Massage State OFF" 1 "Weak Intensity" 2 "Normal Intensity" 3 "High Intensity";
+VAL_ 909 WSM2RR_PmpSts 0 "No Result" 1 "Pump Ok" 2 "Pump Error" 3 "Reserved";
+VAL_ 909 WSM2RR_PwrVoltSts 0 "No Result" 1 "Voltage Ok" 2 "Voltage Error" 3 "Reserved";
+VAL_ 909 WSM2RR_ResponseError 0 "Normal" 1 "Error";
+VAL_ 909 WSM2RR_FeedbackValveSts 0 "Valve Not Working" 1 "Valve Working";
+VAL_ 909 WSM2RR_FeedbackPumpSts 0 "Pump Not Working" 1 "Pump Working";
+VAL_ 444 SCURR_OneKeyResetSwitch 0 "NoRequest" 1 "Request";
+VAL_ 444 SCURR_OneKeyComftSwitch 0 "NoRequest" 1 "Request";
+VAL_ 444 SCURR_SeatVentilSwitch 0 "No Press" 1 "Press";
+VAL_ 444 SCURR_SeatHeatingSwitch 0 "No Press" 1 "Press";
+VAL_ 444 SCURR_SeatMassgIntenSW 0 "No Press" 1 "Press";
+VAL_ 444 SCURR_SeatMassgModeSW 0 "No Press" 1 "Press";
+VAL_ 444 SCURR_PasSeatFoldSwitch 0 "NoRequest" 1 "Request";
+VAL_ 934 AC_CabinTemp 255 "Invalid";

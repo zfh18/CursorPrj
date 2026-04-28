@@ -8,13 +8,140 @@ DBC文件合并工具
 import re
 import argparse
 import sys
-from collections import OrderedDict
+from collections import OrderedDict, Counter
 
 BO_LINE_RE = re.compile(r'^BO_\s+\d+\s+')
+
+# 用于识别 NM_ 开头报文（用于推断 NmAsrBaseAddress 的范围）
+BO_NM_RE = re.compile(r'^BO_\s+(\d+)\s+(NM_\S+?)\s*:')
+
+# 用于按属性名解析/识别已有的 BA_DEF_ / BA_DEF_DEF_ 行，便于覆盖
+BA_DEF_NAME_RE = re.compile(r'^BA_DEF_\s+(?:BU_\s+|BO_\s+|SG_\s+|EV_\s+)?"([^"]+)"')
+BA_DEF_DEF_NAME_RE = re.compile(r'^BA_DEF_DEF_\s+"([^"]+)"')
+
+# 找不到 NM_ 报文时 NmAsrBaseAddress 默认采用的高位段（按工程要求为 0x4xx）
+NM_BASE_FALLBACK_HIGH = 0x4
+
+# 合并时需要追加 / 覆盖的额外属性（来自工程要求）
+# 字段含义:
+#   scope:      ''   -> Network/Bus 级（BA_DEF_  "name" ...）
+#               'BU_' -> Node 级（BA_DEF_ BU_  "name" ...）
+#               其它如 'BO_'、'SG_' 同理
+#   type_str:   BA_DEF_ 中类型与范围片段（不含末尾分号）
+#   default:    BA_DEF_DEF_ 后的默认值字面量（字符串需自带双引号）
+# 注意: HEX 类型在 DBC 中惯用十进制写最小/最大/默认值
+# 特殊项: NmAsrBaseAddress 的 type_str / default 会在运行时被 build_extra_attributes
+#         按 DBC 中 NM_ 报文 ID 段动态覆盖，这里写的只是占位
+EXTRA_ATTRIBUTES = [
+    ('',    'NmAsrBaseAddress',       'HEX 1024 1279',  '1024'),
+    ('BU_', 'NmAsrCanMsgCycleOffset', 'INT 50 50',      '50'),
+    ('',    'NmAsrCanMsgCycleTime',   'INT 500 500',    '500'),
+    ('BU_', 'NmAsrCanMsgReducedTime', 'INT 20 20',      '20'),
+    ('',    'NmAsrMessageCount',      'INT 0 256',      '256'),
+    ('BU_', 'NmAsrNodeIdentifier',    'HEX 0 255',      '255'),
+    ('',    'NmAsrRepeatMessageTime', 'INT 1600 1600',  '1600'),
+    ('',    'NmAsrTimeoutTime',       'INT 2000 2000',  '2000'),
+    ('',    'NmAsrWaitBusSleepTime',  'INT 2000 2000',  '2000'),
+    ('BU_', 'NodeLayerModules',       'STRING ',
+        '"ASRNM33.dll,osek_tp.dll,CANoeILNL.Vector.dll"'),
+]
 
 
 def is_bo_line(line):
     return bool(BO_LINE_RE.match(line))
+
+
+def _format_ba_def(scope, name, type_str):
+    if scope:
+        return f'BA_DEF_ {scope} "{name}" {type_str};'
+    return f'BA_DEF_  "{name}" {type_str};'
+
+
+def _format_ba_def_def(name, default):
+    return f'BA_DEF_DEF_  "{name}" {default};'
+
+
+def detect_nm_base_address(merged):
+    """根据 DBC 中 NM_ 开头报文的 ID 推断 NmAsrBaseAddress 的范围与默认值。
+
+    规则:
+      - NM_ 报文 ID 落在 0x?xx 段 -> 范围 0x?00..0x?FF, 默认 0x?00
+      - 找不到 NM_ 报文 -> 按工程约定回退到 0x4xx 段
+      - 跨多个高位段 -> 取出现次数最多的段, 并打印告警
+
+    返回 (range_low, range_high, default), 均为整数。
+    """
+    high_bytes = []
+    for lines in merged['bo'].values():
+        if not lines:
+            continue
+        m = BO_NM_RE.match(lines[0])
+        if not m:
+            continue
+        # 屏蔽扩展帧标志位, 仅保留 11 位标准 CAN ID, 再取高 4 位作为段号
+        msg_id = int(m.group(1)) & 0x7FF
+        high_bytes.append(msg_id >> 8)
+
+    if not high_bytes:
+        print(f"  [NmAsrBaseAddress] 未找到 NM_ 开头报文, 回退到 0x{NM_BASE_FALLBACK_HIGH:X}xx 段")
+        high = NM_BASE_FALLBACK_HIGH
+    else:
+        counter = Counter(high_bytes)
+        unique = sorted(counter.keys())
+        if len(unique) > 1:
+            segments = ', '.join(f'0x{h:X}xx' for h in unique)
+            high = counter.most_common(1)[0][0]
+            print(f"  [NmAsrBaseAddress] 警告: NM_ 报文 ID 跨多个段 ({segments}), 按多数决采用 0x{high:X}xx")
+        else:
+            high = unique[0]
+
+    base = high << 8
+    return base, base | 0xFF, base
+
+
+def build_extra_attributes(merged):
+    """基于合并结果动态构建注入用的属性表。
+
+    目前仅 NmAsrBaseAddress 受合并结果影响, 其余条目原样取自 EXTRA_ATTRIBUTES。
+    """
+    base_low, base_high, base_default = detect_nm_base_address(merged)
+    print(f"  [NmAsrBaseAddress] 推断范围: 0x{base_low:X}..0x{base_high:X}, 默认: 0x{base_default:X}")
+
+    extras = []
+    for entry in EXTRA_ATTRIBUTES:
+        scope, name, type_str, default = entry
+        if name == 'NmAsrBaseAddress':
+            extras.append((scope, name, f'HEX {base_low} {base_high}', str(base_default)))
+        else:
+            extras.append(entry)
+    return extras
+
+
+def apply_extra_attributes(merged, extras):
+    """向合并结果注入额外属性定义与默认值。
+
+    若同名属性已存在（例如 NodeLayerModules），则先剔除原 BA_DEF_ 与
+    BA_DEF_DEF_ 行，再追加新的，达到“覆盖”效果；否则直接追加新增。
+    其余未涉及的属性条目保持原顺序不变。
+    """
+    extra_names = {name for _, name, _, _ in extras}
+
+    def _name_in_extras(regex, line):
+        m = regex.match(line)
+        return bool(m) and m.group(1) in extra_names
+
+    merged['ba_def'] = [
+        line for line in merged['ba_def']
+        if not _name_in_extras(BA_DEF_NAME_RE, line)
+    ]
+    merged['ba_def_def'] = [
+        line for line in merged['ba_def_def']
+        if not _name_in_extras(BA_DEF_DEF_NAME_RE, line)
+    ]
+
+    for scope, name, type_str, default in extras:
+        merged['ba_def'].append(_format_ba_def(scope, name, type_str))
+        merged['ba_def_def'].append(_format_ba_def_def(name, default))
 
 
 def parse_dbc_file(filepath):
@@ -115,10 +242,10 @@ def parse_dbc_file(filepath):
                         break
             result['cm'].append(cm_line)
             continue
-        elif line.startswith('BA_DEF_'):
-            result['ba_def'].append(line)
         elif line.startswith('BA_DEF_DEF_'):
             result['ba_def_def'].append(line)
+        elif line.startswith('BA_DEF_'):
+            result['ba_def'].append(line)
         elif line.startswith('BA_'):
             result['ba'].append(line)
         elif line.startswith('VAL_'):
@@ -280,6 +407,10 @@ def merge_dbc_files(input_paths, output_path):
         dedupe_append(dbc['val'], val_set, merged['val'])
         dedupe_append(dbc['other'], other_set, merged['other'])
 
+    # 注入/覆盖工程要求的额外属性（如 NmAsr* 与 NodeLayerModules）
+    # NmAsrBaseAddress 的范围由当前 DBC 内 NM_ 开头报文的 ID 段动态决定
+    apply_extra_attributes(merged, build_extra_attributes(merged))
+
     print(f"正在写入合并后的文件: {output_path}")
     try:
         with open(output_path, 'w', encoding='gb2312', errors='replace') as f:
@@ -294,6 +425,7 @@ def merge_dbc_files(input_paths, output_path):
     print(f"  - 注释数量: {len(merged['cm'])}")
     print(f"  - 属性定义数量: {len(merged['ba_def'])}")
     print(f"  - 值表数量: {len(merged['val'])}")
+    print(f"  - 注入额外属性: {len(EXTRA_ATTRIBUTES)} 条")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
