@@ -6,18 +6,32 @@ DBC文件合并工具
 """
 
 import re
+import os
 import argparse
 import sys
 from collections import OrderedDict, Counter
 
 BO_LINE_RE = re.compile(r'^BO_\s+\d+\s+')
 
-# 用于识别 NM_ 开头报文（用于推断 NmAsrBaseAddress 的范围）
-BO_NM_RE = re.compile(r'^BO_\s+(\d+)\s+(NM_\S+?)\s*:')
+# 用于识别 NM_ 开头报文（用于推断 NmAsrBaseAddress 的范围与节点 ID）
+# 捕获组: (msg_id, msg_name, transmitter)
+BO_NM_RE = re.compile(r'^BO_\s+(\d+)\s+(NM_\S+?)\s*:\s*\d+\s+(\S+)')
+
+# 当 BO_ 发送者为 Vector__XXX 占位时, 兜底用的命名解析: NM_<NodeName>[_后缀]
+NM_NAME_FALLBACK_RE = re.compile(r'^NM_([A-Za-z_][A-Za-z0-9_]*)')
+
+# DBC 标准里表示"无发送者"的占位节点名, 解析节点时应跳过
+NM_TRANSMITTER_PLACEHOLDERS = {'Vector__XXX', 'Vector__Independent'}
 
 # 用于按属性名解析/识别已有的 BA_DEF_ / BA_DEF_DEF_ 行，便于覆盖
 BA_DEF_NAME_RE = re.compile(r'^BA_DEF_\s+(?:BU_\s+|BO_\s+|SG_\s+|EV_\s+)?"([^"]+)"')
 BA_DEF_DEF_NAME_RE = re.compile(r'^BA_DEF_DEF_\s+"([^"]+)"')
+
+# 用于识别网络级 BA_ "DBName" "..."; 赋值行（合并时会被替换为输出文件名）
+BA_DBNAME_RE = re.compile(r'^BA_\s+"DBName"\s+')
+
+# 用于识别节点级 BA_ "NmAsrNodeIdentifier" BU_ <node> ...; 行（注入前先剔除）
+BA_NODE_IDENTIFIER_RE = re.compile(r'^BA_\s+"NmAsrNodeIdentifier"\s+BU_\s+')
 
 # 找不到 NM_ 报文时 NmAsrBaseAddress 默认采用的高位段（按工程要求为 0x4xx）
 NM_BASE_FALLBACK_HIGH = 0x4
@@ -43,7 +57,7 @@ EXTRA_ATTRIBUTES = [
     ('',    'NmAsrTimeoutTime',       'INT 2000 2000',  '2000'),
     ('',    'NmAsrWaitBusSleepTime',  'INT 2000 2000',  '2000'),
     ('BU_', 'NodeLayerModules',       'STRING ',
-        '"ASRNM33.dll,osek_tp.dll,CANoeILNL.Vector.dll"'),
+        '"ASRNM33.dll,osek_tp.dll,CANoeILNLVector.dll"'),
 ]
 
 
@@ -61,26 +75,37 @@ def _format_ba_def_def(name, default):
     return f'BA_DEF_DEF_  "{name}" {default};'
 
 
-def detect_nm_base_address(merged):
-    """根据 DBC 中 NM_ 开头报文的 ID 推断 NmAsrBaseAddress 的范围与默认值。
+def collect_nm_messages(merged):
+    """从合并结果中提取所有 NM_ 开头报文的 (msg_id, msg_name, transmitter)。
 
-    规则:
-      - NM_ 报文 ID 落在 0x?xx 段 -> 范围 0x?00..0x?FF, 默认 0x?00
-      - 找不到 NM_ 报文 -> 按工程约定回退到 0x4xx 段
-      - 跨多个高位段 -> 取出现次数最多的段, 并打印告警
-
-    返回 (range_low, range_high, default), 均为整数。
+    msg_id 已经屏蔽扩展帧标志位, 只保留 11 位标准 CAN ID。
+    transmitter 为 BO_ 行末尾的发送者字段, 可能是 Vector__XXX 占位。
     """
-    high_bytes = []
+    results = []
     for lines in merged['bo'].values():
         if not lines:
             continue
         m = BO_NM_RE.match(lines[0])
         if not m:
             continue
-        # 屏蔽扩展帧标志位, 仅保留 11 位标准 CAN ID, 再取高 4 位作为段号
         msg_id = int(m.group(1)) & 0x7FF
-        high_bytes.append(msg_id >> 8)
+        msg_name = m.group(2)
+        transmitter = m.group(3)
+        results.append((msg_id, msg_name, transmitter))
+    return results
+
+
+def detect_nm_base_address(nm_messages):
+    """根据 NM_ 报文 ID 推断 NmAsrBaseAddress 的范围与默认值。
+
+    规则:
+      - NM_ 报文 ID 落在 0x?xx 段 -> 范围 0x?00..0x?FF, 默认 0x?00
+      - 找不到 NM_ 报文 -> 按工程约定回退到 0x4xx 段
+      - 跨多个高位段 -> 取出现次数最多的段, 并打印告警
+
+    返回 (range_low, range_high, default, segment), 前三者为完整地址, segment 为高位段号(0..7)。
+    """
+    high_bytes = [msg_id >> 8 for msg_id, _, _ in nm_messages]
 
     if not high_bytes:
         print(f"  [NmAsrBaseAddress] 未找到 NM_ 开头报文, 回退到 0x{NM_BASE_FALLBACK_HIGH:X}xx 段")
@@ -96,17 +121,14 @@ def detect_nm_base_address(merged):
             high = unique[0]
 
     base = high << 8
-    return base, base | 0xFF, base
+    return base, base | 0xFF, base, high
 
 
-def build_extra_attributes(merged):
-    """基于合并结果动态构建注入用的属性表。
+def build_extra_attributes(base_low, base_high, base_default):
+    """基于推断出的 NmAsrBaseAddress 构建注入用的属性表。
 
     目前仅 NmAsrBaseAddress 受合并结果影响, 其余条目原样取自 EXTRA_ATTRIBUTES。
     """
-    base_low, base_high, base_default = detect_nm_base_address(merged)
-    print(f"  [NmAsrBaseAddress] 推断范围: 0x{base_low:X}..0x{base_high:X}, 默认: 0x{base_default:X}")
-
     extras = []
     for entry in EXTRA_ATTRIBUTES:
         scope, name, type_str, default = entry
@@ -115,6 +137,90 @@ def build_extra_attributes(merged):
         else:
             extras.append(entry)
     return extras
+
+
+def _extract_node_set(merged):
+    """从 merged['bu'] 解析出节点名集合, 用于校验 NM 报文映射的节点。"""
+    nodes = set()
+    for line in merged['bu']:
+        if ':' in line:
+            nodes.update(line.split(':', 1)[1].strip().split())
+    return nodes
+
+
+def detect_node_identifiers(nm_messages, base_segment, node_set):
+    """根据 NM_ 报文为每个节点推断 NmAsrNodeIdentifier。
+
+    映射策略 (按优先级):
+      1. BO_ 行的发送者 (Transmitter), 排除 Vector__XXX 之类占位
+      2. 报文名 NM_<NodeName> 的命名解析
+    校验:
+      - 节点必须存在于 BU_: 列表中
+      - 报文 ID 高位段必须等于全局 base_segment
+      - 同节点出现多条 NM 报文 -> 取首个并告警
+      - 不同节点 node_id 冲突 -> 告警, 保留发现顺序内的赋值
+
+    返回 OrderedDict {node_name: node_id}, 已按节点名升序排序。
+    """
+    node_id_map = OrderedDict()
+    seen_node_ids = {}
+
+    for msg_id, msg_name, transmitter in nm_messages:
+        if (msg_id >> 8) != base_segment:
+            print(f"  [NmAsrNodeIdentifier] 警告: 报文 {msg_name} (ID=0x{msg_id:X}) 不在 0x{base_segment:X}xx 段, 跳过")
+            continue
+
+        node = None
+        if transmitter and transmitter not in NM_TRANSMITTER_PLACEHOLDERS:
+            if transmitter in node_set:
+                node = transmitter
+            else:
+                print(f"  [NmAsrNodeIdentifier] 警告: 报文 {msg_name} 的发送者 {transmitter} 不在 BU_ 列表中, 尝试命名兜底")
+
+        if node is None:
+            m = NM_NAME_FALLBACK_RE.match(msg_name)
+            if m and m.group(1) in node_set:
+                node = m.group(1)
+
+        if node is None:
+            print(f"  [NmAsrNodeIdentifier] 警告: 无法识别 {msg_name} (ID=0x{msg_id:X}) 对应的节点, 跳过")
+            continue
+
+        node_id = msg_id & 0xFF
+
+        if node in node_id_map:
+            existing = node_id_map[node]
+            print(f"  [NmAsrNodeIdentifier] 警告: 节点 {node} 已有 NM 报文 (node_id=0x{existing:02X}), 忽略 {msg_name} (ID=0x{msg_id:X})")
+            continue
+
+        if node_id in seen_node_ids and seen_node_ids[node_id] != node:
+            other = seen_node_ids[node_id]
+            print(f"  [NmAsrNodeIdentifier] 警告: node_id=0x{node_id:02X} 已被节点 {other} 占用, 当前节点 {node} 仍按其 NM 报文设置")
+
+        node_id_map[node] = node_id
+        seen_node_ids[node_id] = node
+
+    return OrderedDict(sorted(node_id_map.items()))
+
+
+def apply_node_identifier_overrides(merged, node_id_map):
+    """注入/覆盖 BA_ "NmAsrNodeIdentifier" BU_ <node> <id>; 行。
+
+    与 DBName 处理一致: 先剔除原有所有节点级 NodeIdentifier 赋值, 再追加新的,
+    达到"覆盖"效果。未识别到 NM 报文的节点保持全局默认值 (255), 不写 BA_ 行。
+    """
+    before = len(merged['ba'])
+    merged['ba'] = [line for line in merged['ba'] if not BA_NODE_IDENTIFIER_RE.match(line)]
+    removed = before - len(merged['ba'])
+
+    for node, node_id in node_id_map.items():
+        merged['ba'].append(f'BA_ "NmAsrNodeIdentifier" BU_ {node} {node_id};')
+
+    if node_id_map:
+        summary = ', '.join(f'{n}=0x{i:02X}' for n, i in node_id_map.items())
+        print(f"  [NmAsrNodeIdentifier] 已为 {len(node_id_map)} 个节点注入: {summary} (清除原有 {removed} 条)")
+    else:
+        print(f"  [NmAsrNodeIdentifier] 未识别到任何节点 NM 报文, 全部走默认值 (清除原有 {removed} 条)")
 
 
 def apply_extra_attributes(merged, extras):
@@ -142,6 +248,33 @@ def apply_extra_attributes(merged, extras):
     for scope, name, type_str, default in extras:
         merged['ba_def'].append(_format_ba_def(scope, name, type_str))
         merged['ba_def_def'].append(_format_ba_def_def(name, default))
+
+
+def _derive_dbname_from_path(output_path):
+    """从输出文件路径推导用作 DBName 的字符串：取文件名并去掉 .dbc 扩展。"""
+    base = os.path.basename(output_path)
+    stem, ext = os.path.splitext(base)
+    if ext.lower() == '.dbc':
+        return stem
+    return base
+
+
+def apply_dbname_override(merged, output_path):
+    """将合并后的 BA_ "DBName" 赋值统一替换为输出文件名。
+
+    多个输入 DBC 通常各自带有不同的 BA_ "DBName" 赋值，合并去重后会
+    在输出中残留多条，违反 DBC 规范（Network 级属性只能赋值一次）。
+    这里先剔除所有原 BA_ "DBName" 行，再追加一条以输出文件名为值的赋值。
+    """
+    db_name = _derive_dbname_from_path(output_path)
+
+    before = len(merged['ba'])
+    merged['ba'] = [line for line in merged['ba'] if not BA_DBNAME_RE.match(line)]
+    removed = before - len(merged['ba'])
+
+    merged['ba'].append(f'BA_ "DBName" "{db_name}";')
+
+    print(f"  [DBName] 已用输出文件名覆盖: \"{db_name}\" (清除原有 {removed} 条)")
 
 
 def parse_dbc_file(filepath):
@@ -345,7 +478,10 @@ def merge_dbc_files(input_paths, output_path):
         print(f"正在解析 {path}...")
         parsed_dbcs.append(parse_dbc_file(path))
 
-    print("正在合并...")
+    if len(parsed_dbcs) == 1:
+        print("正在归一化（单文件模式）...")
+    else:
+        print("正在合并...")
 
     def first_non_empty(key):
         for dbc in parsed_dbcs:
@@ -409,7 +545,17 @@ def merge_dbc_files(input_paths, output_path):
 
     # 注入/覆盖工程要求的额外属性（如 NmAsr* 与 NodeLayerModules）
     # NmAsrBaseAddress 的范围由当前 DBC 内 NM_ 开头报文的 ID 段动态决定
-    apply_extra_attributes(merged, build_extra_attributes(merged))
+    nm_messages = collect_nm_messages(merged)
+    base_low, base_high, base_default, base_segment = detect_nm_base_address(nm_messages)
+    print(f"  [NmAsrBaseAddress] 推断范围: 0x{base_low:X}..0x{base_high:X}, 默认: 0x{base_default:X}")
+    apply_extra_attributes(merged, build_extra_attributes(base_low, base_high, base_default))
+
+    # 按各节点的 NM 报文低字节注入 NmAsrNodeIdentifier 的节点级赋值
+    node_id_map = detect_node_identifiers(nm_messages, base_segment, _extract_node_set(merged))
+    apply_node_identifier_overrides(merged, node_id_map)
+
+    # 用输出文件名覆盖 DBName，避免多份输入残留多条 BA_ "DBName"
+    apply_dbname_override(merged, output_path)
 
     print(f"正在写入合并后的文件: {output_path}")
     try:
@@ -429,19 +575,23 @@ def merge_dbc_files(input_paths, output_path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='DBC文件合并工具 - 合并任意多个DBC文件',
+        description='DBC文件合并/归一化工具 - 合并任意多个DBC文件；单输入时执行归一化',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 示例:
+  # 多文件合并
   python merge_dbc.py a.dbc b.dbc -o merged.dbc
   python merge_dbc.py a.dbc b.dbc c.dbc d.dbc -o merged.dbc
+
+  # 单文件归一化（重排序 / 去重 / 注入 NmAsr* 属性 / 覆盖 DBName）
+  python merge_dbc.py a.dbc -o a_normalized.dbc
         '''
     )
 
     parser.add_argument(
         'inputs',
         nargs='+',
-        help='输入DBC文件路径列表，支持任意多个（至少2个）'
+        help='输入DBC文件路径列表，支持任意多个（至少1个；为1个时执行单文件归一化）'
     )
     parser.add_argument(
         '-o', '--output',
@@ -451,18 +601,20 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    if len(args.inputs) < 2:
-        print("错误: 至少需要提供2个输入DBC文件。")
+    if len(args.inputs) < 1:
+        print("错误: 至少需要提供1个输入DBC文件。")
         sys.exit(1)
 
     # 检查输入文件是否存在
-    import os
     for input_path in args.inputs:
         if not os.path.exists(input_path):
             print(f"错误: 文件不存在: {input_path}")
             sys.exit(1)
 
-    print(f"输入文件数量: {len(args.inputs)}")
+    if len(args.inputs) == 1:
+        print("模式: 单文件归一化（重排序 / 去重 / 注入 NmAsr* 属性 / 覆盖 DBName）")
+    else:
+        print(f"模式: 多文件合并 ({len(args.inputs)} 个输入)")
     for idx, input_path in enumerate(args.inputs, start=1):
         print(f"输入文件{idx}: {input_path}")
     print(f"输出文件: {args.output}")

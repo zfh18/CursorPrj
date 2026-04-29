@@ -1,0 +1,2192 @@
+VERSION ""
+
+
+NS_ :
+NS_DESC_
+CM_
+BA_DEF_
+BA_
+VAL_
+CAT_DEF_
+CAT_
+FILTER
+BA_DEF_DEF_
+EV_DATA_
+ENVVAR_DATA_
+SGTYPE_
+SGTYPE_VAL_
+BA_DEF_SGTYPE_
+BA_SGTYPE_
+SIG_TYPE_REF_
+VAL_TABLE_
+SIG_GROUP_
+SIG_VALTYPE_
+SIGTYPE_VALTYPE_
+BO_TX_BU_
+BA_DEF_REL_
+BA_REL_
+BA_DEF_DEF_REL_
+BU_SG_REL_
+BU_EV_REL_
+BU_BO_REL_
+SG_MUL_VAL_
+
+BS_:
+
+BU_: DSM LRSM PSM RAC RCLM_RR1 RRSM RRSM_5Seat VIU0_IP_EV VIU1_CABIN VIU1_CABIN2
+
+
+BO_ 145 VIU0_Rx_Debug_091: 8 DSM
+ SG_ VIU0_Rx_Debug_091_Window : 7|64@0+ (1,0) [0|0] ""  VIU0_IP_EV
+ SG_ VIU1_Rx_Debug_091_Window : 7|64@0+ (1,0) [0|0] ""  VIU1_CABIN
+
+BO_ 147 VIU0_Rx_Debug_093: 8 DSM
+ SG_ VIU0_Rx_Debug_093_FSunShade : 7|64@0+ (1,0) [0|0] ""  VIU0_IP_EV
+
+BO_ 149 VIU0_Rx_Debug_095: 8 DSM
+ SG_ VIU0_Rx_Debug_095_RSunShade : 7|64@0+ (1,0) [0|0] ""  VIU0_IP_EV
+
+BO_ 190 VIU1_Rx_Debug_0BE: 8 PSM
+ SG_ VIU1_Rx_Debug_0BE_Gate : 7|64@0+ (1,0) [0|0] ""  VIU1_CABIN
+
+BO_ 342 RRSM_St_156: 8 VIU1_CABIN
+ SG_ RRSM_CushionAngle : 23|7@0+ (0.5,0) [0|63.5] "deg"  RCLM_RR1
+ SG_ RRSM_RRSeatBackrestMotPosnSet : 30|7@0+ (1,0) [0|127] ""  RCLM_RR1
+ SG_ RRSM_RRSeatBackrestMotPosnStepSet : 16|2@0+ (1,0) [0|3] ""  RCLM_RR1
+
+BO_ 344 RCLM_RR1_St: 8 RCLM_RR1
+ SG_ RCLM_RR1_HallCounts : 23|16@0+ (1,0) [0|65535] ""  Vector__XXX
+ SG_ RCLM_RR1_CtrlSts : 42|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ RCLM_RR1_BackrestMotFltSts : 44|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ RCLM_RR1_InitSts : 45|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ RCLM_RR1_PrecrashSts : 47|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ RCLM_RR1_BackrestMotPosn : 54|7@0+ (1,0) [0|127] ""  VIU1_CABIN
+ SG_ RCLM_RR1_AntiPinchSts : 55|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ RCLM_RR1_BackrestMotAngle : 62|7@0+ (0.5,0) [0|63.5] "deg"  VIU1_CABIN
+ SG_ RCLM_RR1_HeatProtectionSts : 63|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+
+BO_ 417 DSM_0x1A1: 8 DSM
+ SG_ DSM_AP_current_slide : 7|8@0+ (0.1,0) [0|255] "A"  VIU0_IP_EV
+ SG_ DSM_AP_hall_slide : 15|8@0+ (1,0) [0|255] "ms"  VIU0_IP_EV
+ SG_ DSM_AP_current_recline : 23|8@0+ (0.1,0) [0|255] "A"  VIU0_IP_EV
+ SG_ DSM_AP_hall_recline : 31|8@0+ (1,0) [0|255] "ms"  VIU0_IP_EV
+ SG_ DSM_AP_current_cushion : 39|8@0+ (0.1,0) [0|255] "A"  VIU0_IP_EV
+ SG_ DSM_AP_hall_cushion : 47|8@0+ (1,0) [0|255] "ms"  VIU0_IP_EV
+ SG_ DSM_AP_current_cushionAngle : 55|8@0+ (0.1,0) [0|255] "A"  VIU0_IP_EV
+ SG_ DSM_AP_hall_cushionAngle : 63|8@0+ (1,0) [0|255] "ms"  VIU0_IP_EV
+
+BO_ 418 DSM_0x1A2: 8 DSM
+ SG_ DSM_AP_current_LegUD : 7|8@0+ (0.1,0) [0|255] "A"  VIU0_IP_EV
+ SG_ DSM_AP_hall_LegUD : 15|8@0+ (1,0) [0|255] "ms"  VIU0_IP_EV
+ SG_ DSM_AP_current_LegFB : 23|8@0+ (0.1,0) [0|255] "A"  VIU0_IP_EV
+ SG_ DSM_AP_hall_LegFB : 31|8@0+ (1,0) [0|255] "ms"  VIU0_IP_EV
+ SG_ DSM_ApTrigReasonSlide : 39|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_ApTrigReasonRecline : 36|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_ApTrigReasonHeight : 33|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_ApTrigReasonTilt : 46|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_ApTrigReasonLegUD : 43|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_ApTrigReasonLegFB : 40|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_HeatT_recline : 53|8@0+ (1,-50) [-50|150] ""  VIU0_IP_EV
+
+BO_ 419 PSM_0x1A3: 8 PSM
+ SG_ PSM_AP_current_slide : 7|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN
+ SG_ PSM_AP_hall_slide : 15|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN
+ SG_ PSM_AP_current_recline : 23|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN
+ SG_ PSM_AP_hall_recline : 31|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN
+ SG_ PSM_AP_current_cushion : 39|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN
+ SG_ PSM_AP_hall_cushion : 47|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN
+ SG_ PSM_AP_current_LegUD : 55|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN
+ SG_ PSM_AP_hall_LegUD : 63|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN
+
+BO_ 420 PSM_0x1A4: 8 PSM
+ SG_ PSM_ApTrigReasonSlide : 7|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_ApTrigReasonRecline : 4|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_ApTrigReasonHeight : 1|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_ApTrigReasonLegUD : 14|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_ApTrigReasonLegFB : 11|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_AP_current_LegFB : 8|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN
+ SG_ PSM_AP_hall_LegFB : 16|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN
+ SG_ PSM_HeatingCtr_recline : 24|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ PSM_HeatingCtr_cushion : 38|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ PSM_HeatT_recline : 36|8@0+ (1,-50) [-50|150] ""  VIU1_CABIN
+ SG_ PSM_HeatT_cushion : 44|8@0+ (1,-50) [-50|150] ""  VIU1_CABIN
+ SG_ PSM_AP_current_cushionAngle : 52|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN
+ SG_ PSM_ApTrigReasoncushionAngle : 60|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+
+BO_ 466 VIU_Info: 8 VIU0_IP_EV
+ SG_ VIU_UsageMode : 31|4@0+ (1,0) [0|15] ""  DSM
+ SG_ VIU_CarMode : 27|4@0+ (1,0) [0|15] ""  DSM
+ SG_ VIU_PowerMode : 39|2@0+ (1,0) [0|3] ""  DSM
+ SG_ VIU_PowerModeFltFlag : 37|2@0+ (1,0) [0|3] ""  DSM
+
+BO_ 740 VIU_RTSM_2E4: 8 VIU0_IP_EV
+ SG_ VIU_3rdLSeatStopAdjustCmd : 27|1@0+ (1,0) [0|1] ""  LRSM
+ SG_ VIU_3rdRSeatStopAdjustCmd : 26|1@0+ (1,0) [0|1] ""  LRSM
+
+BO_ 755 PSM_0x2F3: 8 PSM
+ SG_ PSM_RRSeatFootSupportMotPosn : 55|7@0+ (1,0) [0|127] ""  VIU1_CABIN
+ SG_ PSM_AP_current_RRSeatFootSupport : 48|8@0+ (1,0) [0|255] "A"  VIU1_CABIN
+
+BO_ 915 VIU_DSM_0x393: 8 VIU0_IP_EV
+ SG_ ABM_CrashSt : 7|2@0+ (1,0) [0|3] ""  DSM
+ SG_ VIU_DSMPwrReq : 5|2@0+ (1,0) [0|3] ""  DSM
+ SG_ VIU_DrvrSeatSLCUotPosnSet : 3|7@0+ (1,0) [0|127] ""  DSM
+ SG_ VIU_DrvrSeatBackrestMotPosnSet : 12|7@0+ (1,0) [0|127] ""  DSM
+ SG_ VIU_DrvrSeatCushHeiMotPosnSet : 21|7@0+ (1,0) [0|127] ""  DSM
+ SG_ VIU_DrvrSeatCushTiltMotPosnSet : 30|7@0+ (1,0) [0|127] ""  DSM
+ SG_ VIU_DrvrSeatCushExtnMotPosnSet : 39|7@0+ (1,0) [0|127] ""  DSM
+ SG_ VIU_DrvrSeatHeatgReq : 32|3@0+ (1,0) [0|7] ""  DSM
+ SG_ VIU_DrvrSeatVentnReq : 45|3@0+ (1,0) [0|7] ""  DSM
+ SG_ VIU_DrvrSeatSLCUotPosnStepSet : 41|2@0+ (1,0) [0|3] ""  DSM
+ SG_ VIU_DrvrSeatBackrestMotPosnStepSet : 55|2@0+ (1,0) [0|3] ""  DSM
+ SG_ VIU_DrvrSeatCushHeiMotPosnStepSet : 53|2@0+ (1,0) [0|3] ""  DSM
+ SG_ VIU_DrvrSeatCushTiltMotPosnStepSet : 51|2@0+ (1,0) [0|3] ""  DSM
+ SG_ VIU_PsOpenSt : 63|3@0+ (1,0) [0|7] ""  DSM
+ SG_ VIU_PsAdjSt : 60|3@0+ (1,0) [0|7] ""  DSM
+
+BO_ 916 VIU_PSM_0x394: 8 VIU1_CABIN
+ SG_ VIU_PassengerPresent : 4|1@0+ (1,0) [0|1] ""  PSM
+ SG_ VIU_PassSeatSLCUotPosnSet : 2|7@0+ (1,0) [0|127] ""  PSM
+ SG_ VIU_PassSeatBackrestMotPosnSet : 11|7@0+ (1,0) [0|127] ""  PSM
+ SG_ VIU_PassSeatCushHeiMotPosnSet : 20|7@0+ (1,0) [0|127] ""  PSM
+ SG_ VIU_PassSeatCushTiltMotPosnSet : 29|7@0+ (1,0) [0|127] ""  PSM
+ SG_ VIU_PassSeatLegSupportMotPosnSet : 38|7@0+ (1,0) [0|127] ""  PSM
+ SG_ VIU_PassSeatSpindleMotPosnSet : 40|7@0+ (1,0) [0|127] ""  PSM
+ SG_ VIU_PassSeatHeatgReq : 49|3@0+ (1,0) [0|7] ""  PSM
+ SG_ VIU_PassSeatVentnReq : 62|3@0+ (1,0) [0|7] ""  PSM
+ SG_ VIU_PSMPwrReq : 58|2@0+ (1,0) [0|3] ""  PSM
+
+BO_ 917 VIU_RTSM_0x395: 8 VIU0_IP_EV
+ SG_ VIU_3rdRSeatBackrestMotPosnSet : 6|7@0+ (1,0) [0|127] "%"  LRSM
+ SG_ VIU_3rdRSeatBackrestMotPosnStepSet : 9|2@0+ (1,0) [0|3] ""  LRSM
+ SG_ VIU_3rdRSeatFoldFunSet : 15|3@0+ (1,0) [0|7] ""  LRSM
+ SG_ VIU_3rdLSeatFoldFunSet : 26|3@0+ (1,0) [0|7] ""  LRSM
+ SG_ VIU_3rdLSeatBackrestMotPosnStepSet : 43|2@0+ (1,0) [0|3] ""  LRSM
+ SG_ VIU_3rdLSeatBackrestMotPosnSet : 54|7@0+ (1,0) [0|127] "%"  LRSM
+
+BO_ 918 VIU_RRSM_0x396: 8 VIU1_CABIN2
+ SG_ VIU_RRSMPwrReq : 7|2@0+ (1,0) [0|3] ""  RRSM
+ SG_ VIU_ReRiSeatLinkageSet : 5|3@0+ (1,0) [0|7] ""  RRSM
+ SG_ VIU_ReRiSeatSLCUotPosnSet : 2|7@0+ (1,0) [0|127] ""  RRSM
+ SG_ VIU_ReRiSeatBackrestMotPosnSet : 11|7@0+ (1,0) [0|127] ""  RRSM
+ SG_ VIU_ReRiSeatLegExtnMotPosnSet : 20|7@0+ (1,0) [0|127] ""  RRSM
+ SG_ VIU_ReRiSeatLegSupportMotPosnSet : 29|7@0+ (1,0) [0|127] ""  RRSM
+ SG_ VIU_ReRiSeatCushTiltMotPosnSet : 38|7@0+ (1,0) [0|127] ""  RRSM
+ SG_ VIU_ReRiSeatYAxisMotPosnSet : 47|7@0+ (1,0) [0|127] ""  RRSM
+ SG_ VIU_ReRiSeatArmRestMotPosnSet : 40|7@0+ (1,0) [0|127] ""  RRSM
+ SG_ VIU_ReRiSeatHeatgReq : 49|3@0+ (1,0) [0|7] ""  RRSM
+ SG_ VIU_ReRiSeatVentnReq : 62|3@0+ (1,0) [0|7] ""  RRSM
+ SG_ VIU_ReRiSeatCushTiltMotPosnStepSet : 59|2@0+ (1,0) [0|3] ""  RRSM
+ SG_ VIU_ReRiSeatYAxisMotPosnStepSet : 57|2@0+ (1,0) [0|3] ""  RRSM
+
+BO_ 922 VIU_DSM_0x39A: 8 VIU0_IP_EV
+ SG_ VIU_DsmZeroGravityFoldFunSet : 7|4@0+ (1,0) [0|15] ""  DSM
+ SG_ VIU_DsmSeatLegSupportMotPosnSet : 3|7@0+ (1,0) [0|127] ""  DSM
+ SG_ VIU_DsmSeatLegExtnMotPosnSet : 12|7@0+ (1,0) [0|127] ""  DSM
+ SG_ VIU_DrvrSeatStopAdjustCmd : 17|1@0+ (1,0) [0|1] ""  DSM
+ SG_ VIU_DrvrSeatLegSupportMotPosnStepSet : 21|2@0+ (1,0) [0|3] ""  DSM
+ SG_ VIU_DrvrSeatLegExtnMotPosnStepSet : 19|2@0+ (1,0) [0|3] ""  DSM
+
+BO_ 926 VIU_Ctrl_0x39E: 8 VIU0_IP_EV
+ SG_ VIU_DrvrSeatbackrestHeatgLvl : 19|3@0+ (1,0) [0|7] ""  DSM
+ SG_ VIU_DrvrSeatcushionHeatgLvl : 16|3@0+ (1,0) [0|7] ""  DSM
+
+BO_ 932 VIU_3A4: 8 VIU1_CABIN
+ SG_ ADS_ZeGrvySeatPreCrash : 36|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_PsmZeroGravityFoldFunSet : 34|4@0+ (1,0) [0|15] ""  PSM
+
+BO_ 939 VIU_CDC_0x3AB: 8 VIU1_CABIN
+ SG_ ABM_CrashSt : 23|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_PassSeatOccptSt : 21|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_PassSeatBltSt : 19|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_PassSeatSLCUotPosnStepSet : 17|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_PassSeatBackrestMotPosnStepSet : 31|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_PassSeatCushHeiMotPosnStepSet : 29|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_PassSeatCushTiltMotPosnStepSet : 27|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_PassSeatLegSupportMotPosnStepSet : 25|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_PassSeatFoldFunSet : 37|3@0+ (1,0) [0|7] ""  PSM
+ SG_ VIU_PassSeatLinkageSet : 34|3@0+ (1,0) [0|7] ""  PSM
+ SG_ VIU_PsOpenSt : 47|3@0+ (1,0) [0|7] ""  PSM
+ SG_ VIU_PsAdjSt : 44|3@0+ (1,0) [0|7] ""  PSM
+ SG_ VIU_PassSeatLegExtnMotPosnSet : 55|7@0+ (1,0) [0|127] ""  PSM
+ SG_ VIU_PassSeatLegExtnMotPosnStepSet : 48|2@0+ (1,0) [0|3] ""  PSM
+
+BO_ 941 VIU_CDC_0x3AD: 8 VIU1_CABIN2
+ SG_ VIU_ZeroGravityFoldFunSet : 21|4@0+ (1,0) [0|15] ""  RRSM
+ SG_ VIU_ReRiSeatSLCUotPosnStepSet : 17|2@0+ (1,0) [0|3] ""  RRSM
+ SG_ VIU_ReRiSeatBackrestMotPosnStepSet : 31|2@0+ (1,0) [0|3] ""  RRSM
+ SG_ VIU_ReRiSeatLegSupportMotPosnStepSet : 29|2@0+ (1,0) [0|3] ""  RRSM
+ SG_ VIU_ReRiSeatLegExtnMotPosnStepSet : 27|2@0+ (1,0) [0|3] ""  RRSM
+ SG_ VIU_ReMiSeatHeatgReq : 25|3@0+ (1,0) [0|7] ""  RRSM_5Seat
+ SG_ VIU_RRSecRowSeatFoldFunSet : 38|3@0+ (1,0) [0|7] ""  RRSM_5Seat
+
+BO_ 942 VIU_0x3AE: 8 VIU0_IP_EV
+ SG_ IPB_VehicleSpeedValid : 7|1@0+ (1,0) [0|1] ""  DSM
+ SG_ IPB_VehicleSpeed : 6|13@0+ (0.05625,0) [0|460.74375] "km/h"  DSM
+ SG_ VDC_TotalRang : 23|20@0+ (1,0) [0|1048575] "km"  DSM
+ SG_ VDC_actualGear : 35|2@0+ (1,0) [0|3] ""  DSM
+
+BO_ 943 VIU_3AF: 8 VIU1_CABIN2
+ SG_ BMS_OperSt : 59|4@0+ (1,0) [0|15] ""  RRSM
+
+BO_ 960 VIU_Set1_3C0: 8 VIU1_CABIN
+ SG_ VIU_PassbackrestHeatgLvl : 47|3@0+ (1,0) [1|7] ""  PSM
+ SG_ VIU_PasscushionHeatgLvl : 44|3@0+ (1,0) [1|7] ""  PSM
+ SG_ VIU_PassSeatStopAdjustCmd : 49|1@0+ (1,0) [0|1] ""  PSM
+
+BO_ 976 LRSM_St_0x3D0: 8 LRSM
+ SG_ LRSM_HeatingCtr_recline : 7|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ LRSM_HeatingCtr_cushion : 5|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ LRSM_HeatT_recline : 3|8@0+ (1,-50) [-50|150] ""  VIU0_IP_EV
+ SG_ LRSM_HeatT_cushion : 11|8@0+ (1,-50) [-50|150] ""  VIU0_IP_EV
+ SG_ LRSM_AP_current_slide : 19|8@0+ (0.1,0) [0|255] "A"  VIU0_IP_EV
+ SG_ LRSM_AP_hall_slide : 27|8@0+ (1,0) [0|255] "ms"  VIU0_IP_EV
+ SG_ LRSM_ApTrigReasonSlide : 35|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+
+BO_ 977 VIU_LRSM_0x3D1: 8 VIU0_IP_EV
+ SG_ VIU_RLZeroGravityFoldFunSet : 7|4@0+ (1,0) [0|15] ""  LRSM
+ SG_ VIU_ReliSeatSldMotPosnSet : 3|7@0+ (1,0) [0|127] ""  LRSM
+ SG_ VIU_ReliSeatBackrestMotPosnSet : 12|7@0+ (1,0) [0|127] ""  LRSM
+ SG_ VIU_ReliSeatHeatgReq : 30|3@0+ (1,0) [0|7] ""  LRSM
+ SG_ VIU_ReliSeatVentnReq : 27|3@0+ (1,0) [0|7] ""  LRSM
+ SG_ VIU_ReliSeatSldMotPosnStepSet : 37|2@0+ (1,0) [0|3] ""  LRSM
+ SG_ VIU_ReliSeatBackrestMotPosnStepSet : 35|2@0+ (1,0) [0|3] ""  LRSM
+ SG_ VIU_LRSMPwrReq : 33|2@0+ (1,0) [0|3] ""  LRSM
+ SG_ VIU_ReliSeatLinkageSet : 44|3@0+ (1,0) [0|7] ""  LRSM
+ SG_ VIU_ReleSeatStopAdjustCmd : 56|1@0+ (1,0) [0|1] ""  LRSM
+ SG_ VIU_RLSecRowSeatFoldFunSet : 47|3@0+ (1,0) [0|7] ""  RRSM_5Seat
+
+BO_ 978 LRSM_St_0x3D2: 8 LRSM
+ SG_ LRSM_CtrlSts : 7|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ LRSM_AntiPinchSts : 4|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_HeatProtectionSts : 3|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_SldMotPosn : 2|7@0+ (1,0) [0|127] ""  VIU0_IP_EV
+ SG_ LRSM_BackrestMotPosn : 11|7@0+ (1,0) [0|127] ""  VIU0_IP_EV
+ SG_ LRSM_ReLeSeatbackrestHeatgSts : 20|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ LRSM_ReLeSeatcushionHeatgSts : 17|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ LRSM_InitSts : 29|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_WarningReq : 28|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ LRSM_HeatgSts : 25|3@0+ (1,0) [0|7] ""  RAC,VIU0_IP_EV
+ SG_ LRSM_HeatFltSts : 38|1@0+ (1,0) [0|1] ""  RAC,VIU0_IP_EV
+ SG_ LRSM_VentnSts : 37|3@0+ (1,0) [0|7] ""  RAC,VIU0_IP_EV
+ SG_ LRSM_VentnFltSts : 34|1@0+ (1,0) [0|1] ""  RAC,VIU0_IP_EV
+ SG_ LRSM_RLSeatDetectSts : 33|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_DevSupportSts : 47|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ LRSM_DevLinkSts : 45|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ LRSM_ChargeSts : 43|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ LRSM_ReliSeatLinkageSt : 63|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ LRSM_HeatingCtr : 60|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ LRSM_ForbiddenReasonSt : 55|4@0+ (1,0) [0|15] ""  VIU1_CABIN2
+ SG_ LRSM_SeatfoldSt : 50|3@0+ (1,0) [0|7] ""  Vector__XXX
+
+BO_ 979 LRSM_St_0x3D3: 8 LRSM
+ SG_ LRSM_HeatT : 7|8@0+ (1,-50) [-50|150] "°C"  VIU0_IP_EV
+ SG_ LRSM_AP_current_recline : 15|8@0+ (0.1,0) [0|255] "A"  VIU0_IP_EV
+ SG_ LRSM_AP_hall_recline : 23|8@0+ (1,0) [0|255] "ms"  VIU0_IP_EV
+ SG_ LRSM_ApTrigReasonRecline : 31|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+
+BO_ 981 VIU_LRSM_0x3D5: 8 VIU0_IP_EV
+ SG_ VIU_ReLeSeatbackrestHeatgLvl : 32|3@0+ (1,0) [0|7] ""  LRSM
+ SG_ VIU_ReLeSeatcushionHeatgLvl : 45|3@0+ (1,0) [0|7] ""  LRSM
+
+BO_ 984 RRSM_St_0x3D8: 8 RRSM
+ SG_ RRSM_AP_current_LArmRest : 7|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN2
+ SG_ RRSM_AP_hall_LArmRest : 15|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN2
+ SG_ RRSM_ApTrigReasonLArmRest : 23|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_AP_current_RArmRest : 20|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN2
+ SG_ RRSM_AP_hall_RArmRest : 28|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN2
+ SG_ RRSM_ApTrigReasonRArmRest : 36|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_AP_current_YAxis : 33|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN2
+ SG_ RRSM_AP_hall_YAxis : 41|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN2
+ SG_ RRSM_ApTrigReasonYAxis : 49|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+
+BO_ 988 RRSM_St_0x3DC: 8 RRSM
+ SG_ RRSM_AP_current_LegUD : 7|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN2
+ SG_ RRSM_AP_hall_LegUD : 15|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN2
+ SG_ RRSM_ApTrigReasonLegUD : 23|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_AP_current_LegFB : 20|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN2
+ SG_ RRSM_AP_hall_LegFB : 28|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN2
+ SG_ RRSM_ApTrigReasonLegFB : 36|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_AP_current_cushionAngle : 33|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN2
+ SG_ RRSM_AP_hall_cushionAngle : 41|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN2
+ SG_ RRSM_ApTrigReasoncushionAngle : 49|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+
+BO_ 997 VIU_RRSM_0x3E5: 8 VIU1_CABIN2
+ SG_ VIU_ReRibackrestHeatgLvl : 7|3@0+ (1,0) [0|7] ""  RRSM
+ SG_ VIU_ReRicushionHeatgLvl : 4|3@0+ (1,0) [0|7] ""  RRSM
+ SG_ VIU_ReRiSeatStopAdjustCmd : 36|1@0+ (1,0) [0|1] ""  RRSM
+
+BO_ 1067 NM_Autosar_RCLM_RR1: 8 RCLM_RR1
+ SG_ RCLM_RR1_SourceNodeIdentifier : 7|8@0+ (1,0) [0|255] ""  VIU1_CABIN
+ SG_ RCLM_RR1_RepeatMessageRequestBit : 8|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ RCLM_RR1_ActiveWakeupBit : 12|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ RCLM_RR1_RepeatSts : 16|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ RCLM_RR1_NMReq_Poweron : 23|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ RCLM_RR1_NMReq_Diag : 22|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ RCLM_RR1_NMReq_NM : 21|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ RCLM_RR1_FirstWakeupReason : 53|6@0+ (1,0) [0|63] ""  VIU1_CABIN
+
+BO_ 1112 NM_Autosar_DSM: 8 DSM
+ SG_ DSM_SourceNodeIdentifier : 7|8@0+ (1,0) [0|255] ""  VIU0_IP_EV
+ SG_ DSM_RepeatMessageRequestBit : 8|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_ActiveWakeupBit : 12|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_RepeatSts : 16|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_NMReq_Poweron : 23|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_NMReq_Diag : 22|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_NMReq_NM : 21|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_FirstWakeupReason : 53|6@0+ (1,0) [0|63] ""  VIU0_IP_EV
+
+BO_ 1113 NM_Autosar_PSM: 8 PSM
+ SG_ PSM_SourceNodeIdentifier : 7|8@0+ (1,0) [0|255] ""  VIU1_CABIN
+ SG_ PSM_RepeatMessageRequestBit : 8|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_ActiveWakeupBit : 12|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_RepeatSts : 16|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_NMReq_Poweron : 23|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_NMReq_Diag : 22|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_NMReq_NM : 21|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_NMReq_MovgOrPosnStorg : 31|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_FirstWakeupReason : 53|6@0+ (1,0) [0|63] ""  VIU1_CABIN
+
+BO_ 1115 NM_Autosar_RRSM: 8 RRSM
+ SG_ RRSM_SourceNodeIdentifier : 7|8@0+ (1,0) [0|255] ""  VIU1_CABIN2
+ SG_ RRSM_RepeatMessageRequestBit : 8|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_ActiveWakeupBit : 12|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_RepeatSts : 16|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_NMReq_Poweron : 23|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_NMReq_Diag : 22|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_NMReq_NM : 21|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_NMReq_MovgOrPosnStorg : 31|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_FirstWakeupReason : 53|6@0+ (1,0) [0|63] ""  VIU1_CABIN2
+
+BO_ 1125 NM_Autosar_LRSM: 8 LRSM
+ SG_ LRSM_SourceNodeIdentifier : 7|8@0+ (1,0) [0|255] ""  VIU0_IP_EV
+ SG_ LRSM_RepeatMessageRequestBit : 8|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_ActiveWakeupBit : 12|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_RepeatSts : 16|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_NMReq_Poweron : 23|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_NMReq_Diag : 22|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_NMReq_NM : 21|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ LRSM_FirstWakeupReason : 53|6@0+ (1,0) [0|63] ""  VIU0_IP_EV
+
+BO_ 1343 RTSM_St2_0x53F: 8 RRSM
+ SG_ RTSM_3ndLeftSeatDetectSts : 7|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RTSM_3ndRightSeatDetectSts : 6|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+
+BO_ 1350 RRSM_St_546: 8 RRSM
+ SG_ RRSM_SeatAngleMotPosn : 3|7@0+ (1,0) [0|127] "%"  VIU1_CABIN2
+ SG_ RRSM_ZeroGravityUnfold : 12|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+ SG_ RRSM_ZeroGravityFold : 10|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+ SG_ RRSM_ReRiSeatbackrestHeatgSts : 17|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_ReRiSeatcushionHeatgSts : 30|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_HeatingCtr_recline : 24|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+ SG_ RRSM_HeatingCtr_cushion : 38|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+ SG_ RRSM_HeatT_recline : 36|8@0+ (1,-50) [-50|150] ""  VIU1_CABIN2
+ SG_ RRSM_HeatT_cushion : 44|8@0+ (1,-50) [-50|150] ""  VIU1_CABIN2
+ SG_ RRSM_ReliSeatLinkageSt : 58|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_SeatHeatgSts : 7|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_SeatHeatFltSts : 4|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_SeatHeatingCtr : 52|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+ SG_ RRSM_SeatHeatT : 50|8@0+ (1,-50) [-50|150] ""  VIU1_CABIN2
+
+BO_ 1362 DSM_St_0x552: 8 DSM
+ SG_ DSM_CtrlSts : 7|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_AntiPinchSts : 4|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_HeatProtectionSts : 3|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_SLCUotPosn : 2|7@0+ (1,0) [0|127] ""  VIU0_IP_EV
+ SG_ DSM_BackrestMotPosn : 11|7@0+ (1,0) [0|127] ""  VIU0_IP_EV
+ SG_ DSM_CushHeiMotPosn : 20|7@0+ (1,0) [0|127] ""  VIU0_IP_EV
+ SG_ DSM_CushTiltMotPosn : 29|7@0+ (1,0) [0|127] ""  VIU0_IP_EV
+ SG_ DSM_InitSts : 47|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_WarningReq : 46|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_HeatgSts : 43|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_HeatFltSts : 40|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_VentnSts : 55|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_VentnFltSts : 52|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ DSM_DevSupportSts : 50|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ DSM_DevLinkSts : 63|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ DSM_ChargeSts : 61|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+
+BO_ 1363 PSM_St_0x553: 8 PSM
+ SG_ PSM_CtrlSts : 7|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_AntiPinchSts : 4|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_HeatProtectionSts : 3|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_SLCUotPosn : 2|7@0+ (1,0) [0|127] ""  VIU1_CABIN
+ SG_ PSM_BackrestMotPosn : 11|7@0+ (1,0) [0|127] ""  VIU1_CABIN
+ SG_ PSM_CushHeiMotPosn : 20|7@0+ (1,0) [0|127] ""  VIU1_CABIN
+ SG_ PSM_CushTiltMotPosn : 29|7@0+ (1,0) [0|127] ""  VIU1_CABIN
+ SG_ PSM_LegSupportMotPosn : 38|7@0+ (1,0) [0|127] ""  VIU1_CABIN
+ SG_ PSM_SpindleMotPosn : 40|7@0+ (1,0) [0|127] ""  VIU1_CABIN
+ SG_ PSM_InitSts : 49|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_WarningReq : 48|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_HeatgSts : 61|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_HeatFltSts : 58|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+
+BO_ 1364 RTSM_St_0x554: 8 LRSM
+ SG_ RTSM_3rdLCtrlSts : 2|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ RTSM_3rdLAntiPinchSts : 3|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ RTSM_3rdLHeatProtectionSts : 4|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ RTSM_3rdLInitSts : 5|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ RTSM_3rdLBackrestMotPosn : 15|7@0+ (1,0) [0|127] "%"  VIU0_IP_EV
+ SG_ RTSM_3rdLHeatgSts : 21|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ RTSM_3rdRAntiPinchSts : 22|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ RTSM_3rdRHeatProtectionSts : 23|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ RTSM_3rdRCtrlSts : 26|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ RTSM_3rdRInitSts : 27|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ RTSM_3rdRWarningReq : 30|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ RTSM_3rdRHeatFltSts : 31|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ RTSM_3rdRBackrestMotPosn : 38|7@0+ (1,0) [0|127] "%"  VIU0_IP_EV
+ SG_ RTSM_3rdLHeatFltSts : 39|1@0+ (1,0) [0|1] ""  VIU0_IP_EV
+ SG_ RTSM_3rdLWarningReq : 45|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ RTSM_3rdRHeatgSts : 42|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ RTSM_3rdRSeatfoldSt : 58|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ RTSM_3rdLSeatfoldSt : 61|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+
+BO_ 1365 RRSM_St_0x555: 8 RRSM
+ SG_ RRSM_CtrlSts : 7|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_AntiPinchSts : 4|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_HeatProtectionSts : 3|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_SLCUotPosn : 2|7@0+ (1,0) [0|127] "%"  VIU1_CABIN2
+ SG_ RRSM_BackrestMotPosn : 11|7@0+ (1,0) [0|127] "%"  VIU1_CABIN2
+ SG_ RRSM_LegSupportMotPosn : 20|7@0+ (1,0) [0|127] "%"  VIU1_CABIN2
+ SG_ RRSM_LegExtnMotPosn : 29|7@0+ (1,0) [0|127] "%"  VIU1_CABIN2
+ SG_ RRSM_CushTiltMotPosn : 38|7@0+ (1,0) [0|127] "%"  VIU1_CABIN2
+ SG_ RRSM_YAxisMotPosn : 47|7@0+ (1,0) [0|127] "%"  VIU1_CABIN2
+ SG_ RRSM_ArmRestMotPosn : 40|7@0+ (1,0) [0|127] "%"  VIU1_CABIN2
+ SG_ RRSM_InitSts : 49|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_WarningReq : 48|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_HeatgSts : 61|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_HeatFltSts : 58|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_RRSeatDetectSts : 56|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_RMSeatDetectSts : 57|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+
+BO_ 1366 PSM_St2_0x556: 8 PSM
+ SG_ PSM_VentnSts : 7|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_VentnFltSts : 4|1@0+ (1,0) [0|1] ""  VIU1_CABIN
+ SG_ PSM_PassSeatforbiddenReasonSt : 3|4@0+ (1,0) [0|15] ""  VIU1_CABIN
+ SG_ PSM_PassSeatfoldSt : 15|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_PassSeatLinkageSt : 12|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_DevSupportSts : 9|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ PSM_DevLinkSts : 23|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ PSM_ChargeSts : 21|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ PSM_PassSeatfoldSwtSts : 19|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ PSM_LegExtnMotPosn : 17|7@0+ (1,0) [0|127] ""  VIU1_CABIN
+ SG_ PSM_HeatingCtr : 26|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ PSM_HeatT : 24|8@0+ (1,-50) [-50|150] "°C"  VIU1_CABIN
+ SG_ PSM_PassSeatbackrestHeatgSts : 44|3@0+ (1,0) [1|7] ""  VIU1_CABIN
+ SG_ PSM_PassSeatcushionHeatgSts : 41|3@0+ (1,0) [1|7] ""  VIU1_CABIN
+ SG_ PSM_AP_hall_cushionAngle : 51|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN
+
+BO_ 1367 RRSM_St2_0x557: 8 VIU1_CABIN
+ SG_ RRSM_ZeroGravityFoldSt : 3|4@0+ (1,0) [0|15] ""  PSM
+ SG_ RRSM_VentnSts : 7|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_VentnFltSts : 4|1@0+ (1,0) [0|1] ""  VIU1_CABIN2
+ SG_ RRSM_ZeroGravityforbiddenReasonSt : 15|4@0+ (1,0) [0|15] ""  VIU1_CABIN2
+ SG_ RRSM_DevSupportSts : 11|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+ SG_ RRSM_DevLinkSts : 9|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+ SG_ RRSM_ChargeSts : 23|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+ SG_ RRSM_L_ArmRestMotPosn : 31|7@0+ (1,0) [0|127] "%"  VIU1_CABIN2
+ SG_ RRSM_HeatT : 24|8@0+ (1,-50) [-50|150] "°C"  VIU1_CABIN2
+ SG_ RRSM_HeatingCtr : 32|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+ SG_ RRSM_AP_current_recline : 46|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN2
+ SG_ RRSM_AP_hall_recline : 54|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN2
+ SG_ RRSM_ApTrigReasonRecline : 62|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+
+BO_ 1382 DSM_566: 8 DSM
+ SG_ DSM_SupplierCode : 3|4@0+ (1,0) [0|15] ""  Vector__XXX
+ SG_ DSM_HwVersion : 15|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ DSM_SwMajorVersion : 23|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ DSM_SwMinorVersion : 31|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ DSM_SwPatchVersion : 39|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ DSM_SwVersionYear : 47|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ DSM_SwVersionMonth : 55|8@0+ (1,0) [0|12] ""  Vector__XXX
+ SG_ DSM_SwVersionDay : 63|8@0+ (1,0) [0|31] ""  Vector__XXX
+
+BO_ 1386 PSM_56A: 8 PSM
+ SG_ PSM_SupplierCode : 3|4@0+ (1,0) [0|15] ""  Vector__XXX
+ SG_ PSM_HwVersion : 15|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ PSM_SwMajorVersion : 23|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ PSM_SwMinorVersion : 31|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ PSM_SwPatchVersion : 39|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ PSM_SwVersionYear : 47|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ PSM_SwVersionMonth : 55|8@0+ (1,0) [0|12] ""  Vector__XXX
+ SG_ PSM_SwVersionDay : 63|8@0+ (1,0) [0|31] ""  Vector__XXX
+
+BO_ 1390 RRSM_56E: 8 RRSM
+ SG_ RRSM_SupplierCode : 3|4@0+ (1,0) [0|15] ""  Vector__XXX
+ SG_ RRSM_HwVersion : 15|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ RRSM_SwMajorVersion : 23|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ RRSM_SwMinorVersion : 31|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ RRSM_SwPatchVersion : 39|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ RRSM_SwVersionYear : 47|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ RRSM_SwVersionMonth : 55|8@0+ (1,0) [0|12] ""  Vector__XXX
+ SG_ RRSM_SwVersionDay : 63|8@0+ (1,0) [0|31] ""  Vector__XXX
+
+BO_ 1395 RRSM_Ctrl_573: 8 VIU1_CABIN
+ SG_ VIU_RRSeatFootSupportMotPosnStepSet : 15|2@0+ (1,0) [0|3] ""  PSM
+ SG_ VIU_RRSeatFootSupportMotPosnSet : 13|7@0+ (1,0) [0|127] ""  PSM
+
+BO_ 1398 DSM_St_0x576: 8 DSM
+ SG_ DSM_ZeroGravityUnfoldBtn : 7|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ DSM_ZeroGravityFoldBtn : 5|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ DSM_ZeroGravityFoldSt : 3|4@0+ (1,0) [0|15] ""  VIU0_IP_EV
+ SG_ DSM_SeatAngleMotPosn : 15|7@0+ (1,0) [0|127] ""  VIU0_IP_EV
+ SG_ DSM_LegSupportMotPosn : 8|7@0+ (1,0) [0|127] ""  VIU0_IP_EV
+ SG_ DSM_LegExtnMotPosn : 17|7@0+ (1,0) [0|127] ""  VIU0_IP_EV
+ SG_ DSM_HeatingCtr : 26|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ DSM_HeatT : 24|8@0+ (1,-50) [-50|150] "°C"  VIU0_IP_EV
+ SG_ DSM_DrvrSeatbackrestHeatgSts : 32|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_DrvrSeatcushionHeatgSts : 45|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_HeatingCtr_recline : 55|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ DSM_HeatingCtr_cushion : 53|2@0+ (1,0) [0|3] ""  VIU0_IP_EV
+ SG_ DSM_HeatT_cushion : 51|8@0+ (1,-50) [-50|150] ""  VIU0_IP_EV
+ SG_ DSM_ForbiddenReasonSt : 59|4@0+ (1,0) [0|15] ""  VIU0_IP_EV
+
+BO_ 1407 LRSM_57F: 8 LRSM
+ SG_ LRSM_SupplierCode : 3|4@0+ (1,0) [0|15] ""  Vector__XXX
+ SG_ LRSM_HwVersion : 15|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ LRSM_SwMajorVersion : 23|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ LRSM_SwMinorVersion : 31|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ LRSM_SwPatchVersion : 39|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ LRSM_SwVersionYear : 47|8@0+ (1,0) [0|255] ""  Vector__XXX
+ SG_ LRSM_SwVersionMonth : 55|8@0+ (1,0) [0|12] ""  Vector__XXX
+ SG_ LRSM_SwVersionDay : 63|8@0+ (1,0) [0|31] ""  Vector__XXX
+
+BO_ 1474 DSM_DTC_5C2: 8 DSM
+ SG_ DSM_TotalFaultNum : 7|8@0+ (1,0) [0|255] ""  VIU0_IP_EV
+ SG_ DSM_FrameIndex : 12|5@0+ (1,0) [0|31] ""  VIU0_IP_EV
+ SG_ DSM_SupplierNum : 15|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ DSM_FaultNum1 : 23|12@0+ (1,0) [0|4095] ""  VIU0_IP_EV
+ SG_ DSM_FaultNum2 : 27|12@0+ (1,0) [0|4095] ""  VIU0_IP_EV
+ SG_ DSM_FaultNum3 : 47|12@0+ (1,0) [0|4095] ""  VIU0_IP_EV
+ SG_ DSM_FaultNum4 : 51|12@0+ (1,0) [0|4095] ""  VIU0_IP_EV
+
+BO_ 1482 PSM_DTC_5CA: 8 PSM
+ SG_ PSM_TotalFaultNum : 7|8@0+ (1,0) [0|255] ""  VIU1_CABIN
+ SG_ PSM_FrameIndex : 12|5@0+ (1,0) [0|31] ""  VIU1_CABIN
+ SG_ PSM_SupplierNum : 15|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ PSM_FaultNum1 : 23|12@0+ (1,0) [0|4095] ""  VIU1_CABIN
+ SG_ PSM_FaultNum2 : 27|12@0+ (1,0) [0|4095] ""  VIU1_CABIN
+ SG_ PSM_FaultNum3 : 47|12@0+ (1,0) [0|4095] ""  VIU1_CABIN
+ SG_ PSM_FaultNum4 : 51|12@0+ (1,0) [0|4095] ""  VIU1_CABIN
+
+BO_ 1506 TBOX_TimeInfo: 8 VIU0_IP_EV
+ SG_ TBOX_TimeYear : 7|8@0+ (1,2000) [2000|2255] "Year"  DSM
+ SG_ TBOX_TimeMonth : 11|4@0+ (1,0) [1|12] "Month"  DSM
+ SG_ TBOX_TimeDay : 20|5@0+ (1,0) [1|31] "Day"  DSM
+ SG_ TBOX_TimeHour : 28|5@0+ (1,0) [0|23] "h"  DSM
+ SG_ TBOX_TimeMinute : 37|6@0+ (1,0) [0|59] "min"  DSM
+ SG_ TBOX_TimeSecond : 45|6@0+ (1,0) [0|59] "s"  DSM
+ SG_ TBOX_TimeZone : 49|2@0+ (1,0) [0|3] ""  DSM
+ SG_ TBOX_TimeZoneNum : 54|5@0+ (1,0) [0|31] ""  DSM
+ SG_ TBOX_TimeFlag : 57|2@0+ (1,0) [0|3] ""  DSM
+
+BO_ 1517 RRSM_DTC_5ED: 8 RRSM
+ SG_ RRSM_TotalFaultNum : 7|8@0+ (1,0) [0|255] ""  VIU1_CABIN2
+ SG_ RRSM_FrameIndex : 12|5@0+ (1,0) [0|31] ""  VIU1_CABIN2
+ SG_ RRSM_SupplierNum : 15|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_FaultNum1 : 23|12@0+ (1,0) [0|4095] ""  VIU1_CABIN2
+ SG_ RRSM_FaultNum2 : 27|12@0+ (1,0) [0|4095] ""  VIU1_CABIN2
+ SG_ RRSM_FaultNum3 : 47|12@0+ (1,0) [0|4095] ""  VIU1_CABIN2
+ SG_ RRSM_FaultNum4 : 51|12@0+ (1,0) [0|4095] ""  VIU1_CABIN2
+
+BO_ 1524 LRSM_DTC_5F4: 8 LRSM
+ SG_ LRSM_TotalFaultNum : 7|8@0+ (1,0) [0|255] ""  VIU0_IP_EV
+ SG_ LRSM_FrameIndex : 12|5@0+ (1,0) [0|31] ""  VIU0_IP_EV
+ SG_ LRSM_SupplierNum : 15|3@0+ (1,0) [0|7] ""  VIU0_IP_EV
+ SG_ LRSM_FaultNum1 : 23|12@0+ (1,0) [0|4095] ""  VIU0_IP_EV
+ SG_ LRSM_FaultNum2 : 27|12@0+ (1,0) [0|4095] ""  VIU0_IP_EV
+ SG_ LRSM_FaultNum3 : 47|12@0+ (1,0) [0|4095] ""  VIU0_IP_EV
+ SG_ LRSM_FaultNum4 : 51|12@0+ (1,0) [0|4095] ""  VIU0_IP_EV
+
+BO_ 1531 PSM_0x5FB: 8 PSM
+ SG_ PSM_ZeroGravityUnfoldBtn : 7|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ PSM_ZeroGravityFoldBtn : 5|2@0+ (1,0) [0|3] ""  VIU1_CABIN
+ SG_ PSM_ZeroGravityFoldSt : 3|4@0+ (1,0) [0|15] ""  VIU1_CABIN
+ SG_ PSM_AP_hall_RRSeatFootSupport : 20|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN
+ SG_ PSM_ApTrigReasonRRSeatFootSupport : 28|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+
+BO_ 1556 RCLM_RR1_DTC_614: 8 RCLM_RR1
+ SG_ RCLM_RR1_TotalFaultNum : 7|8@0+ (1,0) [0|255] ""  VIU1_CABIN
+ SG_ RCLM_RR1_FrameIndex : 12|5@0+ (1,0) [0|31] ""  VIU1_CABIN
+ SG_ RCLM_RR1_SupplierNum : 15|3@0+ (1,0) [0|7] ""  VIU1_CABIN
+ SG_ RCLM_RR1_FaultNum1 : 23|12@0+ (1,0) [0|4095] ""  VIU1_CABIN
+ SG_ RCLM_RR1_FaultNum2 : 27|12@0+ (1,0) [0|4095] ""  VIU1_CABIN
+ SG_ RCLM_RR1_FaultNum3 : 47|12@0+ (1,0) [0|4095] ""  VIU1_CABIN
+ SG_ RCLM_RR1_FaultNum4 : 51|12@0+ (1,0) [0|4095] ""  VIU1_CABIN
+
+BO_ 1618 RRSM_0x652: 8 RRSM
+ SG_ RRSM_AP_current_slide : 7|8@0+ (0.1,0) [0|255] "A"  VIU1_CABIN2
+ SG_ RRSM_AP_hall_slide : 15|8@0+ (1,0) [0|255] "ms"  VIU1_CABIN2
+ SG_ RRSM_ApTrigReasonSlide : 23|3@0+ (1,0) [0|7] ""  VIU1_CABIN2
+ SG_ RRSM_RRSeatFootSupportMotPosnStepRq : 20|2@0+ (1,0) [0|3] ""  VIU1_CABIN2
+
+BO_ 1651 Diag_PhyReq_RCLM_RR1: 8 VIU1_CABIN
+ SG_ Diag_PhyReq_RCLM_RR1_Data : 7|64@0+ (1,0) [0|18446744073709500000] "N/A"  RCLM_RR1
+
+BO_ 1659 Diag_Resp_RCLM_RR1: 8 RCLM_RR1
+ SG_ Diag_Resp_RCLM_RR1_Data : 7|64@0+ (1,0) [0|18446744073709500000] "N/A"  VIU1_CABIN
+
+BO_ 1797 Diag_PhyReq_DSM: 8 VIU0_IP_EV
+ SG_ Diag_PhyReq_DSM_Data : 7|64@0+ (1,0) [0|0] ""  DSM
+
+BO_ 1807 Diag_PhyReq_PSM: 8 VIU1_CABIN
+ SG_ Diag_PhyReq_PSM_Data : 7|64@0+ (1,0) [0|0] ""  PSM
+
+BO_ 1862 Diag_PhyReq_RRSM: 8 VIU1_CABIN2
+ SG_ Diag_PhyReq_RRSM_Data : 7|64@0+ (1,0) [0|18446744073709500000] "N/A"  RRSM
+
+BO_ 1886 Diag_PhyReq_LRSM: 8 VIU0_IP_EV
+ SG_ Diag_PhyReq_LRSM_Data : 7|64@0+ (1,0) [0|0] ""  LRSM
+
+BO_ 1925 Diag_Resp_DSM: 8 DSM
+ SG_ Diag_Resp_DSM_Data : 7|64@0+ (1,0) [0|0] ""  VIU0_IP_EV
+
+BO_ 1935 Diag_Resp_PSM: 8 PSM
+ SG_ Diag_PhyResp_PSM_Data : 7|64@0+ (1,0) [0|0] ""  VIU1_CABIN
+
+BO_ 1990 Diag_Resp_RRSM: 8 RRSM
+ SG_ Diag_PhyResp_RRSM_Data : 7|64@0+ (1,0) [0|18446744073709500000] "N/A"  VIU1_CABIN2
+
+BO_ 2014 Diag_Resp_LRSM: 8 LRSM
+ SG_ Diag_Resp_LRSM_Data : 7|64@0+ (1,0) [0|0] ""  VIU0_IP_EV
+
+BO_ 2015 Diag_FuncReq: 8 VIU0_IP_EV
+ SG_ Diag_FuncReq_Data : 7|64@0+ (1,0) [0|0] ""  DSM
+
+CM_ "Version:V1.0.0,Date:2026/2/10,Author:yuzheyu,Review:,Approval:向宇设变,Description:(DSM)1、VIU_DSM_0x39A新增信号VIU_DrvrSeatStopAdjustCmd，VIU_Set1_3C0新增信号VIU_PassSeatStopAdjustCmd，VIU_LRSM_0x3D1新增信号VIU_ReleSeatStopAdjustCmd，VIU_RRSM_0x3E5新怎信号VIU_ReRiSeatStopAdjustCmd，VIU_RTSM_2E4新增信号VIU_3rdLSeatStopAdjustCmd，VIU_3rdRSeatStopAdjustCmd，VIU_RRSM_0x396新增信号VIU_ReRiSeatYAxisMotPosnSet，RRSM_St_0x555新增信号RRSM_YAxisMotPosn，VIU_RRSM_0x396新增信号VIU_ReRiSeatYAxisMotPosnStepSet，VIU_RTSM_0x395新增信号VIU_3rdRSeatBackrestMotPosnSet，VIU_3rdRSeatBackrestMotPosnStepSet，VIU_3rdLSeatBackrestMotPosnStepSet，VIU_3rdLSeatBackrestMotPosnSet，VIU_3rdRSeatFoldFunSet，VIU_3rdLSeatFoldFunSet，新增报文RTSM_St_0x554，涉及DSM,PSM,RRSM,RRSM_5Seat,VIU0_IP_EV,VIU0_IP_EVR,VIU1_CABIN；
+2、取消报文VIU_RRSM_0x3E5中的RRSM_AP_current_slide，RRSM_AP_hall_slide，RRSM_ApTrigReasonSlide，新增报文RRSM_0x652，报文中新增信号RRSM_AP_current_slide，RRSM_AP_hall_slide，RRSM_ApTrigReasonSlide，涉及RRSM,VIU1_CABIN；;
+Version:V1.1.2,Date:2026/3/20,Author:yuzheyu,Review:,Approval:向宇设变,Description:(DSM)1、报文VIU_Set1_3C0中新增信号VIU_PassbackrestHeatgLvl,VIU_PasscushionHeatgLvl,涉及VIU1_CABIN,PSM；
+2、报文PSM_St2_0x556中新增信号PSM_PassSeatbackrestHeatgSts，PSM_PassSeatcushionHeatgSts.涉及VIU1_CABIN,PSM；
+3、报文VIU_RRSM_0x396中新增信号VIU_ReRiSeatCushTiltMotPosnStepSet，涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+4、报文VIU_RRSM_0x3E5中新增信号VIU_ReRibackrestHeatgLvl，VIU_ReRicushionHeatgLvl,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+5、报文VIU_LRSM_0x3D1中新增信号VIU_RLZeroGravityFoldFunSet,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+6、报文RRSM_St_546中新增信号RRSM_ReRiSeatbackrestHeatgSts,RRSM_ReRiSeatcushionHeatgSts,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+7、报文LRSM_St_0x3D2中新增信号LRSM_ReLeSeatbackrestHeatgSts,LRSM_ReLeSeatcushionHeatgSts,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+8、报文VIU_DSM_0x39A中新增信号VIU_DrvrSeatLegSupportMotPosnStepSet，VIU_DrvrSeatLegExtnMotPosnStepSet,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+9、报文VIU_Ctrl_0x39E中新增信号VIU_DrvrSeatbackrestHeatgLvl,VIU_DrvrSeatcushionHeatgLvl,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+10、报文VIU_LRSM_0x3D5中新增信号VIU_ReLeSeatbackrestHeatgLvl，VIU_ReLeSeatcushionHeatgLvl,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+11、报文DSM_St_0x576中新增信号DSM_DrvrSeatbackrestHeatgSts，DSM_DrvrSeatcushionHeatgSts,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；;
+Version:V2.1.0,Date:2026/4/7,Author:yuzheyu,Review:,Approval:王潜需求(调试需求）,Description:(DSM)1、VIU0_IP新增发送VIU0_Rx_Debug_091、VIU0_Snd_Debug_092、VIU0_Rx_Debug_093、VIU0_Snd_Debug_094、VIU0_Rx_Debug_095、VIU0_Snd_Debug_096调试报文,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+2、VIU1_CABIN新增发送VIU1_Rx_Debug_091、VIU1_Snd_Debug_092、VIU1_Rx_Debug_0BE、VIU1_Snd_Debug_0BF调试报文,涉及PSM,VIU1_CABIN；;
+ ";
+CM_ BO_ 1506 "时间信息";
+CM_ BO_ 466 "LegacyECU信号";
+CM_ BO_ 145 "左侧车窗标定维测，事件触发";
+CM_ BO_ 147 "前天窗遮阳帘调试接收报文";
+CM_ BO_ 149 "后天窗遮阳帘调试接收报文";
+CM_ BO_ 417 "已对齐，仅是状态呈报信号，无交互功能，测试不做处理";
+CM_ BO_ 418 "已对齐，仅是状态呈报信号，无交互功能，测试不做处理";
+CM_ SG_ 145 VIU0_Rx_Debug_091_Window "VIU0_Rx_Debug_091_Window";
+CM_ SG_ 147 VIU0_Rx_Debug_093_FSunShade "VIU0_Rx_Debug_093_FSunShade";
+CM_ SG_ 149 VIU0_Rx_Debug_095_RSunShade "VIU0_Rx_Debug_095_RSunShade";
+CM_ SG_ 1362 DSM_CtrlSts "主驾座椅控制状态";
+CM_ SG_ 1362 DSM_AntiPinchSts "主驾防夹状态";
+CM_ SG_ 1362 DSM_HeatProtectionSts "主驾热保护状态";
+CM_ SG_ 1362 DSM_SLCUotPosn "主驾座椅前后位置";
+CM_ SG_ 1362 DSM_BackrestMotPosn "主驾座椅靠背角度位置";
+CM_ SG_ 1362 DSM_CushHeiMotPosn "主驾座椅座垫高度位置";
+CM_ SG_ 1362 DSM_CushTiltMotPosn "主驾座椅座垫倾斜位置";
+CM_ SG_ 1362 DSM_InitSts "主驾座椅初始化状态";
+CM_ SG_ 1362 DSM_WarningReq "主驾座椅告警请求";
+CM_ SG_ 1362 DSM_HeatgSts "主驾座椅加热状态";
+CM_ SG_ 1362 DSM_HeatFltSts "主驾座椅加热故障状态";
+CM_ SG_ 1362 DSM_VentnSts "主驾座椅通风状态";
+CM_ SG_ 1362 DSM_VentnFltSts "主驾座椅通风故障状态";
+CM_ SG_ 1362 DSM_DevSupportSts "主驾Mlink支架状态";
+CM_ SG_ 1362 DSM_DevLinkSts "主驾Mlink设备状态";
+CM_ SG_ 1362 DSM_ChargeSts "主驾Mlink供电状态";
+CM_ SG_ 417 DSM_AP_current_slide "主驾座椅水平电机电流值";
+CM_ SG_ 417 DSM_AP_hall_slide "主驾座椅水平电机hall周期";
+CM_ SG_ 417 DSM_AP_current_recline "主驾座椅靠背电机电流值";
+CM_ SG_ 417 DSM_AP_hall_recline "主驾座椅靠背电机hall周期";
+CM_ SG_ 417 DSM_AP_current_cushion "主驾座椅抬升电机电流值";
+CM_ SG_ 417 DSM_AP_hall_cushion "主驾座椅抬升电机hall周期";
+CM_ SG_ 417 DSM_AP_current_cushionAngle "主驾座椅前抬电机电流值";
+CM_ SG_ 417 DSM_AP_hall_cushionAngle "主驾座椅前抬电机hall周期";
+CM_ SG_ 418 DSM_AP_current_LegUD "主驾座椅腿托旋转电机电流值";
+CM_ SG_ 418 DSM_AP_hall_LegUD "主驾座椅腿托旋转电机hall周期";
+CM_ SG_ 418 DSM_AP_current_LegFB "主驾座椅腿托伸缩电机电流值";
+CM_ SG_ 418 DSM_AP_hall_LegFB "主驾座椅腿托伸缩电机hall周期";
+CM_ SG_ 418 DSM_ApTrigReasonSlide "主驾座椅水平电机防夹标志";
+CM_ SG_ 418 DSM_ApTrigReasonRecline "主驾座椅靠背电机防夹标志";
+CM_ SG_ 418 DSM_ApTrigReasonHeight "主驾座椅高度电机防夹标志";
+CM_ SG_ 418 DSM_ApTrigReasonTilt "主驾座椅坐垫角度电机防夹标志";
+CM_ SG_ 418 DSM_ApTrigReasonLegUD "主驾座椅腿托翻转电机防夹标志";
+CM_ SG_ 418 DSM_ApTrigReasonLegFB "主驾座椅腿托伸缩电机防夹标志";
+CM_ SG_ 418 DSM_HeatT_recline "主驾座椅靠背加热温度";
+CM_ SG_ 1398 DSM_ZeroGravityUnfoldBtn "主驾零重力座椅展开开关";
+CM_ SG_ 1398 DSM_ZeroGravityFoldBtn "主驾零重力座椅折叠开关";
+CM_ SG_ 1398 DSM_ZeroGravityFoldSt "主驾零重力折叠状态";
+CM_ SG_ 1398 DSM_SeatAngleMotPosn "主驾座椅角度倾斜位置";
+CM_ SG_ 1398 DSM_LegSupportMotPosn "主驾座椅腿托角度位置";
+CM_ SG_ 1398 DSM_LegExtnMotPosn "主驾座椅腿托延伸位置";
+CM_ SG_ 1398 DSM_HeatingCtr "主驾座椅加热控制";
+CM_ SG_ 1398 DSM_HeatT "主驾座椅加热温度";
+CM_ SG_ 1398 DSM_DrvrSeatbackrestHeatgSts "主驾座椅靠背加热状态";
+CM_ SG_ 1398 DSM_DrvrSeatcushionHeatgSts "主驾座椅坐垫加热状态";
+CM_ SG_ 1398 DSM_HeatingCtr_recline "主驾座椅靠背加热控制(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1398 DSM_HeatingCtr_cushion "主驾座椅坐垫加热控制(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1398 DSM_HeatT_cushion "主驾座椅坐垫加热温度(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1398 DSM_ForbiddenReasonSt "座椅折叠一键禁止原因";
+CM_ SG_ 1382 DSM_SupplierCode "供应商代号";
+CM_ SG_ 1382 DSM_HwVersion "硬件版本号";
+CM_ SG_ 1382 DSM_SwMajorVersion "软件主版本号";
+CM_ SG_ 1382 DSM_SwMinorVersion "软件子版本号";
+CM_ SG_ 1382 DSM_SwPatchVersion "软件补充版本号";
+CM_ SG_ 1382 DSM_SwVersionYear "软件版本年-2000";
+CM_ SG_ 1382 DSM_SwVersionMonth "软件版本月";
+CM_ SG_ 1382 DSM_SwVersionDay "软件版本日";
+CM_ SG_ 1474 DSM_TotalFaultNum "当前故障总数";
+CM_ SG_ 1474 DSM_FrameIndex "帧序号";
+CM_ SG_ 1474 DSM_SupplierNum "供应商代码";
+CM_ SG_ 1474 DSM_FaultNum1 "故障列表1";
+CM_ SG_ 1474 DSM_FaultNum2 "故障列表2";
+CM_ SG_ 1474 DSM_FaultNum3 "故障列表3";
+CM_ SG_ 1474 DSM_FaultNum4 "故障列表4";
+CM_ SG_ 1112 DSM_SourceNodeIdentifier "源节点ID";
+CM_ SG_ 1112 DSM_RepeatMessageRequestBit "重复报文请求位";
+CM_ SG_ 1112 DSM_ActiveWakeupBit "主动唤醒标志位";
+CM_ SG_ 1112 DSM_RepeatSts "重复报文状态";
+CM_ SG_ 1112 DSM_NMReq_Poweron "因唤醒硬线ON请求网络";
+CM_ SG_ 1112 DSM_NMReq_Diag "因诊断请求网络";
+CM_ SG_ 1112 DSM_NMReq_NM "因被NM报文唤醒请求网络";
+CM_ SG_ 1112 DSM_FirstWakeupReason "DSM首次唤醒原因";
+CM_ SG_ 1925 Diag_Resp_DSM_Data "Diagnostic Physical Request Data from DSM";
+CM_ SG_ 1506 TBOX_TimeYear "本地时间_年";
+CM_ SG_ 1506 TBOX_TimeMonth "本地时间_月";
+CM_ SG_ 1506 TBOX_TimeDay "本地时间_日";
+CM_ SG_ 1506 TBOX_TimeHour "本地时间_时";
+CM_ SG_ 1506 TBOX_TimeMinute "本地时间_分";
+CM_ SG_ 1506 TBOX_TimeSecond "本地时间_秒";
+CM_ SG_ 1506 TBOX_TimeZone "东/西时区";
+CM_ SG_ 1506 TBOX_TimeZoneNum "时区编号";
+CM_ SG_ 1506 TBOX_TimeFlag "时间有效性标志";
+CM_ SG_ 466 VIU_UsageMode "整车用户模式";
+CM_ SG_ 466 VIU_CarMode "车辆模式";
+CM_ SG_ 466 VIU_PowerMode "整车电源模式";
+CM_ SG_ 466 VIU_PowerModeFltFlag "电源模式故障状态";
+CM_ SG_ 942 IPB_VehicleSpeedValid "vehicle reference speed Valid
+车速有效位";
+CM_ SG_ 942 IPB_VehicleSpeed "vehicle reference speed
+车速";
+CM_ SG_ 942 VDC_TotalRang "整个生命内的车辆总行驶里程";
+CM_ SG_ 942 VDC_actualGear "Actual gear engaged
+真实挡位";
+CM_ SG_ 926 VIU_DrvrSeatbackrestHeatgLvl "主驾座椅靠背加热控制";
+CM_ SG_ 926 VIU_DrvrSeatcushionHeatgLvl "主驾座椅坐垫加热控制";
+CM_ SG_ 915 ABM_CrashSt "碰撞状态";
+CM_ SG_ 915 VIU_DSMPwrReq "主驾MLink供电开启关闭指令";
+CM_ SG_ 915 VIU_DrvrSeatSLCUotPosnSet "主驾座椅前后位置设置";
+CM_ SG_ 915 VIU_DrvrSeatBackrestMotPosnSet "主驾座椅靠背角度位置设置";
+CM_ SG_ 915 VIU_DrvrSeatCushHeiMotPosnSet "主驾座椅座垫高度位置设置";
+CM_ SG_ 915 VIU_DrvrSeatCushTiltMotPosnSet "主驾座椅座垫倾斜位置设置";
+CM_ SG_ 915 VIU_DrvrSeatCushExtnMotPosnSet "主驾座椅座垫延伸位置设置";
+CM_ SG_ 915 VIU_DrvrSeatHeatgReq "主驾座椅加热功能请求";
+CM_ SG_ 915 VIU_DrvrSeatVentnReq "主驾座椅通风功能请求";
+CM_ SG_ 915 VIU_DrvrSeatSLCUotPosnStepSet "主驾座椅前后方向步进调节设置";
+CM_ SG_ 915 VIU_DrvrSeatBackrestMotPosnStepSet "主驾座椅靠背角度步进调节设置";
+CM_ SG_ 915 VIU_DrvrSeatCushHeiMotPosnStepSet "主驾座椅坐垫高度步进调节设置";
+CM_ SG_ 915 VIU_DrvrSeatCushTiltMotPosnStepSet "主驾座椅坐垫角度步进调节设置";
+CM_ SG_ 915 VIU_PsOpenSt "幕布开关状态";
+CM_ SG_ 915 VIU_PsAdjSt "投影幕布可调节状态";
+CM_ SG_ 922 VIU_DsmZeroGravityFoldFunSet "主驾零重力折叠功能设置";
+CM_ SG_ 922 VIU_DsmSeatLegSupportMotPosnSet "主驾座椅腿托角度位置设置";
+CM_ SG_ 922 VIU_DsmSeatLegExtnMotPosnSet "主驾座椅腿托延伸位置设置";
+CM_ SG_ 922 VIU_DrvrSeatStopAdjustCmd "主驾座椅停止调节设置指令";
+CM_ SG_ 922 VIU_DrvrSeatLegSupportMotPosnStepSet "主驾座椅腿托角度步进设置";
+CM_ SG_ 922 VIU_DrvrSeatLegExtnMotPosnStepSet "主驾座椅腿托延伸步进设置";
+CM_ SG_ 2015 Diag_FuncReq_Data "Diagnostic Functional Request Data";
+CM_ SG_ 1797 Diag_PhyReq_DSM_Data "Diagnostic Physical Request Data to DSM";
+CM_ "Version:V1.1.2,Date:2026/3/20,Author:yuzheyu,Review:,Approval:向宇设变,Description:(LRSM)1、报文VIU_Set1_3C0中新增信号VIU_PassbackrestHeatgLvl,VIU_PasscushionHeatgLvl,涉及VIU1_CABIN,PSM；
+2、报文PSM_St2_0x556中新增信号PSM_PassSeatbackrestHeatgSts，PSM_PassSeatcushionHeatgSts.涉及VIU1_CABIN,PSM；
+3、报文VIU_RRSM_0x396中新增信号VIU_ReRiSeatCushTiltMotPosnStepSet，涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+4、报文VIU_RRSM_0x3E5中新增信号VIU_ReRibackrestHeatgLvl，VIU_ReRicushionHeatgLvl,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+5、报文VIU_LRSM_0x3D1中新增信号VIU_RLZeroGravityFoldFunSet,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+6、报文RRSM_St_546中新增信号RRSM_ReRiSeatbackrestHeatgSts,RRSM_ReRiSeatcushionHeatgSts,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+7、报文LRSM_St_0x3D2中新增信号LRSM_ReLeSeatbackrestHeatgSts,LRSM_ReLeSeatcushionHeatgSts,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+8、报文VIU_DSM_0x39A中新增信号VIU_DrvrSeatLegSupportMotPosnStepSet，VIU_DrvrSeatLegExtnMotPosnStepSet,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+9、报文VIU_Ctrl_0x39E中新增信号VIU_DrvrSeatbackrestHeatgLvl,VIU_DrvrSeatcushionHeatgLvl,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+10、报文VIU_LRSM_0x3D5中新增信号VIU_ReLeSeatbackrestHeatgLvl，VIU_ReLeSeatcushionHeatgLvl,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+11、报文DSM_St_0x576中新增信号DSM_DrvrSeatbackrestHeatgSts，DSM_DrvrSeatcushionHeatgSts,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；;
+ ";
+CM_ BO_ 976 "已对齐，仅是状态呈报信号，无交互功能，测试不做处理";
+CM_ SG_ 978 LRSM_CtrlSts "二排左边座椅控制状态";
+CM_ SG_ 978 LRSM_AntiPinchSts "二排左侧座椅防夹状态";
+CM_ SG_ 978 LRSM_HeatProtectionSts "二排左侧座椅热保护状态";
+CM_ SG_ 978 LRSM_SldMotPosn "二排左边座椅前后位置";
+CM_ SG_ 978 LRSM_BackrestMotPosn "二排左边座椅靠背角度位置";
+CM_ SG_ 978 LRSM_ReLeSeatbackrestHeatgSts "二排左侧座椅靠背加热状态";
+CM_ SG_ 978 LRSM_ReLeSeatcushionHeatgSts "二排左侧座椅坐垫加热状态";
+CM_ SG_ 978 LRSM_InitSts "二排左侧座椅初始化状态";
+CM_ SG_ 978 LRSM_WarningReq "二排左侧座椅告警请求";
+CM_ SG_ 978 LRSM_HeatgSts "二排左侧座椅加热状态";
+CM_ SG_ 978 LRSM_HeatFltSts "二排左侧座椅加热故障状态";
+CM_ SG_ 978 LRSM_VentnSts "二排左侧座椅通风状态";
+CM_ SG_ 978 LRSM_VentnFltSts "二排左侧座椅通风故障状态";
+CM_ SG_ 978 LRSM_RLSeatDetectSts "二排座椅左边乘员检测状态";
+CM_ SG_ 978 LRSM_DevSupportSts "二排左Mlink支架状态";
+CM_ SG_ 978 LRSM_DevLinkSts "二排左Mlink设备状态";
+CM_ SG_ 978 LRSM_ChargeSts "二排左Mlink供电状态";
+CM_ SG_ 978 LRSM_ReliSeatLinkageSt "二排左侧座椅联动状态上报";
+CM_ SG_ 978 LRSM_HeatingCtr "二排左座椅加热控制";
+CM_ SG_ 979 LRSM_HeatT "二排左座椅加热温度";
+CM_ SG_ 979 LRSM_AP_current_recline "二排左座椅靠背电机电流值（已对齐，仅是状态呈报信号，无交互功能，测试不做处理）";
+CM_ SG_ 979 LRSM_AP_hall_recline "二排左座椅靠背电机hall周期（已对齐，仅是状态呈报信号，无交互功能，测试不做处理）";
+CM_ SG_ 979 LRSM_ApTrigReasonRecline "二排左副驾靠背电机防夹标志（已对齐，仅是状态呈报信号，无交互功能，测试不做处理）";
+CM_ SG_ 976 LRSM_HeatingCtr_recline "二排左座椅靠背加热控制";
+CM_ SG_ 976 LRSM_HeatingCtr_cushion "二排左座椅坐垫加热控制";
+CM_ SG_ 976 LRSM_HeatT_recline "二排左座椅靠背加热温度";
+CM_ SG_ 976 LRSM_HeatT_cushion "二排左座椅坐垫加热温度";
+CM_ SG_ 976 LRSM_AP_current_slide "二排左座椅水平电机电流值";
+CM_ SG_ 976 LRSM_AP_hall_slide "二排左座椅水平电机hall周期";
+CM_ SG_ 976 LRSM_ApTrigReasonSlide "二排左座椅水平电机防夹标志";
+CM_ SG_ 1407 LRSM_SupplierCode "供应商代号";
+CM_ SG_ 1407 LRSM_HwVersion "硬件版本号";
+CM_ SG_ 1407 LRSM_SwMajorVersion "软件主版本号";
+CM_ SG_ 1407 LRSM_SwMinorVersion "软件子版本号";
+CM_ SG_ 1407 LRSM_SwPatchVersion "软件补充版本号";
+CM_ SG_ 1407 LRSM_SwVersionYear "软件版本年-2000";
+CM_ SG_ 1407 LRSM_SwVersionMonth "软件版本月";
+CM_ SG_ 1407 LRSM_SwVersionDay "软件版本日";
+CM_ SG_ 1524 LRSM_TotalFaultNum "当前故障总数";
+CM_ SG_ 1524 LRSM_FrameIndex "帧序号";
+CM_ SG_ 1524 LRSM_SupplierNum "供应商代码";
+CM_ SG_ 1524 LRSM_FaultNum1 "故障列表1";
+CM_ SG_ 1524 LRSM_FaultNum2 "故障列表2";
+CM_ SG_ 1524 LRSM_FaultNum3 "故障列表3";
+CM_ SG_ 1524 LRSM_FaultNum4 "故障列表4";
+CM_ SG_ 1125 LRSM_SourceNodeIdentifier "源节点ID";
+CM_ SG_ 1125 LRSM_RepeatMessageRequestBit "重复报文请求位";
+CM_ SG_ 1125 LRSM_ActiveWakeupBit "主动唤醒标志位";
+CM_ SG_ 1125 LRSM_RepeatSts "重复报文状态";
+CM_ SG_ 1125 LRSM_NMReq_Poweron "因唤醒硬线ON请求网络";
+CM_ SG_ 1125 LRSM_NMReq_Diag "因诊断请求网络";
+CM_ SG_ 1125 LRSM_NMReq_NM "因被NM报文唤醒请求网络";
+CM_ SG_ 1125 LRSM_FirstWakeupReason "LRSM首次唤醒原因";
+CM_ SG_ 2014 Diag_Resp_LRSM_Data "Diagnostic Physical Request Data from LRSM";
+CM_ SG_ 1364 RTSM_3rdLCtrlSts "三排左座椅控制状态";
+CM_ SG_ 1364 RTSM_3rdLAntiPinchSts "三排左防夹状态";
+CM_ SG_ 1364 RTSM_3rdLHeatProtectionSts "三排左热保护状态";
+CM_ SG_ 1364 RTSM_3rdLInitSts "三排左座椅初始化（学习）状态";
+CM_ SG_ 1364 RTSM_3rdLBackrestMotPosn "三排左座排左座椅靠背角度位置信号";
+CM_ SG_ 1364 RTSM_3rdLHeatgSts "三排左座椅加热功能状态";
+CM_ SG_ 1364 RTSM_3rdRAntiPinchSts "三排右防夹状态";
+CM_ SG_ 1364 RTSM_3rdRHeatProtectionSts "三排右热保护状态";
+CM_ SG_ 1364 RTSM_3rdRCtrlSts "三排右座椅控制状态";
+CM_ SG_ 1364 RTSM_3rdRInitSts "三排右座椅初始化（学习）状态";
+CM_ SG_ 1364 RTSM_3rdRWarningReq "三排右座椅告警请求";
+CM_ SG_ 1364 RTSM_3rdRHeatFltSts "三排右座椅加热功能故障状态";
+CM_ SG_ 1364 RTSM_3rdRBackrestMotPosn "三排右座椅靠背角度位置信号";
+CM_ SG_ 1364 RTSM_3rdLHeatFltSts "三排左座椅加热功能故障状态";
+CM_ SG_ 1364 RTSM_3rdLWarningReq "三排左座椅告警请求";
+CM_ SG_ 1364 RTSM_3rdRHeatgSts "三排右座椅加热功能状态";
+CM_ SG_ 1364 RTSM_3rdRSeatfoldSt "三排右座椅折叠功能状态";
+CM_ SG_ 1364 RTSM_3rdLSeatfoldSt "三排左座椅折叠功能状态";
+CM_ SG_ 977 VIU_RLZeroGravityFoldFunSet "二排左侧座椅零重力折叠功能设置";
+CM_ SG_ 977 VIU_ReliSeatSldMotPosnSet "二排左边座椅前后位置设置";
+CM_ SG_ 977 VIU_ReliSeatBackrestMotPosnSet "二排左边座椅靠背角度位置设置";
+CM_ SG_ 977 VIU_ReliSeatHeatgReq "二排左侧座椅加热请求";
+CM_ SG_ 977 VIU_ReliSeatVentnReq "二排左侧座椅通风请求";
+CM_ SG_ 977 VIU_ReliSeatSldMotPosnStepSet "二排左侧座椅前后方向步进调节设置";
+CM_ SG_ 977 VIU_ReliSeatBackrestMotPosnStepSet "二排左侧座椅靠背角度步进调节设置";
+CM_ SG_ 977 VIU_LRSMPwrReq "二排左MLink供电开启关闭指令";
+CM_ SG_ 977 VIU_ReliSeatLinkageSet "二排左侧座椅联动功能设置";
+CM_ SG_ 977 VIU_ReleSeatStopAdjustCmd "二排左侧座椅停止调节设置指令";
+CM_ SG_ 981 VIU_ReLeSeatbackrestHeatgLvl "二排左座椅靠背加热控制";
+CM_ SG_ 981 VIU_ReLeSeatcushionHeatgLvl "二排左座椅坐垫加热控制";
+CM_ SG_ 1886 Diag_PhyReq_LRSM_Data "Diagnostic Physical Request Data to LRSM";
+CM_ SG_ 917 VIU_3rdRSeatBackrestMotPosnSet "三排右座椅靠背角度位置信号设置";
+CM_ SG_ 917 VIU_3rdRSeatBackrestMotPosnStepSet "三排右座椅靠背角度步进调节设置";
+CM_ SG_ 917 VIU_3rdRSeatFoldFunSet "三排右座椅折叠功能设置";
+CM_ SG_ 917 VIU_3rdLSeatFoldFunSet "三排左座椅折叠功能设置";
+CM_ SG_ 917 VIU_3rdLSeatBackrestMotPosnStepSet "三排左座椅靠背角度步进调节设置";
+CM_ SG_ 917 VIU_3rdLSeatBackrestMotPosnSet "三排左座椅靠背角度位置信号设置";
+CM_ SG_ 740 VIU_3rdLSeatStopAdjustCmd "三排左侧座椅停止调节设置指令";
+CM_ SG_ 740 VIU_3rdRSeatStopAdjustCmd "三排右侧座椅停止调节设置指令";
+CM_ "Version:V1.0.0,Date:2026/2/10,Author:yuzheyu,Review:,Approval:向宇设变,Description:(PSM)1、VIU_DSM_0x39A新增信号VIU_DrvrSeatStopAdjustCmd，VIU_Set1_3C0新增信号VIU_PassSeatStopAdjustCmd，VIU_LRSM_0x3D1新增信号VIU_ReleSeatStopAdjustCmd，VIU_RRSM_0x3E5新怎信号VIU_ReRiSeatStopAdjustCmd，VIU_RTSM_2E4新增信号VIU_3rdLSeatStopAdjustCmd，VIU_3rdRSeatStopAdjustCmd，VIU_RRSM_0x396新增信号VIU_ReRiSeatYAxisMotPosnSet，RRSM_St_0x555新增信号RRSM_YAxisMotPosn，VIU_RRSM_0x396新增信号VIU_ReRiSeatYAxisMotPosnStepSet，VIU_RTSM_0x395新增信号VIU_3rdRSeatBackrestMotPosnSet，VIU_3rdRSeatBackrestMotPosnStepSet，VIU_3rdLSeatBackrestMotPosnStepSet，VIU_3rdLSeatBackrestMotPosnSet，VIU_3rdRSeatFoldFunSet，VIU_3rdLSeatFoldFunSet，新增报文RTSM_St_0x554，涉及DSM,PSM,RRSM,RRSM_5Seat,VIU0_IP_EV,VIU0_IP_EVR,VIU1_CABIN；
+2、取消报文VIU_RRSM_0x3E5中的RRSM_AP_current_slide，RRSM_AP_hall_slide，RRSM_ApTrigReasonSlide，新增报文RRSM_0x652，报文中新增信号RRSM_AP_current_slide，RRSM_AP_hall_slide，RRSM_ApTrigReasonSlide，涉及RRSM,VIU1_CABIN；;
+Version:V1.1.0,Date:2026/3/13,Author:yuzheyu,Review:,Approval:向宇设变,Description:(PSM)1、报文RRSM_Ctrl_573中新增信号VIU_RRSeatFootSupportMotPosnStepSet，VIU_RRSeatFootSupportMotPosnSet,涉及VIU1_CABIN,PSM；
+2、报文PSM_0x2F3中新增信号PSM_RRSeatFootSupportMotPosn，PSM_AP_current_RRSeatFootSupport，涉及VIU1_CABIN,PSM；
+3、报文RRSM_0x652中新增信号RRSM_RRSeatFootSupportMotPosnStepRq，涉及VIU1_CABIN2,RRSM,RRSM_5Seat；
+4、报文PSM_0x5FB中新增信号PSM_AP_hall_RRSeatFootSupport，PSM_ApTrigReasonRRSeatFootSupport，涉及涉及VIU1_CABIN,PSM；;
+Version:V1.1.0,Date:2026/3/17,Author:yuzheyu,Review:,Approval:向宇设变,Description:(PSM)1、报文PSM_0x5FB中新增信号PSM_ZeroGravityUnfoldBtn,PSM_ZeroGravityFoldBtn,PSM_ZeroGravityFoldSt,报文VIU_3A4中新增信号VIU_PsmZeroGravityFoldFunSet,涉及VIU1_CABIN,PSM；
+2、报文RRSM_St_546中新增信号RRSM_ZeroGravityUnfold，RRSM_ZeroGravityFold,RRSM_ReliSeatLinkageSt,报文RRSM_St2_0x557中新增信号RRSM_ZeroGravityFoldSt，涉及VIU1_CABIN2,RRSM,RRSM_5Seat；
+3、报文VIU_CDC_0x3AD中新增信号VIU_ZeroGravityFoldFunSet，涉及VIU1_CABIN2,RRSM,RRSM_5Seat；
+4、报文VIU_RRSM_0x396中新增信号VIU_ReRiSeatLinkageSet,涉及VIU1_CABIN2,RRSM,RRSM_5Seat；;
+Version:V1.1.2,Date:2026/3/20,Author:yuzheyu,Review:,Approval:向宇设变,Description:(PSM)1、报文VIU_Set1_3C0中新增信号VIU_PassbackrestHeatgLvl,VIU_PasscushionHeatgLvl,涉及VIU1_CABIN,PSM；
+2、报文PSM_St2_0x556中新增信号PSM_PassSeatbackrestHeatgSts，PSM_PassSeatcushionHeatgSts.涉及VIU1_CABIN,PSM；
+3、报文VIU_RRSM_0x396中新增信号VIU_ReRiSeatCushTiltMotPosnStepSet，涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+4、报文VIU_RRSM_0x3E5中新增信号VIU_ReRibackrestHeatgLvl，VIU_ReRicushionHeatgLvl,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+5、报文VIU_LRSM_0x3D1中新增信号VIU_RLZeroGravityFoldFunSet,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+6、报文RRSM_St_546中新增信号RRSM_ReRiSeatbackrestHeatgSts,RRSM_ReRiSeatcushionHeatgSts,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+7、报文LRSM_St_0x3D2中新增信号LRSM_ReLeSeatbackrestHeatgSts,LRSM_ReLeSeatcushionHeatgSts,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+8、报文VIU_DSM_0x39A中新增信号VIU_DrvrSeatLegSupportMotPosnStepSet，VIU_DrvrSeatLegExtnMotPosnStepSet,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+9、报文VIU_Ctrl_0x39E中新增信号VIU_DrvrSeatbackrestHeatgLvl,VIU_DrvrSeatcushionHeatgLvl,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+10、报文VIU_LRSM_0x3D5中新增信号VIU_ReLeSeatbackrestHeatgLvl，VIU_ReLeSeatcushionHeatgLvl,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+11、报文DSM_St_0x576中新增信号DSM_DrvrSeatbackrestHeatgSts，DSM_DrvrSeatcushionHeatgSts,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；;
+Version:V2.1.0,Date:2026/4/7,Author:yuzheyu,Review:,Approval:王潜需求(调试需求）,Description:(PSM)1、VIU0_IP新增发送VIU0_Rx_Debug_091、VIU0_Snd_Debug_092、VIU0_Rx_Debug_093、VIU0_Snd_Debug_094、VIU0_Rx_Debug_095、VIU0_Snd_Debug_096调试报文,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+2、VIU1_CABIN新增发送VIU1_Rx_Debug_091、VIU1_Snd_Debug_092、VIU1_Rx_Debug_0BE、VIU1_Snd_Debug_0BF调试报文,涉及PSM,VIU1_CABIN；;
+ ";
+CM_ BO_ 419 "已对齐，仅是状态呈报信号，无交互功能，测试不做处理";
+CM_ BO_ 420 "已对齐，仅是状态呈报信号，无交互功能，测试不做处理";
+CM_ BO_ 145 "右侧车窗标定维测，事件触发";
+CM_ BO_ 190 "尾门防夹调试接收报文";
+CM_ SG_ 419 PSM_AP_current_slide "副驾座椅水平电机电流值";
+CM_ SG_ 419 PSM_AP_hall_slide "副驾座椅水平电机hall周期";
+CM_ SG_ 419 PSM_AP_current_recline "副驾座椅靠背电机电流值";
+CM_ SG_ 419 PSM_AP_hall_recline "副驾座椅靠背电机hall周期";
+CM_ SG_ 419 PSM_AP_current_cushion "副驾座椅抬升电机电流值";
+CM_ SG_ 419 PSM_AP_hall_cushion "副驾座椅抬升电机hall周期";
+CM_ SG_ 419 PSM_AP_current_LegUD "副驾座椅腿托旋转电机电流值";
+CM_ SG_ 419 PSM_AP_hall_LegUD "副驾座椅腿托旋转电机hall周期";
+CM_ SG_ 1363 PSM_CtrlSts "副驾座椅控制状态";
+CM_ SG_ 1363 PSM_AntiPinchSts "副驾防夹状态";
+CM_ SG_ 1363 PSM_HeatProtectionSts "副驾热保护状态";
+CM_ SG_ 1363 PSM_SLCUotPosn "副驾座椅前后位置";
+CM_ SG_ 1363 PSM_BackrestMotPosn "副驾座椅靠背角度位置";
+CM_ SG_ 1363 PSM_CushHeiMotPosn "副驾座椅座垫高度位置";
+CM_ SG_ 1363 PSM_CushTiltMotPosn "副驾座椅座垫倾斜位置";
+CM_ SG_ 1363 PSM_LegSupportMotPosn "副驾座椅腿托角度位置";
+CM_ SG_ 1363 PSM_SpindleMotPosn "副驾座椅折叠（Spindle）位置";
+CM_ SG_ 1363 PSM_InitSts "副驾座椅初始化状态";
+CM_ SG_ 1363 PSM_WarningReq "副驾座椅告警请求";
+CM_ SG_ 1363 PSM_HeatgSts "副驾座椅加热状态";
+CM_ SG_ 1363 PSM_HeatFltSts "副驾座椅加热故障状态";
+CM_ SG_ 420 PSM_ApTrigReasonSlide "副驾水平电机防夹标志";
+CM_ SG_ 420 PSM_ApTrigReasonRecline "副驾靠背电机防夹标志";
+CM_ SG_ 420 PSM_ApTrigReasonHeight "副驾高度电机防夹标志";
+CM_ SG_ 420 PSM_ApTrigReasonLegUD "副驾腿托翻转电机防夹标志";
+CM_ SG_ 420 PSM_ApTrigReasonLegFB "副驾腿托伸缩电机防夹标志";
+CM_ SG_ 420 PSM_AP_current_LegFB "副驾座椅腿托伸缩电机电流值";
+CM_ SG_ 420 PSM_AP_hall_LegFB "副驾座椅腿托伸缩电机hall周期";
+CM_ SG_ 420 PSM_HeatingCtr_recline "副驾座椅靠背加热控制";
+CM_ SG_ 420 PSM_HeatingCtr_cushion "副驾座椅坐垫加热控制";
+CM_ SG_ 420 PSM_HeatT_recline "副驾座椅靠背加热温度";
+CM_ SG_ 420 PSM_HeatT_cushion "副驾座椅坐垫加热温度";
+CM_ SG_ 420 PSM_AP_current_cushionAngle "副驾座椅前抬电机电流值";
+CM_ SG_ 420 PSM_ApTrigReasoncushionAngle "副驾座椅前抬电机防夹标志";
+CM_ SG_ 1366 PSM_VentnSts "副驾座椅通风状态";
+CM_ SG_ 1366 PSM_VentnFltSts "副驾座椅通风故障状态";
+CM_ SG_ 1366 PSM_PassSeatforbiddenReasonSt "一键禁止原因";
+CM_ SG_ 1366 PSM_PassSeatfoldSt "副驾座椅折叠功能状态";
+CM_ SG_ 1366 PSM_PassSeatLinkageSt "副驾联动状态上报";
+CM_ SG_ 1366 PSM_DevSupportSts "副驾Mlink支架状态";
+CM_ SG_ 1366 PSM_DevLinkSts "副驾Mlink设备状态";
+CM_ SG_ 1366 PSM_ChargeSts "副驾Mlink供电状态";
+CM_ SG_ 1366 PSM_PassSeatfoldSwtSts "副驾座椅折叠开关状态";
+CM_ SG_ 1366 PSM_LegExtnMotPosn "副驾座椅腿托延伸位置";
+CM_ SG_ 1366 PSM_HeatingCtr "副驾座椅加热控制";
+CM_ SG_ 1366 PSM_HeatT "副驾座椅加热温度";
+CM_ SG_ 1366 PSM_PassSeatbackrestHeatgSts "副驾座椅靠背加热状态";
+CM_ SG_ 1366 PSM_PassSeatcushionHeatgSts "副驾座椅坐垫加热状态";
+CM_ SG_ 1366 PSM_AP_hall_cushionAngle "副驾座椅前抬电机hall周期";
+CM_ SG_ 755 PSM_RRSeatFootSupportMotPosn "二排右侧座椅脚托位置";
+CM_ SG_ 755 PSM_AP_current_RRSeatFootSupport "二排右侧座椅脚托电机电流值";
+CM_ SG_ 1531 PSM_ZeroGravityUnfoldBtn "副驾零重力座椅展开开关";
+CM_ SG_ 1531 PSM_ZeroGravityFoldBtn "副驾零重力座椅折叠开关";
+CM_ SG_ 1531 PSM_ZeroGravityFoldSt "副驾零重力折叠状态";
+CM_ SG_ 1531 PSM_AP_hall_RRSeatFootSupport "二排右侧座椅脚托电机hall周期";
+CM_ SG_ 1531 PSM_ApTrigReasonRRSeatFootSupport "二排右侧座椅脚托电机防夹标志";
+CM_ SG_ 1482 PSM_TotalFaultNum "当前故障总数";
+CM_ SG_ 1482 PSM_FrameIndex "帧序号";
+CM_ SG_ 1482 PSM_SupplierNum "供应商代码";
+CM_ SG_ 1482 PSM_FaultNum1 "故障列表1";
+CM_ SG_ 1482 PSM_FaultNum2 "故障列表2";
+CM_ SG_ 1482 PSM_FaultNum3 "故障列表3";
+CM_ SG_ 1482 PSM_FaultNum4 "故障列表4";
+CM_ SG_ 1386 PSM_SupplierCode "供应商代号";
+CM_ SG_ 1386 PSM_HwVersion "硬件版本号";
+CM_ SG_ 1386 PSM_SwMajorVersion "软件主版本号";
+CM_ SG_ 1386 PSM_SwMinorVersion "软件子版本号";
+CM_ SG_ 1386 PSM_SwPatchVersion "软件补充版本号";
+CM_ SG_ 1386 PSM_SwVersionYear "软件版本年-2000";
+CM_ SG_ 1386 PSM_SwVersionMonth "软件版本月";
+CM_ SG_ 1386 PSM_SwVersionDay "软件版本日";
+CM_ SG_ 1113 PSM_SourceNodeIdentifier "源节点ID";
+CM_ SG_ 1113 PSM_RepeatMessageRequestBit "重复报文请求位";
+CM_ SG_ 1113 PSM_ActiveWakeupBit "主动唤醒标志位";
+CM_ SG_ 1113 PSM_RepeatSts "重复报文状态";
+CM_ SG_ 1113 PSM_NMReq_Poweron "因唤醒硬线ON请求网络";
+CM_ SG_ 1113 PSM_NMReq_Diag "因诊断请求网络";
+CM_ SG_ 1113 PSM_NMReq_NM "因被NM报文唤醒请求网络";
+CM_ SG_ 1113 PSM_NMReq_MovgOrPosnStorg "因座椅运动或位置记忆未完成请求网络";
+CM_ SG_ 1113 PSM_FirstWakeupReason "PSM首次唤醒原因";
+CM_ SG_ 1935 Diag_PhyResp_PSM_Data "Diagnostic Physical Request Data from PSM";
+CM_ SG_ 145 VIU1_Rx_Debug_091_Window "VIU1_Rx_Debug_091_Window";
+CM_ SG_ 190 VIU1_Rx_Debug_0BE_Gate "VIU1_Rx_Debug_0BE_Gate";
+CM_ SG_ 932 ADS_ZeGrvySeatPreCrash "预碰撞零重力座椅调直";
+CM_ SG_ 932 VIU_PsmZeroGravityFoldFunSet "副驾零重力折叠功能设置";
+CM_ SG_ 939 ABM_CrashSt "碰撞状态";
+CM_ SG_ 939 VIU_PassSeatOccptSt "副驾占位状态";
+CM_ SG_ 939 VIU_PassSeatBltSt "副驾安全带状态";
+CM_ SG_ 939 VIU_PassSeatSLCUotPosnStepSet "副驾座椅前后方向步进调节设置";
+CM_ SG_ 939 VIU_PassSeatBackrestMotPosnStepSet "副驾座椅靠背角度步进调节设置";
+CM_ SG_ 939 VIU_PassSeatCushHeiMotPosnStepSet "副驾座椅坐垫高度步进调节设置";
+CM_ SG_ 939 VIU_PassSeatCushTiltMotPosnStepSet "副驾座椅坐垫角度步进调节设置";
+CM_ SG_ 939 VIU_PassSeatLegSupportMotPosnStepSet "副驾座椅腿托角度步进设置";
+CM_ SG_ 939 VIU_PassSeatFoldFunSet "副驾座椅折叠功能设置";
+CM_ SG_ 939 VIU_PassSeatLinkageSet "副驾联动设置";
+CM_ SG_ 939 VIU_PsOpenSt "幕布开关状态";
+CM_ SG_ 939 VIU_PsAdjSt "投影幕布可调节状态";
+CM_ SG_ 939 VIU_PassSeatLegExtnMotPosnSet "副驾座椅腿托延伸位置设置";
+CM_ SG_ 939 VIU_PassSeatLegExtnMotPosnStepSet "副驾座椅腿托延伸步进设置";
+CM_ SG_ 916 VIU_PassengerPresent "副驾驶在位";
+CM_ SG_ 916 VIU_PassSeatSLCUotPosnSet "副驾座椅前后位置设置";
+CM_ SG_ 916 VIU_PassSeatBackrestMotPosnSet "副驾座椅靠背角度位置设置";
+CM_ SG_ 916 VIU_PassSeatCushHeiMotPosnSet "副驾座椅座垫高度位置设置";
+CM_ SG_ 916 VIU_PassSeatCushTiltMotPosnSet "副驾座椅座垫倾斜位置设置";
+CM_ SG_ 916 VIU_PassSeatLegSupportMotPosnSet "副驾座椅腿托角度位置设置";
+CM_ SG_ 916 VIU_PassSeatSpindleMotPosnSet "副驾座椅折叠（Spindle）位置设置";
+CM_ SG_ 916 VIU_PassSeatHeatgReq "副驾座椅加热请求";
+CM_ SG_ 916 VIU_PassSeatVentnReq "副驾座椅通风请求";
+CM_ SG_ 916 VIU_PSMPwrReq "副驾MLink供电开启关闭指令";
+CM_ SG_ 960 VIU_PassbackrestHeatgLvl "副驾座椅靠背加热控制";
+CM_ SG_ 960 VIU_PasscushionHeatgLvl "副驾座椅坐垫加热控制";
+CM_ SG_ 960 VIU_PassSeatStopAdjustCmd "副驾座椅停止调节设置指令";
+CM_ SG_ 1807 Diag_PhyReq_PSM_Data "Diagnostic Physical Request Data from PSM";
+CM_ SG_ 1367 RRSM_ZeroGravityFoldSt "二排右零重力折叠状态";
+CM_ SG_ 1395 VIU_RRSeatFootSupportMotPosnStepSet "二排右侧座椅脚托位置步进调节设置";
+CM_ SG_ 1395 VIU_RRSeatFootSupportMotPosnSet "二排右侧座椅脚托位置设置";
+CM_ " ";
+CM_ SG_ 1556 RCLM_RR1_TotalFaultNum "当前故障总数";
+CM_ SG_ 1556 RCLM_RR1_FrameIndex "帧序号";
+CM_ SG_ 1556 RCLM_RR1_SupplierNum "供应商代码";
+CM_ SG_ 1556 RCLM_RR1_FaultNum1 "故障列表1";
+CM_ SG_ 1556 RCLM_RR1_FaultNum2 "故障列表2";
+CM_ SG_ 1556 RCLM_RR1_FaultNum3 "故障列表3";
+CM_ SG_ 1556 RCLM_RR1_FaultNum4 "故障列表4";
+CM_ SG_ 1659 Diag_Resp_RCLM_RR1_Data "Diagnostic Physical Request Data from RCLM_RR1";
+CM_ SG_ 1067 RCLM_RR1_SourceNodeIdentifier "源节点ID";
+CM_ SG_ 1067 RCLM_RR1_RepeatMessageRequestBit "重复报文请求位";
+CM_ SG_ 1067 RCLM_RR1_ActiveWakeupBit "主动唤醒标志位";
+CM_ SG_ 1067 RCLM_RR1_RepeatSts "重复报文状态";
+CM_ SG_ 1067 RCLM_RR1_NMReq_Poweron "因唤醒硬线ON请求网络";
+CM_ SG_ 1067 RCLM_RR1_NMReq_Diag "因诊断请求网络";
+CM_ SG_ 1067 RCLM_RR1_NMReq_NM "因被NM报文唤醒请求网络";
+CM_ SG_ 1067 RCLM_RR1_FirstWakeupReason "RCLM_RR1首次唤醒原因";
+CM_ SG_ 344 RCLM_RR1_HallCounts "霍尔播报";
+CM_ SG_ 344 RCLM_RR1_CtrlSts "右后靠背电机1控制状态";
+CM_ SG_ 344 RCLM_RR1_BackrestMotFltSts "右后靠背电机1故障状态";
+CM_ SG_ 344 RCLM_RR1_InitSts "右后靠背电机1初始化状态";
+CM_ SG_ 344 RCLM_RR1_PrecrashSts "右后靠背电机1反馈Precrash执行状态";
+CM_ SG_ 344 RCLM_RR1_BackrestMotPosn "右后靠背电机1反馈二排右边座椅靠背角度位置";
+CM_ SG_ 344 RCLM_RR1_AntiPinchSts "右后靠背电机1防夹状态";
+CM_ SG_ 344 RCLM_RR1_BackrestMotAngle "右后靠背电机1靠背角度计算";
+CM_ SG_ 344 RCLM_RR1_HeatProtectionSts "右后靠背电机1热保护状态";
+CM_ SG_ 1651 Diag_PhyReq_RCLM_RR1_Data "Diagnostic Physical Request Data to RCLM_RR1";
+CM_ SG_ 342 RRSM_CushionAngle "二排右边座椅坐垫角度";
+CM_ SG_ 342 RRSM_RRSeatBackrestMotPosnSet "二排右侧座椅靠背角度位置设置";
+CM_ SG_ 342 RRSM_RRSeatBackrestMotPosnStepSet "二排右侧座椅靠背角度步进调节设置";
+CM_ "Version:V1.0.0,Date:2026/2/10,Author:yuzheyu,Review:,Approval:向宇设变,Description:(RRSM)1、VIU_DSM_0x39A新增信号VIU_DrvrSeatStopAdjustCmd，VIU_Set1_3C0新增信号VIU_PassSeatStopAdjustCmd，VIU_LRSM_0x3D1新增信号VIU_ReleSeatStopAdjustCmd，VIU_RRSM_0x3E5新怎信号VIU_ReRiSeatStopAdjustCmd，VIU_RTSM_2E4新增信号VIU_3rdLSeatStopAdjustCmd，VIU_3rdRSeatStopAdjustCmd，VIU_RRSM_0x396新增信号VIU_ReRiSeatYAxisMotPosnSet，RRSM_St_0x555新增信号RRSM_YAxisMotPosn，VIU_RRSM_0x396新增信号VIU_ReRiSeatYAxisMotPosnStepSet，VIU_RTSM_0x395新增信号VIU_3rdRSeatBackrestMotPosnSet，VIU_3rdRSeatBackrestMotPosnStepSet，VIU_3rdLSeatBackrestMotPosnStepSet，VIU_3rdLSeatBackrestMotPosnSet，VIU_3rdRSeatFoldFunSet，VIU_3rdLSeatFoldFunSet，新增报文RTSM_St_0x554，涉及DSM,PSM,RRSM,RRSM_5Seat,VIU0_IP_EV,VIU0_IP_EVR,VIU1_CABIN；
+2、取消报文VIU_RRSM_0x3E5中的RRSM_AP_current_slide，RRSM_AP_hall_slide，RRSM_ApTrigReasonSlide，新增报文RRSM_0x652，报文中新增信号RRSM_AP_current_slide，RRSM_AP_hall_slide，RRSM_ApTrigReasonSlide，涉及RRSM,VIU1_CABIN；;
+Version:V1.0.0,Date:2026/2/10,Author:yuzheyu,Review:,Approval:梁龙凯设变,Description:(RRSM)1、节点RCLM新增报文TBOX_TimeInfo_0x5E2,VIU_Info_0x1D2,VIU_3A4,VIU_0x3AE,RCLM_RR1_DTC_614,Diag_PhyReq_RCLM_RR1_0x673,Diag_Resp_RCLM_RR1_0x67B,NM_Autosar_RCLM_RR1_0x42B,VIU_CDC_0x3AB,RRSM_St_156,RCLM_RR1_St_0x158,Diag_FuncReq_0x7DF;
+Version:V1.1.0,Date:2026/3/6,Author:yuzheyu,Review:,Approval:配置表变更,Description:(RRSM)1、新增VIU1_CABIN2网段，WWD,FOT节点,将RRSM,RRSM_5Seat到CABIN2网段，参考L97调整相关信号；;
+Version:V1.1.0,Date:2026/3/17,Author:yuzheyu,Review:,Approval:向宇设变,Description:(RRSM)1、报文PSM_0x5FB中新增信号PSM_ZeroGravityUnfoldBtn,PSM_ZeroGravityFoldBtn,PSM_ZeroGravityFoldSt,报文VIU_3A4中新增信号VIU_PsmZeroGravityFoldFunSet,涉及VIU1_CABIN,PSM；
+2、报文RRSM_St_546中新增信号RRSM_ZeroGravityUnfold，RRSM_ZeroGravityFold,RRSM_ReliSeatLinkageSt,报文RRSM_St2_0x557中新增信号RRSM_ZeroGravityFoldSt，涉及VIU1_CABIN2,RRSM,RRSM_5Seat；
+3、报文VIU_CDC_0x3AD中新增信号VIU_ZeroGravityFoldFunSet，涉及VIU1_CABIN2,RRSM,RRSM_5Seat；
+4、报文VIU_RRSM_0x396中新增信号VIU_ReRiSeatLinkageSet,涉及VIU1_CABIN2,RRSM,RRSM_5Seat；;
+Version:V1.1.2,Date:2026/3/20,Author:yuzheyu,Review:,Approval:向宇设变,Description:(RRSM)1、报文VIU_Set1_3C0中新增信号VIU_PassbackrestHeatgLvl,VIU_PasscushionHeatgLvl,涉及VIU1_CABIN,PSM；
+2、报文PSM_St2_0x556中新增信号PSM_PassSeatbackrestHeatgSts，PSM_PassSeatcushionHeatgSts.涉及VIU1_CABIN,PSM；
+3、报文VIU_RRSM_0x396中新增信号VIU_ReRiSeatCushTiltMotPosnStepSet，涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+4、报文VIU_RRSM_0x3E5中新增信号VIU_ReRibackrestHeatgLvl，VIU_ReRicushionHeatgLvl,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+5、报文VIU_LRSM_0x3D1中新增信号VIU_RLZeroGravityFoldFunSet,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+6、报文RRSM_St_546中新增信号RRSM_ReRiSeatbackrestHeatgSts,RRSM_ReRiSeatcushionHeatgSts,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+7、报文LRSM_St_0x3D2中新增信号LRSM_ReLeSeatbackrestHeatgSts,LRSM_ReLeSeatcushionHeatgSts,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+8、报文VIU_DSM_0x39A中新增信号VIU_DrvrSeatLegSupportMotPosnStepSet，VIU_DrvrSeatLegExtnMotPosnStepSet,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+9、报文VIU_Ctrl_0x39E中新增信号VIU_DrvrSeatbackrestHeatgLvl,VIU_DrvrSeatcushionHeatgLvl,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+10、报文VIU_LRSM_0x3D5中新增信号VIU_ReLeSeatbackrestHeatgLvl，VIU_ReLeSeatcushionHeatgLvl,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+11、报文DSM_St_0x576中新增信号DSM_DrvrSeatbackrestHeatgSts，DSM_DrvrSeatcushionHeatgSts,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；;
+ ";
+CM_ BO_ 988 "已对齐，仅是状态呈报信号，无交互功能，测试不做处理";
+CM_ BO_ 984 "已对齐，仅是状态呈报信号，无交互功能，测试不做处理";
+CM_ SG_ 1390 RRSM_SupplierCode "供应商代号";
+CM_ SG_ 1390 RRSM_HwVersion "硬件版本号";
+CM_ SG_ 1390 RRSM_SwMajorVersion "软件主版本号";
+CM_ SG_ 1390 RRSM_SwMinorVersion "软件子版本号";
+CM_ SG_ 1390 RRSM_SwPatchVersion "软件补充版本号";
+CM_ SG_ 1390 RRSM_SwVersionYear "软件版本年-2000";
+CM_ SG_ 1390 RRSM_SwVersionMonth "软件版本月";
+CM_ SG_ 1390 RRSM_SwVersionDay "软件版本日";
+CM_ SG_ 1343 RTSM_3ndLeftSeatDetectSts "第三排左侧座椅检测状态";
+CM_ SG_ 1343 RTSM_3ndRightSeatDetectSts "第三排右侧座椅检测状态";
+CM_ SG_ 1618 RRSM_AP_current_slide "中右零重力座椅水平电机电流值(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1618 RRSM_AP_hall_slide "中右零重力座椅水平电机hall周期(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1618 RRSM_ApTrigReasonSlide "中右零重力靠水平机防夹标志(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1618 RRSM_RRSeatFootSupportMotPosnStepRq "二排右侧座椅脚托位置步进调节请求";
+CM_ SG_ 1365 RRSM_CtrlSts "二排右边座椅控制状态";
+CM_ SG_ 1365 RRSM_AntiPinchSts "二排右侧座椅防夹状态";
+CM_ SG_ 1365 RRSM_HeatProtectionSts "二排右侧座椅热保护状态";
+CM_ SG_ 1365 RRSM_SLCUotPosn "二排右边座椅前后位置";
+CM_ SG_ 1365 RRSM_BackrestMotPosn "二排右边座椅靠背角度位置";
+CM_ SG_ 1365 RRSM_LegSupportMotPosn "二排右边座椅腿托角度位置";
+CM_ SG_ 1365 RRSM_LegExtnMotPosn "二排右边座椅腿托延伸位置";
+CM_ SG_ 1365 RRSM_CushTiltMotPosn "二排右边座椅座垫倾斜位置";
+CM_ SG_ 1365 RRSM_YAxisMotPosn "二排右侧座椅横向调节位置";
+CM_ SG_ 1365 RRSM_ArmRestMotPosn "二排右边座椅扶手位置";
+CM_ SG_ 1365 RRSM_InitSts "二排右边座椅初始化状态";
+CM_ SG_ 1365 RRSM_WarningReq "二排右侧座椅告警请求";
+CM_ SG_ 1365 RRSM_HeatgSts "二排右侧座椅加热状态";
+CM_ SG_ 1365 RRSM_HeatFltSts "二排右侧座椅加热故障状态";
+CM_ SG_ 1365 RRSM_RRSeatDetectSts "二排座椅右边乘员检测状态";
+CM_ SG_ 1350 RRSM_SeatAngleMotPosn "二排右侧座椅角度倾斜位置";
+CM_ SG_ 1350 RRSM_ZeroGravityUnfold "二排右侧零重力座椅展开开关（车门）";
+CM_ SG_ 1350 RRSM_ZeroGravityFold "二排右侧零重力座椅折叠开关（车门）";
+CM_ SG_ 1350 RRSM_ReRiSeatbackrestHeatgSts "二排右侧座椅靠背加热状态";
+CM_ SG_ 1350 RRSM_ReRiSeatcushionHeatgSts "二排右侧座椅坐垫加热状态";
+CM_ SG_ 1350 RRSM_HeatingCtr_recline "二排右座椅靠背加热控制(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1350 RRSM_HeatingCtr_cushion "二排右座椅坐垫加热控制(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1350 RRSM_HeatT_recline "二排右座椅靠背加热温度(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1350 RRSM_HeatT_cushion "二排右座椅坐垫加热温度(已对齐，仅是状态呈报信号，无交互功能，测试不做处理)";
+CM_ SG_ 1350 RRSM_ReliSeatLinkageSt "二排右侧座椅联动状态上报";
+CM_ SG_ 988 RRSM_AP_current_LegUD "中右零重力座椅腿托翻转电机电流值";
+CM_ SG_ 988 RRSM_AP_hall_LegUD "中右零重力座椅腿托翻转电机hall周期";
+CM_ SG_ 988 RRSM_ApTrigReasonLegUD "中右零重力靠腿托翻转机防夹标志";
+CM_ SG_ 988 RRSM_AP_current_LegFB "中右零重力座椅腿托伸缩电机电流值";
+CM_ SG_ 988 RRSM_AP_hall_LegFB "中右零重力座椅腿托伸缩电机hall周期";
+CM_ SG_ 988 RRSM_ApTrigReasonLegFB "中右零重力座椅腿托伸缩电机防夹标志";
+CM_ SG_ 988 RRSM_AP_current_cushionAngle "中右零重力座椅前抬电机电流值";
+CM_ SG_ 988 RRSM_AP_hall_cushionAngle "中右零重力座椅前抬电机hall周期";
+CM_ SG_ 988 RRSM_ApTrigReasoncushionAngle "中右零重力座椅前抬电机防夹标志";
+CM_ SG_ 984 RRSM_AP_current_LArmRest "中右零重力座椅左扶手电机电流值";
+CM_ SG_ 984 RRSM_AP_hall_LArmRest "中右零重力座椅左扶手电机hall周期";
+CM_ SG_ 984 RRSM_ApTrigReasonLArmRest "中右零重力座椅左扶手电机防夹标志";
+CM_ SG_ 984 RRSM_AP_current_RArmRest "中右零重力座椅右扶手电机电流值";
+CM_ SG_ 984 RRSM_AP_hall_RArmRest "中右零重力座椅右扶手电机hall周期";
+CM_ SG_ 984 RRSM_ApTrigReasonRArmRest "中右零重力座椅右扶手电机防夹标志";
+CM_ SG_ 984 RRSM_AP_current_YAxis "中右零重力座椅横向电机电流值";
+CM_ SG_ 984 RRSM_AP_hall_YAxis "中右零重力座椅横向电机hall周期";
+CM_ SG_ 984 RRSM_ApTrigReasonYAxis "中右零重力座椅横向电机防夹标志";
+CM_ SG_ 1367 RRSM_VentnSts "二排右侧座椅通风状态";
+CM_ SG_ 1367 RRSM_VentnFltSts "二排右侧座椅通风故障状态";
+CM_ SG_ 1367 RRSM_ZeroGravityforbiddenReasonSt "一键禁止原因";
+CM_ SG_ 1367 RRSM_DevSupportSts "二排右Mlink支架状态";
+CM_ SG_ 1367 RRSM_DevLinkSts "二排右Mlink设备状态";
+CM_ SG_ 1367 RRSM_ChargeSts "二排右Mlink供电状态";
+CM_ SG_ 1367 RRSM_L_ArmRestMotPosn "二排右边座椅左扶手位置";
+CM_ SG_ 1367 RRSM_HeatT "二排右座椅加热温度";
+CM_ SG_ 1367 RRSM_HeatingCtr "二排右座椅加热控制";
+CM_ SG_ 1367 RRSM_AP_current_recline "二排右座椅靠背电机电流值（已对齐，仅是状态呈报信号，无交互功能，测试不做处理）";
+CM_ SG_ 1367 RRSM_AP_hall_recline "二排右座椅靠背电机hall周期（已对齐，仅是状态呈报信号，无交互功能，测试不做处理）";
+CM_ SG_ 1367 RRSM_ApTrigReasonRecline "二排右副驾靠背电机防夹标志（已对齐，仅是状态呈报信号，无交互功能，测试不做处理）";
+CM_ SG_ 1517 RRSM_TotalFaultNum "当前故障总数";
+CM_ SG_ 1517 RRSM_FrameIndex "帧序号";
+CM_ SG_ 1517 RRSM_SupplierNum "供应商代码";
+CM_ SG_ 1517 RRSM_FaultNum1 "故障列表1";
+CM_ SG_ 1517 RRSM_FaultNum2 "故障列表2";
+CM_ SG_ 1517 RRSM_FaultNum3 "故障列表3";
+CM_ SG_ 1517 RRSM_FaultNum4 "故障列表4";
+CM_ SG_ 1115 RRSM_SourceNodeIdentifier "源节点ID";
+CM_ SG_ 1115 RRSM_RepeatMessageRequestBit "重复报文请求位";
+CM_ SG_ 1115 RRSM_ActiveWakeupBit "主动唤醒标志位";
+CM_ SG_ 1115 RRSM_RepeatSts "重复报文状态";
+CM_ SG_ 1115 RRSM_NMReq_Poweron "因唤醒硬线ON请求网络";
+CM_ SG_ 1115 RRSM_NMReq_Diag "因诊断请求网络";
+CM_ SG_ 1115 RRSM_NMReq_NM "因被NM报文唤醒请求网络";
+CM_ SG_ 1115 RRSM_NMReq_MovgOrPosnStorg "因座椅运动或位置记忆未完成请求网络";
+CM_ SG_ 1115 RRSM_FirstWakeupReason "RRSM首次唤醒原因";
+CM_ SG_ 1990 Diag_PhyResp_RRSM_Data "Diagnostic Physical Request Data to RRSM";
+CM_ SG_ 943 BMS_OperSt "BMS工作状态";
+CM_ SG_ 941 VIU_ZeroGravityFoldFunSet "二排右零重力折叠功能设置";
+CM_ SG_ 941 VIU_ReRiSeatSLCUotPosnStepSet "二排右侧座椅前后方向步进调节设置";
+CM_ SG_ 941 VIU_ReRiSeatBackrestMotPosnStepSet "二排右侧座椅靠背角度步进调节设置";
+CM_ SG_ 941 VIU_ReRiSeatLegSupportMotPosnStepSet "二排右侧座椅腿托角度步进设置";
+CM_ SG_ 941 VIU_ReRiSeatLegExtnMotPosnStepSet "二排右侧座椅腿托延伸步进设置";
+CM_ SG_ 918 VIU_RRSMPwrReq "二排右MLink供电开启关闭指令";
+CM_ SG_ 918 VIU_ReRiSeatLinkageSet "二排右侧座椅联动功能设置";
+CM_ SG_ 918 VIU_ReRiSeatSLCUotPosnSet "二排右侧座椅前后位置设置";
+CM_ SG_ 918 VIU_ReRiSeatBackrestMotPosnSet "二排右侧座椅靠背角度位置设置";
+CM_ SG_ 918 VIU_ReRiSeatLegExtnMotPosnSet "二排右侧座椅腿托延伸位置设置";
+CM_ SG_ 918 VIU_ReRiSeatLegSupportMotPosnSet "二排右边座椅腿托角度位置设置";
+CM_ SG_ 918 VIU_ReRiSeatCushTiltMotPosnSet "二排右侧座椅座垫倾斜位置设置";
+CM_ SG_ 918 VIU_ReRiSeatYAxisMotPosnSet "二排右侧座椅横向调节位置设置";
+CM_ SG_ 918 VIU_ReRiSeatArmRestMotPosnSet "二排右侧座椅扶手位置设置";
+CM_ SG_ 918 VIU_ReRiSeatHeatgReq "二排右侧座椅加热请求";
+CM_ SG_ 918 VIU_ReRiSeatVentnReq "二排右侧座椅通风请求";
+CM_ SG_ 918 VIU_ReRiSeatCushTiltMotPosnStepSet "二排右侧座椅坐垫倾斜步进设置";
+CM_ SG_ 918 VIU_ReRiSeatYAxisMotPosnStepSet "二排右侧座椅横向调节步进设置";
+CM_ SG_ 997 VIU_ReRibackrestHeatgLvl "二排右座椅靠背加热控制";
+CM_ SG_ 997 VIU_ReRicushionHeatgLvl "二排右座椅坐垫加热控制";
+CM_ SG_ 997 VIU_ReRiSeatStopAdjustCmd "二排右侧座椅停止调节设置指令";
+CM_ SG_ 1862 Diag_PhyReq_RRSM_Data "Diagnostic Physical Request Data to RRSM";
+CM_ "Version:V1.0.0,Date:2026/2/10,Author:yuzheyu,Review:,Approval:向宇设变,Description:(RRSM_5Seat)1、VIU_DSM_0x39A新增信号VIU_DrvrSeatStopAdjustCmd，VIU_Set1_3C0新增信号VIU_PassSeatStopAdjustCmd，VIU_LRSM_0x3D1新增信号VIU_ReleSeatStopAdjustCmd，VIU_RRSM_0x3E5新怎信号VIU_ReRiSeatStopAdjustCmd，VIU_RTSM_2E4新增信号VIU_3rdLSeatStopAdjustCmd，VIU_3rdRSeatStopAdjustCmd，VIU_RRSM_0x396新增信号VIU_ReRiSeatYAxisMotPosnSet，RRSM_St_0x555新增信号RRSM_YAxisMotPosn，VIU_RRSM_0x396新增信号VIU_ReRiSeatYAxisMotPosnStepSet，VIU_RTSM_0x395新增信号VIU_3rdRSeatBackrestMotPosnSet，VIU_3rdRSeatBackrestMotPosnStepSet，VIU_3rdLSeatBackrestMotPosnStepSet，VIU_3rdLSeatBackrestMotPosnSet，VIU_3rdRSeatFoldFunSet，VIU_3rdLSeatFoldFunSet，新增报文RTSM_St_0x554，涉及DSM,PSM,RRSM,RRSM_5Seat,VIU0_IP_EV,VIU0_IP_EVR,VIU1_CABIN；
+2、取消报文VIU_RRSM_0x3E5中的RRSM_AP_current_slide，RRSM_AP_hall_slide，RRSM_ApTrigReasonSlide，新增报文RRSM_0x652，报文中新增信号RRSM_AP_current_slide，RRSM_AP_hall_slide，RRSM_ApTrigReasonSlide，涉及RRSM,VIU1_CABIN；;
+Version:V1.0.0,Date:2026/2/10,Author:yuzheyu,Review:,Approval:梁龙凯设变,Description:(RRSM_5Seat)1、节点RCLM新增报文TBOX_TimeInfo_0x5E2,VIU_Info_0x1D2,VIU_3A4,VIU_0x3AE,RCLM_RR1_DTC_614,Diag_PhyReq_RCLM_RR1_0x673,Diag_Resp_RCLM_RR1_0x67B,NM_Autosar_RCLM_RR1_0x42B,VIU_CDC_0x3AB,RRSM_St_156,RCLM_RR1_St_0x158,Diag_FuncReq_0x7DF;
+Version:V1.1.0,Date:2026/3/6,Author:yuzheyu,Review:,Approval:配置表变更,Description:(RRSM_5Seat)1、新增VIU1_CABIN2网段，WWD,FOT节点,将RRSM,RRSM_5Seat到CABIN2网段，参考L97调整相关信号；;
+Version:V1.1.0,Date:2026/3/17,Author:yuzheyu,Review:,Approval:向宇设变,Description:(RRSM_5Seat)1、报文PSM_0x5FB中新增信号PSM_ZeroGravityUnfoldBtn,PSM_ZeroGravityFoldBtn,PSM_ZeroGravityFoldSt,报文VIU_3A4中新增信号VIU_PsmZeroGravityFoldFunSet,涉及VIU1_CABIN,PSM；
+2、报文RRSM_St_546中新增信号RRSM_ZeroGravityUnfold，RRSM_ZeroGravityFold,RRSM_ReliSeatLinkageSt,报文RRSM_St2_0x557中新增信号RRSM_ZeroGravityFoldSt，涉及VIU1_CABIN2,RRSM,RRSM_5Seat；
+3、报文VIU_CDC_0x3AD中新增信号VIU_ZeroGravityFoldFunSet，涉及VIU1_CABIN2,RRSM,RRSM_5Seat；
+4、报文VIU_RRSM_0x396中新增信号VIU_ReRiSeatLinkageSet,涉及VIU1_CABIN2,RRSM,RRSM_5Seat；;
+Version:V1.1.2,Date:2026/3/20,Author:yuzheyu,Review:,Approval:向宇设变,Description:(RRSM_5Seat)1、报文VIU_Set1_3C0中新增信号VIU_PassbackrestHeatgLvl,VIU_PasscushionHeatgLvl,涉及VIU1_CABIN,PSM；
+2、报文PSM_St2_0x556中新增信号PSM_PassSeatbackrestHeatgSts，PSM_PassSeatcushionHeatgSts.涉及VIU1_CABIN,PSM；
+3、报文VIU_RRSM_0x396中新增信号VIU_ReRiSeatCushTiltMotPosnStepSet，涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+4、报文VIU_RRSM_0x3E5中新增信号VIU_ReRibackrestHeatgLvl，VIU_ReRicushionHeatgLvl,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+5、报文VIU_LRSM_0x3D1中新增信号VIU_RLZeroGravityFoldFunSet,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+6、报文RRSM_St_546中新增信号RRSM_ReRiSeatbackrestHeatgSts,RRSM_ReRiSeatcushionHeatgSts,涉及RRSM_5Seat,RRSM,VIU1_CABIN2；
+7、报文LRSM_St_0x3D2中新增信号LRSM_ReLeSeatbackrestHeatgSts,LRSM_ReLeSeatcushionHeatgSts,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+8、报文VIU_DSM_0x39A中新增信号VIU_DrvrSeatLegSupportMotPosnStepSet，VIU_DrvrSeatLegExtnMotPosnStepSet,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+9、报文VIU_Ctrl_0x39E中新增信号VIU_DrvrSeatbackrestHeatgLvl,VIU_DrvrSeatcushionHeatgLvl,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；
+10、报文VIU_LRSM_0x3D5中新增信号VIU_ReLeSeatbackrestHeatgLvl，VIU_ReLeSeatcushionHeatgLvl,涉及RRSM_5Seat,VIU1_CABIN2,LRSM,VIU0_IP_EV,VIU0_IP_EVR；
+11、报文DSM_St_0x576中新增信号DSM_DrvrSeatbackrestHeatgSts，DSM_DrvrSeatcushionHeatgSts,涉及DSM,VIU0_IP_EV,VIU0_IP_EVR；;
+ ";
+CM_ SG_ 978 LRSM_ForbiddenReasonSt "座椅折叠一键禁止原因";
+CM_ SG_ 978 LRSM_SeatfoldSt "二排左侧座椅折叠功能状态";
+CM_ SG_ 1365 RRSM_RMSeatDetectSts "二排座椅中间乘员检测状态";
+CM_ SG_ 1350 RRSM_SeatHeatgSts "二排中间座椅加热功能状态";
+CM_ SG_ 1350 RRSM_SeatHeatFltSts "二排中间座椅加热功能故障状态";
+CM_ SG_ 1350 RRSM_SeatHeatingCtr "二排中间座椅加热控制";
+CM_ SG_ 1350 RRSM_SeatHeatT "二排中间座椅加热温度";
+CM_ SG_ 977 VIU_RLSecRowSeatFoldFunSet "二排左侧座椅折叠功能设置";
+CM_ SG_ 941 VIU_ReMiSeatHeatgReq "二排中间座椅加热请求";
+CM_ SG_ 941 VIU_RRSecRowSeatFoldFunSet "二排右侧座椅折叠功能设置";
+
+BA_DEF_ BO_  "NmMessage" ENUM "No","Yes";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","Event","IfActive","CE","CA","NoMsgSendType";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnChange","OnWrite","IfActive","OnChangeWithRepetition","OnWriteWithRepetition","IfActiveWithRepetition","NoSigSendType","OnChangeAndIfActive","OnChangeAndIfActiveWithRepetition","CA","CE","Event";
+BA_DEF_ SG_  "GenSigStartValue" INT 0 0;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 0;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 0;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 0;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_ BO_  "CANFD_BRS" ENUM  "0","1";
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","StandardCAN_FD","ExtendedCAN_FD";
+BA_DEF_  "NmMessageCount" INT 0 255;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_ BU_  "NmStationAddress" INT 0 63;
+BA_DEF_ BU_  "NmNode" ENUM  "no","yes";
+BA_DEF_  "NmBaseAddress" HEX 1024 1087;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_  "NmAsrBaseAddress" HEX 1024 1279;
+BA_DEF_ BU_ "NmAsrCanMsgCycleOffset" INT 50 50;
+BA_DEF_  "NmAsrCanMsgCycleTime" INT 500 500;
+BA_DEF_ BU_ "NmAsrCanMsgReducedTime" INT 20 20;
+BA_DEF_  "NmAsrMessageCount" INT 0 256;
+BA_DEF_ BU_ "NmAsrNodeIdentifier" HEX 0 255;
+BA_DEF_  "NmAsrRepeatMessageTime" INT 1600 1600;
+BA_DEF_  "NmAsrTimeoutTime" INT 2000 2000;
+BA_DEF_  "NmAsrWaitBusSleepTime" INT 2000 2000;
+BA_DEF_ BU_ "NodeLayerModules" STRING ;
+
+BA_DEF_DEF_  "NmMessage" "No";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "GenMsgSendType" "Cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "CANFD_BRS" "1";
+BA_DEF_DEF_  "VFrameFormat" "StandardCAN_FD";
+BA_DEF_DEF_  "NmMessageCount" 128;
+BA_DEF_DEF_  "GenMsgILSupport" "No";
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "NmNode" "no";
+BA_DEF_DEF_  "NmBaseAddress" 1024;
+BA_DEF_DEF_  "BusType" "CAN FD";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+BA_DEF_DEF_  "NmAsrBaseAddress" 1024;
+BA_DEF_DEF_  "NmAsrCanMsgCycleOffset" 50;
+BA_DEF_DEF_  "NmAsrCanMsgCycleTime" 500;
+BA_DEF_DEF_  "NmAsrCanMsgReducedTime" 20;
+BA_DEF_DEF_  "NmAsrMessageCount" 256;
+BA_DEF_DEF_  "NmAsrNodeIdentifier" 255;
+BA_DEF_DEF_  "NmAsrRepeatMessageTime" 1600;
+BA_DEF_DEF_  "NmAsrTimeoutTime" 2000;
+BA_DEF_DEF_  "NmAsrWaitBusSleepTime" 2000;
+BA_DEF_DEF_  "NodeLayerModules" "ASRNM33.dll,osek_tp.dll,CANoeILNLVector.dll";
+
+BA_ "BusType" "CAN FD";
+BA_ "GenMsgCycleTime" BO_ 1506 500;
+BA_ "CANFD_BRS" BO_ 1506 0;
+BA_ "VFrameFormat" BO_ 1506 0;
+BA_ "GenSigStartValue" SG_ 1506 TBOX_TimeMonth 1;
+BA_ "GenSigStartValue" SG_ 1506 TBOX_TimeDay 1;
+BA_ "GenMsgCycleTime" BO_ 466 20;
+BA_ "CANFD_BRS" BO_ 466 0;
+BA_ "VFrameFormat" BO_ 466 0;
+BA_ "GenSigStartValue" SG_ 466 VIU_UsageMode 1;
+BA_ "GenSigStartValue" SG_ 466 VIU_CarMode 14;
+BA_ "GenMsgSendType" BO_ 145 1;
+BA_ "CANFD_BRS" BO_ 145 0;
+BA_ "VFrameFormat" BO_ 145 0;
+BA_ "GenSigSendType" SG_ 145 VIU0_Rx_Debug_091_Window 2;
+BA_ "GenMsgSendType" BO_ 147 1;
+BA_ "CANFD_BRS" BO_ 147 0;
+BA_ "VFrameFormat" BO_ 147 0;
+BA_ "GenSigSendType" SG_ 147 VIU0_Rx_Debug_093_FSunShade 2;
+BA_ "GenMsgSendType" BO_ 149 1;
+BA_ "CANFD_BRS" BO_ 149 0;
+BA_ "VFrameFormat" BO_ 149 0;
+BA_ "GenSigSendType" SG_ 149 VIU0_Rx_Debug_095_RSunShade 2;
+BA_ "GenMsgCycleTime" BO_ 942 100;
+BA_ "CANFD_BRS" BO_ 942 0;
+BA_ "VFrameFormat" BO_ 942 0;
+BA_ "GenMsgSendType" BO_ 926 3;
+BA_ "GenMsgCycleTime" BO_ 926 100;
+BA_ "GenMsgCycleTimeFast" BO_ 926 10;
+BA_ "GenMsgNrOfRepetition" BO_ 926 3;
+BA_ "CANFD_BRS" BO_ 926 0;
+BA_ "VFrameFormat" BO_ 926 0;
+BA_ "GenMsgSendType" BO_ 915 3;
+BA_ "GenMsgCycleTime" BO_ 915 100;
+BA_ "GenMsgCycleTimeFast" BO_ 915 20;
+BA_ "GenMsgNrOfRepetition" BO_ 915 10;
+BA_ "CANFD_BRS" BO_ 915 0;
+BA_ "VFrameFormat" BO_ 915 0;
+BA_ "GenSigSendType" SG_ 915 ABM_CrashSt 4;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatSLCUotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 915 VIU_DrvrSeatSLCUotPosnSet 125;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatBackrestMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 915 VIU_DrvrSeatBackrestMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatCushHeiMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 915 VIU_DrvrSeatCushHeiMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatCushTiltMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 915 VIU_DrvrSeatCushTiltMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatCushExtnMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 915 VIU_DrvrSeatCushExtnMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatHeatgReq 4;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatVentnReq 4;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatSLCUotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatBackrestMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatCushHeiMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 915 VIU_DrvrSeatCushTiltMotPosnStepSet 4;
+BA_ "GenMsgSendType" BO_ 922 3;
+BA_ "GenMsgCycleTime" BO_ 922 100;
+BA_ "GenMsgCycleTimeFast" BO_ 922 20;
+BA_ "GenMsgNrOfRepetition" BO_ 922 10;
+BA_ "CANFD_BRS" BO_ 922 0;
+BA_ "VFrameFormat" BO_ 922 0;
+BA_ "GenSigSendType" SG_ 922 VIU_DsmZeroGravityFoldFunSet 4;
+BA_ "GenSigSendType" SG_ 922 VIU_DsmSeatLegSupportMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 922 VIU_DsmSeatLegSupportMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 922 VIU_DsmSeatLegExtnMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 922 VIU_DsmSeatLegExtnMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 922 VIU_DrvrSeatStopAdjustCmd 4;
+BA_ "GenSigSendType" SG_ 922 VIU_DrvrSeatLegSupportMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 922 VIU_DrvrSeatLegExtnMotPosnStepSet 4;
+BA_ "GenMsgCycleTime" BO_ 1362 200;
+BA_ "CANFD_BRS" BO_ 1362 0;
+BA_ "VFrameFormat" BO_ 1362 0;
+BA_ "GenSigStartValue" SG_ 1362 DSM_SLCUotPosn 125;
+BA_ "GenSigStartValue" SG_ 1362 DSM_BackrestMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1362 DSM_CushHeiMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1362 DSM_CushTiltMotPosn 125;
+BA_ "GenMsgCycleTime" BO_ 417 10;
+BA_ "CANFD_BRS" BO_ 417 0;
+BA_ "VFrameFormat" BO_ 417 0;
+BA_ "GenMsgCycleTime" BO_ 418 10;
+BA_ "CANFD_BRS" BO_ 418 0;
+BA_ "VFrameFormat" BO_ 418 0;
+BA_ "GenSigStartValue" SG_ 418 DSM_HeatT_recline 254;
+BA_ "GenMsgCycleTime" BO_ 1398 200;
+BA_ "CANFD_BRS" BO_ 1398 0;
+BA_ "VFrameFormat" BO_ 1398 0;
+BA_ "GenSigStartValue" SG_ 1398 DSM_ZeroGravityFoldSt 1;
+BA_ "GenSigStartValue" SG_ 1398 DSM_SeatAngleMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1398 DSM_LegSupportMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1398 DSM_LegExtnMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1398 DSM_HeatT 254;
+BA_ "GenSigStartValue" SG_ 1398 DSM_HeatT_cushion 254;
+BA_ "GenMsgCycleTime" BO_ 1382 200;
+BA_ "CANFD_BRS" BO_ 1382 0;
+BA_ "VFrameFormat" BO_ 1382 0;
+BA_ "GenMsgCycleTime" BO_ 1474 500;
+BA_ "CANFD_BRS" BO_ 1474 0;
+BA_ "VFrameFormat" BO_ 1474 0;
+BA_ "NmMessage" BO_ 1112 1;
+BA_ "GenMsgSendType" BO_ 1112 1;
+BA_ "CANFD_BRS" BO_ 1112 0;
+BA_ "VFrameFormat" BO_ 1112 0;
+BA_ "GenSigSendType" SG_ 1112 DSM_SourceNodeIdentifier 2;
+BA_ "GenSigSendType" SG_ 1112 DSM_RepeatMessageRequestBit 2;
+BA_ "GenSigSendType" SG_ 1112 DSM_ActiveWakeupBit 2;
+BA_ "GenSigSendType" SG_ 1112 DSM_RepeatSts 2;
+BA_ "GenSigSendType" SG_ 1112 DSM_NMReq_Poweron 2;
+BA_ "GenSigSendType" SG_ 1112 DSM_NMReq_Diag 2;
+BA_ "GenSigSendType" SG_ 1112 DSM_NMReq_NM 2;
+BA_ "GenSigSendType" SG_ 1112 DSM_FirstWakeupReason 2;
+BA_ "DiagState" BO_ 2015 1;
+BA_ "GenMsgSendType" BO_ 2015 1;
+BA_ "CANFD_BRS" BO_ 2015 0;
+BA_ "VFrameFormat" BO_ 2015 0;
+BA_ "GenSigSendType" SG_ 2015 Diag_FuncReq_Data 2;
+BA_ "GenMsgSendType" BO_ 1797 1;
+BA_ "CANFD_BRS" BO_ 1797 0;
+BA_ "VFrameFormat" BO_ 1797 0;
+BA_ "GenSigSendType" SG_ 1797 Diag_PhyReq_DSM_Data 2;
+BA_ "GenMsgSendType" BO_ 1925 1;
+BA_ "CANFD_BRS" BO_ 1925 0;
+BA_ "VFrameFormat" BO_ 1925 0;
+BA_ "GenSigSendType" SG_ 1925 Diag_Resp_DSM_Data 2;
+BA_ "GenMsgSendType" BO_ 977 3;
+BA_ "GenMsgCycleTime" BO_ 977 100;
+BA_ "GenMsgCycleTimeFast" BO_ 977 20;
+BA_ "GenMsgNrOfRepetition" BO_ 977 10;
+BA_ "CANFD_BRS" BO_ 977 0;
+BA_ "VFrameFormat" BO_ 977 0;
+BA_ "GenSigSendType" SG_ 977 VIU_RLZeroGravityFoldFunSet 4;
+BA_ "GenSigSendType" SG_ 977 VIU_ReliSeatSldMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 977 VIU_ReliSeatSldMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 977 VIU_ReliSeatBackrestMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 977 VIU_ReliSeatBackrestMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 977 VIU_ReliSeatHeatgReq 4;
+BA_ "GenSigSendType" SG_ 977 VIU_ReliSeatVentnReq 4;
+BA_ "GenSigSendType" SG_ 977 VIU_ReliSeatSldMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 977 VIU_ReliSeatBackrestMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 977 VIU_LRSMPwrReq 4;
+BA_ "GenSigSendType" SG_ 977 VIU_ReliSeatLinkageSet 4;
+BA_ "GenSigSendType" SG_ 977 VIU_ReleSeatStopAdjustCmd 4;
+BA_ "GenMsgCycleTime" BO_ 981 100;
+BA_ "CANFD_BRS" BO_ 981 0;
+BA_ "VFrameFormat" BO_ 981 0;
+BA_ "GenMsgCycleTime" BO_ 978 200;
+BA_ "CANFD_BRS" BO_ 978 0;
+BA_ "VFrameFormat" BO_ 978 0;
+BA_ "GenSigStartValue" SG_ 978 LRSM_SldMotPosn 125;
+BA_ "GenSigStartValue" SG_ 978 LRSM_BackrestMotPosn 125;
+BA_ "GenMsgCycleTime" BO_ 979 200;
+BA_ "CANFD_BRS" BO_ 979 0;
+BA_ "VFrameFormat" BO_ 979 0;
+BA_ "GenSigStartValue" SG_ 979 LRSM_HeatT 254;
+BA_ "GenMsgCycleTime" BO_ 976 200;
+BA_ "CANFD_BRS" BO_ 976 0;
+BA_ "VFrameFormat" BO_ 976 0;
+BA_ "GenSigStartValue" SG_ 976 LRSM_HeatT_recline 254;
+BA_ "GenSigStartValue" SG_ 976 LRSM_HeatT_cushion 254;
+BA_ "GenMsgCycleTime" BO_ 1407 200;
+BA_ "CANFD_BRS" BO_ 1407 0;
+BA_ "VFrameFormat" BO_ 1407 0;
+BA_ "GenMsgCycleTime" BO_ 1524 500;
+BA_ "CANFD_BRS" BO_ 1524 0;
+BA_ "VFrameFormat" BO_ 1524 0;
+BA_ "NmMessage" BO_ 1125 1;
+BA_ "GenMsgSendType" BO_ 1125 1;
+BA_ "CANFD_BRS" BO_ 1125 0;
+BA_ "VFrameFormat" BO_ 1125 0;
+BA_ "GenSigSendType" SG_ 1125 LRSM_SourceNodeIdentifier 2;
+BA_ "GenSigSendType" SG_ 1125 LRSM_RepeatMessageRequestBit 2;
+BA_ "GenSigSendType" SG_ 1125 LRSM_ActiveWakeupBit 2;
+BA_ "GenSigSendType" SG_ 1125 LRSM_RepeatSts 2;
+BA_ "GenSigSendType" SG_ 1125 LRSM_NMReq_Poweron 2;
+BA_ "GenSigSendType" SG_ 1125 LRSM_NMReq_Diag 2;
+BA_ "GenSigSendType" SG_ 1125 LRSM_NMReq_NM 2;
+BA_ "GenSigSendType" SG_ 1125 LRSM_FirstWakeupReason 2;
+BA_ "GenMsgSendType" BO_ 1886 1;
+BA_ "CANFD_BRS" BO_ 1886 0;
+BA_ "VFrameFormat" BO_ 1886 0;
+BA_ "GenSigSendType" SG_ 1886 Diag_PhyReq_LRSM_Data 2;
+BA_ "GenMsgSendType" BO_ 2014 1;
+BA_ "CANFD_BRS" BO_ 2014 0;
+BA_ "VFrameFormat" BO_ 2014 0;
+BA_ "GenSigSendType" SG_ 2014 Diag_Resp_LRSM_Data 2;
+BA_ "GenMsgSendType" BO_ 917 3;
+BA_ "GenMsgCycleTime" BO_ 917 100;
+BA_ "GenMsgCycleTimeFast" BO_ 917 20;
+BA_ "GenMsgNrOfRepetition" BO_ 917 10;
+BA_ "CANFD_BRS" BO_ 917 0;
+BA_ "VFrameFormat" BO_ 917 0;
+BA_ "GenSigSendType" SG_ 917 VIU_3rdRSeatBackrestMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 917 VIU_3rdRSeatBackrestMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 917 VIU_3rdRSeatBackrestMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 917 VIU_3rdRSeatFoldFunSet 4;
+BA_ "GenSigSendType" SG_ 917 VIU_3rdLSeatFoldFunSet 4;
+BA_ "GenSigSendType" SG_ 917 VIU_3rdLSeatBackrestMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 917 VIU_3rdLSeatBackrestMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 917 VIU_3rdLSeatBackrestMotPosnSet 125;
+BA_ "GenMsgCycleTime" BO_ 1364 200;
+BA_ "CANFD_BRS" BO_ 1364 0;
+BA_ "VFrameFormat" BO_ 1364 0;
+BA_ "GenSigStartValue" SG_ 1364 RTSM_3rdLBackrestMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1364 RTSM_3rdRBackrestMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1364 RTSM_3rdRSeatfoldSt 7;
+BA_ "GenMsgSendType" BO_ 740 3;
+BA_ "GenMsgCycleTime" BO_ 740 200;
+BA_ "GenMsgCycleTimeFast" BO_ 740 20;
+BA_ "GenMsgNrOfRepetition" BO_ 740 10;
+BA_ "CANFD_BRS" BO_ 740 0;
+BA_ "VFrameFormat" BO_ 740 0;
+BA_ "GenSigSendType" SG_ 740 VIU_3rdLSeatStopAdjustCmd 4;
+BA_ "GenSigSendType" SG_ 740 VIU_3rdRSeatStopAdjustCmd 4;
+BA_ "GenMsgCycleTime" BO_ 932 100;
+BA_ "CANFD_BRS" BO_ 932 0;
+BA_ "VFrameFormat" BO_ 932 0;
+BA_ "GenMsgCycleTime" BO_ 419 10;
+BA_ "CANFD_BRS" BO_ 419 0;
+BA_ "VFrameFormat" BO_ 419 0;
+BA_ "GenMsgSendType" BO_ 939 3;
+BA_ "GenMsgCycleTime" BO_ 939 100;
+BA_ "GenMsgCycleTimeFast" BO_ 939 20;
+BA_ "GenMsgNrOfRepetition" BO_ 939 3;
+BA_ "CANFD_BRS" BO_ 939 0;
+BA_ "VFrameFormat" BO_ 939 0;
+BA_ "GenSigSendType" SG_ 939 ABM_CrashSt 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatOccptSt 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatBltSt 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatSLCUotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatBackrestMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatCushHeiMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatCushTiltMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatLegSupportMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatFoldFunSet 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatLinkageSet 4;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatLegExtnMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 939 VIU_PassSeatLegExtnMotPosnSet 127;
+BA_ "GenSigSendType" SG_ 939 VIU_PassSeatLegExtnMotPosnStepSet 4;
+BA_ "GenMsgSendType" BO_ 916 3;
+BA_ "GenMsgCycleTime" BO_ 916 100;
+BA_ "GenMsgCycleTimeFast" BO_ 916 20;
+BA_ "GenMsgNrOfRepetition" BO_ 916 10;
+BA_ "CANFD_BRS" BO_ 916 0;
+BA_ "VFrameFormat" BO_ 916 0;
+BA_ "GenSigSendType" SG_ 916 VIU_PassSeatSLCUotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 916 VIU_PassSeatSLCUotPosnSet 125;
+BA_ "GenSigSendType" SG_ 916 VIU_PassSeatBackrestMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 916 VIU_PassSeatBackrestMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 916 VIU_PassSeatCushHeiMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 916 VIU_PassSeatCushHeiMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 916 VIU_PassSeatCushTiltMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 916 VIU_PassSeatCushTiltMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 916 VIU_PassSeatLegSupportMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 916 VIU_PassSeatLegSupportMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 916 VIU_PassSeatSpindleMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 916 VIU_PassSeatSpindleMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 916 VIU_PassSeatHeatgReq 4;
+BA_ "GenSigSendType" SG_ 916 VIU_PassSeatVentnReq 4;
+BA_ "GenSigSendType" SG_ 916 VIU_PSMPwrReq 4;
+BA_ "GenMsgCycleTime" BO_ 1363 200;
+BA_ "CANFD_BRS" BO_ 1363 0;
+BA_ "VFrameFormat" BO_ 1363 0;
+BA_ "GenSigStartValue" SG_ 1363 PSM_SLCUotPosn 125;
+BA_ "GenSigStartValue" SG_ 1363 PSM_BackrestMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1363 PSM_CushHeiMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1363 PSM_CushTiltMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1363 PSM_LegSupportMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1363 PSM_SpindleMotPosn 125;
+BA_ "GenMsgCycleTime" BO_ 420 10;
+BA_ "CANFD_BRS" BO_ 420 0;
+BA_ "VFrameFormat" BO_ 420 0;
+BA_ "GenSigStartValue" SG_ 420 PSM_HeatT_recline 254;
+BA_ "GenSigStartValue" SG_ 420 PSM_HeatT_cushion 254;
+BA_ "GenMsgCycleTime" BO_ 1366 200;
+BA_ "CANFD_BRS" BO_ 1366 0;
+BA_ "VFrameFormat" BO_ 1366 0;
+BA_ "GenSigStartValue" SG_ 1366 PSM_PassSeatfoldSt 2;
+BA_ "GenSigStartValue" SG_ 1366 PSM_LegExtnMotPosn 127;
+BA_ "GenSigStartValue" SG_ 1366 PSM_HeatT 254;
+BA_ "GenMsgCycleTime" BO_ 755 100;
+BA_ "CANFD_BRS" BO_ 755 0;
+BA_ "VFrameFormat" BO_ 755 0;
+BA_ "GenSigStartValue" SG_ 755 PSM_RRSeatFootSupportMotPosn 125;
+BA_ "GenMsgCycleTime" BO_ 1531 500;
+BA_ "CANFD_BRS" BO_ 1531 0;
+BA_ "VFrameFormat" BO_ 1531 0;
+BA_ "GenSigStartValue" SG_ 1531 PSM_ZeroGravityFoldSt 1;
+BA_ "GenMsgSendType" BO_ 960 3;
+BA_ "GenMsgCycleTime" BO_ 960 100;
+BA_ "GenMsgCycleTimeFast" BO_ 960 20;
+BA_ "GenMsgNrOfRepetition" BO_ 960 3;
+BA_ "CANFD_BRS" BO_ 960 0;
+BA_ "VFrameFormat" BO_ 960 0;
+BA_ "GenSigSendType" SG_ 960 VIU_PassSeatStopAdjustCmd 4;
+BA_ "GenMsgCycleTime" BO_ 1482 500;
+BA_ "CANFD_BRS" BO_ 1482 0;
+BA_ "VFrameFormat" BO_ 1482 0;
+BA_ "GenMsgCycleTime" BO_ 1386 200;
+BA_ "CANFD_BRS" BO_ 1386 0;
+BA_ "VFrameFormat" BO_ 1386 0;
+BA_ "NmMessage" BO_ 1113 1;
+BA_ "GenMsgSendType" BO_ 1113 1;
+BA_ "CANFD_BRS" BO_ 1113 0;
+BA_ "VFrameFormat" BO_ 1113 0;
+BA_ "GenSigSendType" SG_ 1113 PSM_SourceNodeIdentifier 2;
+BA_ "GenSigSendType" SG_ 1113 PSM_RepeatMessageRequestBit 2;
+BA_ "GenSigSendType" SG_ 1113 PSM_ActiveWakeupBit 2;
+BA_ "GenSigSendType" SG_ 1113 PSM_RepeatSts 2;
+BA_ "GenSigSendType" SG_ 1113 PSM_NMReq_Poweron 2;
+BA_ "GenSigSendType" SG_ 1113 PSM_NMReq_Diag 2;
+BA_ "GenSigSendType" SG_ 1113 PSM_NMReq_NM 2;
+BA_ "GenSigSendType" SG_ 1113 PSM_NMReq_MovgOrPosnStorg 2;
+BA_ "GenSigSendType" SG_ 1113 PSM_FirstWakeupReason 2;
+BA_ "GenMsgSendType" BO_ 1807 1;
+BA_ "CANFD_BRS" BO_ 1807 0;
+BA_ "VFrameFormat" BO_ 1807 0;
+BA_ "GenSigSendType" SG_ 1807 Diag_PhyReq_PSM_Data 2;
+BA_ "GenMsgSendType" BO_ 1935 1;
+BA_ "CANFD_BRS" BO_ 1935 0;
+BA_ "VFrameFormat" BO_ 1935 0;
+BA_ "GenSigSendType" SG_ 1935 Diag_PhyResp_PSM_Data 2;
+BA_ "GenSigSendType" SG_ 145 VIU1_Rx_Debug_091_Window 2;
+BA_ "GenMsgSendType" BO_ 190 1;
+BA_ "CANFD_BRS" BO_ 190 0;
+BA_ "VFrameFormat" BO_ 190 0;
+BA_ "GenSigSendType" SG_ 190 VIU1_Rx_Debug_0BE_Gate 2;
+BA_ "GenMsgCycleTime" BO_ 1367 200;
+BA_ "CANFD_BRS" BO_ 1367 0;
+BA_ "VFrameFormat" BO_ 1367 0;
+BA_ "GenSigStartValue" SG_ 1367 RRSM_ZeroGravityFoldSt 1;
+BA_ "GenMsgSendType" BO_ 1395 3;
+BA_ "GenMsgCycleTime" BO_ 1395 200;
+BA_ "GenMsgCycleTimeFast" BO_ 1395 20;
+BA_ "GenMsgNrOfRepetition" BO_ 1395 3;
+BA_ "CANFD_BRS" BO_ 1395 0;
+BA_ "VFrameFormat" BO_ 1395 0;
+BA_ "GenSigSendType" SG_ 1395 VIU_RRSeatFootSupportMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 1395 VIU_RRSeatFootSupportMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 1395 VIU_RRSeatFootSupportMotPosnSet 125;
+BA_ "GenMsgCycleTime" BO_ 1556 200;
+BA_ "CANFD_BRS" BO_ 1556 0;
+BA_ "VFrameFormat" BO_ 1556 0;
+BA_ "GenMsgSendType" BO_ 1651 1;
+BA_ "CANFD_BRS" BO_ 1651 0;
+BA_ "VFrameFormat" BO_ 1651 0;
+BA_ "GenSigSendType" SG_ 1651 Diag_PhyReq_RCLM_RR1_Data 2;
+BA_ "GenMsgSendType" BO_ 1659 1;
+BA_ "CANFD_BRS" BO_ 1659 0;
+BA_ "VFrameFormat" BO_ 1659 0;
+BA_ "GenSigSendType" SG_ 1659 Diag_Resp_RCLM_RR1_Data 2;
+BA_ "NmMessage" BO_ 1067 1;
+BA_ "GenMsgSendType" BO_ 1067 1;
+BA_ "CANFD_BRS" BO_ 1067 0;
+BA_ "VFrameFormat" BO_ 1067 0;
+BA_ "GenSigSendType" SG_ 1067 RCLM_RR1_SourceNodeIdentifier 2;
+BA_ "GenSigSendType" SG_ 1067 RCLM_RR1_RepeatMessageRequestBit 2;
+BA_ "GenSigSendType" SG_ 1067 RCLM_RR1_ActiveWakeupBit 2;
+BA_ "GenSigSendType" SG_ 1067 RCLM_RR1_RepeatSts 2;
+BA_ "GenSigSendType" SG_ 1067 RCLM_RR1_NMReq_Poweron 2;
+BA_ "GenSigSendType" SG_ 1067 RCLM_RR1_NMReq_Diag 2;
+BA_ "GenSigSendType" SG_ 1067 RCLM_RR1_NMReq_NM 2;
+BA_ "GenSigSendType" SG_ 1067 RCLM_RR1_FirstWakeupReason 2;
+BA_ "GenMsgCycleTime" BO_ 342 10;
+BA_ "CANFD_BRS" BO_ 342 0;
+BA_ "VFrameFormat" BO_ 342 0;
+BA_ "GenSigStartValue" SG_ 342 RRSM_CushionAngle 125;
+BA_ "GenSigStartValue" SG_ 342 RRSM_RRSeatBackrestMotPosnSet 125;
+BA_ "GenMsgCycleTime" BO_ 344 10;
+BA_ "CANFD_BRS" BO_ 344 0;
+BA_ "VFrameFormat" BO_ 344 0;
+BA_ "GenSigStartValue" SG_ 344 RCLM_RR1_BackrestMotPosn 125;
+BA_ "GenSigStartValue" SG_ 344 RCLM_RR1_BackrestMotAngle 125;
+BA_ "GenMsgCycleTime" BO_ 943 100;
+BA_ "CANFD_BRS" BO_ 943 0;
+BA_ "VFrameFormat" BO_ 943 0;
+BA_ "GenMsgCycleTime" BO_ 1390 200;
+BA_ "CANFD_BRS" BO_ 1390 0;
+BA_ "VFrameFormat" BO_ 1390 0;
+BA_ "GenMsgCycleTime" BO_ 1343 200;
+BA_ "CANFD_BRS" BO_ 1343 0;
+BA_ "VFrameFormat" BO_ 1343 0;
+BA_ "GenMsgSendType" BO_ 941 3;
+BA_ "GenMsgCycleTime" BO_ 941 100;
+BA_ "GenMsgCycleTimeFast" BO_ 941 20;
+BA_ "GenMsgNrOfRepetition" BO_ 941 3;
+BA_ "CANFD_BRS" BO_ 941 0;
+BA_ "VFrameFormat" BO_ 941 0;
+BA_ "GenSigSendType" SG_ 941 VIU_ZeroGravityFoldFunSet 4;
+BA_ "GenSigSendType" SG_ 941 VIU_ReRiSeatSLCUotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 941 VIU_ReRiSeatBackrestMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 941 VIU_ReRiSeatLegSupportMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 941 VIU_ReRiSeatLegExtnMotPosnStepSet 4;
+BA_ "GenMsgSendType" BO_ 918 3;
+BA_ "GenMsgCycleTime" BO_ 918 100;
+BA_ "GenMsgCycleTimeFast" BO_ 918 20;
+BA_ "GenMsgNrOfRepetition" BO_ 918 10;
+BA_ "CANFD_BRS" BO_ 918 0;
+BA_ "VFrameFormat" BO_ 918 0;
+BA_ "GenSigSendType" SG_ 918 VIU_RRSMPwrReq 4;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatLinkageSet 4;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatSLCUotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 918 VIU_ReRiSeatSLCUotPosnSet 125;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatBackrestMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 918 VIU_ReRiSeatBackrestMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatLegExtnMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 918 VIU_ReRiSeatLegExtnMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatLegSupportMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 918 VIU_ReRiSeatLegSupportMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatCushTiltMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 918 VIU_ReRiSeatCushTiltMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatYAxisMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 918 VIU_ReRiSeatYAxisMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatArmRestMotPosnSet 4;
+BA_ "GenSigStartValue" SG_ 918 VIU_ReRiSeatArmRestMotPosnSet 125;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatHeatgReq 4;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatVentnReq 4;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatCushTiltMotPosnStepSet 4;
+BA_ "GenSigSendType" SG_ 918 VIU_ReRiSeatYAxisMotPosnStepSet 4;
+BA_ "GenMsgSendType" BO_ 997 3;
+BA_ "GenMsgCycleTime" BO_ 997 100;
+BA_ "GenMsgCycleTimeFast" BO_ 997 20;
+BA_ "GenMsgNrOfRepetition" BO_ 997 3;
+BA_ "CANFD_BRS" BO_ 997 0;
+BA_ "VFrameFormat" BO_ 997 0;
+BA_ "GenSigSendType" SG_ 997 VIU_ReRiSeatStopAdjustCmd 4;
+BA_ "GenMsgCycleTime" BO_ 1618 100;
+BA_ "CANFD_BRS" BO_ 1618 0;
+BA_ "VFrameFormat" BO_ 1618 0;
+BA_ "GenMsgCycleTime" BO_ 1365 200;
+BA_ "CANFD_BRS" BO_ 1365 0;
+BA_ "VFrameFormat" BO_ 1365 0;
+BA_ "GenSigStartValue" SG_ 1365 RRSM_SLCUotPosn 125;
+BA_ "GenSigStartValue" SG_ 1365 RRSM_BackrestMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1365 RRSM_LegSupportMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1365 RRSM_LegExtnMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1365 RRSM_CushTiltMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1365 RRSM_YAxisMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1365 RRSM_ArmRestMotPosn 125;
+BA_ "GenMsgCycleTime" BO_ 1350 200;
+BA_ "CANFD_BRS" BO_ 1350 0;
+BA_ "VFrameFormat" BO_ 1350 0;
+BA_ "GenSigStartValue" SG_ 1350 RRSM_SeatAngleMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1350 RRSM_HeatT_recline 254;
+BA_ "GenSigStartValue" SG_ 1350 RRSM_HeatT_cushion 254;
+BA_ "GenMsgCycleTime" BO_ 988 100;
+BA_ "CANFD_BRS" BO_ 988 0;
+BA_ "VFrameFormat" BO_ 988 0;
+BA_ "GenMsgCycleTime" BO_ 984 100;
+BA_ "CANFD_BRS" BO_ 984 0;
+BA_ "VFrameFormat" BO_ 984 0;
+BA_ "GenSigStartValue" SG_ 1367 RRSM_L_ArmRestMotPosn 125;
+BA_ "GenSigStartValue" SG_ 1367 RRSM_HeatT 254;
+BA_ "GenMsgCycleTime" BO_ 1517 500;
+BA_ "CANFD_BRS" BO_ 1517 0;
+BA_ "VFrameFormat" BO_ 1517 0;
+BA_ "NmMessage" BO_ 1115 1;
+BA_ "GenMsgSendType" BO_ 1115 1;
+BA_ "CANFD_BRS" BO_ 1115 0;
+BA_ "VFrameFormat" BO_ 1115 0;
+BA_ "GenSigSendType" SG_ 1115 RRSM_SourceNodeIdentifier 2;
+BA_ "GenSigSendType" SG_ 1115 RRSM_RepeatMessageRequestBit 2;
+BA_ "GenSigSendType" SG_ 1115 RRSM_ActiveWakeupBit 2;
+BA_ "GenSigSendType" SG_ 1115 RRSM_RepeatSts 2;
+BA_ "GenSigSendType" SG_ 1115 RRSM_NMReq_Poweron 2;
+BA_ "GenSigSendType" SG_ 1115 RRSM_NMReq_Diag 2;
+BA_ "GenSigSendType" SG_ 1115 RRSM_NMReq_NM 2;
+BA_ "GenSigSendType" SG_ 1115 RRSM_NMReq_MovgOrPosnStorg 2;
+BA_ "GenSigSendType" SG_ 1115 RRSM_FirstWakeupReason 2;
+BA_ "GenMsgSendType" BO_ 1862 1;
+BA_ "CANFD_BRS" BO_ 1862 0;
+BA_ "VFrameFormat" BO_ 1862 0;
+BA_ "GenSigSendType" SG_ 1862 Diag_PhyReq_RRSM_Data 2;
+BA_ "GenMsgSendType" BO_ 1990 1;
+BA_ "CANFD_BRS" BO_ 1990 0;
+BA_ "VFrameFormat" BO_ 1990 0;
+BA_ "GenSigSendType" SG_ 1990 Diag_PhyResp_RRSM_Data 2;
+BA_ "GenSigSendType" SG_ 977 VIU_RLSecRowSeatFoldFunSet 4;
+BA_ "GenSigSendType" SG_ 941 VIU_ReMiSeatHeatgReq 4;
+BA_ "GenSigSendType" SG_ 941 VIU_RRSecRowSeatFoldFunSet 4;
+BA_ "GenSigStartValue" SG_ 1350 RRSM_SeatHeatT 254;
+BA_ "NmAsrNodeIdentifier" BU_ DSM 88;
+BA_ "NmAsrNodeIdentifier" BU_ LRSM 101;
+BA_ "NmAsrNodeIdentifier" BU_ PSM 89;
+BA_ "NmAsrNodeIdentifier" BU_ RCLM_RR1 43;
+BA_ "NmAsrNodeIdentifier" BU_ RRSM 91;
+BA_ "DBName" "G19_merge_V2.1.0";
+
+VAL_ 1362 DSM_CtrlSts 7 "Invalid" 4 "Crash event" 3 "System failure" 2 "Manual control" 1 "Recall" 0 "No action" ;
+VAL_ 1362 DSM_AntiPinchSts 1 "Active" 0 "No active" ;
+VAL_ 1362 DSM_HeatProtectionSts 1 "Active" 0 "No active" ;
+VAL_ 1362 DSM_SLCUotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1362 DSM_BackrestMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1362 DSM_CushHeiMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1362 DSM_CushTiltMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1362 DSM_InitSts 1 "Valid" 0 "Invalid" ;
+VAL_ 1362 DSM_WarningReq 7 "Invalid" 3 "Warning3" 2 "Warning2" 1 "Warning1" 0 "No Req" ;
+VAL_ 1362 DSM_HeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 1362 DSM_HeatFltSts 1 "Fault" 0 "Normal" ;
+VAL_ 1362 DSM_VentnSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 1362 DSM_VentnFltSts 1 "System failure" 0 "Normal" ;
+VAL_ 1362 DSM_DevSupportSts 3 "UNKNOWN" 2 "ACTIVE//设备已安装" 1 "INACTIVE//设备未安装" 0 "Default" ;
+VAL_ 1362 DSM_DevLinkSts 3 "UNKNOWN" 2 "ACTIVE//设备已安装" 1 "INACTIVE//设备未安装" 0 "Default" ;
+VAL_ 1362 DSM_ChargeSts 3 "INVALID" 2 "OFF" 1 "ON" 0 "NO_REQUEST" ;
+VAL_ 417 DSM_AP_current_slide 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 417 DSM_AP_hall_slide 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 417 DSM_AP_current_recline 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 417 DSM_AP_hall_recline 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 417 DSM_AP_current_cushion 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 417 DSM_AP_hall_cushion 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 417 DSM_AP_current_cushionAngle 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 417 DSM_AP_hall_cushionAngle 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 418 DSM_AP_current_LegUD 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 418 DSM_AP_hall_LegUD 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 418 DSM_AP_current_LegFB 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 418 DSM_AP_hall_LegFB 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 418 DSM_ApTrigReasonSlide 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 418 DSM_ApTrigReasonRecline 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 418 DSM_ApTrigReasonHeight 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 418 DSM_ApTrigReasonTilt 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 418 DSM_ApTrigReasonLegUD 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 418 DSM_ApTrigReasonLegFB 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 418 DSM_HeatT_recline 255 "Invalid" ;
+VAL_ 1398 DSM_ZeroGravityUnfoldBtn 3 "Reserved" 2 "Idle" 1 "Push" 0 "Invalid" ;
+VAL_ 1398 DSM_ZeroGravityFoldBtn 3 "Reserved" 2 "Idle" 1 "Push" 0 "Invalid" ;
+VAL_ 1398 DSM_ZeroGravityFoldSt 15 "INVALID" 12 "UNFOLD_FLATING" 11 "UNFOLD_FLAT" 10 "FOLDING" 9 "FOLDSTS" 8 "SEMI_UnfoLCUemorySTS（预留）" 7 "SEMI_UNFOLDSTS" 6 "RETRACTMemorySTS" 5 "UNFOLCUemorySTS（预留）" 4 "PAUSESTS" 3 "RETRACTING" 2 "UNFOLDING" 1 "RETRACTSTS" 0 "UNFOLDSTS" ;
+VAL_ 1398 DSM_SeatAngleMotPosn 127 "INVALID" 126 "UNINITIALIZED" 125 "Initial" 100 "100%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1398 DSM_LegSupportMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1398 DSM_LegExtnMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1398 DSM_HeatingCtr 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial" ;
+VAL_ 1398 DSM_HeatT 255 "Invalid" ;
+VAL_ 1398 DSM_DrvrSeatbackrestHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "Off" ;
+VAL_ 1398 DSM_DrvrSeatcushionHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "Off" ;
+VAL_ 1398 DSM_HeatingCtr_recline 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial；" ;
+VAL_ 1398 DSM_HeatingCtr_cushion 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial；" ;
+VAL_ 1398 DSM_HeatT_cushion 255 "Invalid" ;
+VAL_ 1398 DSM_ForbiddenReasonSt 15 "RESERVED" 14 "RESERVED" 13 "RESERVED" 12 "RESERVED" 11 "RESERVED" 10 "RESERVED" 4 "SEATTBL_FORBIDDEN" 3 "CHBDOOROPEN" 2 "BUTTON_FORBIDDEN" 1 "SYSTEM_FAILURE" 0 "NO REQUEST" ;
+VAL_ 1382 DSM_SupplierCode 2 "东风李尔3269" 1 "延锋国际3281" 0 "Initial" ;
+VAL_ 1474 DSM_SupplierNum 2 "东风李尔3269" 1 "延锋国际3281" 0 "Initial" ;
+VAL_ 1112 DSM_RepeatMessageRequestBit 1 "该报文发送节点请求其他节点进入重复报文状态" 0 "该报文发送节点未请求其他节点进入重复报文状态" ;
+VAL_ 1112 DSM_ActiveWakeupBit 1 "该报文发送节点主动唤醒网络" 0 "该报文发送节点未主动唤醒网络（被其它节点唤醒）" ;
+VAL_ 1112 DSM_RepeatSts 1 "节点处于重复报文状态" 0 "节点不在重复报文状态" ;
+VAL_ 1112 DSM_NMReq_Poweron 1 "Active" 0 "Inactive" ;
+VAL_ 1112 DSM_NMReq_Diag 1 "Active" 0 "Inactive" ;
+VAL_ 1112 DSM_NMReq_NM 1 "Active" 0 "Inactive" ;
+VAL_ 1112 DSM_FirstWakeupReason 63 "Invalid" 2 "NM报文" 1 "唤醒硬线ON" 0 "Initial" ;
+VAL_ 1506 TBOX_TimeZone 3 "Reserved" 2 "West" 1 "East" 0 "Initial" ;
+VAL_ 1506 TBOX_TimeZoneNum 31 "Reserved" 30 "Reserved" 29 "Reserved" 28 "Reserved" 27 "Reserved" 26 "Reserved" 25 "Reserved" 24 "Reserved" 23 "Reserved" 22 "Reserved" 21 "Reserved" 20 "Reserved" 19 "Reserved" 18 "Reserved" 17 "Reserved" 16 "Reserved" 15 "Reserved" 14 "Reserved" 13 "Reserved" 12 "TimeZone 12" 11 "TimeZone 11" 10 "TimeZone 10" 9 "TimeZone 9" 8 "TimeZone 8" 7 "TimeZone 7" 6 "TimeZone 6" 5 "TimeZone 5" 4 "TimeZone 4" 3 "TimeZone 3" 2 "TimeZone 2" 1 "TimeZone 1" 0 "Initial" ;
+VAL_ 1506 TBOX_TimeFlag 3 "Reserved" 2 "With Offset(Reserved)" 1 "Valid" 0 "Invalid" ;
+VAL_ 466 VIU_UsageMode 15 "Invalid" 14 "reserved" 13 "reserved" 12 "reserved" 11 "reserved" 10 "reserved" 9 "reserved" 8 "reserved" 7 "reserved" 6 "RemoteDriving" 5 "Remote" 4 "OTA Updating" 3 "Driving" 2 "Convenience" 1 "Inactive" 0 "Abandoned" ;
+VAL_ 466 VIU_CarMode 15 "Invalid" 14 "Initial" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Reserved" 9 "Reserved" 8 "Reserved" 7 "Reserved" 6 "Reserved" 5 "ExhibitionOutDoor" 4 "ExhibitionInDoor" 3 "Normal" 2 "Dynotest" 1 "Transport" 0 "Factory" ;
+VAL_ 466 VIU_PowerMode 3 "Invalid" 2 "Reserved" 1 "ON" 0 "OFF" ;
+VAL_ 466 VIU_PowerModeFltFlag 3 "Invalid" 2 "Reserved" 1 "True" 0 "False" ;
+VAL_ 942 IPB_VehicleSpeedValid 1 "Valid" 0 "Invalid" ;
+VAL_ 942 IPB_VehicleSpeed 8191 "Invalid" ;
+VAL_ 942 VDC_TotalRang 1048575 "Invalid" ;
+VAL_ 942 VDC_actualGear 3 "D" 2 "N" 1 "R" 0 "P" ;
+VAL_ 926 VIU_DrvrSeatbackrestHeatgLvl 7 "Invalid" 4 "Off" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "No Request" ;
+VAL_ 926 VIU_DrvrSeatcushionHeatgLvl 7 "Invalid" 4 "Off" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "No Request" ;
+VAL_ 915 ABM_CrashSt 3 "Invalid" 2 "Reserved" 1 "Crash" 0 "No_crash" ;
+VAL_ 915 VIU_DSMPwrReq 3 "INVALID" 2 "OFF" 1 "ON" 0 "NO_REQUEST" ;
+VAL_ 915 VIU_DrvrSeatSLCUotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 915 VIU_DrvrSeatBackrestMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 915 VIU_DrvrSeatCushHeiMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 915 VIU_DrvrSeatCushTiltMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 915 VIU_DrvrSeatCushExtnMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 915 VIU_DrvrSeatHeatgReq 7 "Invalid" 4 "Level_3" 3 "Level_2" 2 "Level_1" 1 "OFF" 0 "No Request" ;
+VAL_ 915 VIU_DrvrSeatVentnReq 7 "Invalid" 4 "Level_3" 3 "Level_2" 2 "Level_1" 1 "OFF" 0 "No Request" ;
+VAL_ 915 VIU_DrvrSeatSLCUotPosnStepSet 3 "Invalid" 2 "Backward" 1 "Frontward" 0 "NO_Action_Stop" ;
+VAL_ 915 VIU_DrvrSeatBackrestMotPosnStepSet 3 "Invalid" 2 "Backward" 1 "Frontward" 0 "NO_Action_Stop" ;
+VAL_ 915 VIU_DrvrSeatCushHeiMotPosnStepSet 3 "Invalid" 2 "Downward" 1 "Upward" 0 "NO_Action_Stop" ;
+VAL_ 915 VIU_DrvrSeatCushTiltMotPosnStepSet 3 "Invalid" 2 "Downward" 1 "Upward" 0 "NO_Action_Stop" ;
+VAL_ 915 VIU_PsOpenSt 7 "_UNKNOWN" 3 "OPENED" 2 "CLOSED" 1 "OPENING" 0 "CLOSING" ;
+VAL_ 915 VIU_PsAdjSt 7 "UNKNOWN" 5 "OPEN_TIMEOUT  //幕布调节超时" 4 "SEAT_FL_FR_INTERFERENCE  //主副驾座椅同时干扰，禁止调节幕布" 3 "SEAT_FR_INTERFERENCE  //副驾座椅干扰，禁止调节幕布" 2 "SEAT_FL_ INTERFERENCE //主驾座椅干扰，禁止调节幕布" 1 "MLINK_STAND_ACTIVE  //Mlink支架激活干扰，禁止调节幕布" 0 "NORMAL" ;
+VAL_ 922 VIU_DsmZeroGravityFoldFunSet 15 "INVALID" 10 "UNFOLD_FLAT" 9 "FOLDSTS" 8 "SEMI_UnfoLCUemory（半展开到记忆位置）" 7 "SEMI_UNFOLD（半展开默认位置）" 6 "STOP" 5 "MemorySet（记忆信号）" 4 "RETRACTMemory（收回到记忆位置）" 3 "UnfoLCUemory（展开到记忆位置）" 2 "RETRACT（收回默认位置）" 1 "UNFOLD（展开默认位置）" 0 "NO_REQUEST" ;
+VAL_ 922 VIU_DsmSeatLegSupportMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 922 VIU_DsmSeatLegExtnMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 922 VIU_DrvrSeatStopAdjustCmd 1 "STOP" 0 "NO_REQUEST" ;
+VAL_ 922 VIU_DrvrSeatLegSupportMotPosnStepSet 3 "INVALID" 2 "DOWNWARD" 1 "UPWARD" 0 "NO_Action_Stop" ;
+VAL_ 922 VIU_DrvrSeatLegExtnMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 978 LRSM_CtrlSts 7 "Invalid" 4 "Crash event" 3 "System failure" 2 "Manual control" 1 "Recall" 0 "No action" ;
+VAL_ 978 LRSM_AntiPinchSts 1 "Active" 0 "No active" ;
+VAL_ 978 LRSM_HeatProtectionSts 1 "Active" 0 "No active" ;
+VAL_ 978 LRSM_SldMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 978 LRSM_BackrestMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 978 LRSM_ReLeSeatbackrestHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "Off" ;
+VAL_ 978 LRSM_ReLeSeatcushionHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "Off" ;
+VAL_ 978 LRSM_InitSts 1 "Valid" 0 "Invalid" ;
+VAL_ 978 LRSM_WarningReq 7 "Invalid" 3 "Warning3" 2 "Warning2" 1 "Warning1" 0 "No Req" ;
+VAL_ 978 LRSM_HeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 978 LRSM_HeatFltSts 1 "Fault" 0 "Normal" ;
+VAL_ 978 LRSM_VentnSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 978 LRSM_VentnFltSts 1 "System failure" 0 "Normal" ;
+VAL_ 978 LRSM_RLSeatDetectSts 1 "DETECTED" 0 "NOT_DETECTED" ;
+VAL_ 978 LRSM_DevSupportSts 3 "UNKNOWN" 2 "ACTIVE//设备已安装" 1 "INACTIVE//设备未安装" 0 "Default" ;
+VAL_ 978 LRSM_DevLinkSts 3 "UNKNOWN" 2 "ACTIVE//设备已安装" 1 "INACTIVE//设备未安装" 0 "Default" ;
+VAL_ 978 LRSM_ChargeSts 3 "INVALID" 2 "OFF" 1 "ON" 0 "NO_REQUEST" ;
+VAL_ 978 LRSM_ReliSeatLinkageSt 7 "Invalid" 5 "Backward" 4 "Forward" 3 "Linkage_PAUSESTS" 2 "Linkage_Backwarding" 1 "Linkage_Forwarding" 0 "No Request" ;
+VAL_ 978 LRSM_HeatingCtr 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial" ;
+VAL_ 979 LRSM_HeatT 255 "Invalid" ;
+VAL_ 979 LRSM_AP_current_recline 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 979 LRSM_AP_hall_recline 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 979 LRSM_ApTrigReasonRecline 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 976 LRSM_HeatingCtr_recline 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial" ;
+VAL_ 976 LRSM_HeatingCtr_cushion 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial" ;
+VAL_ 976 LRSM_HeatT_recline 255 "Invalid" ;
+VAL_ 976 LRSM_HeatT_cushion 255 "Invalid" ;
+VAL_ 976 LRSM_AP_current_slide 255 "电机运行电流25.5A" 3 "电机运行电流0.3A" 2 "电机运行电流0.2A" 1 "电机运行电流0.1A" 0 "电机运行电流0A" ;
+VAL_ 976 LRSM_AP_hall_slide 255 "电机运行hall周期255ms" 3 "电机运行hall周期3ms" 2 "电机运行hall周期2ms" 1 "电机运行hall周期1ms" 0 "电机运行hall周期0ms" ;
+VAL_ 976 LRSM_ApTrigReasonSlide 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 1407 LRSM_SupplierCode 2 "东风李尔3269" 1 "延锋3361" 0 "Initial" ;
+VAL_ 1524 LRSM_SupplierNum 2 "东风李尔3269" 1 "延锋3361" 0 "Initial" ;
+VAL_ 1125 LRSM_RepeatMessageRequestBit 1 "该报文发送节点请求其他节点进入重复报文状态" 0 "该报文发送节点未请求其他节点进入重复报文状态" ;
+VAL_ 1125 LRSM_ActiveWakeupBit 1 "该报文发送节点主动唤醒网络" 0 "该报文发送节点未主动唤醒网络（被其它节点唤醒）" ;
+VAL_ 1125 LRSM_RepeatSts 1 "节点处于重复报文状态" 0 "节点不在重复报文状态" ;
+VAL_ 1125 LRSM_NMReq_Poweron 1 "Active" 0 "Inactive" ;
+VAL_ 1125 LRSM_NMReq_Diag 1 "Active" 0 "Inactive" ;
+VAL_ 1125 LRSM_NMReq_NM 1 "Active" 0 "Inactive" ;
+VAL_ 1125 LRSM_FirstWakeupReason 63 "Invalid" 2 "NM报文" 1 "唤醒硬线ON" 0 "Initial" ;
+VAL_ 1364 RTSM_3rdLCtrlSts 7 "Invalid" 4 "Crash event" 3 "System failure" 2 "Manual control" 1 "Recall" 0 "No action" ;
+VAL_ 1364 RTSM_3rdLAntiPinchSts 1 "Active" 0 "No active" ;
+VAL_ 1364 RTSM_3rdLHeatProtectionSts 1 "Active" 0 "No active" ;
+VAL_ 1364 RTSM_3rdLInitSts 1 "Valid" 0 "Invalid" ;
+VAL_ 1364 RTSM_3rdLBackrestMotPosn 127 "INVALID" 126 "UNINITIALIZED" 125 "Initial" ;
+VAL_ 1364 RTSM_3rdLHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 1364 RTSM_3rdRAntiPinchSts 1 "Active" 0 "No active" ;
+VAL_ 1364 RTSM_3rdRHeatProtectionSts 1 "Active" 0 "No active" ;
+VAL_ 1364 RTSM_3rdRCtrlSts 7 "Invalid" 4 "Crash event" 3 "System failure" 2 "Manual control" 1 "Recall" 0 "No action" ;
+VAL_ 1364 RTSM_3rdRInitSts 1 "Valid" 0 "Invalid" ;
+VAL_ 1364 RTSM_3rdRWarningReq 7 "Invalid" 3 "Warning3" 2 "Warning2" 1 "Warning1" 0 "No Req" ;
+VAL_ 1364 RTSM_3rdRHeatFltSts 1 "Fault" 0 "Normal" ;
+VAL_ 1364 RTSM_3rdRBackrestMotPosn 127 "INVALID" 126 "UNINITIALIZED" 125 "Initial" ;
+VAL_ 1364 RTSM_3rdLHeatFltSts 1 "Fault" 0 "Normal" ;
+VAL_ 1364 RTSM_3rdLWarningReq 7 "Invalid" 3 "Warning3" 2 "Warning2" 1 "Warning1" 0 "No Req" ;
+VAL_ 1364 RTSM_3rdRHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 1364 RTSM_3rdRSeatfoldSt 7 "Invalid" 6 "PAUSESTS" 5 "RETRACTING" 4 "FOLDING" 3 "UNFOLDING" 2 "RETRACTSTS" 1 "FOLDSTS" 0 "UNFOLDSTS" ;
+VAL_ 1364 RTSM_3rdLSeatfoldSt 7 "Invalid" 6 "PAUSESTS" 5 "RETRACTING" 4 "FOLDING" 3 "UNFOLDING" 2 "RETRACTSTS" 1 "FOLDSTS" 0 "UNFOLDSTS" ;
+VAL_ 977 VIU_RLZeroGravityFoldFunSet 15 "INVALID" 10 "UNFOLD_FLAT" 9 "FOLDSTS" 8 "SEMI_UnfoLCUemory（半展开到记忆位置）" 7 "SEMI_UNFOLD（半展开默认位置）" 6 "STOP" 5 "MemorySet（记忆信号）" 4 "RETRACTMemory（收回到记忆位置）" 3 "UnfoLCUemory（展开到记忆位置）" 2 "RETRACT（收回默认位置）" 1 "UNFOLD（展开默认位置）" 0 "NO_REQUEST" ;
+VAL_ 977 VIU_ReliSeatSldMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 977 VIU_ReliSeatBackrestMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 977 VIU_ReliSeatHeatgReq 7 "Invalid" 4 "Level_3" 3 "Level_2" 2 "Level_1" 1 "OFF" 0 "No Request" ;
+VAL_ 977 VIU_ReliSeatVentnReq 7 "Invalid" 4 "Level_3" 3 "Level_2" 2 "Level_1" 1 "OFF" 0 "No Request" ;
+VAL_ 977 VIU_ReliSeatSldMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 977 VIU_ReliSeatBackrestMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 977 VIU_LRSMPwrReq 3 "INVALID" 2 "OFF" 1 "ON" 0 "NO_REQUEST" ;
+VAL_ 977 VIU_ReliSeatLinkageSet 7 "Invalid" 3 "STOP" 2 "Linkage_Backward" 1 "Linkage_Forward" 0 "NO_REQUEST" ;
+VAL_ 977 VIU_ReleSeatStopAdjustCmd 1 "STOP" 0 "NO_REQUEST" ;
+VAL_ 981 VIU_ReLeSeatbackrestHeatgLvl 7 "Invalid" 4 "Off" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "No Request" ;
+VAL_ 981 VIU_ReLeSeatcushionHeatgLvl 7 "Invalid" 4 "Off" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "No Request" ;
+VAL_ 917 VIU_3rdRSeatBackrestMotPosnSet 127 "Invalid" 125 "Initial" ;
+VAL_ 917 VIU_3rdRSeatBackrestMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 917 VIU_3rdRSeatFoldFunSet 7 "Invalid" 4 "STOP" 3 "RETRACT" 2 "FOLD" 1 "UNFOLD" 0 "NO_REQUEST" ;
+VAL_ 917 VIU_3rdLSeatFoldFunSet 7 "Invalid" 4 "STOP" 3 "RETRACT" 2 "FOLD" 1 "UNFOLD" 0 "NO_REQUEST" ;
+VAL_ 917 VIU_3rdLSeatBackrestMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 917 VIU_3rdLSeatBackrestMotPosnSet 127 "Invalid" 125 "Initial" ;
+VAL_ 740 VIU_3rdLSeatStopAdjustCmd 1 "STOP" 0 "NO_REQUEST" ;
+VAL_ 740 VIU_3rdRSeatStopAdjustCmd 1 "STOP" 0 "NO_REQUEST" ;
+VAL_ 419 PSM_AP_current_slide 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 419 PSM_AP_hall_slide 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 419 PSM_AP_current_recline 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 419 PSM_AP_hall_recline 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 419 PSM_AP_current_cushion 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 419 PSM_AP_hall_cushion 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 419 PSM_AP_current_LegUD 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 419 PSM_AP_hall_LegUD 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 1363 PSM_CtrlSts 7 "Invalid" 4 "Crash event" 3 "System failure" 2 "Manual control" 1 "Recall" 0 "No action" ;
+VAL_ 1363 PSM_AntiPinchSts 1 "Active" 0 "No active" ;
+VAL_ 1363 PSM_HeatProtectionSts 1 "Active" 0 "No active" ;
+VAL_ 1363 PSM_SLCUotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1363 PSM_BackrestMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1363 PSM_CushHeiMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1363 PSM_CushTiltMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （高:0低:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1363 PSM_LegSupportMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1363 PSM_SpindleMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1363 PSM_InitSts 1 "Valid" 0 "Invalid" ;
+VAL_ 1363 PSM_WarningReq 7 "Invalid" 3 "Warning3" 2 "Warning2" 1 "Warning1" 0 "No Req" ;
+VAL_ 1363 PSM_HeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 1363 PSM_HeatFltSts 1 "Fault" 0 "Normal" ;
+VAL_ 420 PSM_ApTrigReasonSlide 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 420 PSM_ApTrigReasonRecline 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 420 PSM_ApTrigReasonHeight 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 420 PSM_ApTrigReasonLegUD 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 420 PSM_ApTrigReasonLegFB 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 420 PSM_AP_current_LegFB 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 420 PSM_AP_hall_LegFB 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 420 PSM_HeatingCtr_recline 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial；" ;
+VAL_ 420 PSM_HeatingCtr_cushion 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial；" ;
+VAL_ 420 PSM_HeatT_recline 255 "Invalid" ;
+VAL_ 420 PSM_HeatT_cushion 255 "Invalid" ;
+VAL_ 420 PSM_AP_current_cushionAngle 255 "电机运行电流25.5A" 3 "电机运行电流0.3A" 2 "电机运行电流0.2A" 1 "电机运行电流0.1A" 0 "电机运行电流0A" ;
+VAL_ 420 PSM_ApTrigReasoncushionAngle 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 1366 PSM_VentnSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 1366 PSM_VentnFltSts 1 "System failure" 0 "Normal" ;
+VAL_ 1366 PSM_PassSeatforbiddenReasonSt 15 "RESERVED" 14 "RESERVED" 13 "RESERVED" 12 "RESERVED" 11 "RESERVED" 10 "RESERVED" 7 "SEATTBL_FORBIDDEN" 6 "StorageBoxOpen" 5 "Foldsts Button_Forbidden" 4 "Pausests Button_Forbidden" 3 "BUCKLED" 2 "OCCUPIED" 1 "System_Failure" 0 "No Request" ;
+VAL_ 1366 PSM_PassSeatfoldSt 7 "Invalid" 6 "PAUSESTS" 5 "RETRACTING" 4 "FOLDING" 3 "UNFOLDING" 2 "RETRACTSTS" 1 "FOLDSTS" 0 "UNFOLDSTS" ;
+VAL_ 1366 PSM_PassSeatLinkageSt 7 "Invalid" 5 "Backward" 4 "Forward" 3 "Linkage_PAUSESTS" 2 "Linkage_ Retracting" 1 "Linkage_Forwarding" 0 "No Request" ;
+VAL_ 1366 PSM_DevSupportSts 3 "UNKNOWN" 2 "ACTIVE//设备已安装" 1 "INACTIVE//设备未安装" 0 "Default" ;
+VAL_ 1366 PSM_DevLinkSts 3 "UNKNOWN" 2 "ACTIVE//设备已安装" 1 "INACTIVE//设备未安装" 0 "Default" ;
+VAL_ 1366 PSM_ChargeSts 3 "INVALID" 2 "OFF" 1 "ON" 0 "NO_REQUEST" ;
+VAL_ 1366 PSM_PassSeatfoldSwtSts 3 "Invalid" 2 "RETRACT" 1 "FOLD" 0 "No Request" ;
+VAL_ 1366 PSM_LegExtnMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1366 PSM_HeatingCtr 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial" ;
+VAL_ 1366 PSM_HeatT 255 "Invalid" ;
+VAL_ 1366 PSM_PassSeatbackrestHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "Off" ;
+VAL_ 1366 PSM_PassSeatcushionHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "Off" ;
+VAL_ 1366 PSM_AP_hall_cushionAngle 255 "电机运行hall周期255ms" 3 "电机运行hall周期3ms" 2 "电机运行hall周期2ms" 1 "电机运行hall周期1ms" 0 "电机运行hall周期0ms" ;
+VAL_ 755 PSM_RRSeatFootSupportMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （上:0下:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 755 PSM_AP_current_RRSeatFootSupport 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 1531 PSM_ZeroGravityUnfoldBtn 3 "Reserved" 2 "Idle" 1 "Push" 0 "Invalid" ;
+VAL_ 1531 PSM_ZeroGravityFoldBtn 3 "Reserved" 2 "Idle" 1 "Push" 0 "Invalid" ;
+VAL_ 1531 PSM_ZeroGravityFoldSt 15 "INVALID" 12 "UNFOLD_FLATING" 11 "UNFOLD_FLAT" 10 "FOLDING" 9 "FOLDSTS" 8 "SEMI_UnfoLCUemorySTS（预留）" 7 "SEMI_UNFOLDSTS" 6 "RETRACTMemorySTS" 5 "UNFOLCUemorySTS（预留）" 4 "PAUSESTS" 3 "RETRACTING" 2 "UNFOLDING" 1 "RETRACTSTS" 0 "UNFOLDSTS" ;
+VAL_ 1531 PSM_AP_hall_RRSeatFootSupport 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 1531 PSM_ApTrigReasonRRSeatFootSupport 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 1482 PSM_SupplierNum 2 "东风李尔3269" 1 "延锋国际3281" 0 "Initial" ;
+VAL_ 1386 PSM_SupplierCode 2 "东风李尔3269" 1 "延锋国际3281" 0 "Initial" ;
+VAL_ 1113 PSM_RepeatMessageRequestBit 1 "该报文发送节点请求其他节点进入重复报文状态" 0 "该报文发送节点未请求其他节点进入重复报文状态" ;
+VAL_ 1113 PSM_ActiveWakeupBit 1 "该报文发送节点主动唤醒网络" 0 "该报文发送节点未主动唤醒网络（被其它节点唤醒）" ;
+VAL_ 1113 PSM_RepeatSts 1 "节点处于重复报文状态" 0 "节点不在重复报文状态" ;
+VAL_ 1113 PSM_NMReq_Poweron 1 "Active" 0 "Inactive" ;
+VAL_ 1113 PSM_NMReq_Diag 1 "Active" 0 "Inactive" ;
+VAL_ 1113 PSM_NMReq_NM 1 "Active" 0 "Inactive" ;
+VAL_ 1113 PSM_NMReq_MovgOrPosnStorg 1 "Active" 0 "Inactive" ;
+VAL_ 1113 PSM_FirstWakeupReason 63 "Invalid" 2 "NM报文" 1 "唤醒硬线ON" 0 "Initial" ;
+VAL_ 932 ADS_ZeGrvySeatPreCrash 3 "Reserved" 2 "Fault" 1 "Active" 0 "Not Active" ;
+VAL_ 932 VIU_PsmZeroGravityFoldFunSet 15 "INVALID" 10 "UNFOLD_FLAT" 9 "FOLDSTS" 8 "SEMI_UnfoLCUemory（半展开到记忆位置）" 7 "SEMI_UNFOLD（半展开默认位置）" 6 "STOP" 5 "MemorySet（记忆信号）" 4 "RETRACTMemory（收回到记忆位置）" 3 "UnfoLCUemory（展开到记忆位置）" 2 "RETRACT（收回默认位置）" 1 "UNFOLD（展开默认位置）" 0 "NO_REQUEST" ;
+VAL_ 939 ABM_CrashSt 3 "Invalid" 2 "Reserved" 1 "Crash" 0 "No_crash" ;
+VAL_ 939 VIU_PassSeatOccptSt 3 "Invalid" 2 "Occupied" 1 "Free" 0 "Initial" ;
+VAL_ 939 VIU_PassSeatBltSt 3 "Invalid" 2 "Tied" 1 "Untied" 0 "Initial" ;
+VAL_ 939 VIU_PassSeatSLCUotPosnStepSet 3 "Invalid" 2 "Backward" 1 "Frontward" 0 "NO_Action_Stop" ;
+VAL_ 939 VIU_PassSeatBackrestMotPosnStepSet 3 "Invalid" 2 "Backward" 1 "Frontward" 0 "NO_Action_Stop" ;
+VAL_ 939 VIU_PassSeatCushHeiMotPosnStepSet 3 "Invalid" 2 "Downward" 1 "Upward" 0 "NO_Action_Stop" ;
+VAL_ 939 VIU_PassSeatCushTiltMotPosnStepSet 3 "INVALID" 2 "DOWNWARD" 1 "UPWARD" 0 "NO_Action_Stop" ;
+VAL_ 939 VIU_PassSeatLegSupportMotPosnStepSet 3 "INVALID" 2 "DOWNWARD" 1 "UPWARD" 0 "NO_Action_Stop" ;
+VAL_ 939 VIU_PassSeatFoldFunSet 7 "Invalid" 4 "STOP" 3 "RETRACT" 2 "FOLD" 1 "UNFOLD" 0 "NO_REQUEST" ;
+VAL_ 939 VIU_PassSeatLinkageSet 7 "Invalid" 3 "STOP" 2 "Linkage_Retract （联动回位）" 1 "Linkage_Forward（联动前移）" 0 "NO_REQUEST" ;
+VAL_ 939 VIU_PsOpenSt 7 "_UNKNOWN" 3 "OPENED" 2 "CLOSED" 1 "OPENING" 0 "CLOSING" ;
+VAL_ 939 VIU_PsAdjSt 7 "UNKNOWN" 5 "OPEN_TIMEOUT  //幕布调节超时" 4 "SEAT_FL_FR_INTERFERENCE  //主副驾座椅同时干扰，禁止调节幕布" 3 "SEAT_FR_INTERFERENCE  //副驾座椅干扰，禁止调节幕布" 2 "SEAT_FL_ INTERFERENCE //主驾座椅干扰，禁止调节幕布" 1 "MLINK_STAND_ACTIVE  //Mlink支架激活干扰，禁止调节幕布" 0 "NORMAL" ;
+VAL_ 939 VIU_PassSeatLegExtnMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 939 VIU_PassSeatLegExtnMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 916 VIU_PassengerPresent 1 "Present" 0 "No present" ;
+VAL_ 916 VIU_PassSeatSLCUotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（女王副驾）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 916 VIU_PassSeatBackrestMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（女王副驾）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 916 VIU_PassSeatCushHeiMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（女王副驾）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 916 VIU_PassSeatCushTiltMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（女王副驾）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 916 VIU_PassSeatLegSupportMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（女王副驾）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 916 VIU_PassSeatSpindleMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（女王副驾）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 916 VIU_PassSeatHeatgReq 7 "Invalid" 4 "Level_3" 3 "Level_2" 2 "Level_1" 1 "OFF" 0 "No Request" ;
+VAL_ 916 VIU_PassSeatVentnReq 7 "Invalid" 4 "Level_3" 3 "Level_2" 2 "Level_1" 1 "OFF" 0 "No Request" ;
+VAL_ 916 VIU_PSMPwrReq 3 "INVALID" 2 "OFF" 1 "ON" 0 "NO_REQUEST" ;
+VAL_ 960 VIU_PassbackrestHeatgLvl 7 "Invalid" 4 "Off" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "No Request" ;
+VAL_ 960 VIU_PasscushionHeatgLvl 7 "Invalid" 4 "Off" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "No Request" ;
+VAL_ 960 VIU_PassSeatStopAdjustCmd 1 "STOP" 0 "NO_REQUEST" ;
+VAL_ 1367 RRSM_ZeroGravityFoldSt 15 "INVALID" 12 "UNFOLD_FLATING" 11 "UNFOLD_FLAT" 10 "FOLDING" 9 "FOLDSTS" 8 "SEMI_UnfoLCUemorySTS" 7 "SEMI_UNFOLDSTS" 6 "RETRACTMemorySTS" 5 "UNFOLCUemorySTS" 4 "PAUSESTS" 3 "RETRACTING" 2 "UNFOLDING" 1 "RETRACTSTS" 0 "UNFOLDSTS" ;
+VAL_ 1395 VIU_RRSeatFootSupportMotPosnStepSet 3 "INVALID" 2 "DOWNWARD" 1 "UPWARD" 0 "NO_Action_Stop" ;
+VAL_ 1395 VIU_RRSeatFootSupportMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（上:0下:100）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1556 RCLM_RR1_SupplierNum 0 "Initial" ;
+VAL_ 1067 RCLM_RR1_RepeatMessageRequestBit 1 "该报文发送节点请求其他节点进入重复报文状态" 0 "该报文发送节点未请求其他节点进入重复报文状态" ;
+VAL_ 1067 RCLM_RR1_ActiveWakeupBit 1 "该报文发送节点主动唤醒网络" 0 "该报文发送节点未主动唤醒网络（被其它节点唤醒）" ;
+VAL_ 1067 RCLM_RR1_RepeatSts 1 "节点处于重复报文状态" 0 "节点不在重复报文状态" ;
+VAL_ 1067 RCLM_RR1_NMReq_Poweron 1 "Active" 0 "Inactive" ;
+VAL_ 1067 RCLM_RR1_NMReq_Diag 1 "Active" 0 "Inactive" ;
+VAL_ 1067 RCLM_RR1_NMReq_NM 1 "Active" 0 "Inactive" ;
+VAL_ 1067 RCLM_RR1_FirstWakeupReason 63 "Invalid" 2 "NM报文" 1 "唤醒硬线ON" 0 "Initial" ;
+VAL_ 344 RCLM_RR1_CtrlSts 7 "Invalid" 4 "Crash event" 3 "System failure" 2 "Manual control" 1 "Recall" 0 "No action" ;
+VAL_ 344 RCLM_RR1_BackrestMotFltSts 3 "Range error" 2 "Hall fail" 1 "Motor fail" 0 "No fault" ;
+VAL_ 344 RCLM_RR1_InitSts 1 "Valid" 0 "Invalid" ;
+VAL_ 344 RCLM_RR1_PrecrashSts 3 "Fault" 2 "Precrash Finished" 1 "Precrash-ing" 0 "Idle" ;
+VAL_ 344 RCLM_RR1_BackrestMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前: 0后: 100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 344 RCLM_RR1_AntiPinchSts 1 "Active" 0 "No active" ;
+VAL_ 344 RCLM_RR1_BackrestMotAngle 127 "Invalid" 126 "UnInitialized" 125 "Initial" 120 "60" 100 "50" 1 "0.5" 0 "0" ;
+VAL_ 344 RCLM_RR1_HeatProtectionSts 1 "Active" 0 "No active" ;
+VAL_ 342 RRSM_CushionAngle 127 "Invalid" 126 "UnInitialized" 125 "Initial" 30 "15" 29 "14.5" 28 "14" 27 "13.5" 26 "13" 25 "12.5" 24 "12" 23 "11.5" 22 "11" 21 "10.5" 20 "10" 19 "9.5" 18 "9" 17 "8.5" 16 "8" 15 "7.5" 14 "7" 13 "6.5" 12 "6" 11 "5.5" 10 "5" 9 "4.5" 8 "4" 7 "3.5" 6 "3" 5 "2.5" 4 "2" 3 "1.5" 2 "1" 1 "0.5" 0 "0" ;
+VAL_ 342 RRSM_RRSeatBackrestMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%(前:0后:100)" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 342 RRSM_RRSeatBackrestMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 1390 RRSM_SupplierCode 2 "东风李尔3269" 1 "延锋国际3281" 0 "Initial" ;
+VAL_ 1343 RTSM_3ndLeftSeatDetectSts 1 "DETECTED" 0 "NOT_DETECTED" ;
+VAL_ 1343 RTSM_3ndRightSeatDetectSts 1 "DETECTED" 0 "NOT_DETECTED" ;
+VAL_ 1618 RRSM_AP_current_slide 255 "电机运行电流25.5A" 3 "电机运行电流0.3A" 2 "电机运行电流0.2A" 1 "电机运行电流0.1A" 0 "电机运行电流0A" ;
+VAL_ 1618 RRSM_AP_hall_slide 255 "电机运行hall周期255ms" 3 "电机运行hall周期3ms" 2 "电机运行hall周期2ms" 1 "电机运行hall周期1ms" 0 "电机运行hall周期0ms" ;
+VAL_ 1618 RRSM_ApTrigReasonSlide 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 1618 RRSM_RRSeatFootSupportMotPosnStepRq 3 "INVALID" 2 "DOWNWARD" 1 "UPWARD" 0 "NO_Action_Stop" ;
+VAL_ 1365 RRSM_CtrlSts 7 "Invalid" 4 "Crash event" 3 "System failure" 2 "Manual control" 1 "Recall" 0 "No action" ;
+VAL_ 1365 RRSM_AntiPinchSts 1 "Active" 0 "No active" ;
+VAL_ 1365 RRSM_HeatProtectionSts 1 "Active" 0 "No active" ;
+VAL_ 1365 RRSM_SLCUotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1365 RRSM_BackrestMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1365 RRSM_LegSupportMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1365 RRSM_LegExtnMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1365 RRSM_CushTiltMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1365 RRSM_YAxisMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1365 RRSM_ArmRestMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1365 RRSM_InitSts 1 "Valid" 0 "Invalid" ;
+VAL_ 1365 RRSM_WarningReq 7 "Invalid" 3 "Warning3" 2 "Warning2" 1 "Warning1" 0 "No Req" ;
+VAL_ 1365 RRSM_HeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 1365 RRSM_HeatFltSts 1 "Fault" 0 "Normal" ;
+VAL_ 1365 RRSM_RRSeatDetectSts 1 "DETECTED" 0 "NOT_DETECTED" ;
+VAL_ 1350 RRSM_SeatAngleMotPosn 127 "INVALID" 126 "UNINITIALIZED" 125 "Initial" 100 "100%（上0%下100%）" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1350 RRSM_ZeroGravityUnfold 3 "Reserved" 2 "Idle" 1 "Push" 0 "Invalid" ;
+VAL_ 1350 RRSM_ZeroGravityFold 3 "Reserved" 2 "Idle" 1 "Push" 0 "Invalid" ;
+VAL_ 1350 RRSM_ReRiSeatbackrestHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "Off" ;
+VAL_ 1350 RRSM_ReRiSeatcushionHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "Off" ;
+VAL_ 1350 RRSM_HeatingCtr_recline 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial；" ;
+VAL_ 1350 RRSM_HeatingCtr_cushion 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial；" ;
+VAL_ 1350 RRSM_HeatT_recline 255 "Invalid" 254 "initial" 203 "150" 0 "-50" ;
+VAL_ 1350 RRSM_HeatT_cushion 255 "Invalid" 254 "initial" 203 "150" 0 "-50" ;
+VAL_ 1350 RRSM_ReliSeatLinkageSt 7 "Invalid" 5 "Backward" 4 "Forward" 3 "Linkage_PAUSESTS" 2 "Linkage_Backwarding" 1 "Linkage_Forwarding" 0 "No Request" ;
+VAL_ 988 RRSM_AP_current_LegUD 255 "电机运行电流25.5A" 3 "电机运行电流0.3A" 2 "电机运行电流0.2A" 1 "电机运行电流0.1A" 0 "电机运行电流0A" ;
+VAL_ 988 RRSM_AP_hall_LegUD 255 "电机运行hall周期255ms" 3 "电机运行hall周期3ms" 2 "电机运行hall周期2ms" 1 "电机运行hall周期1ms" 0 "电机运行hall周期0ms" ;
+VAL_ 988 RRSM_ApTrigReasonLegUD 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 988 RRSM_AP_current_LegFB 255 "电机运行电流25.5A" 3 "电机运行电流0.3A" 2 "电机运行电流0.2A" 1 "电机运行电流0.1A" 0 "电机运行电流0A" ;
+VAL_ 988 RRSM_AP_hall_LegFB 255 "电机运行hall周期255ms" 3 "电机运行hall周期3ms" 2 "电机运行hall周期2ms" 1 "电机运行hall周期1ms" 0 "电机运行hall周期0ms" ;
+VAL_ 988 RRSM_ApTrigReasonLegFB 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 988 RRSM_AP_current_cushionAngle 255 "电机运行电流25.5A" 3 "电机运行电流0.3A" 2 "电机运行电流0.2A" 1 "电机运行电流0.1A" 0 "电机运行电流0A" ;
+VAL_ 988 RRSM_AP_hall_cushionAngle 255 "电机运行hall周期255ms" 3 "电机运行hall周期3ms" 2 "电机运行hall周期2ms" 1 "电机运行hall周期1ms" 0 "电机运行hall周期0ms" ;
+VAL_ 988 RRSM_ApTrigReasoncushionAngle 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 984 RRSM_AP_current_LArmRest 255 "电机运行电流25.5A" 3 "电机运行电流0.3A" 2 "电机运行电流0.2A" 1 "电机运行电流0.1A" 0 "电机运行电流0A" ;
+VAL_ 984 RRSM_AP_hall_LArmRest 255 "电机运行hall周期255ms" 3 "电机运行hall周期3ms" 2 "电机运行hall周期2ms" 1 "电机运行hall周期1ms" 0 "电机运行hall周期0ms" ;
+VAL_ 984 RRSM_ApTrigReasonLArmRest 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 984 RRSM_AP_current_RArmRest 255 "电机运行电流25.5A" 3 "电机运行电流0.3A" 2 "电机运行电流0.2A" 1 "电机运行电流0.1A" 0 "电机运行电流0A" ;
+VAL_ 984 RRSM_AP_hall_RArmRest 255 "电机运行hall周期255ms" 3 "电机运行hall周期3ms" 2 "电机运行hall周期2ms" 1 "电机运行hall周期1ms" 0 "电机运行hall周期0ms" ;
+VAL_ 984 RRSM_ApTrigReasonRArmRest 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 984 RRSM_AP_current_YAxis 255 "电机运行电流25.5A" 3 "电机运行电流0.3A" 2 "电机运行电流0.2A" 1 "电机运行电流0.1A" 0 "电机运行电流0A" ;
+VAL_ 984 RRSM_AP_hall_YAxis 255 "电机运行hall周期255ms" 3 "电机运行hall周期3ms" 2 "电机运行hall周期2ms" 1 "电机运行hall周期1ms" 0 "电机运行hall周期0ms" ;
+VAL_ 984 RRSM_ApTrigReasonYAxis 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 1367 RRSM_VentnSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 1367 RRSM_VentnFltSts 1 "System failure" 0 "Normal" ;
+VAL_ 1367 RRSM_ZeroGravityforbiddenReasonSt 15 "RESERVED" 14 "RESERVED" 13 "RESERVED" 12 "RESERVED" 11 "RESERVED" 10 "RESERVED" 4 "unadjustable" 3 "CHBDOOROPEN" 2 "BUTTON_FORBIDDEN" 1 "SYSTEM_FAILURE" 0 "NO REQUEST" ;
+VAL_ 1367 RRSM_DevSupportSts 3 "UNKNOWN" 2 "ACTIVE//设备已安装" 1 "INACTIVE//设备未安装" 0 "Default" ;
+VAL_ 1367 RRSM_DevLinkSts 3 "UNKNOWN" 2 "ACTIVE//设备已安装" 1 "INACTIVE//设备未安装" 0 "Default" ;
+VAL_ 1367 RRSM_ChargeSts 3 "INVALID" 2 "OFF" 1 "ON" 0 "NO_REQUEST" ;
+VAL_ 1367 RRSM_L_ArmRestMotPosn 127 "Invalid" 126 "UnInitialized" 125 "Initial" 100 "100% （前:0后:100）" 99 "99%" 3 "3%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 1367 RRSM_HeatT 255 "Invalid" 254 "initial" 203 "150" 0 "-50" ;
+VAL_ 1367 RRSM_HeatingCtr 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial" ;
+VAL_ 1367 RRSM_AP_current_recline 255 "25.5" 3 "0.3" 2 "0.2" 1 "0.1" 0 "0" ;
+VAL_ 1367 RRSM_AP_hall_recline 255 "255" 3 "3" 2 "2" 1 "1" 0 "0" ;
+VAL_ 1367 RRSM_ApTrigReasonRecline 7 "Reserved" 6 "Reserved" 5 "APHallTrend" 4 "APHallDiff" 3 "APCurrentMax" 2 "APCurrentTrend" 1 "APCurrentDiff" 0 "Not triggered" ;
+VAL_ 1517 RRSM_SupplierNum 2 "东风李尔3269" 1 "延锋国际3281" 0 "Initial" ;
+VAL_ 1115 RRSM_RepeatMessageRequestBit 1 "该报文发送节点请求其他节点进入重复报文状态" 0 "该报文发送节点未请求其他节点进入重复报文状态" ;
+VAL_ 1115 RRSM_ActiveWakeupBit 1 "该报文发送节点主动唤醒网络" 0 "该报文发送节点未主动唤醒网络（被其它节点唤醒）" ;
+VAL_ 1115 RRSM_RepeatSts 1 "节点处于重复报文状态" 0 "节点不在重复报文状态" ;
+VAL_ 1115 RRSM_NMReq_Poweron 1 "Active" 0 "Inactive" ;
+VAL_ 1115 RRSM_NMReq_Diag 1 "Active" 0 "Inactive" ;
+VAL_ 1115 RRSM_NMReq_NM 1 "Active" 0 "Inactive" ;
+VAL_ 1115 RRSM_NMReq_MovgOrPosnStorg 1 "Active" 0 "Inactive" ;
+VAL_ 1115 RRSM_FirstWakeupReason 63 "Invalid" 2 "NM报文" 1 "唤醒硬线ON" 0 "Initial" ;
+VAL_ 943 BMS_OperSt 15 "Reserved" 14 "Reserved" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Reserved" 9 "Reserved" 8 "LinkHVON 桩端高压Ready" 7 "HVFault 无法上高压或故障下高压状态" 6 "AfterRun" 5 "Polling 巡检不上高压" 4 "HVOff 高压下电" 3 "HVON 电池包高压Ready" 2 "Precharge 预充" 1 "Standby 待机" 0 "Initial 初始化" ;
+VAL_ 941 VIU_ZeroGravityFoldFunSet 15 "INVALID" 10 "UNFOLD_FLAT" 9 "FOLDSTS" 8 "SEMI_UnfoLCUemory（半展开到记忆位置）" 7 "SEMI_UNFOLD（半展开默认位置）" 6 "STOP" 5 "MemorySet（记忆信号）" 4 "RETRACTMemory（收回到记忆位置）" 3 "UnfoLCUemory（展开到记忆位置）" 2 "RETRACT（收回默认位置）" 1 "UNFOLD（展开默认位置）" 0 "NO_REQUEST" ;
+VAL_ 941 VIU_ReRiSeatSLCUotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 941 VIU_ReRiSeatBackrestMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 941 VIU_ReRiSeatLegSupportMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 941 VIU_ReRiSeatLegExtnMotPosnStepSet 3 "INVALID" 2 "BACKWARD" 1 "FRONTWARD" 0 "NO_Action_Stop" ;
+VAL_ 918 VIU_RRSMPwrReq 3 "INVALID" 2 "OFF" 1 "ON" 0 "NO_REQUEST" ;
+VAL_ 918 VIU_ReRiSeatLinkageSet 7 "Invalid" 3 "STOP" 2 "Linkage_Backward" 1 "Linkage_Forward" 0 "NO_REQUEST" ;
+VAL_ 918 VIU_ReRiSeatSLCUotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（零重力座椅）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 918 VIU_ReRiSeatBackrestMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（零重力座椅）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 918 VIU_ReRiSeatLegExtnMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（零重力座椅）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 918 VIU_ReRiSeatLegSupportMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（零重力座椅）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 918 VIU_ReRiSeatCushTiltMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（零重力座椅）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 918 VIU_ReRiSeatYAxisMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（零重力座椅）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 918 VIU_ReRiSeatArmRestMotPosnSet 127 "Invalid" 125 "Initial" 100 "100%（前:0后:100）（零重力座椅）" 99 "99%" 2 "2%" 1 "1%" 0 "0%" ;
+VAL_ 918 VIU_ReRiSeatHeatgReq 7 "Invalid" 4 "Level_3" 3 "Level_2" 2 "Level_1" 1 "OFF" 0 "No Request" ;
+VAL_ 918 VIU_ReRiSeatVentnReq 7 "Invalid" 4 "Level_3" 3 "Level_2" 2 "Level_1" 1 "OFF" 0 "No Request" ;
+VAL_ 918 VIU_ReRiSeatCushTiltMotPosnStepSet 3 "Invalid" 2 "Downward" 1 "Upward" 0 "NO_Action_Stop" ;
+VAL_ 918 VIU_ReRiSeatYAxisMotPosnStepSet 3 "INVALID" 2 "RIGHTWARD" 1 "LEFTWARD" 0 "NO_Action_Stop" ;
+VAL_ 997 VIU_ReRibackrestHeatgLvl 7 "Invalid" 4 "Off" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "No Request" ;
+VAL_ 997 VIU_ReRicushionHeatgLvl 7 "Invalid" 4 "Off" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "No Request" ;
+VAL_ 997 VIU_ReRiSeatStopAdjustCmd 1 "STOP" 0 "NO_REQUEST" ;
+VAL_ 978 LRSM_ForbiddenReasonSt 15 "RESERVED" 14 "RESERVED" 13 "RESERVED" 12 "RESERVED" 11 "RESERVED" 10 "RESERVED" 4 "unadjustable" 3 "CHBDOOROPEN" 2 "BUTTON_FORBIDDEN" 1 "SYSTEM_FAILURE" 0 "NO REQUEST" ;
+VAL_ 978 LRSM_SeatfoldSt 7 "Invalid" 6 "PAUSESTS" 5 "RETRACTING" 4 "FOLDING" 3 "UNFOLDING" 2 "RETRACTSTS" 1 "FOLDSTS" 0 "UNFOLDSTS" ;
+VAL_ 1365 RRSM_RMSeatDetectSts 1 "DETECTED" 0 "NOT_DETECTED" ;
+VAL_ 1350 RRSM_SeatHeatgSts 7 "Invalid" 3 "Level_3" 2 "Level_2" 1 "Level_1" 0 "OFF" ;
+VAL_ 1350 RRSM_SeatHeatFltSts 1 "Fault" 0 "Normal" ;
+VAL_ 1350 RRSM_SeatHeatingCtr 3 "Invalid" 2 "ON" 1 "OFF" 0 "Initial；" ;
+VAL_ 1350 RRSM_SeatHeatT 255 "Invalid" 254 "initial" 203 "150" 0 "-50" ;
+VAL_ 977 VIU_RLSecRowSeatFoldFunSet 7 "Invalid" 4 "STOP" 3 "RETRACT" 2 "FOLD" 1 "UNFOLD" 0 "NO_REQUEST" ;
+VAL_ 941 VIU_ReMiSeatHeatgReq 7 "Invalid" 4 "Level_3" 3 "Level_2" 2 "Level_1" 1 "OFF" 0 "No Request" ;
+VAL_ 941 VIU_RRSecRowSeatFoldFunSet 7 "Invalid" 4 "STOP" 3 "RETRACT" 2 "FOLD" 1 "UNFOLD" 0 "NO_REQUEST" ;
