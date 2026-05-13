@@ -30,6 +30,9 @@ BA_DEF_DEF_NAME_RE = re.compile(r'^BA_DEF_DEF_\s+"([^"]+)"')
 # 用于识别网络级 BA_ "DBName" "..."; 赋值行（合并时会被替换为输出文件名）
 BA_DBNAME_RE = re.compile(r'^BA_\s+"DBName"\s+')
 
+# 用于识别多发送者行: BO_TX_BU_ <can_id> : Node1, Node2, ...;
+BO_TX_BU_RE = re.compile(r'^BO_TX_BU_\s+(-?\d+)\s*:\s*([^;]+);')
+
 # 用于识别节点级 BA_ "NmAsrNodeIdentifier" BU_ <node> ...; 行（注入前先剔除）
 BA_NODE_IDENTIFIER_RE = re.compile(r'^BA_\s+"NmAsrNodeIdentifier"\s+BU_\s+')
 
@@ -44,15 +47,19 @@ NM_BASE_FALLBACK_HIGH = 0x4
 #   type_str:   BA_DEF_ 中类型与范围片段（不含末尾分号）
 #   default:    BA_DEF_DEF_ 后的默认值字面量（字符串需自带双引号）
 # 注意: HEX 类型在 DBC 中惯用十进制写最小/最大/默认值
-# 特殊项: NmAsrBaseAddress 的 type_str / default 会在运行时被 build_extra_attributes
-#         按 DBC 中 NM_ 报文 ID 段动态覆盖，这里写的只是占位
+# 特殊项: NmAsrBaseAddress / NmBaseAddress / NmStationAddress / NmMessageCount
+#         的 type_str / default 会在运行时被 build_extra_attributes 按 DBC 中
+#         NM_ 报文 ID 段动态覆盖, 这里写的只是占位
 EXTRA_ATTRIBUTES = [
     ('',    'NmAsrBaseAddress',       'HEX 1024 1279',  '1024'),
+    ('',    'NmBaseAddress',          'HEX 1024 1279',  '1024'),
     ('BU_', 'NmAsrCanMsgCycleOffset', 'INT 50 50',      '50'),
     ('',    'NmAsrCanMsgCycleTime',   'INT 500 500',    '500'),
     ('BU_', 'NmAsrCanMsgReducedTime', 'INT 20 20',      '20'),
     ('',    'NmAsrMessageCount',      'INT 0 256',      '256'),
+    ('',    'NmMessageCount',         'INT 0 256',      '256'),
     ('BU_', 'NmAsrNodeIdentifier',    'HEX 0 255',      '255'),
+    ('BU_', 'NmStationAddress',       'HEX 0 255',      '0'),
     ('',    'NmAsrRepeatMessageTime', 'INT 1600 1600',  '1600'),
     ('',    'NmAsrTimeoutTime',       'INT 2000 2000',  '2000'),
     ('',    'NmAsrWaitBusSleepTime',  'INT 2000 2000',  '2000'),
@@ -75,12 +82,70 @@ def _format_ba_def_def(name, default):
     return f'BA_DEF_DEF_  "{name}" {default};'
 
 
-def collect_nm_messages(merged):
-    """从合并结果中提取所有 NM_ 开头报文的 (msg_id, msg_name, transmitter)。
+def parse_bo_tx_bu_map(other_lines):
+    """解析 merged['other'] 中的 BO_TX_BU_ 行, 得到 can_id -> 发送节点名列表。
 
-    msg_id 已经屏蔽扩展帧标志位, 只保留 11 位标准 CAN ID。
-    transmitter 为 BO_ 行末尾的发送者字段, 可能是 Vector__XXX 占位。
+    与 BO_ 定义中的报文 ID 使用相同十进制整数键。若同一 ID 出现多行, 后出现的覆盖前行
+    (合并去重后通常只有一行)。
     """
+    out = {}
+    for line in other_lines or []:
+        mm = BO_TX_BU_RE.match(line.strip())
+        if not mm:
+            continue
+        pid = int(mm.group(1))
+        names = [x.strip() for x in mm.group(2).split(',') if x.strip()]
+        out[pid] = names
+    return out
+
+
+def resolve_node_from_nm_message_name(msg_name, node_set):
+    """从 NM_<后缀> 报文名在 BU_ 列表中解析逻辑节点名 (最长前缀匹配)。"""
+    if not msg_name.startswith('NM_'):
+        return None
+    suffix = msg_name[3:]
+    if not suffix:
+        return None
+    parts = suffix.split('_')
+    for i in range(len(parts), 0, -1):
+        candidate = '_'.join(parts[:i])
+        if candidate in node_set:
+            return candidate
+    return None
+
+
+def _fallback_nm_nodes(msg_name, transmitter, node_set):
+    """无 BO_TX_BU_ 行时, 用报文名 + BO_ 发送者推断参与 NM 的节点列表 (有序去重)。"""
+    ordered = []
+    seen = set()
+
+    def _add(n):
+        if n and n not in seen and n in node_set:
+            seen.add(n)
+            ordered.append(n)
+
+    nn = resolve_node_from_nm_message_name(msg_name, node_set)
+    if nn:
+        _add(nn)
+    if transmitter and transmitter not in NM_TRANSMITTER_PLACEHOLDERS:
+        _add(transmitter)
+    if not ordered:
+        m = NM_NAME_FALLBACK_RE.match(msg_name)
+        if m:
+            _add(m.group(1))
+    return tuple(ordered)
+
+
+def collect_nm_messages(merged):
+    """从合并结果中提取所有 NM_ 开头报文的 (msg_id, msg_name, transmitter_nodes)。
+
+    msg_id 为屏蔽扩展帧标志后的 11 位标准 CAN ID, 用于段推断与低字节计算。
+    transmitter_nodes 为应写入相同 NmAsrNodeIdentifier 的 BU_ 节点名元组:
+      - 若存在 BO_TX_BU_ <id> : A, B; 则优先采用其中的全部节点 (过滤占位符)
+      - 否则回退到报文名最长前缀匹配 + BO_ 发送者等逻辑
+    """
+    node_set = _extract_node_set(merged)
+    bo_tx = parse_bo_tx_bu_map(merged.get('other'))
     results = []
     for lines in merged['bo'].values():
         if not lines:
@@ -88,10 +153,35 @@ def collect_nm_messages(merged):
         m = BO_NM_RE.match(lines[0])
         if not m:
             continue
-        msg_id = int(m.group(1)) & 0x7FF
+        raw_id = int(m.group(1))
+        msg_id = raw_id & 0x7FF
         msg_name = m.group(2)
         transmitter = m.group(3)
-        results.append((msg_id, msg_name, transmitter))
+
+        if raw_id in bo_tx:
+            nodes = []
+            for n in bo_tx[raw_id]:
+                if n in NM_TRANSMITTER_PLACEHOLDERS:
+                    continue
+                if n not in node_set:
+                    print(
+                        f"  [NmAsrNodeIdentifier] 警告: BO_TX_BU_ {raw_id} 中的节点 {n} "
+                        f"不在 BU_ 列表中 (报文 {msg_name}), 已忽略"
+                    )
+                    continue
+                nodes.append(n)
+            transmitter_nodes = tuple(sorted(set(nodes)))
+            if not transmitter_nodes:
+                transmitter_nodes = _fallback_nm_nodes(msg_name, transmitter, node_set)
+                if transmitter_nodes:
+                    print(
+                        f"  [NmAsrNodeIdentifier] 提示: 报文 {msg_name} (ID={raw_id}) 的 BO_TX_BU_ "
+                        f"无有效节点, 已回退到报文名/发送者推断: {', '.join(transmitter_nodes)}"
+                    )
+        else:
+            transmitter_nodes = _fallback_nm_nodes(msg_name, transmitter, node_set)
+
+        results.append((msg_id, msg_name, transmitter_nodes))
     return results
 
 
@@ -127,13 +217,23 @@ def detect_nm_base_address(nm_messages):
 def build_extra_attributes(base_low, base_high, base_default):
     """基于推断出的 NmAsrBaseAddress 构建注入用的属性表。
 
-    目前仅 NmAsrBaseAddress 受合并结果影响, 其余条目原样取自 EXTRA_ATTRIBUTES。
+    NmAsrBaseAddress / NmBaseAddress 使用完整 NM 基地址范围, 例如 0x400..0x4FF。
+    NmStationAddress 使用该范围内的低 8 位地址, 因此固定为 0x00..0xFF。
+    NmMessageCount 使用 NmStationAddress 的整数数量作为上限, 默认值为该数量。
     """
+    station_low = base_low & 0xFF
+    station_high = base_high & 0xFF
+    station_count = station_high - station_low + 1
+
     extras = []
     for entry in EXTRA_ATTRIBUTES:
         scope, name, type_str, default = entry
-        if name == 'NmAsrBaseAddress':
+        if name in {'NmAsrBaseAddress', 'NmBaseAddress'}:
             extras.append((scope, name, f'HEX {base_low} {base_high}', str(base_default)))
+        elif name == 'NmStationAddress':
+            extras.append((scope, name, f'HEX {station_low} {station_high}', str(station_low)))
+        elif name == 'NmMessageCount':
+            extras.append((scope, name, f'INT 0 {station_count}', str(station_count)))
         else:
             extras.append(entry)
     return extras
@@ -151,56 +251,59 @@ def _extract_node_set(merged):
 def detect_node_identifiers(nm_messages, base_segment, node_set):
     """根据 NM_ 报文为每个节点推断 NmAsrNodeIdentifier。
 
-    映射策略 (按优先级):
-      1. BO_ 行的发送者 (Transmitter), 排除 Vector__XXX 之类占位
-      2. 报文名 NM_<NodeName> 的命名解析
+    每条 NM 报文可对应多个 BU_ 节点 (见 BO_TX_BU_ 多发送者), 这些节点写入相同的
+    node_id (= 报文 CAN ID 低 8 位)。
+
+    映射策略 (在 collect_nm_messages 中完成):
+      - 优先 BO_TX_BU_ <can_id> 列出的全部发送节点
+      - 否则报文名最长前缀匹配 BU_ + BO_ 发送者 + 单次 NM_<token> 兜底
+
     校验:
       - 节点必须存在于 BU_: 列表中
       - 报文 ID 高位段必须等于全局 base_segment
-      - 同节点出现多条 NM 报文 -> 取首个并告警
-      - 不同节点 node_id 冲突 -> 告警, 保留发现顺序内的赋值
-
-    返回 OrderedDict {node_name: node_id}, 已按节点名升序排序。
+      - 同一节点被两条不同 NM 报文赋予不同 node_id -> 告警, 保留首次
     """
     node_id_map = OrderedDict()
-    seen_node_ids = {}
 
-    for msg_id, msg_name, transmitter in nm_messages:
+    for msg_id, msg_name, transmitter_nodes in nm_messages:
         if (msg_id >> 8) != base_segment:
             print(f"  [NmAsrNodeIdentifier] 警告: 报文 {msg_name} (ID=0x{msg_id:X}) 不在 0x{base_segment:X}xx 段, 跳过")
             continue
 
-        node = None
-        if transmitter and transmitter not in NM_TRANSMITTER_PLACEHOLDERS:
-            if transmitter in node_set:
-                node = transmitter
-            else:
-                print(f"  [NmAsrNodeIdentifier] 警告: 报文 {msg_name} 的发送者 {transmitter} 不在 BU_ 列表中, 尝试命名兜底")
-
-        if node is None:
-            m = NM_NAME_FALLBACK_RE.match(msg_name)
-            if m and m.group(1) in node_set:
-                node = m.group(1)
-
-        if node is None:
+        if not transmitter_nodes:
             print(f"  [NmAsrNodeIdentifier] 警告: 无法识别 {msg_name} (ID=0x{msg_id:X}) 对应的节点, 跳过")
             continue
 
         node_id = msg_id & 0xFF
 
-        if node in node_id_map:
-            existing = node_id_map[node]
-            print(f"  [NmAsrNodeIdentifier] 警告: 节点 {node} 已有 NM 报文 (node_id=0x{existing:02X}), 忽略 {msg_name} (ID=0x{msg_id:X})")
-            continue
+        if len(transmitter_nodes) > 1:
+            print(
+                f"  [NmAsrNodeIdentifier] 提示: {msg_name} (ID=0x{msg_id:X}) 多发送者共用 node_id=0x{node_id:02X}: "
+                f"{', '.join(sorted(transmitter_nodes))}"
+            )
 
-        if node_id in seen_node_ids and seen_node_ids[node_id] != node:
-            other = seen_node_ids[node_id]
-            print(f"  [NmAsrNodeIdentifier] 警告: node_id=0x{node_id:02X} 已被节点 {other} 占用, 当前节点 {node} 仍按其 NM 报文设置")
+        for node in sorted(transmitter_nodes):
+            if node not in node_set:
+                continue
+            if node in node_id_map:
+                existing = node_id_map[node]
+                if existing == node_id:
+                    continue
+                print(
+                    f"  [NmAsrNodeIdentifier] 警告: 节点 {node} 已有 NM 推导值 0x{existing:02X}, "
+                    f"忽略 {msg_name} 的 0x{node_id:02X}"
+                )
+                continue
+            node_id_map[node] = node_id
 
-        node_id_map[node] = node_id
-        seen_node_ids[node_id] = node
-
-    return OrderedDict(sorted(node_id_map.items()))
+    sorted_map = OrderedDict(sorted(node_id_map.items()))
+    unmapped = sorted(node_set - set(sorted_map.keys()))
+    if unmapped:
+        print(
+            f"  [NmAsrNodeIdentifier] 提示: 以下 BU_ 节点无对应 NM 报文可推导 ID, "
+            f"不写 BA_ 行、仍用全局默认 0xFF: {', '.join(unmapped)}"
+        )
+    return sorted_map
 
 
 def apply_node_identifier_overrides(merged, node_id_map):
@@ -543,7 +646,7 @@ def merge_dbc_files(input_paths, output_path):
         dedupe_append(dbc['val'], val_set, merged['val'])
         dedupe_append(dbc['other'], other_set, merged['other'])
 
-    # 注入/覆盖工程要求的额外属性（如 NmAsr* 与 NodeLayerModules）
+    # 注入/覆盖工程要求的额外属性（如 Nm/NmAsr* 与 NodeLayerModules）
     # NmAsrBaseAddress 的范围由当前 DBC 内 NM_ 开头报文的 ID 段动态决定
     nm_messages = collect_nm_messages(merged)
     base_low, base_high, base_default, base_segment = detect_nm_base_address(nm_messages)
@@ -583,7 +686,7 @@ if __name__ == '__main__':
   python merge_dbc.py a.dbc b.dbc -o merged.dbc
   python merge_dbc.py a.dbc b.dbc c.dbc d.dbc -o merged.dbc
 
-  # 单文件归一化（重排序 / 去重 / 注入 NmAsr* 属性 / 覆盖 DBName）
+  # 单文件归一化（重排序 / 去重 / 注入 NM 相关属性 / 覆盖 DBName）
   python merge_dbc.py a.dbc -o a_normalized.dbc
         '''
     )
@@ -612,7 +715,7 @@ if __name__ == '__main__':
             sys.exit(1)
 
     if len(args.inputs) == 1:
-        print("模式: 单文件归一化（重排序 / 去重 / 注入 NmAsr* 属性 / 覆盖 DBName）")
+        print("模式: 单文件归一化（重排序 / 去重 / 注入 NM 相关属性 / 覆盖 DBName）")
     else:
         print(f"模式: 多文件合并 ({len(args.inputs)} 个输入)")
     for idx, input_path in enumerate(args.inputs, start=1):

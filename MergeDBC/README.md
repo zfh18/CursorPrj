@@ -8,9 +8,11 @@
 - 自动合并 `BU_` 节点列表（去重并按字母排序）
 - 自动合并 `BO_` 消息及其 `SG_` 信号（同名信号去重）
 - 对 `CM_`、`BA_DEF_`、`BA_DEF_DEF_`、`BA_`、`VAL_` 做顺序去重
-- 自动注入 / 覆盖工程要求的 `NmAsr*` 与 `NodeLayerModules` 等额外属性
-- `NmAsrBaseAddress` 范围根据 DBC 中 `NM_` 报文 ID 段动态推断
-- `NmAsrNodeIdentifier` 按各节点的 `NM_` 报文 ID 低字节自动写入节点级赋值
+- 自动注入 / 覆盖工程要求的 `Nm*` / `NmAsr*` 与 `NodeLayerModules` 等额外属性
+- `NmAsrBaseAddress` / `NmBaseAddress` 范围根据 DBC 中 `NM_` 报文 ID 段动态推断
+- `NmStationAddress` 范围按 NM 基地址低 8 位设置为 `0x00..0xFF`
+- `NmMessageCount` 上限跟随 `NmStationAddress` 范围内整数值个数，默认值为该整数值个数
+- `NmAsrNodeIdentifier` 按 `NM_` 报文 ID 低字节写入；若存在 `BO_TX_BU_` 多发送者，则所列节点共用同一 `node_id`
 - `BA_ "DBName"` 自动改写为输出文件名（避免多输入残留多条 `DBName`）
 - 保持输出 DBC 编码兼容中文（优先 `GB2312`，回退 `GBK`）
 
@@ -58,7 +60,7 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
   -o "F:\CursorPrj\MergeDBC\Merged.dbc"
 ```
 
-> 提示：单文件归一化模式下也会强制覆盖 `NmAsr*` 系列属性与 `DBName`，**不要**直接用同一个文件名作为输入和输出，建议输出到新文件以便对比。
+> 提示：单文件归一化模式下也会强制覆盖 `Nm*` / `NmAsr*` 系列属性与 `DBName`，**不要**直接用同一个文件名作为输入和输出，建议输出到新文件以便对比。
 
 
 ## 参数说明
@@ -78,7 +80,7 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 - `BU_:` 节点列表按字母升序重排（去重）
 - 同一报文内同名 `SG_` 信号去重（保留首次）
 - `CM_ / BA_DEF_ / BA_DEF_DEF_ / BA_ / VAL_` 完全相同的整行去重
-- 注入 / 覆盖 `NmAsr*` + `NodeLayerModules` 等工程要求属性
+- 注入 / 覆盖 `Nm*` / `NmAsr*` + `NodeLayerModules` 等工程要求属性
 - `DBName` 改写为输出文件名
 - 按 `GB2312` 编码统一写出（失败回退 `GBK`）
 
@@ -106,6 +108,9 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 
 5. **额外属性注入 / 覆盖**
    - `NmAsrBaseAddress`（范围由 `NM_` 报文 ID 高位段动态推断，找不到时回退 `0x4xx`）
+   - `NmBaseAddress`（与 `NmAsrBaseAddress` 使用同一 NM 基地址范围和默认值；例如 `0x400..0x4FF`，默认 `0x400`）
+   - `NmStationAddress`（节点级站地址范围使用 NM 基地址低 8 位；例如基地址范围为 `0x400..0x4FF` 时，范围为 `0x00..0xFF`，默认 `0x00`）
+   - `NmMessageCount`（上限跟随 `NmStationAddress` 的整数值个数；例如 `0x00..0xFF` 时，范围为 `0..256`，默认值为整数值个数 `256`）
    - `NmAsrCanMsgCycleOffset`、`NmAsrCanMsgCycleTime`、`NmAsrCanMsgReducedTime`
    - `NmAsrMessageCount`、`NmAsrNodeIdentifier`
    - `NmAsrRepeatMessageTime`、`NmAsrTimeoutTime`、`NmAsrWaitBusSleepTime`
@@ -114,11 +119,13 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 
 6. **节点级 `NmAsrNodeIdentifier` 注入**
    - 遍历所有 `NM_` 开头报文，按 `node_id = msg_id & 0xFF` 计算节点 ID
-   - "报文属于哪个节点" 的判定：**`BO_` 行发送者优先，`NM_<NodeName>` 命名解析兜底**
-   - 节点必须出现在 `BU_:` 列表中才会被采纳
-   - 报文 ID 段必须与全局 `NmAsrBaseAddress` 段一致（如 `0x4xx`），否则告警跳过
-   - 同节点多 NM 报文 / 不同节点 `node_id` 冲突 / 占位发送者 `Vector__XXX` 等异常都会打印告警
-   - 没有 NM 报文的节点保持全局默认值 `255`，不写 `BA_` 行
+   - **多发送者**：若 DBC 中存在 `BO_TX_BU_ <与 BO_ 相同的十进制 CAN ID> : NodeA, NodeB, ...;`，则这些节点**共用**该 NM 帧的同一 `node_id`（例如 `NM_GW_CMFT` 对应 `BDU,GW`；`NM_SCU_FR` 对应 `SCU_FR,RSCU`）
+   - **无 `BO_TX_BU_` 时**：用报文名 `NM_<后缀>` 的**最长前缀**匹配 `BU_` 节点，再辅以 `BO_` 行发送者、`NM_<token>` 整段匹配等兜底
+   - 节点必须出现在 `BU_:` 列表中才会被采纳；`BO_TX_BU_` 中不在 `BU_` 的节点名会告警并忽略
+   - 报文 ID 段必须与全局 `NmAsrBaseAddress` 段一致，否则告警跳过
+   - 同一节点被两条不同 NM 报文赋予不同 `node_id` 时会告警并保留首次
+   - 没有出现在任何 NM 多发送者列表 / 兜底推断中的节点保持全局默认 `255`，不写 `BA_` 行
+   - 合并结束后会列出仍无推导结果的 `BU_` 节点（如仅有 `ACP`、`ExternalTool` 等）
    - 已存在的 `BA_ "NmAsrNodeIdentifier" BU_ <node> ...;` 会先剔除再重新写入，达到"覆盖"效果
 
 7. **`DBName` 覆盖**
@@ -147,7 +154,8 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 - 输入文件数量及路径
 - 输出文件路径
 - `NmAsrBaseAddress` 推断结果
-- `NmAsrNodeIdentifier` 各节点注入结果
+- `NmAsrNodeIdentifier` 各节点注入结果；若某条 NM 存在 `BO_TX_BU_` 多发送者，会额外打印**共用同一 node_id** 的提示
+- 仍无 NM 推导的 `BU_` 节点列表（不写 `BA_`、默认 `0xFF`）
 - `DBName` 覆盖结果
 - 合并统计信息（消息、注释、属性定义、值表数量、注入额外属性条数）
 
@@ -165,5 +173,5 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
    - 可在 DBC 工具中直接验证中文显示是否正常
 
 4. **单文件归一化后属性被改写**
-   - 这是预期行为：脚本会强制注入 / 覆盖 `NmAsr*` 与 `NodeLayerModules`，并把 `DBName` 改写为输出文件名
+   - 这是预期行为：脚本会强制注入 / 覆盖 `Nm*` / `NmAsr*` 与 `NodeLayerModules`，并把 `DBName` 改写为输出文件名
    - 如需保留原始内容用于对比，请将输出指向不同的文件名
