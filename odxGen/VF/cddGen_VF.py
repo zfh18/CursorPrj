@@ -273,6 +273,7 @@ def load_snapshot_record_names(xlsx_path: Path, pdx_generator: Path) -> dict[int
     if spec is None or spec.loader is None:
         raise RuntimeError(f"Unable to load PDX generator for snapshot metadata: {module_path}")
     module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
     module_dir = str(module_path.parent)
     inserted_module_dir = False
     if module_dir not in sys.path:
@@ -281,6 +282,7 @@ def load_snapshot_record_names(xlsx_path: Path, pdx_generator: Path) -> dict[int
     try:
         spec.loader.exec_module(module)
     finally:
+        sys.modules.pop(spec.name, None)
         if inserted_module_dir:
             try:
                 sys.path.remove(module_dir)

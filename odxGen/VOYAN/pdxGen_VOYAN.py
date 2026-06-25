@@ -2331,7 +2331,7 @@ def patch_fgl_communication_params(fgl_path: Path, cover: CoverInfo) -> None:
         "ISO_15765_3.CP_TesterPresentTime": 4000000,
         "ISO_15765_3.CP_P3Phys": 50000,
         "ISO_15765_3.CP_P3Func": 50000,
-        "ISO_15765_2.CP_StMin": 20_000,
+        "ISO_15765_2.CP_StMin": 20,
         "ISO_15765_2.CP_As": 70_000,
         "ISO_15765_2.CP_Ar": 70_000,
         "ISO_15765_2.CP_Bs": 150_000,

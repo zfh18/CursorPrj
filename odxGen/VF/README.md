@@ -4,8 +4,7 @@
 
 ## 文件说明
 
-- `pdxGen_VF.py`: 读取 VF 诊断调查表 `.xlsx`，生成 CANdela/ODX 兼容的 `.pdx`。
-- `pdxBase_VF.py`: 本项目本地化的 ODX 写入基础层，运行时不依赖上级项目目录。
+- `pdxGen_VF.py`: 读取 VF 诊断调查表 `.xlsx`，生成 CANdela/ODX 兼容的 `.pdx`。自包含，内置 ODX 写入基础层，运行时不依赖其它脚本。
 - `cddGen_VF.py`: 先调用 `pdxGen_VF.py` 生成 PDX，再调用 CANdelaStudio CLI 导入到 CDD 模板。
 - `templates/VF_ECU_CAN_v15.pdx`: PDX/ODX 结构模板。
 - `templates/VF_ECU_CAN_v15.cdd`: CANdelaStudio 15 CDD 导入模板。
@@ -78,7 +77,7 @@ python .\cddGen_VF.py .\input.xlsx --cdd-output .\output\VF_target.cdd
 语法检查:
 
 ```powershell
-python -m py_compile .\pdxGen_VF.py .\pdxBase_VF.py .\cddGen_VF.py
+python -m py_compile .\pdxGen_VF.py .\cddGen_VF.py
 ```
 
 查看帮助:

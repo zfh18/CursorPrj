@@ -497,7 +497,7 @@ def parse_cover(workbook: Any) -> CoverInfo:
         "ISO_15765_3.CP_TesterPresentTime": ms_to_us("S3", 2_000_000),
         "ISO_15765_3.CP_P3Phys": 50_000,
         "ISO_15765_3.CP_P3Func": 50_000,
-        "ISO_15765_2.CP_StMin": ms_to_us("APP STmin(ECU)", 20_000),
+        "ISO_15765_2.CP_StMin": parse_int_cell(rows.get("app stmin(ecu)", ("20", ""))[0], 20),
         "ISO_15765_2.CP_BlockSize": parse_int_cell(rows.get("bs(ecu)", ("0", ""))[0], 0),
         "ISO_15765_2.CP_As": ms_to_us("N_As", 70_000),
         "ISO_15765_2.CP_Ar": ms_to_us("N_Ar", 70_000),
