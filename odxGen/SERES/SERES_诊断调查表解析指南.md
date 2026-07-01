@@ -12,7 +12,7 @@ SERES_诊断调查表_G19项目EVR_G19项目EV_零重力主驾座椅控制器_V1
 SERES Excel -> parse_seres_survey() -> SurveyData -> update_odx_seres() -> SERES_ECU_CAN_v15.pdx
 ```
 
-SERES 表格结构与 VOYAN 项目接近，因此脚本复用了 `..\VOYAN\pdxGen_VOYAN.py` 中的通用数据模型、DOP/STRUCTURE 生成器、单位处理、DTC 文本表等基础能力；SERES 自己负责 Excel schema 解析和 CANdela v15 模板的差异化写入。
+SERES 表格结构与 VOYAH 项目接近，因此脚本复用了 `..\VOYAH\pdxGen_VOYAH.py` 中的通用数据模型、DOP/STRUCTURE 生成器、单位处理、DTC 文本表等基础能力；SERES 自己负责 Excel schema 解析和 CANdela v15 模板的差异化写入。
 
 ## 文件角色
 
@@ -22,7 +22,7 @@ SERES 表格结构与 VOYAN 项目接近，因此脚本复用了 `..\VOYAN\pdxGe
 pdxGen_SERES.py
 templates\SERES_ECU_CAN_v15.pdx
 templates\SERES_ECU_CAN_v15.cdd
-..\VOYAN\pdxGen_VOYAN.py
+..\VOYAH\pdxGen_VOYAH.py
 ```
 
 生成文件：
@@ -605,7 +605,7 @@ index.xml
 平铺服务要求：
 
 ```text
-SERES 模板使用 flat DID/IO/Routine 服务，不使用 VOYAN 那种 table-based DID 服务
+SERES 模板使用 flat DID/IO/Routine 服务，不使用 VOYAH 那种 table-based DID 服务
 每个 DID Read/Write 服务需要自己的 DIAG-SERVICE
 服务 SDG 必须包含 CANdelaServiceInformation
 DID 服务需要 DiagInstanceStaticValue = DID 十进制值

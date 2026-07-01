@@ -1,19 +1,19 @@
-# VOYAN PDX 生成脚本使用说明
+# VOYAH PDX 生成脚本使用说明
 
-本目录用于把岚图/VOYAN 诊断调查表 Excel 转换成可导入 Vector CANdelaStudio 15 的 PDX 文件。核心脚本是 `pdxGen_VOYAN.py`，它以 CANdelaStudio 导出的 `templates/VOYAN_ECU_CAN_v15.pdx` 作为结构模板，解析调查表中的 DID、IO DID、Routine、DTC、Snapshot、Extended Data、通信参数等内容，并重新打包生成同名 PDX。
+本目录用于把岚图/VOYAH 诊断调查表 Excel 转换成可导入 Vector CANdelaStudio 15 的 PDX 文件。核心脚本是 `pdxGen_VOYAH.py`，它以 CANdelaStudio 导出的 `templates/VOYAH_ECU_CAN_v15.pdx` 作为结构模板，解析调查表中的 DID、IO DID、Routine、DTC、Snapshot、Extended Data、通信参数等内容，并重新打包生成同名 PDX。
 
 ## 目录结构
 
 ```text
-VOYAN/
-  pdxGen_VOYAN.py
+VOYAH/
+  pdxGen_VOYAH.py
   README.md
   templates/
-    VOYAN_ECU_CAN_v15.pdx
+    VOYAH_ECU_CAN_v15.pdx
   output/
     <生成的 PDX 文件>
   (嵌入式)VOYAH_H66_UDSonCAN_Diagnostic_Specification_SCU_RL_V1.2_20260330.xlsx
-  VOYAN_诊断调查表解析指南.md
+  VOYAH_诊断调查表解析指南.md
   QDH-YD07-04-2019 UDSonCAN诊断规范.pdf
 ```
 
@@ -21,11 +21,11 @@ VOYAN/
 
 | 文件/目录 | 说明 |
 | --- | --- |
-| `pdxGen_VOYAN.py` | PDX 生成脚本 |
-| `templates/VOYAN_ECU_CAN_v15.pdx` | CANdelaStudio 导出的基础 PDX 模板，脚本会在它的基础上替换数据 |
+| `pdxGen_VOYAH.py` | PDX 生成脚本 |
+| `templates/VOYAH_ECU_CAN_v15.pdx` | CANdelaStudio 导出的基础 PDX 模板，脚本会在它的基础上替换数据 |
 | `output/` | 默认输出目录 |
 | `*.xlsx` | 输入的岚图诊断调查表 |
-| `VOYAN_诊断调查表解析指南.md` | 调查表字段和 Sheet 解析说明 |
+| `VOYAH_诊断调查表解析指南.md` | 调查表字段和 Sheet 解析说明 |
 
 ## 环境要求
 
@@ -63,7 +63,7 @@ python -m pip --version
 在本目录执行：
 
 ```powershell
-python pdxGen_VOYAN.py
+python pdxGen_VOYAH.py
 ```
 
 脚本会自动查找当前目录下第一个非临时的 `.xlsx` 文件，忽略 Excel 打开的临时文件，例如 `~$xxx.xlsx`。
@@ -82,7 +82,7 @@ Parsed: 24 DIDs, 1 IO DIDs, 8 routines, 52 DTCs, 3 snapshots, 1 extended records
 脚本支持以下参数：
 
 ```powershell
-python pdxGen_VOYAN.py [xlsx] [--template TEMPLATE] [--output-dir OUTPUT_DIR] [--no-validate]
+python pdxGen_VOYAH.py [xlsx] [--template TEMPLATE] [--output-dir OUTPUT_DIR] [--no-validate]
 ```
 
 参数说明：
@@ -90,26 +90,26 @@ python pdxGen_VOYAN.py [xlsx] [--template TEMPLATE] [--output-dir OUTPUT_DIR] [-
 | 参数 | 默认值 | 说明 |
 | --- | --- | --- |
 | `xlsx` | 当前目录第一个非 `~$` 的 `.xlsx` | 指定输入调查表 |
-| `--template` | `templates/VOYAN_ECU_CAN_v15.pdx` | 指定 PDX 模板 |
+| `--template` | `templates/VOYAH_ECU_CAN_v15.pdx` | 指定 PDX 模板 |
 | `--output-dir` | `output` | 指定输出目录 |
 | `--no-validate` | 不启用 | 跳过 `odxtools` 验证 |
 
 示例 1：指定输入 Excel：
 
 ```powershell
-python pdxGen_VOYAN.py ".\(嵌入式)VOYAH_H66_UDSonCAN_Diagnostic_Specification_SCU_RL_V1.2_20260330.xlsx"
+python pdxGen_VOYAH.py ".\(嵌入式)VOYAH_H66_UDSonCAN_Diagnostic_Specification_SCU_RL_V1.2_20260330.xlsx"
 ```
 
 示例 2：指定模板和输出目录：
 
 ```powershell
-python pdxGen_VOYAN.py ".\SomeSurvey.xlsx" --template ".\templates\VOYAN_ECU_CAN_v15.pdx" --output-dir ".\output"
+python pdxGen_VOYAH.py ".\SomeSurvey.xlsx" --template ".\templates\VOYAH_ECU_CAN_v15.pdx" --output-dir ".\output"
 ```
 
 示例 3：临时跳过 odxtools 验证：
 
 ```powershell
-python pdxGen_VOYAN.py ".\SomeSurvey.xlsx" --no-validate
+python pdxGen_VOYAH.py ".\SomeSurvey.xlsx" --no-validate
 ```
 
 通常不建议长期使用 `--no-validate`。只有在本机没有安装 `odxtools`，或需要快速排查脚本逻辑时才使用。
@@ -134,7 +134,7 @@ python pdxGen_VOYAN.py ".\SomeSurvey.xlsx" --no-validate
 - 不要把 Excel 临时文件 `~$xxx.xlsx` 当作输入。
 - Snapshot DID 行如果没有 `Size / Byte / Bit / Signal Name / Data Type`，脚本会认为它没有有效数据对象，并跳过输出，避免 CANdela 报 `DID ... is invalid: no objects`。
 - 当前生成器只输出 CAN 相关 ODX 文件，会从模板 PDX 中移除 DoIP、FlexRay、VIS 等不需要的文件。
-- 输出内容依赖模板结构，建议不要随意替换 `templates/VOYAN_ECU_CAN_v15.pdx`，除非确认新模板仍是相同 OEM/Vector UDS 架构。
+- 输出内容依赖模板结构，建议不要随意替换 `templates/VOYAH_ECU_CAN_v15.pdx`，除非确认新模板仍是相同 OEM/Vector UDS 架构。
 
 ## 脚本生成内容
 
@@ -161,7 +161,7 @@ ISO_11898_2_DWCAN.odx-cs
 ISO_15765_2.odx-cs
 ISO_15765_3.odx-cs
 ISO_15765_3_on_ISO_15765_2.odx-c
-VOYAN_ECU_CAN_v15.odx-d
+VOYAH_ECU_CAN_v15.odx-d
 index.xml
 ```
 
@@ -189,7 +189,7 @@ python -m odxtools list ".\output\<文件名>.pdx" --all
 另外建议做一次 Python 语法检查：
 
 ```powershell
-python -m py_compile pdxGen_VOYAN.py
+python -m py_compile pdxGen_VOYAH.py
 ```
 
 ## CANdelaStudio 导入建议
@@ -253,12 +253,12 @@ ODX-Model: Error: unknown Doctype value 9
 原因是 CANdelaStudio 15 的 ODX Import 在处理 `FUNCTIONAL-GROUP FGL_UDS` 继承 `PROTOCOL CAN` 时，会把这个协议层类型落到内部未知 doctype enum，并打印 `unknown Doctype value 9`。这个错误发生在：
 
 ```text
-BASE-VARIANT 'VOYAN_ECU_CAN' value-inherits from FUNCTIONAL-GROUP 'FGL_UDS'
+BASE-VARIANT 'VOYAH_ECU_CAN' value-inherits from FUNCTIONAL-GROUP 'FGL_UDS'
 FUNCTIONAL-GROUP 'FGL_UDS' value-inherits from PROTOCOL 'CAN'
 ODX-Model: Error: unknown Doctype value 9
 ```
 
-当前脚本已避免让 FunctionalGroup 直接 value-inherit Protocol：它会移除 `FGL_UDS -> CAN` 的 `PARENT-REF`，并让 `BASE-VARIANT VOYAN_ECU_CAN` 额外直接继承 `PROTOCOL CAN`。这样 BaseVariant 从 FGL 继承诊断服务，从 CAN 继承通信参数，但日志中不应再出现 `FUNCTIONAL-GROUP ... value-inherits from PROTOCOL ...`。
+当前脚本已避免让 FunctionalGroup 直接 value-inherit Protocol：它会移除 `FGL_UDS -> CAN` 的 `PARENT-REF`，并让 `BASE-VARIANT VOYAH_ECU_CAN` 额外直接继承 `PROTOCOL CAN`。这样 BaseVariant 从 FGL 继承诊断服务，从 CAN 继承通信参数，但日志中不应再出现 `FUNCTIONAL-GROUP ... value-inherits from PROTOCOL ...`。
 
 生成后的 `FGL_UDS.odx-d` 不应再包含：
 
@@ -266,7 +266,7 @@ ODX-Model: Error: unknown Doctype value 9
 <PARENT-REF ID-REF="CAN" xsi:type="PROTOCOL-REF"/>
 ```
 
-生成后的 `VOYAN_ECU_CAN_v15.odx-d` 应包含 BaseVariant 到 CAN 的直接引用：
+生成后的 `VOYAH_ECU_CAN_v15.odx-d` 应包含 BaseVariant 到 CAN 的直接引用：
 
 ```xml
 <PARENT-REF ID-REF="CAN" DOCREF="DLC_FGL_UDS" DOCTYPE="CONTAINER" xsi:type="PROTOCOL-REF"/>
@@ -322,7 +322,7 @@ FileNotFoundError: No .xlsx survey file found in the current directory
 - 或者显式指定输入文件：
 
 ```powershell
-python pdxGen_VOYAN.py ".\YourSurvey.xlsx"
+python pdxGen_VOYAH.py ".\YourSurvey.xlsx"
 ```
 
 ### 找不到模板 PDX
@@ -330,16 +330,16 @@ python pdxGen_VOYAN.py ".\YourSurvey.xlsx"
 报错：
 
 ```text
-FileNotFoundError: templates\VOYAN_ECU_CAN_v15.pdx
+FileNotFoundError: templates\VOYAH_ECU_CAN_v15.pdx
 ```
 
 处理：
 
-- 确认 `templates/VOYAN_ECU_CAN_v15.pdx` 存在。
+- 确认 `templates/VOYAH_ECU_CAN_v15.pdx` 存在。
 - 或者使用 `--template` 指定模板路径：
 
 ```powershell
-python pdxGen_VOYAN.py ".\YourSurvey.xlsx" --template ".\path\to\template.pdx"
+python pdxGen_VOYAH.py ".\YourSurvey.xlsx" --template ".\path\to\template.pdx"
 ```
 
 ### `odxtools` 不存在
@@ -359,7 +359,7 @@ pip install odxtools
 如果只想临时生成 PDX，可以使用：
 
 ```powershell
-python pdxGen_VOYAN.py --no-validate
+python pdxGen_VOYAH.py --no-validate
 ```
 
 ### 输出 PDX 仍被 CANdela 报一致性错误
@@ -381,7 +381,7 @@ python pdxGen_VOYAN.py --no-validate
 3. 执行：
 
 ```powershell
-python pdxGen_VOYAN.py ".\NewSurvey.xlsx"
+python pdxGen_VOYAH.py ".\NewSurvey.xlsx"
 ```
 
 4. 查看输出统计：
@@ -392,15 +392,15 @@ Parsed: <DIDs> DIDs, <IO DIDs> IO DIDs, <routines> routines, <DTCs> DTCs, <snaps
 
 5. 导入 CANdelaStudio，并按本文的检查项验证。
 
-如果新调查表的 Sheet 名、列名或字段含义发生变化，需要先更新 `pdxGen_VOYAN.py` 的解析逻辑，再重新生成。
+如果新调查表的 Sheet 名、列名或字段含义发生变化，需要先更新 `pdxGen_VOYAH.py` 的解析逻辑，再重新生成。
 
 ## 开发和维护建议
 
 修改脚本后建议至少执行：
 
 ```powershell
-python -m py_compile pdxGen_VOYAN.py
-python pdxGen_VOYAN.py
+python -m py_compile pdxGen_VOYAH.py
+python pdxGen_VOYAH.py
 ```
 
 生成后建议拆包或导入验证以下关键点：

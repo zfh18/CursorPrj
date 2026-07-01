@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a VOYAH/VOYAN CANdelaStudio-compatible PDX from a diagnosis survey.
+"""Generate a VOYAH CANdelaStudio-compatible PDX from a diagnosis survey.
 
 The generator intentionally uses the Vector CANdelaStudio-exported PDX as a
 structural template. It parses the OEM Excel survey into an ECU data model, then
@@ -27,6 +27,7 @@ from openpyxl import load_workbook
 XSI_NS = "http://www.w3.org/2001/XMLSchema-instance"
 XSI_TYPE = f"{{{XSI_NS}}}type"
 etree.register_namespace("xsi", XSI_NS)
+SCRIPT_DIR = Path(__file__).resolve().parent
 
 CAN_ONLY_PDX_FILES = {
     "FGL_UDS.odx-d",
@@ -35,7 +36,7 @@ CAN_ONLY_PDX_FILES = {
     "ISO_15765_3.odx-cs",
     "ISO_15765_3_on_ISO_15765_2.odx-c",
     "index.xml",
-    "VOYAN_ECU_CAN_v15.odx-d",
+    "VOYAH_ECU_CAN_v15.odx-d",
 }
 
 
@@ -149,7 +150,7 @@ class ExtendedRecordDef:
 
 @dataclass
 class CoverInfo:
-    ecu_name: str = "VOYAN_ECU_CAN"
+    ecu_name: str = "VOYAH_ECU_CAN"
     vehicle: str = ""
     supplier: str = ""
     tx_id: int | None = None
@@ -185,13 +186,40 @@ def normalize_access(value: Any) -> str:
     return compact_text(value).upper().replace(" ", "")
 
 
-def split_name(value: str) -> tuple[str, str]:
-    text = cell_text(value)
+def has_chinese_text(value: Any) -> bool:
+    return bool(re.search(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]", cell_text(value)))
+
+
+def name_parts(value: Any) -> list[str]:
+    text = cell_text(value).replace("\u3000", " ")
     parts = [p.strip() for p in re.split(r"[\r\n]+", text) if p.strip()]
+    result: list[str] = []
+    for part in parts:
+        slash_parts = [p.strip() for p in re.split(r"\s*/\s*", part) if p.strip()]
+        if len(slash_parts) > 1 and any(has_chinese_text(p) for p in slash_parts):
+            result.extend(slash_parts)
+        else:
+            result.append(part)
+    return result
+
+
+def canonical_name(identifier: str, display: str, fallback: str = "") -> str:
+    identifier = compact_text(identifier)
+    display = compact_text(display)
+    if identifier and display and identifier != display:
+        return f"{identifier}\n{display}"
+    return display or identifier or fallback
+
+
+def split_name(value: str) -> tuple[str, str]:
+    text = cell_text(value).replace("\r\n", "\n").strip()
+    parts = name_parts(text)
     if not parts:
         return "", ""
-    english = next((p for p in parts if re.search(r"[A-Za-z]", p)), parts[0])
-    return english, text.replace("\r\n", "\n").strip()
+    english = next((p for p in parts if re.search(r"[A-Za-z]", p) and not has_chinese_text(p)), "")
+    chinese = next((p for p in parts if has_chinese_text(p)), "")
+    identifier = english or ("" if chinese else parts[0])
+    return identifier, chinese or text
 
 
 def parse_hex_cell(value: Any, *, max_value: int = 0xFFFFFFFF) -> int | None:
@@ -456,7 +484,7 @@ def parse_read_write_dids(workbook: Any) -> list[DidDef]:
                 size = parse_int_cell(sheet.cell(row, 5).value, default=0)
                 current = DidDef(
                     did=did_value,
-                    desc=desc_long or desc_english or hex_short("DID", did_value),
+                    desc=canonical_name(desc_english, desc_long, hex_short("DID", did_value)),
                     size=size,
                     write_security=compact_text(sheet.cell(row, 14).value) or "N",
                     sessions=[compact_text(sheet.cell(row, c).value) for c in range(15, 20)],
@@ -499,7 +527,63 @@ def parse_read_write_dids(workbook: Any) -> list[DidDef]:
     dedup: dict[int, DidDef] = {}
     for did in dids:
         dedup[did.did] = did
-    return list(dedup.values())
+    result = list(dedup.values())
+    for did in result:
+        if did.size <= 0:
+            did.size = did_param_size(did.params)
+        merge_split_byte_did_params(did)
+    return result
+
+
+def did_param_size(params: Iterable[ParamDef], default: int = 1) -> int:
+    max_end = 0
+    for param in params:
+        max_end = max(max_end, param.byte_pos + max(1, (param.bit_pos + max(1, param.bit_len) + 7) // 8))
+    return max(default, max_end)
+
+
+def normalized_data_type(value: Any) -> str:
+    return compact_text(value).upper()
+
+
+def is_ascii_data_type(value: Any) -> bool:
+    return "ASCII" in normalized_data_type(value)
+
+
+def merge_split_byte_did_params(did: DidDef) -> None:
+    if len(did.params) <= 1:
+        return
+
+    ordered = sorted(did.params, key=lambda param: (param.byte_pos, param.bit_pos, param.name))
+    data_type = normalized_data_type(ordered[0].data_type)
+    unit = compact_text(ordered[0].unit)
+    if not data_type or not is_ascii_data_type(data_type):
+        return
+
+    for expected_byte, param in enumerate(ordered):
+        if (
+            normalized_data_type(param.data_type) != data_type
+            or compact_text(param.unit) != unit
+            or param.byte_pos != expected_byte
+            or param.bit_pos != 0
+            or param.bit_len != 8
+            or param.conversion.kind != "identity"
+        ):
+            return
+
+    identifier, display = split_name(did.desc)
+    name = display or identifier or hex_short("DID", did.did)
+    did.params = [
+        ParamDef(
+            name=identifier or name,
+            long_name=name,
+            byte_pos=0,
+            bit_pos=0,
+            bit_len=len(ordered) * 8,
+            data_type=ordered[0].data_type,
+            unit=unit,
+        )
+    ]
 
 
 def parse_io_dids(workbook: Any) -> list[IoDidDef]:
@@ -519,7 +603,7 @@ def parse_io_dids(workbook: Any) -> list[IoDidDef]:
             if current is None:
                 current = IoDidDef(
                     did=did_value,
-                    desc=desc_long or desc_english or hex_short("DID", did_value),
+                    desc=canonical_name(desc_english, desc_long, hex_short("DID", did_value)),
                     size=parse_int_cell(sheet.cell(row, 5).value, default=0),
                 )
                 io_by_id[did_value] = current
@@ -580,7 +664,7 @@ def parse_routines(workbook: Any) -> list[RoutineDef]:
             desc_english, desc_long = split_name(cell_text(sheet.cell(row, 3).value))
             current = RoutineDef(
                 rid=rid,
-                desc=desc_long or desc_english or hex_short("RID", rid),
+                desc=canonical_name(desc_english, desc_long, hex_short("RID", rid)),
                 security=compact_text(sheet.cell(row, 8).value) or "N",
                 sessions=[compact_text(sheet.cell(row, c).value) for c in range(9, 14)],
             )
@@ -737,7 +821,7 @@ class IdGenerator:
         self.used = {node.get("ID") for node in root.xpath("//*[@ID]") if node.get("ID")}
         self.index = 1
 
-    def new(self, prefix: str = "VOYAN") -> str:
+    def new(self, prefix: str = "VOYAH") -> str:
         while True:
             candidate = f"_{prefix}_{self.index:06d}"
             self.index += 1
@@ -795,12 +879,12 @@ def replace_child(parent: etree._Element, old_tag: str, new_child: etree._Elemen
 
 
 def update_template(template_pdx: Path, output_pdx: Path, survey: SurveyData, validate: bool = True) -> None:
-    with tempfile.TemporaryDirectory(prefix="voyan_pdx_") as tmp_name:
+    with tempfile.TemporaryDirectory(prefix="voyah_pdx_") as tmp_name:
         tmp_dir = Path(tmp_name)
         with zipfile.ZipFile(template_pdx, "r") as archive:
             archive.extractall(tmp_dir)
 
-        odx_path = tmp_dir / "VOYAN_ECU_CAN_v15.odx-d"
+        odx_path = tmp_dir / "VOYAH_ECU_CAN_v15.odx-d"
         if not odx_path.exists():
             candidates = list(tmp_dir.glob("*.odx-d"))
             if not candidates:
@@ -947,7 +1031,7 @@ def patch_pdx_catalog_for_can_only(index_path: Path, keep_files: set[str]) -> No
 
 
 def update_odx(root: etree._Element, id_gen: IdGenerator, survey: SurveyData) -> None:
-    base_variant = first_by_short(root, "BASE-VARIANT", "VOYAN_ECU_CAN")
+    base_variant = first_by_short(root, "BASE-VARIANT", "VOYAH_ECU_CAN")
     container = root.find(".//DIAG-LAYER-CONTAINER")
     if container is not None:
         long_name = container.find("LONG-NAME")
@@ -2239,7 +2323,7 @@ def update_record_number_dop(
 
 
 def update_base_variant_comparams(root: etree._Element, cover: CoverInfo) -> None:
-    base_variant = first_by_short(root, "BASE-VARIANT", "VOYAN_ECU_CAN")
+    base_variant = first_by_short(root, "BASE-VARIANT", "VOYAH_ECU_CAN")
     if base_variant is None:
         return
     comp_refs = base_variant.find("COMPARAM-REFS")
@@ -2271,7 +2355,7 @@ def update_base_variant_comparams(root: etree._Element, cover: CoverInfo) -> Non
         "0",
         "normal unsegmented 11-bit receive",
         "4294967295",
-        "VOYAN_ECU_CAN",
+        "VOYAH_ECU_CAN",
     ]
     for value in values:
         sub(complex_value, "SIMPLE-VALUE", value)
@@ -2279,7 +2363,7 @@ def update_base_variant_comparams(root: etree._Element, cover: CoverInfo) -> Non
 
 
 def ensure_base_variant_protocol_parent(root: etree._Element) -> None:
-    base_variant = first_by_short(root, "BASE-VARIANT", "VOYAN_ECU_CAN")
+    base_variant = first_by_short(root, "BASE-VARIANT", "VOYAH_ECU_CAN")
     if base_variant is None:
         return
     parent_refs = base_variant.find("PARENT-REFS")
@@ -2395,14 +2479,14 @@ def find_default_xlsx(base_dir: Path) -> Path:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Generate VOYAN PDX from a VOYAH diagnosis survey Excel file.")
+    parser = argparse.ArgumentParser(description="Generate VOYAH PDX from a VOYAH diagnosis survey Excel file.")
     parser.add_argument("xlsx", nargs="?", type=Path, help="Input diagnosis survey .xlsx file")
-    parser.add_argument("--template", type=Path, default=Path("templates") / "VOYAN_ECU_CAN_v15.pdx", help="Template PDX")
-    parser.add_argument("--output-dir", type=Path, default=Path("output"), help="Output directory")
+    parser.add_argument("--template", type=Path, default=SCRIPT_DIR / "templates" / "VOYAH_ECU_CAN_v15.pdx", help="Template PDX")
+    parser.add_argument("--output-dir", type=Path, default=SCRIPT_DIR / "output", help="Output directory")
     parser.add_argument("--no-validate", action="store_true", help="Skip odxtools validation")
     args = parser.parse_args(argv)
 
-    xlsx_path = args.xlsx or find_default_xlsx(Path.cwd())
+    xlsx_path = args.xlsx or find_default_xlsx(SCRIPT_DIR)
     if not xlsx_path.exists():
         raise FileNotFoundError(xlsx_path)
     if not args.template.exists():

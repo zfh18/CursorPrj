@@ -12,7 +12,6 @@ from __future__ import annotations
 import argparse
 import copy
 import hashlib
-import importlib.util
 import re
 import subprocess
 import sys
@@ -37,6 +36,7 @@ the CANdelaStudio 15 PDX template.
 XSI_NS = "http://www.w3.org/2001/XMLSchema-instance"
 XSI_TYPE = f"{{{XSI_NS}}}type"
 etree.register_namespace("xsi", XSI_NS)
+SCRIPT_DIR = Path(__file__).resolve().parent
 
 @dataclass
 class Conversion:
@@ -188,13 +188,40 @@ def normalize_access(value: Any) -> str:
     return compact_text(value).upper().replace(" ", "")
 
 
-def split_name(value: str) -> tuple[str, str]:
-    text = cell_text(value)
+def has_chinese_text(value: Any) -> bool:
+    return bool(re.search(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]", cell_text(value)))
+
+
+def name_parts(value: Any) -> list[str]:
+    text = cell_text(value).replace("\u3000", " ")
     parts = [p.strip() for p in re.split(r"[\r\n]+", text) if p.strip()]
+    result: list[str] = []
+    for part in parts:
+        slash_parts = [piece.strip() for piece in re.split(r"\s*/\s*", part) if piece.strip()]
+        if len(slash_parts) > 1 and any(has_chinese_text(piece) for piece in slash_parts):
+            result.extend(slash_parts)
+        else:
+            result.append(part)
+    return result
+
+
+def canonical_name(identifier: str, display: str, fallback: str = "") -> str:
+    identifier = compact_text(identifier)
+    display = compact_text(display)
+    if identifier and display and identifier != display:
+        return f"{identifier}\n{display}"
+    return display or identifier or fallback
+
+
+def split_name(value: str) -> tuple[str, str]:
+    text = cell_text(value).replace("\r\n", "\n").strip()
+    parts = name_parts(text)
     if not parts:
         return "", ""
-    english = next((p for p in parts if re.search(r"[A-Za-z]", p)), parts[0])
-    return english, text.replace("\r\n", "\n").strip()
+    english = next((p for p in parts if re.search(r"[A-Za-z]", p) and not has_chinese_text(p)), "")
+    chinese = next((p for p in parts if has_chinese_text(p)), "")
+    identifier = english or ("" if chinese else parts[0])
+    return identifier, chinese or text
 
 
 def parse_hex_cell(value: Any, *, max_value: int = 0xFFFFFFFF) -> int | None:
@@ -537,6 +564,7 @@ def prepare_data_structure(
     prefix: str,
     unit_ids: dict[str, str],
     generated_dop_cache: dict[tuple[str, int, str, str, str], str],
+    direct_single_param: bool = False,
 ) -> None:
     used_param_names: set[str] = set()
     english, long_name = split_name(item.desc)
@@ -566,6 +594,11 @@ def prepare_data_structure(
             id_gen, data_object_props, raw, unit_ids, generated_dop_cache, f"DOP_{item.short_name}_Data"
         )
         item.params.append(raw)
+
+    direct_param = direct_did_payload_param(item) if direct_single_param and isinstance(item, DidDef) else None
+    if direct_param is not None:
+        item.structure_id = ""
+        return
 
     item.structure_id = id_gen.new("DIDSTR")
     structure = sub(structures, "STRUCTURE", attrib={"ID": item.structure_id})
@@ -624,6 +657,17 @@ def make_wrapper_structure(
     param = make_value_param(sanitize_short_name(param_short_name, "Data"), param_long_name, 0, 0, dop_or_structure_id)
     params_node.append(param)
     return wrapper_id
+
+
+def direct_did_payload_param(did: DidDef) -> ParamDef | None:
+    if len(did.params) != 1:
+        return None
+    param = did.params[0]
+    if param.byte_pos != 0 or param.bit_pos != 0 or not param.dop_id:
+        return None
+    expected_size = did.size if did.size > 0 else vf_param_size(did.params)
+    expected_bit_len = max(8, expected_size * 8)
+    return param if param.bit_len == expected_bit_len else None
 
 
 def ensure_param_dop(
@@ -1691,13 +1735,15 @@ def usable_text(value: Any) -> str:
 
 
 def dual_name(english_value: Any, chinese_value: Any = "", fallback: str = "") -> tuple[str, str]:
-    english = usable_text(english_value)
-    chinese = usable_text(chinese_value)
-    if not english and not chinese:
+    candidates = name_parts(english_value) + name_parts(chinese_value)
+    candidates = [candidate for candidate in candidates if usable_text(candidate)]
+    if not candidates:
         return fallback, fallback
-    if english and chinese and english != chinese:
-        return english, f"{english} / {chinese}"
-    return english or chinese or fallback, english or chinese or fallback
+    english = next((candidate for candidate in candidates if re.search(r"[A-Za-z]", candidate) and not has_chinese_text(candidate)), "")
+    chinese = next((candidate for candidate in candidates if has_chinese_text(candidate)), "")
+    identifier = english or (fallback if chinese else candidates[0])
+    display = chinese or candidates[0]
+    return identifier or fallback, display or identifier or fallback
 
 
 def normalize_conversion_text(value: Any) -> str:
@@ -2144,7 +2190,7 @@ def vf_make_param(
     fallback_name: str = "Data",
     byte_offset: int = 0,
 ) -> ParamDef | None:
-    name = usable_text(name_value) or fallback_name
+    name, long_name = split_name(cell_text(name_value) or fallback_name)
     byte_abs = parse_int_cell(byte_value, default=-999999)
     bit_len = parse_int_cell(bit_len_value, default=0)
     if byte_abs == -999999 or bit_len <= 0:
@@ -2156,8 +2202,8 @@ def vf_make_param(
     if bit_len > 32 and conversion.kind == "enum":
         conversion = Conversion()
     return ParamDef(
-        name=name,
-        long_name=name,
+        name=name or fallback_name,
+        long_name=long_name or name or fallback_name,
         byte_pos=max(0, byte_abs - byte_offset),
         bit_pos=bit_pos,
         bit_len=bit_len,
@@ -2174,6 +2220,50 @@ def vf_param_size(params: Iterable[ParamDef], default: int = 1) -> int:
     for param in params:
         max_end = max(max_end, param.byte_pos + max(1, (param.bit_pos + max(1, param.bit_len) + 7) // 8))
     return max(default, max_end)
+
+
+def normalized_data_type(value: Any) -> str:
+    return compact_text(value).upper()
+
+
+def is_ascii_data_type(value: Any) -> bool:
+    return "ASCII" in normalized_data_type(value)
+
+
+def merge_split_byte_did_params(did: DidDef) -> None:
+    if len(did.params) <= 1:
+        return
+
+    ordered = sorted(did.params, key=lambda param: (param.byte_pos, param.bit_pos, param.name))
+    data_type = normalized_data_type(ordered[0].data_type)
+    unit = compact_text(ordered[0].unit)
+    if not data_type or not is_ascii_data_type(data_type):
+        return
+
+    for expected_byte, param in enumerate(ordered):
+        if (
+            normalized_data_type(param.data_type) != data_type
+            or compact_text(param.unit) != unit
+            or param.byte_pos != expected_byte
+            or param.bit_pos != 0
+            or param.bit_len != 8
+            or param.conversion.kind != "identity"
+        ):
+            return
+
+    identifier, display = split_name(did.desc)
+    name = display or identifier or hex_short("DID", did.did)
+    did.params = [
+        ParamDef(
+            name=identifier or name,
+            long_name=name,
+            byte_pos=0,
+            bit_pos=0,
+            bit_len=len(ordered) * 8,
+            data_type=ordered[0].data_type,
+            unit=unit,
+        )
+    ]
 
 
 def vf_parse_cover(workbook: Any) -> CoverInfo:
@@ -2230,7 +2320,8 @@ def vf_parse_did_sheet(sheet: Any, *, system_sheet: bool) -> list[DidDef]:
             if not current_supported:
                 current = None
                 continue
-            desc = usable_text(sheet.cell(row, 2).value) or hex_short("DID", did_value)
+            desc_name, desc_display = split_name(cell_text(sheet.cell(row, 2).value))
+            desc = canonical_name(desc_name, desc_display, hex_short("DID", did_value))
             rw_state = usable_text(sheet.cell(row, 3).value) or "R"
             app_access = usable_text(sheet.cell(row, 11).value) or rw_state
             boot_access = usable_text(sheet.cell(row, 12).value)
@@ -2289,6 +2380,9 @@ def vf_parse_dids(workbook: Any) -> list[DidDef]:
                 existing.size = max(existing.size, did.size)
                 existing.write_security = existing.write_security if existing.write_security != "N" else did.write_security
                 existing.sessions = existing.sessions or did.sessions
+    for did in result.values():
+        merge_split_byte_did_params(did)
+        did.size = vf_param_size(did.params)
     return list(result.values())
 
 
@@ -2617,6 +2711,7 @@ def update_odx_vf(root: etree._Element, id_gen: Any, survey: SurveyData) -> None
             prefix="DID",
             unit_ids=unit_ids,
             generated_dop_cache=generated_dop_cache,
+            direct_single_param=True,
         )
 
     for io_did in survey.io_dids:
@@ -3790,6 +3885,13 @@ def set_value_param_dop(message: etree._Element, dop_id: str, short_name: str, l
     dop_ref.set("ID-REF", dop_id)
 
 
+def did_payload_dop_id(did: DidDef) -> str:
+    direct_param = direct_did_payload_param(did)
+    if direct_param is not None:
+        return direct_param.dop_id
+    return did.structure_id
+
+
 def remove_param_by_short_name(message: etree._Element, short_name: str) -> None:
     params = message.find("PARAMS")
     if params is None:
@@ -3820,7 +3922,7 @@ def generate_flat_did_services(root: etree._Element, id_gen: Any, dids: list[Did
             set_coded_value(request, "RecordDataIdentifier", did.did)
             if positive is not None:
                 set_coded_value(positive, "RecordDataIdentifier", did.did)
-                set_value_param_dop(positive, did.structure_id, did.short_name, did.long_name, byte_position=3)
+                set_value_param_dop(positive, did_payload_dop_id(did), did.short_name, did.long_name, byte_position=3)
             if negative is not None:
                 set_first_coded_by_semantic(negative, "SERVICEIDRQ", 0x22)
 
@@ -3898,7 +4000,7 @@ def make_write_request(node_id: str, short_name: str, did: DidDef) -> etree._Ele
     params = sub(request, "PARAMS")
     params.append(coded_const_param("SID_RQ", "SID-RQ", 0, 0x2E, "SERVICE-ID"))
     params.append(coded_const_param("RecordDataIdentifier", "RecordDataIdentifier", 1, did.did, "ID", bit_length=16))
-    params.append(make_value_param(did.short_name, did.long_name, 3, 0, did.structure_id))
+    params.append(make_value_param(did.short_name, did.long_name, 3, 0, did_payload_dop_id(did)))
     return request
 
 
@@ -4622,12 +4724,12 @@ def find_default_xlsx(base_dir: Path) -> Path:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Generate VF PDX from a VF diagnosis survey Excel file.")
     parser.add_argument("xlsx", nargs="?", type=Path, help="Input VF diagnosis survey .xlsx file")
-    parser.add_argument("--template", type=Path, default=Path("templates") / "VF_ECU_CAN_v15.pdx", help="Template PDX")
-    parser.add_argument("--output-dir", type=Path, default=Path("output"), help="Output directory")
+    parser.add_argument("--template", type=Path, default=SCRIPT_DIR / "templates" / "VF_ECU_CAN_v15.pdx", help="Template PDX")
+    parser.add_argument("--output-dir", type=Path, default=SCRIPT_DIR / "output", help="Output directory")
     parser.add_argument("--no-validate", action="store_true", help="Skip odxtools validation")
     args = parser.parse_args(argv)
 
-    xlsx_path = args.xlsx or find_default_xlsx(Path.cwd())
+    xlsx_path = args.xlsx or find_default_xlsx(SCRIPT_DIR)
     if not xlsx_path.exists():
         raise FileNotFoundError(xlsx_path)
     if not args.template.exists():

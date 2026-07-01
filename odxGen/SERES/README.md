@@ -43,17 +43,17 @@ SERES_诊断调查表解析指南.md
 python -m pip install openpyxl lxml odxtools
 ```
 
-脚本还依赖同级项目中的 VOYAN 基础生成器：
+脚本还依赖同级项目中的 VOYAH 基础生成器：
 
 ```text
-..\VOYAN\pdxGen_VOYAN.py
+..\VOYAH\pdxGen_VOYAH.py
 ```
 
 脚本启动时会按以下路径查找：
 
 ```text
-..\VOYAN\pdxGen_VOYAN.py
-.\pdxGen_VOYAN.py
+..\VOYAH\pdxGen_VOYAH.py
+.\pdxGen_VOYAH.py
 ```
 
 CANdela 验证环境：
@@ -79,8 +79,8 @@ SERES\
     SERES_ECU_CAN_v15.cdd
   output\
     <生成的 PDX / CANdela 导出的 CDD>
-..\VOYAN\
-  pdxGen_VOYAN.py
+..\VOYAH\
+  pdxGen_VOYAH.py
 ```
 
 注意：
@@ -298,7 +298,7 @@ Control
 
 默认不包含 `Read` 服务。`templates\SERES_ECU_CAN_v15.cdd` 中的 IO Control 类模板也应保持无 `Read`，否则导入后再导入 CANoe 时 IO Control ID 会多出不需要的 Read。
 
-当前模板使用 flat service 方案，不使用 VOYAN 的 table-based DID 服务。也就是说，每个 DID 会生成独立服务，例如：
+当前模板使用 flat service 方案，不使用 VOYAH 的 table-based DID 服务。也就是说，每个 DID 会生成独立服务，例如：
 
 ```text
 <DID_SHORT_NAME>_Read
@@ -354,19 +354,19 @@ ServiceQualifier = Read / Write
 或通过 --template 指定正确模板
 ```
 
-### Cannot find the reusable VOYAN writer
+### Cannot find the reusable VOYAH writer
 
 原因：
 
 ```text
-脚本找不到 ..\VOYAN\pdxGen_VOYAN.py
+脚本找不到 ..\VOYAH\pdxGen_VOYAH.py
 ```
 
 处理：
 
 ```text
-确认 SERES 与 VOYAN 目录是同级
-或把 pdxGen_VOYAN.py 放到 SERES 目录
+确认 SERES 与 VOYAH 目录是同级
+或把 pdxGen_VOYAH.py 放到 SERES 目录
 ```
 
 ### odxtools validation failed

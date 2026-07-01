@@ -1,5 +1,5 @@
 # 提示词
 
-你是汽车行业资深的 UDS 诊断开发工程师，先了解并熟悉 ODX 和 PDX 格式，及与它们相关的 ODX(ISO 22901) 标准。适用于 Vector CANdelastudio 的 pdx 模板参考 templates/SERES_ECU_CAN_v15.pdx。目录中 SERES_诊断调查表_G19项目EVR_G19项目EV_零重力主驾座椅控制器_V1.3-20260420.xlsx 文件是赛力斯主机厂的诊断调查表，包括 UDS 包含的诊断 ID，诊断服务，诊断数据，赛力斯主机厂均使用此诊断调查表格式。根据提到的所有信息，写脚本生成与诊断调查表同名的 pdx 用于导入 CANdelastudio 生成 cdd，脚本名称为 pdxGen_VOYAN.py，要求脚本可复用，下次输入同厂家的诊断调查表可以解析生成 pdx。输出的 pdx 存放到 output 目录下。同时，请探索并熟悉 https://github.com/mercedes-benz/odxtools 这个项目，使用项目工具验证生成的 pdx 的格式正确性。最终生成的 pdx 要求导入 CANdelastudio 后可准确生成包含诊断调查表中所有完整正确的数据的 cdd。
+你是汽车行业资深的 UDS 诊断开发工程师，先了解并熟悉 ODX 和 PDX 格式，及与它们相关的 ODX(ISO 22901) 标准。适用于 Vector CANdelastudio 的 pdx 模板参考 templates/SERES_ECU_CAN_v15.pdx。目录中 SERES_诊断调查表_G19项目EVR_G19项目EV_零重力主驾座椅控制器_V1.3-20260420.xlsx 文件是赛力斯主机厂的诊断调查表，包括 UDS 包含的诊断 ID，诊断服务，诊断数据，赛力斯主机厂均使用此诊断调查表格式。根据提到的所有信息，写脚本生成与诊断调查表同名的 pdx 用于导入 CANdelastudio 生成 cdd，脚本名称为 pdxGen_VOYAH.py，要求脚本可复用，下次输入同厂家的诊断调查表可以解析生成 pdx。输出的 pdx 存放到 output 目录下。同时，请探索并熟悉 https://github.com/mercedes-benz/odxtools 这个项目，使用项目工具验证生成的 pdx 的格式正确性。最终生成的 pdx 要求导入 CANdelastudio 后可准确生成包含诊断调查表中所有完整正确的数据的 cdd。
 
 使用 $diagnostic-odx-pdx，帮我把这家新的诊断调查表结构适配到现有 PDX 生成器里

@@ -12,9 +12,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DEFAULT_PDX_GENERATOR = Path("pdxGen_JAC.py")
-DEFAULT_PDX_TEMPLATE = Path("templates") / "JAC_ECU_CAN_v15.pdx"
-DEFAULT_CDD_TEMPLATE = Path("templates") / "JAC_ECU_CAN_v15.cdd"
+SCRIPT_DIR = Path(__file__).resolve().parent
+DEFAULT_PDX_GENERATOR = SCRIPT_DIR / "pdxGen_JAC.py"
+DEFAULT_PDX_TEMPLATE = SCRIPT_DIR / "templates" / "JAC_ECU_CAN_v15.pdx"
+DEFAULT_CDD_TEMPLATE = SCRIPT_DIR / "templates" / "JAC_ECU_CAN_v15.cdd"
 
 
 @dataclass(frozen=True)
@@ -198,6 +199,10 @@ def run_pdx_generator(
     output_dir: Path,
     no_validate: bool,
 ) -> Path:
+    xlsx_path = xlsx_path.resolve()
+    pdx_generator = pdx_generator.resolve()
+    pdx_template = pdx_template.resolve()
+    output_dir = output_dir.resolve()
     output_pdx = output_dir / f"{xlsx_path.stem}.pdx"
     cmd = [
         sys.executable,
@@ -214,7 +219,15 @@ def run_pdx_generator(
     print(f"Generating PDX: {output_pdx}")
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"
-    result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", env=env)
+    result = subprocess.run(
+        cmd,
+        cwd=pdx_generator.resolve().parent,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        env=env,
+    )
     if result.returncode != 0:
         details = (result.stderr or result.stdout).strip()
         raise RuntimeError(f"PDX generation failed with return code {result.returncode}:\n{details}")
@@ -414,7 +427,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("xlsx", nargs="?", type=Path, help="Input JAC diagnosis survey .xlsx file")
     parser.add_argument("--pdx-generator", type=Path, default=DEFAULT_PDX_GENERATOR, help="Path to pdxGen_JAC.py")
     parser.add_argument("--pdx-template", type=Path, default=DEFAULT_PDX_TEMPLATE, help="Template PDX passed to pdxGen_JAC.py")
-    parser.add_argument("--output-dir", type=Path, default=Path("output"), help="Output directory for generated PDX and default CDD")
+    parser.add_argument("--output-dir", type=Path, default=SCRIPT_DIR / "output", help="Output directory for generated PDX and default CDD")
     parser.add_argument("--no-validate", action="store_true", help="Skip odxtools validation during PDX generation")
     parser.add_argument("--cdd-template", type=Path, default=DEFAULT_CDD_TEMPLATE, help="CDD template/reference document for CANdela import")
     parser.add_argument("--cdd-output", type=Path, help="Output CDD path; defaults to the generated PDX path with .cdd suffix")
@@ -445,7 +458,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
 
-    xlsx_path = args.xlsx or find_default_xlsx(Path.cwd())
+    xlsx_path = args.xlsx or find_default_xlsx(SCRIPT_DIR)
     if not xlsx_path.exists():
         raise FileNotFoundError(xlsx_path)
     if not args.pdx_generator.exists():
