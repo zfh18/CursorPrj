@@ -196,7 +196,9 @@ def name_parts(value: Any) -> list[str]:
     result: list[str] = []
     for part in parts:
         slash_parts = [piece.strip() for piece in re.split(r"\s*/\s*", part) if piece.strip()]
-        if len(slash_parts) > 1 and any(has_chinese_text(piece) for piece in slash_parts):
+        has_chinese = any(has_chinese_text(piece) for piece in slash_parts)
+        has_english_only = any(re.search(r"[A-Za-z]", piece) and not has_chinese_text(piece) for piece in slash_parts)
+        if len(slash_parts) > 1 and has_chinese and has_english_only:
             result.extend(slash_parts)
         else:
             result.append(part)
