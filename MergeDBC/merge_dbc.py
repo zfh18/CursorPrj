@@ -13,6 +13,10 @@ from collections import OrderedDict, Counter
 
 BO_LINE_RE = re.compile(r'^BO_\s+\d+\s+')
 
+# 用于解析信号行并拆出接收节点列表。DBC 信号行格式大致为:
+#   SG_ Name [Mux] : ... "unit"  RxNode1,RxNode2
+SG_LINE_RE = re.compile(r'^(?P<prefix>\s*SG_\s+(?P<name>\S+)(?:\s+\S+)?\s*:\s+.*"\s+)(?P<receivers>.+?)\s*$')
+
 # 用于识别 NM_ 开头报文（用于推断 NmAsrBaseAddress 的范围与节点 ID）
 # 捕获组: (msg_id, msg_name, transmitter)
 BO_NM_RE = re.compile(r'^BO_\s+(\d+)\s+(NM_\S+?)\s*:\s*\d+\s+(\S+)')
@@ -512,6 +516,51 @@ def dedupe_append(items, seen, output):
             output.append(item)
 
 
+def parse_signal_line(line):
+    """拆分 SG_ 行，返回 (signal_name, prefix_without_receivers, receivers)。
+
+    prefix 保留原有格式并包含接收节点前的空白，便于在合并 receiver 后重建
+    信号行。无法识别时返回 None。
+    """
+    m = SG_LINE_RE.match(line.rstrip('\n\r'))
+    if not m:
+        return None
+    receivers = [x.strip() for x in m.group('receivers').split(',') if x.strip()]
+    return m.group('name'), m.group('prefix'), receivers
+
+
+def merge_signal_receivers(existing, incoming, msg_id):
+    """合并两条同名 SG_ 行的 receiver 列表。
+
+    若除 receiver 外的信号结构不同，保留首次出现的定义并打印告警；否则
+    按输入顺序追加新 receiver，避免 RX 报文在多节点 DBC 合并时丢失接收方。
+    """
+    existing_parsed = parse_signal_line(existing)
+    incoming_parsed = parse_signal_line(incoming)
+
+    if not existing_parsed or not incoming_parsed:
+        return existing
+
+    sig_name, existing_prefix, existing_receivers = existing_parsed
+    _, incoming_prefix, incoming_receivers = incoming_parsed
+
+    if existing_prefix.strip() != incoming_prefix.strip():
+        print(
+            f"  [SignalMerge] 警告: 报文 {msg_id} 的信号 {sig_name} 存在不同定义, "
+            "已保留首次出现的定义"
+        )
+        return existing
+
+    merged_receivers = []
+    seen = set()
+    for receiver in existing_receivers + incoming_receivers:
+        if receiver not in seen:
+            seen.add(receiver)
+            merged_receivers.append(receiver)
+
+    return existing_prefix + ','.join(merged_receivers)
+
+
 def write_merged_content(f, merged):
     # 写入头部
     for line in merged['header']:
@@ -623,11 +672,15 @@ def merge_dbc_files(input_paths, output_path):
             for sig in msg[1:]:
                 sig_stripped = sig.strip()
                 if sig_stripped.startswith('SG_'):
-                    parts = sig_stripped.split()
-                    if len(parts) >= 2:
-                        sig_name = parts[1]
+                    parsed_sig = parse_signal_line(sig)
+                    if parsed_sig:
+                        sig_name = parsed_sig[0]
                         if sig_name not in signal_dict:
                             signal_dict[sig_name] = sig
+                        else:
+                            signal_dict[sig_name] = merge_signal_receivers(
+                                signal_dict[sig_name], sig, msg_id
+                            )
         if msg_header is not None:
             merged['bo'][msg_id] = [msg_header] + list(signal_dict.values())
 

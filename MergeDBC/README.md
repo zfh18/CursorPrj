@@ -6,7 +6,7 @@
 
 - 支持任意多个输入 DBC 文件（**至少 1 个**；为 1 个时执行单文件归一化）
 - 自动合并 `BU_` 节点列表（去重并按字母排序）
-- 自动合并 `BO_` 消息及其 `SG_` 信号（同名信号去重）
+- 自动合并 `BO_` 消息及其 `SG_` 信号（同名信号保留首次结构定义，并合并接收节点列表）
 - 对 `CM_`、`BA_DEF_`、`BA_DEF_DEF_`、`BA_`、`VAL_` 做顺序去重
 - 自动注入 / 覆盖工程要求的 `Nm*` / `NmAsr*` 与 `NodeLayerModules` 等额外属性
 - `NmAsrBaseAddress` / `NmBaseAddress` 范围根据 DBC 中 `NM_` 报文 ID 段动态推断
@@ -78,7 +78,7 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 
 - 报文按 `BO_` ID 数值升序重排
 - `BU_:` 节点列表按字母升序重排（去重）
-- 同一报文内同名 `SG_` 信号去重（保留首次）
+- 同一报文内同名 `SG_` 信号去重；若信号结构一致，会合并接收节点列表
 - `CM_ / BA_DEF_ / BA_DEF_DEF_ / BA_ / VAL_` 完全相同的整行去重
 - 注入 / 覆盖 `Nm*` / `NmAsr*` + `NodeLayerModules` 等工程要求属性
 - `DBName` 改写为输出文件名
@@ -86,7 +86,7 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 
 ### 多文件合并模式（输入数 ≥ 2）
 
-在归一化的基础上，跨文件做并集与同 ID 信号合并。
+在归一化的基础上，跨文件做并集与同 ID 信号合并。对于多个节点共同接收的 RX 报文，同名信号会合并接收节点列表，避免只保留首个输入文件中的接收节点。
 
 
 ## 合并规则
@@ -100,7 +100,23 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 3. **消息合并（`BO_` + `SG_`）**
    - 对同一消息 ID：
      - 消息头使用首次出现的定义
-     - 信号按信号名去重并合并（保留首次出现）
+     - 信号按信号名去重并合并
+     - 若同名信号除接收节点列表外的结构一致，保留首次出现的信号结构，并将各输入中的接收节点按输入顺序合并去重
+     - 若同名信号结构不一致，保留首次出现的定义并打印告警
+
+   示例：多个节点文件都包含诊断功能请求 `0x7DF` 时，输入中可能分别为：
+
+   ```dbc
+   SG_ Diag_FuncReq_Data : 7|64@0+ (1,0) [0|0] ""  DSM
+   SG_ Diag_FuncReq_Data : 7|64@0+ (1,0) [0|0] ""  RAC,LRSM
+   SG_ Diag_FuncReq_Data : 7|64@0+ (1,0) [0|0] ""  PSM
+   ```
+
+   合并后会输出：
+
+   ```dbc
+   SG_ Diag_FuncReq_Data : 7|64@0+ (1,0) [0|0] ""  DSM,RAC,LRSM,PSM
+   ```
 
 4. **注释/属性/值表**
    - `CM_`、`BA_DEF_`、`BA_DEF_DEF_`、`BA_`、`VAL_`
@@ -155,6 +171,7 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 - 输出文件路径
 - `NmAsrBaseAddress` 推断结果
 - `NmAsrNodeIdentifier` 各节点注入结果；若某条 NM 存在 `BO_TX_BU_` 多发送者，会额外打印**共用同一 node_id** 的提示
+- 同名 `SG_` 信号结构不一致时的 `SignalMerge` 告警
 - 仍无 NM 推导的 `BU_` 节点列表（不写 `BA_`、默认 `0xFF`）
 - `DBName` 覆盖结果
 - 合并统计信息（消息、注释、属性定义、值表数量、注入额外属性条数）
