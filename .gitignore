@@ -219,3 +219,13 @@ __marimo__/
 
 # Local binary artifacts
 CANoeDLL/
+
+# Diagnostic workbook inputs
+*.xls
+*.xlsx
+*.xlsm
+*.xlsb
+~$*.xls
+~$*.xlsx
+~$*.xlsm
+~$*.xlsb
