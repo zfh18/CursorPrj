@@ -640,7 +640,17 @@ def make_data_object_prop(dop_id: str, preferred_short_name: str, param: ParamDe
     else:
         compu = sub(dop, "COMPU-METHOD")
         sub(compu, "CATEGORY", "IDENTICAL")
-        if "ASCII" in param.data_type.upper():
+        data_type = param.data_type.upper()
+        if "BCD" in data_type:
+            coded = sub(
+                dop,
+                "DIAG-CODED-TYPE",
+                attrib={"BASE-TYPE-ENCODING": "BCD-P", "BASE-DATA-TYPE": "A_UINT32"},
+            )
+            set_xsi_type(coded, "STANDARD-LENGTH-TYPE")
+            sub(coded, "BIT-LENGTH", bit_len)
+            sub(dop, "PHYSICAL-TYPE", attrib={"BASE-DATA-TYPE": "A_UINT32", "DISPLAY-RADIX": "DEC"})
+        elif "ASCII" in data_type:
             coded = sub(
                 dop,
                 "DIAG-CODED-TYPE",
