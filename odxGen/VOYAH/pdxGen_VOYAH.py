@@ -285,6 +285,9 @@ def parse_conversion(value: Any) -> Conversion:
         .replace("–", "-")
         .replace("—", "-")
     )
+    if re.search(r"\btype\s*=\s*bcd\b", normalized, flags=re.IGNORECASE):
+        return Conversion(kind="bcd")
+
     enum_entries: list[tuple[int, int, str]] = []
     enum_pattern = re.compile(
         r"(?:0[xX])?([0-9A-Fa-f]+)\s*(?:-\s*(?:0[xX])?([0-9A-Fa-f]+))?\s*:\s*([^;\n\r]+)"
@@ -1341,6 +1344,8 @@ def conversion_cache_key(conversion: Conversion) -> str:
         return "enum:" + "|".join(f"{lo}-{hi}:{label}" for lo, hi, label in conversion.enum)
     if conversion.kind == "linear":
         return f"linear:{conversion.a}:{conversion.b}:{conversion.precision}"
+    if conversion.kind == "bcd":
+        return "bcd"
     return "identity"
 
 
@@ -1391,10 +1396,31 @@ def make_data_object_prop(dop_id: str, preferred_short_name: str, param: ParamDe
         physical = sub(dop, "PHYSICAL-TYPE", attrib={"BASE-DATA-TYPE": "A_FLOAT64"})
         if conversion.precision is not None:
             sub(physical, "PRECISION", conversion.precision)
+    elif conversion.kind == "bcd":
+        compu = sub(dop, "COMPU-METHOD")
+        sub(compu, "CATEGORY", "IDENTICAL")
+        coded = sub(
+            dop,
+            "DIAG-CODED-TYPE",
+            attrib={"BASE-TYPE-ENCODING": "BCD-P", "BASE-DATA-TYPE": "A_UINT32"},
+        )
+        set_xsi_type(coded, "STANDARD-LENGTH-TYPE")
+        sub(coded, "BIT-LENGTH", min(bit_len, 32))
+        sub(dop, "PHYSICAL-TYPE", attrib={"BASE-DATA-TYPE": "A_UINT32", "DISPLAY-RADIX": "DEC"})
     else:
         compu = sub(dop, "COMPU-METHOD")
         sub(compu, "CATEGORY", "IDENTICAL")
-        if "ASCII" in param.data_type.upper():
+        data_type = param.data_type.upper()
+        if "BCD" in data_type:
+            coded = sub(
+                dop,
+                "DIAG-CODED-TYPE",
+                attrib={"BASE-TYPE-ENCODING": "BCD-P", "BASE-DATA-TYPE": "A_UINT32"},
+            )
+            set_xsi_type(coded, "STANDARD-LENGTH-TYPE")
+            sub(coded, "BIT-LENGTH", min(bit_len, 32))
+            sub(dop, "PHYSICAL-TYPE", attrib={"BASE-DATA-TYPE": "A_UINT32", "DISPLAY-RADIX": "DEC"})
+        elif "ASCII" in data_type:
             coded = sub(
                 dop,
                 "DIAG-CODED-TYPE",
