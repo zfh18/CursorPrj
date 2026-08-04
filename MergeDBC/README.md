@@ -7,7 +7,7 @@
 - 支持任意多个输入 DBC 文件（**至少 1 个**；为 1 个时执行单文件归一化）
 - 自动合并 `BU_` 节点列表（去重并按字母排序）
 - 自动合并 `BO_` 消息及其 `SG_` 信号（同名信号保留首次结构定义，并合并接收节点列表）
-- 对 `CM_`、`BA_DEF_`、`BA_DEF_DEF_`、`BA_`、`VAL_` 做顺序去重
+- 对 `CM_`、`BA_`、`VAL_` 做顺序去重；`BA_DEF_`、`BA_DEF_DEF_` 按属性名去重
 - 自动注入 / 覆盖工程要求的 `Nm*` / `NmAsr*` 与 `NodeLayerModules` 等额外属性
 - `NmAsrBaseAddress` / `NmBaseAddress` 范围根据 DBC 中 `NM_` 报文 ID 段动态推断
 - `NmStationAddress` 范围按 NM 基地址低 8 位设置为 `0x00..0xFF`
@@ -79,7 +79,7 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 - 报文按 `BO_` ID 数值升序重排
 - `BU_:` 节点列表按字母升序重排（去重）
 - 同一报文内同名 `SG_` 信号去重；若信号结构一致，会合并接收节点列表
-- `CM_ / BA_DEF_ / BA_DEF_DEF_ / BA_ / VAL_` 完全相同的整行去重
+- `CM_ / BA_ / VAL_` 完全相同的整行去重；`BA_DEF_ / BA_DEF_DEF_` 按属性名去重
 - 注入 / 覆盖 `Nm*` / `NmAsr*` + `NodeLayerModules` 等工程要求属性
 - `DBName` 改写为输出文件名
 - 按 `GB2312` 编码统一写出（失败回退 `GBK`）
@@ -120,7 +120,9 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 
 4. **注释/属性/值表**
    - `CM_`、`BA_DEF_`、`BA_DEF_DEF_`、`BA_`、`VAL_`
-   - 按输入顺序去重，保证结果稳定
+   - `CM_`、`BA_`、`VAL_` 按输入顺序做整行去重，保证结果稳定
+   - `BA_DEF_`、`BA_DEF_DEF_` 按属性名去重；若同名定义只是空白格式不同，会保留首次定义并忽略后续重复项
+   - 若同名属性定义在规范化后仍不一致，会保留首次定义并打印 `AttributeMerge` 告警，避免输出 DBC 中出现重复属性定义
 
 5. **额外属性注入 / 覆盖**
    - `NmAsrBaseAddress`（范围由 `NM_` 报文 ID 高位段动态推断，找不到时回退 `0x4xx`）
@@ -172,6 +174,7 @@ python "F:\CursorPrj\MergeDBC\merge_dbc.py" ^
 - `NmAsrBaseAddress` 推断结果
 - `NmAsrNodeIdentifier` 各节点注入结果；若某条 NM 存在 `BO_TX_BU_` 多发送者，会额外打印**共用同一 node_id** 的提示
 - 同名 `SG_` 信号结构不一致时的 `SignalMerge` 告警
+- 同名 `BA_DEF_` / `BA_DEF_DEF_` 定义不一致时的 `AttributeMerge` 告警
 - 仍无 NM 推导的 `BU_` 节点列表（不写 `BA_`、默认 `0xFF`）
 - `DBName` 覆盖结果
 - 合并统计信息（消息、注释、属性定义、值表数量、注入额外属性条数）

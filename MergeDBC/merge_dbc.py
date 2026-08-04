@@ -516,6 +516,50 @@ def dedupe_append(items, seen, output):
             output.append(item)
 
 
+def normalize_dbc_spacing(line):
+    """压缩引号外空白，用于判断 DBC 定义行是否仅格式不同。"""
+    out = []
+    in_quote = False
+    last_was_space = False
+    for ch in line.strip():
+        if ch == '"':
+            in_quote = not in_quote
+            out.append(ch)
+            last_was_space = False
+        elif ch.isspace() and not in_quote:
+            if not last_was_space:
+                out.append(' ')
+                last_was_space = True
+        else:
+            out.append(ch)
+            last_was_space = False
+    return ''.join(out)
+
+
+def dedupe_attribute_definitions(items, regex, seen_by_name, unmatched_seen, output, label):
+    """按属性名去重 BA_DEF_ / BA_DEF_DEF_，避免空白差异导致重复定义。"""
+    for item in items:
+        m = regex.match(item)
+        if not m:
+            if item not in unmatched_seen:
+                unmatched_seen.add(item)
+                output.append(item)
+            continue
+
+        name = m.group(1)
+        normalized = normalize_dbc_spacing(item)
+        if name in seen_by_name:
+            if seen_by_name[name] != normalized:
+                print(
+                    f'  [AttributeMerge] 警告: {label} "{name}" 存在不同定义, '
+                    '已保留首次出现的定义'
+                )
+            continue
+
+        seen_by_name[name] = normalized
+        output.append(item)
+
+
 def parse_signal_line(line):
     """拆分 SG_ 行，返回 (signal_name, prefix_without_receivers, receivers)。
 
@@ -686,15 +730,23 @@ def merge_dbc_files(input_paths, output_path):
 
     # 合并注释/属性/值表，保持顺序去重
     cm_set = set()
-    ba_def_set = set()
-    ba_def_def_set = set()
+    ba_def_seen = {}
+    ba_def_unmatched_set = set()
+    ba_def_def_seen = {}
+    ba_def_def_unmatched_set = set()
     ba_set = set()
     val_set = set()
     other_set = set()
     for dbc in parsed_dbcs:
         dedupe_append(dbc['cm'], cm_set, merged['cm'])
-        dedupe_append(dbc['ba_def'], ba_def_set, merged['ba_def'])
-        dedupe_append(dbc['ba_def_def'], ba_def_def_set, merged['ba_def_def'])
+        dedupe_attribute_definitions(
+            dbc['ba_def'], BA_DEF_NAME_RE, ba_def_seen,
+            ba_def_unmatched_set, merged['ba_def'], 'BA_DEF_'
+        )
+        dedupe_attribute_definitions(
+            dbc['ba_def_def'], BA_DEF_DEF_NAME_RE, ba_def_def_seen,
+            ba_def_def_unmatched_set, merged['ba_def_def'], 'BA_DEF_DEF_'
+        )
         dedupe_append(dbc['ba'], ba_set, merged['ba'])
         dedupe_append(dbc['val'], val_set, merged['val'])
         dedupe_append(dbc['other'], other_set, merged['other'])
