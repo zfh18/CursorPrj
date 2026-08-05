@@ -1802,6 +1802,13 @@ def is_conversion_directive_line(line: str) -> bool:
     return re.fullmatch(r"\s*(?:type|value|a|b|precision)\s*=.*", line, flags=re.IGNORECASE) is not None
 
 
+def parse_enum_value(value: str) -> int:
+    text = value.strip()
+    if text.lower().startswith("0x") or re.search(r"[A-Fa-f]", text):
+        return int(text[2:] if text.lower().startswith("0x") else text, 16)
+    return int(text, 10)
+
+
 def parse_conversion(value: Any) -> Conversion:
     text = normalize_conversion_text(value)
     if not text or text.upper() in {"/", "N/A", "NA"}:
@@ -1854,7 +1861,7 @@ def parse_conversion(value: Any) -> Conversion:
 
     enum_entries: list[tuple[int, int, str]] = []
     enum_pattern = re.compile(
-        r"(?:0[xX])?([0-9A-Fa-f]+)\s*(?:[-~]\s*(?:0[xX])?([0-9A-Fa-f]+))?\s*[:=]\s*([^;\n\r]+)"
+        r"((?:0[xX])?[0-9A-Fa-f]+)\s*(?:[-~]\s*((?:0[xX])?[0-9A-Fa-f]+))?\s*[:=]\s*([^;\n\r]+)"
     )
     for line in re.split(r"[\r\n;]+", text):
         if is_conversion_directive_line(line):
@@ -1863,8 +1870,8 @@ def parse_conversion(value: Any) -> Conversion:
             label = match.group(3).strip(" ;,")
             if not label:
                 continue
-            lo = int(match.group(1), 16)
-            hi = int(match.group(2), 16) if match.group(2) else lo
+            lo = parse_enum_value(match.group(1))
+            hi = parse_enum_value(match.group(2)) if match.group(2) else lo
             enum_entries.append((lo, hi, label))
     if enum_entries:
         return Conversion(kind="enum", enum=enum_entries)
@@ -1878,14 +1885,14 @@ def parse_conversion(value: Any) -> Conversion:
             label = match.group(3).strip(" ;,")
             if not label:
                 continue
-            lo = int(match.group(1), 16)
-            hi = int(match.group(2), 16) if match.group(2) else lo
+            lo = parse_enum_value(match.group(1))
+            hi = parse_enum_value(match.group(2)) if match.group(2) else lo
             enum_entries.append((lo, hi, label))
     if enum_entries:
         return Conversion(kind="enum", enum=enum_entries)
 
     bare_enum_pattern = re.compile(
-        r"(?<![0-9A-Za-z])(?:0[xX])?([0-9A-Fa-f]{1,2})\s+([^/;\n\r]+)"
+        r"(?<![0-9A-Za-z])((?:0[xX])?[0-9A-Fa-f]{1,2})\s+([^/;\n\r]+)"
     )
     for line in re.split(r"[/;\n\r]+", data_text):
         if is_conversion_directive_line(line):
@@ -1895,7 +1902,7 @@ def parse_conversion(value: Any) -> Conversion:
             continue
         label = match.group(2).strip(" ;,")
         if label:
-            value = int(match.group(1), 16)
+            value = parse_enum_value(match.group(1))
             enum_entries.append((value, value, label))
     if enum_entries:
         return Conversion(kind="enum", enum=enum_entries)

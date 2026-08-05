@@ -240,15 +240,15 @@ def parse_conversion(value: Any) -> Conversion:
     )
     enum_entries: list[tuple[int, int, str]] = []
     enum_pattern = re.compile(
-        r"(?:0[xX])?([0-9A-Fa-f]+)\s*(?:-\s*(?:0[xX])?([0-9A-Fa-f]+))?\s*:\s*([^;\n\r]+)"
+        r"((?:0[xX])?[0-9A-Fa-f]+)\s*(?:-\s*((?:0[xX])?[0-9A-Fa-f]+))?\s*:\s*([^;\n\r]+)"
     )
     for match in enum_pattern.finditer(normalized):
-        lo = int(match.group(1), 16)
-        hi = int(match.group(2), 16) if match.group(2) else lo
+        lo = parse_enum_value(match.group(1))
+        hi = parse_enum_value(match.group(2)) if match.group(2) else lo
         label = match.group(3).strip()
         if label:
             enum_entries.append((lo, hi, label))
-    if enum_entries and re.search(r"0[xX]", normalized):
+    if enum_entries:
         return Conversion(kind="enum", enum=enum_entries)
 
     if re.search(r"y\s*=\s*a\s*x\s*\+\s*b", normalized, flags=re.IGNORECASE):
@@ -264,6 +264,13 @@ def parse_conversion(value: Any) -> Conversion:
 def _parse_float_assignment(text: str, key: str, default: float) -> float:
     match = re.search(rf"\b{re.escape(key)}\s*=\s*(-?\d+(?:\.\d+)?)", text, flags=re.IGNORECASE)
     return float(match.group(1)) if match else default
+
+
+def parse_enum_value(value: str) -> int:
+    text = value.strip()
+    if text.lower().startswith("0x") or re.search(r"[A-Fa-f]", text):
+        return int(text[2:] if text.lower().startswith("0x") else text, 16)
+    return int(text, 10)
 
 
 def sanitize_short_name(value: str, fallback: str, used: set[str] | None = None, max_len: int = 120) -> str:
@@ -973,14 +980,14 @@ def parse_conversion(value: Any) -> Conversion:
 
     enum_entries: list[tuple[int, int, str]] = []
     enum_pattern = re.compile(
-        r"(?:0[xX])?([0-9A-Fa-f]+)\s*(?:[-~]\s*(?:0[xX])?([0-9A-Fa-f]+))?\s*[:=]\s*([^;\n\r]+)"
+        r"((?:0[xX])?[0-9A-Fa-f]+)\s*(?:[-~]\s*((?:0[xX])?[0-9A-Fa-f]+))?\s*[:=]\s*([^;\n\r]+)"
     )
     for match in enum_pattern.finditer(text):
         label = match.group(3).strip(" ;,")
         if not label:
             continue
-        lo = int(match.group(1), 16)
-        hi = int(match.group(2), 16) if match.group(2) else lo
+        lo = parse_enum_value(match.group(1))
+        hi = parse_enum_value(match.group(2)) if match.group(2) else lo
         enum_entries.append((lo, hi, label))
     if enum_entries and re.search(r"0[xX]|[:=]", text):
         return Conversion(kind="enum", enum=enum_entries)
