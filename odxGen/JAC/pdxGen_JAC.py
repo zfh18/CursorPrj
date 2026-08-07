@@ -1743,6 +1743,19 @@ def usable_text(value: Any) -> str:
     return text
 
 
+def cell_has_strike(cell: Any) -> bool:
+    return bool(getattr(getattr(cell, "font", None), "strike", False))
+
+
+def row_is_deleted(sheet: Any, row: int, columns: Iterable[int] | None = None, *, threshold: float = 0.75) -> bool:
+    cells = [sheet.cell(row, col) for col in columns] if columns is not None else list(sheet[row])
+    populated = [cell for cell in cells if compact_text(cell.value)]
+    if len(populated) < 2:
+        return False
+    struck = sum(1 for cell in populated if cell_has_strike(cell))
+    return struck == len(populated) or struck / len(populated) >= threshold
+
+
 def normalize_unit_text(value: Any) -> str:
     text = usable_text(value)
     normalized = text.replace("（", "(").replace("）", ")")
@@ -2302,6 +2315,11 @@ def jac_parse_did_sheet(sheet: Any, *, system_sheet: bool, start_row: int) -> li
             break
 
         did_value = parse_hex_loose(sheet.cell(row, cols["did"]).value, max_value=0xFFFF)
+        if row_is_deleted(sheet, row):
+            if did_value is not None:
+                current = None
+                current_supported = False
+            continue
         if did_value is not None:
             support_col = cols.get("supported")
             current_supported = jac_yes(sheet.cell(row, support_col).value, default=True) if support_col else True
@@ -2381,10 +2399,19 @@ def jac_parse_io_dids(workbook: Any) -> list[IoDidDef]:
         if jac_is_end(sheet.cell(row, 1).value) or jac_is_end(sheet.cell(row, 2).value):
             break
         did_value = parse_hex_loose(sheet.cell(row, 2).value, max_value=0xFFFF)
+        control = parse_hex_loose(sheet.cell(row, 5).value, max_value=0xFF)
+        if row_is_deleted(sheet, row):
+            if did_value is not None:
+                current = None
+                current_control = None
+                current_enabled = False
+            elif control is not None:
+                current_control = None
+                current_enabled = False
+            continue
         if did_value is not None:
             desc, long_name = dual_name(sheet.cell(row, 3).value, sheet.cell(row, 4).value, hex_short("IODID", did_value))
             current = by_id.setdefault(did_value, IoDidDef(did=did_value, desc=canonical_name(desc, long_name, hex_short("IODID", did_value)), size=0))
-        control = parse_hex_loose(sheet.cell(row, 5).value, max_value=0xFF)
         if control is not None:
             current_control = control
             sessions_supported = any(jac_yes(sheet.cell(row, col).value) for col in (18, 19, 20))
@@ -2438,6 +2465,16 @@ def jac_parse_routines(workbook: Any) -> list[RoutineDef]:
         if jac_is_end(sheet.cell(row, 1).value) or jac_is_end(sheet.cell(row, 2).value):
             break
         rid = parse_hex_loose(sheet.cell(row, 2).value, max_value=0xFFFF)
+        control_type = jac_parse_routine_control_type(sheet.cell(row, 7).value)
+        if row_is_deleted(sheet, row):
+            if rid is not None:
+                current_routine = None
+                current_subfn = None
+                current_supported = False
+            elif control_type is not None:
+                current_subfn = None
+                current_supported = False
+            continue
         if rid is not None:
             desc, long_name = dual_name(sheet.cell(row, 3).value, sheet.cell(row, 4).value, hex_short("RID", rid))
             sessions = [
@@ -2455,7 +2492,6 @@ def jac_parse_routines(workbook: Any) -> list[RoutineDef]:
             current_routine.security = current_routine.security if current_routine.security != "N" else security
             current_routine.sessions = current_routine.sessions or sessions
 
-        control_type = jac_parse_routine_control_type(sheet.cell(row, 7).value)
         supported = jac_yes(sheet.cell(row, 6).value, default=False) and jac_yes(sheet.cell(row, 8).value, default=False)
         if current_routine is not None and control_type is not None:
             current_supported = supported
@@ -2520,6 +2556,8 @@ def jac_parse_dtcs(workbook: Any) -> list[DtcDef]:
     for row in range(6, sheet.max_row + 1):
         if jac_is_end(sheet.cell(row, 1).value) or jac_is_end(sheet.cell(row, 2).value):
             break
+        if row_is_deleted(sheet, row):
+            continue
         display = usable_text(sheet.cell(row, 2).value).upper()
         bytes_text = "".join(f"{parse_hex_loose(sheet.cell(row, col).value, max_value=0xFF) or 0:02X}" for col in (3, 4, 5))
         if not display or not re.fullmatch(r"[0-9A-F]{6}", bytes_text):
@@ -2566,12 +2604,16 @@ def jac_parse_snapshots(workbook: Any, dids: list[DidDef]) -> tuple[list[Snapsho
         if jac_is_end(sheet.cell(row, 1).value):
             break
         records = jac_record_numbers(sheet.cell(row, 4).value)
+        did = parse_hex_loose(sheet.cell(row, 5).value, max_value=0xFFFF)
+        if row_is_deleted(sheet, row):
+            if did is not None:
+                current_did = None
+            continue
         if records:
             current_records = records
             for num in records:
                 record_nums.add(num)
                 record_names.setdefault(num, f"Snapshot Record 0x{num:02X}")
-        did = parse_hex_loose(sheet.cell(row, 5).value, max_value=0xFFFF)
         if did is not None:
             current_did = did
         if current_did is None:
@@ -2601,6 +2643,8 @@ def jac_parse_extended_records(workbook: Any) -> list[ExtendedRecordDef]:
     for row in range(8, sheet.max_row + 1):
         if jac_is_end(sheet.cell(row, 1).value) or jac_is_end(sheet.cell(row, 2).value):
             break
+        if row_is_deleted(sheet, row):
+            continue
         record_num = parse_hex_loose(sheet.cell(row, 2).value, max_value=0xFF)
         size = parse_int_cell(sheet.cell(row, 5).value, 0)
         if record_num is None or size <= 0:
@@ -2641,6 +2685,11 @@ def jac_parse_service_access_sheet(
         if jac_is_end(sheet.cell(row, 1).value):
             break
         service_id = parse_hex_loose(sheet.cell(row, 1).value, max_value=0xFF)
+        if row_is_deleted(sheet, row):
+            if service_id is not None:
+                current_service_id = None
+                current_service_name = ""
+            continue
         if service_id is not None:
             current_service_id = service_id
             current_service_name = usable_text(sheet.cell(row, 2).value)

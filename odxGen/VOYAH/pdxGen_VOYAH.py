@@ -470,6 +470,19 @@ def locate_header_row(sheet: Any, checks: Iterable[tuple[int, str]], max_scan: i
     return 1
 
 
+def cell_has_strike(cell: Any) -> bool:
+    return bool(getattr(getattr(cell, "font", None), "strike", False))
+
+
+def row_is_deleted(sheet: Any, row: int, columns: Iterable[int] | None = None, *, threshold: float = 0.75) -> bool:
+    cells = [sheet.cell(row, col) for col in columns] if columns is not None else list(sheet[row])
+    populated = [cell for cell in cells if compact_text(cell.value)]
+    if len(populated) < 2:
+        return False
+    struck = sum(1 for cell in populated if cell_has_strike(cell))
+    return struck == len(populated) or struck / len(populated) >= threshold
+
+
 def parse_read_write_dids(workbook: Any) -> list[DidDef]:
     sheets = []
     for sheet_name in workbook.sheetnames:
@@ -486,10 +499,17 @@ def parse_read_write_dids(workbook: Any) -> list[DidDef]:
     for sheet in sheets:
         header = locate_header_row(sheet, [(3, "DID")])
         current: DidDef | None = None
+        skip_deleted_did = False
         for row in range(header + 1, sheet.max_row + 1):
             did_value = parse_hex_cell(sheet.cell(row, 3).value, max_value=0xFFFF)
+            if row_is_deleted(sheet, row):
+                if did_value is not None:
+                    current = None
+                    skip_deleted_did = True
+                continue
             note = compact_text(sheet.cell(row, 2).value).lower()
             if did_value is not None and not any(x in note for x in ("these", "please", "note")):
+                skip_deleted_did = False
                 desc_english, desc_long = split_name(cell_text(sheet.cell(row, 4).value))
                 size = parse_int_cell(sheet.cell(row, 5).value, default=0)
                 current = DidDef(
@@ -516,6 +536,8 @@ def parse_read_write_dids(workbook: Any) -> list[DidDef]:
                 continue
 
             if current is None:
+                continue
+            if skip_deleted_did:
                 continue
             has_param = any(compact_text(sheet.cell(row, c).value) for c in (6, 7, 8, 12, 13))
             if not has_param:
@@ -604,10 +626,17 @@ def parse_io_dids(workbook: Any) -> list[IoDidDef]:
     header = locate_header_row(sheet, [(2, "DID")], max_scan=20)
     io_by_id: dict[int, IoDidDef] = {}
     current: IoDidDef | None = None
+    skip_deleted_did = False
     for row in range(header + 1, sheet.max_row + 1):
         did_value = parse_hex_cell(sheet.cell(row, 2).value, max_value=0xFFFF)
+        if row_is_deleted(sheet, row):
+            if did_value is not None:
+                current = None
+                skip_deleted_did = True
+            continue
         control = parse_hex_cell(sheet.cell(row, 4).value, max_value=0x03)
         if did_value is not None:
+            skip_deleted_did = False
             desc_english, desc_long = split_name(cell_text(sheet.cell(row, 3).value))
             current = io_by_id.get(did_value)
             if current is None:
@@ -639,6 +668,8 @@ def parse_io_dids(workbook: Any) -> list[IoDidDef]:
 
         if current is None:
             continue
+        if skip_deleted_did:
+            continue
         has_param = any(compact_text(sheet.cell(row, c).value) for c in (6, 7, 8, 12, 13))
         if not has_param:
             continue
@@ -666,11 +697,18 @@ def parse_routines(workbook: Any) -> list[RoutineDef]:
     header = locate_header_row(sheet, [(2, "Routin")], max_scan=20)
     routines: list[RoutineDef] = []
     current: RoutineDef | None = None
+    skip_deleted_routine = False
     for row in range(header + 1, sheet.max_row + 1):
         rid = parse_hex_cell(sheet.cell(row, 2).value, max_value=0xFFFF)
+        if row_is_deleted(sheet, row):
+            if rid is not None:
+                current = None
+                skip_deleted_routine = True
+            continue
         control_type = parse_hex_cell(str(sheet.cell(row, 4).value).split()[0] if sheet.cell(row, 4).value else "", max_value=0x03)
         supported = compact_text(sheet.cell(row, 5).value).upper() == "Y"
         if rid is not None and control_type is not None:
+            skip_deleted_routine = False
             desc_english, desc_long = split_name(cell_text(sheet.cell(row, 3).value))
             current = RoutineDef(
                 rid=rid,
@@ -687,7 +725,7 @@ def parse_routines(workbook: Any) -> list[RoutineDef]:
             routines.append(current)
             continue
 
-        if current is not None and control_type is not None:
+        if current is not None and not skip_deleted_routine and control_type is not None:
             current.subfunctions[control_type] = RoutineSubFunction(
                 control_type=control_type,
                 supported=supported,
@@ -704,6 +742,8 @@ def parse_dtcs(workbook: Any) -> list[DtcDef]:
     header = locate_header_row(sheet, [(2, "DTC Display")], max_scan=30)
     dtcs: list[DtcDef] = []
     for row in range(header + 1, sheet.max_row + 1):
+        if row_is_deleted(sheet, row):
+            continue
         display = compact_text(sheet.cell(row, 2).value).upper()
         byte_text = compact_text(sheet.cell(row, 3).value).upper().replace("0X", "")
         if not re.fullmatch(r"[PCBU][0-9A-F]{6}", display):
@@ -729,11 +769,18 @@ def parse_snapshot_extended(workbook: Any) -> tuple[list[SnapshotDef], list[Exte
 
     snapshots: list[SnapshotDef] = []
     current_snapshot: SnapshotDef | None = None
+    skip_deleted_snapshot = False
     ext_header = locate_header_row(sheet, [(3, "Extended Data Record Num")], max_scan=40)
     snapshot_end_row = ext_header if ext_header > 1 else sheet.max_row + 1
     for row in range(1, snapshot_end_row):
         did = parse_hex_cell(sheet.cell(row, 4).value, max_value=0xFFFF)
+        if row_is_deleted(sheet, row):
+            if did is not None:
+                current_snapshot = None
+                skip_deleted_snapshot = True
+            continue
         if did is not None and 0x0B00 <= did <= 0x0BFF:
+            skip_deleted_snapshot = False
             record = parse_hex_cell(sheet.cell(row, 3).value, max_value=0xFF)
             _, desc = split_name(cell_text(sheet.cell(row, 5).value))
             current_snapshot = SnapshotDef(
@@ -759,7 +806,7 @@ def parse_snapshot_extended(workbook: Any) -> tuple[list[SnapshotDef], list[Exte
                     current_snapshot.params.append(param)
             snapshots.append(current_snapshot)
             continue
-        if current_snapshot and not compact_text(sheet.cell(row, 4).value):
+        if current_snapshot and not skip_deleted_snapshot and not compact_text(sheet.cell(row, 4).value):
             has_param = any(compact_text(sheet.cell(row, c).value) for c in (7, 8, 9, 13, 14))
             if has_param:
                 param = make_param_from_cells(
@@ -780,9 +827,17 @@ def parse_snapshot_extended(workbook: Any) -> tuple[list[SnapshotDef], list[Exte
 
     extended_records: list[ExtendedRecordDef] = []
     current_ext: ExtendedRecordDef | None = None
+    skip_deleted_ext = False
     for row in range(ext_header + 1, sheet.max_row + 1):
         record = parse_int_cell(sheet.cell(row, 3).value, default=-1)
-        if compact_text(sheet.cell(row, 2).value) and record >= 0 and compact_text(sheet.cell(row, 4).value):
+        is_ext_header_row = compact_text(sheet.cell(row, 2).value) and record >= 0 and compact_text(sheet.cell(row, 4).value)
+        if row_is_deleted(sheet, row):
+            if is_ext_header_row:
+                current_ext = None
+                skip_deleted_ext = True
+            continue
+        if is_ext_header_row:
+            skip_deleted_ext = False
             _, desc = split_name(cell_text(sheet.cell(row, 4).value))
             current_ext = ExtendedRecordDef(
                 record_num=record,
@@ -805,6 +860,8 @@ def parse_snapshot_extended(workbook: Any) -> tuple[list[SnapshotDef], list[Exte
             extended_records.append(current_ext)
             continue
         if current_ext is None:
+            continue
+        if skip_deleted_ext:
             continue
         has_param = any(compact_text(sheet.cell(row, c).value) for c in (6, 7, 8, 12, 13))
         if not has_param:

@@ -1734,6 +1734,19 @@ def usable_text(value: Any) -> str:
     return text
 
 
+def cell_has_strike(cell: Any) -> bool:
+    return bool(getattr(getattr(cell, "font", None), "strike", False))
+
+
+def row_is_deleted(sheet: Any, row: int, columns: Iterable[int] | None = None, *, threshold: float = 0.75) -> bool:
+    cells = [sheet.cell(row, col) for col in columns] if columns is not None else list(sheet[row])
+    populated = [cell for cell in cells if compact_text(cell.value)]
+    if len(populated) < 2:
+        return False
+    struck = sum(1 for cell in populated if cell_has_strike(cell))
+    return struck == len(populated) or struck / len(populated) >= threshold
+
+
 def dual_name(english_value: Any, chinese_value: Any = "", fallback: str = "") -> tuple[str, str]:
     candidates = name_parts(english_value) + name_parts(chinese_value)
     candidates = [candidate for candidate in candidates if usable_text(candidate)]
@@ -2051,6 +2064,8 @@ def vf_parse_diagnostics_services_access(workbook: Any) -> dict[tuple[int, int |
     for row in range(1, sheet.max_row + 1):
         first_col = usable_text(sheet.cell(row, 1).value) or ""
         first_norm = first_col.strip().lower()
+        if row_is_deleted(sheet, row):
+            continue
         if first_col and "$" in first_col and "service" in first_norm:
             current_service_name = first_col
             current_service_id = None
@@ -2322,6 +2337,11 @@ def vf_parse_did_sheet(sheet: Any, *, system_sheet: bool) -> list[DidDef]:
         if vf_is_end(sheet.cell(row, 1).value):
             break
         did_value = parse_hex_cell(sheet.cell(row, 1).value, max_value=0xFFFF)
+        if row_is_deleted(sheet, row):
+            if did_value is not None:
+                current = None
+                current_supported = False
+            continue
         if did_value is not None:
             current_supported = vf_yes(sheet.cell(row, 15).value, default=False) if system_sheet else True
             if not current_supported:
@@ -2405,10 +2425,17 @@ def vf_parse_io_dids(workbook: Any) -> list[IoDidDef]:
         if vf_is_end(sheet.cell(row, 1).value):
             break
         did_value = parse_hex_cell(sheet.cell(row, 2).value, max_value=0xFFFF)
+        control = parse_hex_cell(sheet.cell(row, 1).value, max_value=0xFF)
+        if row_is_deleted(sheet, row):
+            if did_value is not None:
+                current = None
+                current_control = None
+            elif control is not None:
+                current_control = None
+            continue
         if did_value is not None:
             desc = usable_text(sheet.cell(row, 3).value) or hex_short("IODID", did_value)
             current = by_id.setdefault(did_value, IoDidDef(did=did_value, desc=desc, size=0))
-        control = parse_hex_cell(sheet.cell(row, 1).value, max_value=0xFF)
         if control is not None:
             current_control = control
             if current is not None:
@@ -2462,6 +2489,14 @@ def vf_parse_routines(workbook: Any) -> list[RoutineDef]:
             break
         rid = parse_hex_cell(sheet.cell(row, 3).value, max_value=0xFFFF)
         control_type = vf_parse_routine_control_type(sheet.cell(row, 2).value)
+        if row_is_deleted(sheet, row):
+            if rid is not None:
+                current_routine = None
+                current_subfn = None
+                current_supported = False
+            elif control_type is not None:
+                current_subfn = None
+            continue
         if rid is not None:
             current_supported = vf_yes(sheet.cell(row, 15).value, default=True)
             desc = usable_text(sheet.cell(row, 4).value) or hex_short("RID", rid)
@@ -2531,6 +2566,8 @@ def vf_parse_dtcs(workbook: Any) -> list[DtcDef]:
     result: list[DtcDef] = []
     seen: set[int] = set()
     for row in range(3, sheet.max_row + 1):
+        if row_is_deleted(sheet, row):
+            continue
         encoded = vf_encode_dtc(sheet.cell(row, 2).value) or vf_encode_dtc(sheet.cell(row, 3).value)
         if encoded is None:
             continue
@@ -2578,6 +2615,8 @@ def vf_parse_snapshots(workbook: Any) -> tuple[list[SnapshotDef], list[int], dic
     for row in range(5, sheet.max_row + 1):
         if vf_is_end(sheet.cell(row, 1).value):
             break
+        if row_is_deleted(sheet, row):
+            continue
         did = parse_hex_cell(sheet.cell(row, 1).value, max_value=0xFFFF)
         if did is None or not vf_yes(sheet.cell(row, 11).value, default=False):
             continue
@@ -2614,6 +2653,8 @@ def vf_parse_extended_records(workbook: Any) -> list[ExtendedRecordDef]:
     for row in range(6, sheet.max_row + 1):
         if vf_is_end(sheet.cell(row, 1).value):
             break
+        if row_is_deleted(sheet, row):
+            continue
         if not vf_yes(sheet.cell(row, 8).value, default=False):
             continue
         record_num = vf_record_number(sheet.cell(row, 2).value)

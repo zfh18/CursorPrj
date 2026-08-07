@@ -923,6 +923,19 @@ def find_sheet(workbook: Any, predicate: Any) -> Any | None:
     return BASE.find_sheet(workbook, predicate)
 
 
+def cell_has_strike(cell: Any) -> bool:
+    return bool(getattr(getattr(cell, "font", None), "strike", False))
+
+
+def row_is_deleted(sheet: Any, row: int, columns: Iterable[int] | None = None, *, threshold: float = 0.75) -> bool:
+    cells = [sheet.cell(row, col) for col in columns] if columns is not None else list(sheet[row])
+    populated = [cell for cell in cells if compact_text(cell.value)]
+    if len(populated) < 2:
+        return False
+    struck = sum(1 for cell in populated if cell_has_strike(cell))
+    return struck == len(populated) or struck / len(populated) >= threshold
+
+
 def sanitize_short_name(value: str, fallback: str, used: set[str] | None = None, max_len: int = 120) -> str:
     return BASE.sanitize_short_name(value, fallback, used, max_len)
 
@@ -1249,6 +1262,8 @@ def parse_service_access_sheet(
         service_marker = compact_text(sheet.cell(row, 2).value)
         if service_marker.startswith("#"):
             break
+        if row_is_deleted(sheet, row):
+            continue
         service_id = parse_hex_in_text(service_marker, max_value=0xFF)
         if service_id is None:
             continue
@@ -1418,6 +1433,8 @@ def parse_read_write_dids(workbook: Any) -> list[DidDef]:
     for row in range(12, sheet.max_row + 1):
         if compact_text(sheet.cell(row, 2).value).startswith("#"):
             break
+        if row_is_deleted(sheet, row):
+            continue
         did_value = parse_hex_cell(sheet.cell(row, 3).value, max_value=0xFFFF)
         if did_value is None:
             continue
@@ -1478,6 +1495,8 @@ def parse_io_dids(workbook: Any) -> list[IoDidDef]:
     for row in range(10, sheet.max_row + 1):
         if compact_text(sheet.cell(row, 2).value).startswith("#"):
             break
+        if row_is_deleted(sheet, row):
+            continue
         raw_did = compact_text(sheet.cell(row, 2).value)
         did_value = parse_hex_in_text(raw_did, max_value=0xFFFF)
         control = parse_hex_in_text(sheet.cell(row, 5).value, max_value=0x03)
@@ -1535,6 +1554,8 @@ def parse_routines(workbook: Any) -> list[RoutineDef]:
     for row in range(11, sheet.max_row + 1):
         if compact_text(sheet.cell(row, 2).value).startswith("#"):
             break
+        if row_is_deleted(sheet, row):
+            continue
         rid = parse_hex_in_text(sheet.cell(row, 2).value, max_value=0xFFFF)
         control_type = parse_routine_control_type(sheet.cell(row, 5).value)
         if rid is None or control_type is None:
@@ -1608,6 +1629,8 @@ def parse_dtcs(workbook: Any) -> list[DtcDef]:
     for row in range(8, sheet.max_row + 1):
         if compact_text(sheet.cell(row, 2).value).startswith("#"):
             break
+        if row_is_deleted(sheet, row):
+            continue
         if compact_text(sheet.cell(row, 2).value).lower() == "demo":
             continue
         display = compact_text(sheet.cell(row, 4).value).upper()
@@ -1687,6 +1710,8 @@ def parse_snapshot_extended(workbook: Any) -> tuple[list[SnapshotDef], list[Exte
     snapshot_record_header = compact_text(sheet.cell(6, 3).value)
 
     for row in range(8, snapshot_end):
+        if row_is_deleted(sheet, row):
+            continue
         did = parse_hex_cell(sheet.cell(row, 4).value, max_value=0xFFFF)
         if did is None:
             continue
@@ -1732,6 +1757,10 @@ def parse_snapshot_extended(workbook: Any) -> tuple[list[SnapshotDef], list[Exte
             if compact_text(sheet.cell(row, 2).value).startswith("#"):
                 break
             record_num = parse_record_number(sheet.cell(row, 3).value)
+            if row_is_deleted(sheet, row):
+                if record_num is not None:
+                    current = None
+                continue
             if record_num is not None:
                 desc_en, desc_long = dual_name(sheet.cell(row, 4).value, sheet.cell(row, 5).value, "")
                 current = ExtendedRecordDef(
