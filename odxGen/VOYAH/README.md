@@ -167,6 +167,15 @@ index.xml
 
 ## 生成后的验证
 
+诊断实例显示名优先使用中文；DID/IO 的 `TABLE-ROW` 名称使用英文标识，避免 CANdela 将纯中文名称转换为 `z` 等内部 DID Qualifier。CANdela 15 的表服务导入同时使用该名称作为实例显示名，`cddGen_VOYAH.py` 因此在导入后根据 PDX 服务实例元数据恢复中文实例名称及服务显示名称，保留内部英文 Qualifier。只手动导入 PDX 时，实例显示名为英文。重名描述保留首次出现的英文标识，后续对象追加 DID 后缀，例如 `Self_learning_information_0x0D8B`。此调整不改变数据长度、字节位置或包装结构。
+
+命名回归检查：
+
+```powershell
+python test_did_names.py
+python test_did_names.py ".\output\<生成的文件名>.cdd"
+```
+
 脚本默认会自动执行：
 
 ```powershell

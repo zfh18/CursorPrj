@@ -1120,6 +1120,7 @@ def update_odx(root: etree._Element, id_gen: IdGenerator, survey: SurveyData) ->
 
     unit_ids = ensure_units(ddds, survey)
     generated_dop_cache: dict[tuple[str, int, str, str, str], str] = {}
+    used_item_names: set[str] = set()
 
     for did in survey.dids:
         prepare_data_structure(
@@ -1130,6 +1131,7 @@ def update_odx(root: etree._Element, id_gen: IdGenerator, survey: SurveyData) ->
             prefix="DID",
             unit_ids=unit_ids,
             generated_dop_cache=generated_dop_cache,
+            used_item_names=used_item_names,
         )
         did.wrapper_id = make_wrapper_structure(
             id_gen,
@@ -1150,6 +1152,7 @@ def update_odx(root: etree._Element, id_gen: IdGenerator, survey: SurveyData) ->
             prefix="IODID",
             unit_ids=unit_ids,
             generated_dop_cache=generated_dop_cache,
+            used_item_names=used_item_names,
         )
         io_did.status_wrapper_id = make_wrapper_structure(
             id_gen,
@@ -1295,10 +1298,17 @@ def prepare_data_structure(
     prefix: str,
     unit_ids: dict[str, str],
     generated_dop_cache: dict[tuple[str, int, str, str, str], str],
+    used_item_names: set[str],
 ) -> None:
     used_param_names: set[str] = set()
     english, long_name = split_name(item.desc)
     item.short_name = sanitize_short_name(english or hex_short(prefix, item.did), hex_short(prefix, item.did))
+    if item.short_name in used_item_names:
+        item.short_name = sanitize_short_name(
+            f"{item.short_name[:111]}_0x{item.did:04X}", hex_short(prefix, item.did), used_item_names
+        )
+    else:
+        used_item_names.add(item.short_name)
     item.long_name = long_name or item.short_name
     for param in item.params:
         param.name = sanitize_short_name(param.name, "Data", used_param_names)
@@ -1542,10 +1552,10 @@ def update_did_tables_and_services(root: etree._Element, id_gen: IdGenerator, di
     writable_instances: list[tuple[int, str, str]] = []
     for did in dids:
         if did.readable:
-            append_table_row(read_table, id_gen, did.short_name, did.long_name, did.did, did.wrapper_id)
+            append_table_row(read_table, id_gen, did.short_name, did.short_name, did.did, did.wrapper_id)
             readable_instances.append((did.did, did.short_name, did.long_name))
         if did.writable:
-            append_table_row(write_table, id_gen, did.short_name, did.long_name, did.did, did.wrapper_id)
+            append_table_row(write_table, id_gen, did.short_name, did.short_name, did.did, did.wrapper_id)
             writable_instances.append((did.did, did.short_name, did.long_name))
 
     update_service_instances(root, id_gen, "Identification_Read", "Read", "Read", readable_instances)
@@ -1809,9 +1819,9 @@ def update_io_tables_and_services(root: etree._Element, id_gen: IdGenerator, io_
             rq_structure = io_did.control_request_wrapper_id if control == 3 else None
             pr_structure = io_did.status_wrapper_id
             if rq_table is not None:
-                append_table_row(rq_table, id_gen, io_did.short_name, io_did.long_name, io_did.did, rq_structure)
+                append_table_row(rq_table, id_gen, io_did.short_name, io_did.short_name, io_did.did, rq_structure)
             if pr_table is not None:
-                append_table_row(pr_table, id_gen, io_did.short_name, io_did.long_name, io_did.did, pr_structure)
+                append_table_row(pr_table, id_gen, io_did.short_name, io_did.short_name, io_did.did, pr_structure)
             instances_by_control[control].append((io_did.did, io_did.short_name, io_did.long_name))
 
     for control, (_, _, service_short_name, service_label) in table_names.items():

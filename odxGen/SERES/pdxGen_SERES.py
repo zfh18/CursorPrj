@@ -537,7 +537,7 @@ def prepare_data_structure(
     item.structure_id = id_gen.new("DIDSTR")
     structure = sub(structures, "STRUCTURE", attrib={"ID": item.structure_id})
     sub(structure, "SHORT-NAME", item.short_name)
-    sub(structure, "LONG-NAME", item.long_name)
+    sub(structure, "LONG-NAME", item.short_name if prefix == "IODID" else item.long_name)
     if item.size:
         sub(structure, "BYTE-SIZE", item.size)
     params_node = sub(structure, "PARAMS")
@@ -1039,13 +1039,22 @@ def choose_conversion(primary_value: Any, fallback_value: Any = "") -> Conversio
     """Parse both conversion columns and keep the richer physical meaning.
 
     SERES sheets normally put English expressions in column L and Chinese text
-    in column M. In a few rows one column contains a pass-through formula while
-    the other carries the value table, so enum > linear > identity gives CANdela
-    the more useful data type without hard-coding row numbers.
+    in column M. Some rows use an identity-like English linear expression
+    (for example ``phy=XX*1``) while the Chinese column carries a multiline enum
+    table. Preserve the raw cell text so the enum parser can see line breaks, and
+    prefer that Chinese enum only when the English side is identity-like.
     """
 
     primary = parse_conversion(primary_value)
     fallback = parse_conversion(fallback_value)
+    if (
+        primary.kind == "linear"
+        and primary.a == 1
+        and primary.b == 0
+        and fallback.kind == "enum"
+        and len(fallback.enum) >= 2
+    ):
+        return fallback
     rank = {"enum": 3, "linear": 2, "identity": 1}
     if rank.get(fallback.kind, 0) > rank.get(primary.kind, 0):
         return fallback
@@ -1106,10 +1115,7 @@ def make_param_from_cells(
     byte_start, byte_end = parse_index_range(byte_value, size=size, default=0)
     bit_pos, bit_len = parse_bit_range(bit_value, byte_start, byte_end, size=size)
     data_type = usable_text(data_type_value) or "Hex(Unsigned)"
-    conversion = choose_conversion(
-        usable_text(conversion_value),
-        usable_text(conversion_fallback_value),
-    )
+    conversion = choose_conversion(conversion_value, conversion_fallback_value)
     if bit_len > 32 and conversion.kind == "enum":
         conversion = Conversion()
     return ParamDef(

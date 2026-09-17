@@ -8,8 +8,12 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
+import zipfile
 from dataclasses import dataclass
 from pathlib import Path
+
+from lxml import etree
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -410,6 +414,42 @@ def import_pdx_with_candela(
     return output_cdd
 
 
+def restore_did_display_names(pdx_path: Path, cdd_path: Path) -> None:
+    names: dict[str, str] = {}
+    with zipfile.ZipFile(pdx_path) as package:
+        for filename in package.namelist():
+            if not filename.endswith(".odx-d"):
+                continue
+            root = etree.fromstring(package.read(filename))
+            for service in root.iter("DIAG-SERVICE"):
+                qualifier = service.findtext("SHORT-NAME", "")
+                if not qualifier.startswith(("Identification_", "IOControl_")):
+                    continue
+                for instance in service.xpath("SDGS/SDG/SDG"):
+                    values = {node.get("SI"): node.text for node in instance.findall("SD")}
+                    if values.get("DiagInstanceQualifier") and values.get("DiagInstanceName"):
+                        names[values["DiagInstanceQualifier"]] = values["DiagInstanceName"]
+    tree = etree.parse(str(cdd_path), etree.XMLParser(resolve_entities=False, no_network=True))
+    changed = 0
+    for instance in tree.iter("DIAGINST"):
+        display_name = names.get(instance.findtext("QUAL", ""))
+        if not display_name:
+            continue
+        for text in instance.findall("NAME/TUV"):
+            text.text = display_name
+        for service in instance.findall("SERVICE"):
+            for text in service.findall("SHORTCUTNAME/TUV"):
+                label = service.findtext("NAME/TUV", "")
+                text.text = f"{display_name} {label}".strip()
+        changed += 1
+    if changed:
+        with tempfile.TemporaryDirectory(dir=cdd_path.parent) as staging:
+            staged = Path(staging) / cdd_path.name
+            tree.write(str(staged), encoding="utf-8", xml_declaration=True, standalone=False)
+            staged.replace(cdd_path)
+    print(f"Restored Chinese/display names for {changed} DID/IO diagnostic instances")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Generate VOYAH CDD by generating PDX and importing it with CANdelaStudio.")
     parser.add_argument("xlsx", nargs="?", type=Path, help="Input diagnosis survey .xlsx file")
@@ -469,6 +509,7 @@ def main(argv: list[str] | None = None) -> int:
         deact=args.candela_deact,
         timeout_seconds=args.candela_timeout,
     )
+    restore_did_display_names(pdx_path, cdd_output)
     return 0
 
 

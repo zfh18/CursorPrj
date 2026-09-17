@@ -603,7 +603,7 @@ def prepare_data_structure(
     item.structure_id = id_gen.new("DIDSTR")
     structure = sub(structures, "STRUCTURE", attrib={"ID": item.structure_id})
     sub(structure, "SHORT-NAME", item.short_name)
-    sub(structure, "LONG-NAME", item.long_name)
+    sub(structure, "LONG-NAME", item.short_name if prefix == "IODID" else item.long_name)
     if item.size:
         sub(structure, "BYTE-SIZE", item.size)
     params_node = sub(structure, "PARAMS")

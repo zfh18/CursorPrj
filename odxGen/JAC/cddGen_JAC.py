@@ -8,8 +8,11 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
+
+from lxml import etree
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -422,6 +425,36 @@ def import_pdx_with_candela(
     return output_cdd
 
 
+def normalize_internal_did_qualifiers(cdd_path: Path) -> None:
+    tree = etree.parse(str(cdd_path), etree.XMLParser(resolve_entities=False, no_network=True))
+    dids = {node.get("id"): node for node in tree.iter("DID") if node.get("id")}
+    refs_by_did: dict[str, list[etree._Element]] = {}
+    qualifiers: dict[str, str] = {}
+    for instance in tree.iter("DIAGINST"):
+        qualifier = instance.findtext("QUAL", "")
+        for ref in instance.iter("DIDDATAREF"):
+            did_ref = ref.get("didRef", "")
+            if not qualifier or did_ref not in dids:
+                continue
+            if did_ref in qualifiers and qualifiers[did_ref] != qualifier:
+                raise RuntimeError(f"CDD DID {did_ref} is referenced by multiple qualifiers")
+            qualifiers[did_ref] = qualifier
+            refs_by_did.setdefault(did_ref, []).append(ref)
+    changed = 0
+    for did_ref, qualifier in qualifiers.items():
+        for node in (dids[did_ref], *refs_by_did[did_ref]):
+            qual = node.find("QUAL")
+            if qual is not None and qual.text != qualifier:
+                qual.text = qualifier
+                changed += 1
+    if changed:
+        with tempfile.TemporaryDirectory(dir=cdd_path.parent) as staging:
+            staged = Path(staging) / cdd_path.name
+            tree.write(str(staged), encoding="utf-8", xml_declaration=True, standalone=False)
+            staged.replace(cdd_path)
+    print(f"Normalized {changed} internal DID qualifier reference(s)")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Generate JAC CDD by generating PDX and importing it with CANdelaStudio.")
     parser.add_argument("xlsx", nargs="?", type=Path, help="Input JAC diagnosis survey .xlsx file")
@@ -485,6 +518,7 @@ def main(argv: list[str] | None = None) -> int:
         deact=args.candela_deact,
         timeout_seconds=args.candela_timeout,
     )
+    normalize_internal_did_qualifiers(cdd_output)
     return 0
 
 
