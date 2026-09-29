@@ -425,6 +425,20 @@ def import_pdx_with_candela(
     return output_cdd
 
 
+def remove_legislated_audience_restrictions(cdd_path: Path) -> int:
+    tree = etree.parse(str(cdd_path), etree.XMLParser(resolve_entities=False, no_network=True))
+    changed = 0
+    for service in tree.xpath('//SERVICE[@xaud="8"]'):
+        del service.attrib["xaud"]
+        changed += 1
+    if changed:
+        with tempfile.TemporaryDirectory(dir=cdd_path.parent) as staging:
+            staged = Path(staging) / cdd_path.name
+            tree.write(str(staged), encoding="utf-8", xml_declaration=True, standalone=False)
+            staged.replace(cdd_path)
+    return changed
+
+
 def normalize_internal_did_qualifiers(cdd_path: Path) -> None:
     tree = etree.parse(str(cdd_path), etree.XMLParser(resolve_entities=False, no_network=True))
     dids = {node.get("id"): node for node in tree.iter("DID") if node.get("id")}
@@ -518,6 +532,8 @@ def main(argv: list[str] | None = None) -> int:
         deact=args.candela_deact,
         timeout_seconds=args.candela_timeout,
     )
+    removed_target_group_restrictions = remove_legislated_audience_restrictions(cdd_output)
+    print(f"Removed Legislated audience restrictions from {removed_target_group_restrictions} service(s)")
     normalize_internal_did_qualifiers(cdd_output)
     return 0
 

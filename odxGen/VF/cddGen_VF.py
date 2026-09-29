@@ -380,6 +380,27 @@ def patch_cdd_snapshot_records(cdd_path: Path, snapshot_record_names: dict[int, 
     return patched
 
 
+def remove_legislated_audience_restrictions(cdd_path: Path) -> int:
+    """Remove the imported exclusion of the Legislated target group."""
+
+    parser = etree.XMLParser(remove_blank_text=False, huge_tree=True)
+    tree = etree.parse(str(cdd_path), parser)
+    patched = 0
+    for service in tree.xpath('//SERVICE[@xaud="8"]'):
+        del service.attrib["xaud"]
+        patched += 1
+
+    if patched:
+        tree.write(
+            str(cdd_path),
+            encoding="utf-8",
+            xml_declaration=True,
+            standalone=False,
+            doctype='<!DOCTYPE CANDELA SYSTEM "candela.dtd">',
+        )
+    return patched
+
+
 def is_known_sprmib_skip(line: str) -> bool:
     return (
         "Skipped ODX DIAG-SERVICE" in line
@@ -606,6 +627,9 @@ def main(argv: list[str] | None = None) -> int:
         deact=args.candela_deact,
         timeout_seconds=args.candela_timeout,
     )
+    patched_target_groups = remove_legislated_audience_restrictions(cdd_output)
+    if patched_target_groups:
+        print(f"Removed imported target group restrictions from {patched_target_groups} CDD objects")
     snapshot_record_names = load_snapshot_record_names(xlsx_path, args.pdx_generator)
     patched_snapshot_records = patch_cdd_snapshot_records(cdd_output, snapshot_record_names)
     if patched_snapshot_records:
